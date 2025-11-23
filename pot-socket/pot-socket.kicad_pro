@@ -490,7 +490,7 @@
       "plot": "gerbers/",
       "pos_files": "",
       "specctra_dsn": "",
-      "step": "pot-socket.step",
+      "step": "pot-socket.stl",
       "svg": "",
       "vrml": ""
     },
