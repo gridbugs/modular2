@@ -84,11 +84,11 @@
 	(footprint "Potentiometer_THT:Potentiometer_Alps_RK163_Single_Horizontal"
 		(layer "F.Cu")
 		(uuid "324cdf5a-6315-4f5a-b987-4236d4bb6be9")
-		(at 145 95)
+		(at 147.5 95)
 		(descr "1110U1Q 1110TNP 1110U2A 1110U0Q Potentiometer, horizontal, Alps RK163 Single, https://tech.alpsalpine.com/prod/e/pdf/potentiometer/rotarypotentiometers/rk16/rk16.pdf")
 		(tags "Potentiometer horizontal Alps RK163 Single")
 		(property "Reference" "RV1"
-			(at 0 13 270)
+			(at 0 13.5 270)
 			(layer "F.SilkS")
 			(uuid "5758514d-d9a4-4b83-b216-40d24536a0f4")
 			(effects
@@ -350,66 +350,6 @@
 		(sheetfile "pot-socket.kicad_sch")
 		(attr through_hole)
 		(fp_line
-			(start -1.38 -1.38)
-			(end 0 -1.38)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "159b355f-555e-4772-a8b8-b8068203feae")
-		)
-		(fp_line
-			(start -1.38 0)
-			(end -1.38 -1.38)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "45deed88-0140-4af5-af87-0628ab357b75")
-		)
-		(fp_line
-			(start -1.38 1.27)
-			(end -1.38 6.46)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "c15751ae-500a-4992-a00a-9efe4b24098c")
-		)
-		(fp_line
-			(start -1.38 1.27)
-			(end 1.38 1.27)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "5ae0929b-7116-4bab-ae3b-9ce768ff6f23")
-		)
-		(fp_line
-			(start -1.38 6.46)
-			(end 1.38 6.46)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "8681f1ce-6505-44c2-9fe5-94ee9450d43f")
-		)
-		(fp_line
-			(start 1.38 1.27)
-			(end 1.38 6.46)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "654365cc-0e83-4721-a038-dcf79fcd4ee3")
-		)
-		(fp_line
 			(start -1.77 -1.77)
 			(end -1.77 6.85)
 			(stroke
@@ -448,56 +388,6 @@
 			)
 			(layer "F.CrtYd")
 			(uuid "4c292eb2-7b44-41d2-a070-8c141242dd1b")
-		)
-		(fp_line
-			(start -1.27 -0.635)
-			(end -0.635 -1.27)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(layer "F.Fab")
-			(uuid "fb45a7ec-2916-4c2b-8367-12df162d1ecf")
-		)
-		(fp_line
-			(start -1.27 6.35)
-			(end -1.27 -0.635)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(layer "F.Fab")
-			(uuid "63515a11-e8ea-4c0e-9fdd-1ad6b71ad850")
-		)
-		(fp_line
-			(start -0.635 -1.27)
-			(end 1.27 -1.27)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(layer "F.Fab")
-			(uuid "4402f4b9-6b2c-4bb8-b275-cd357255e7ba")
-		)
-		(fp_line
-			(start 1.27 -1.27)
-			(end 1.27 6.35)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(layer "F.Fab")
-			(uuid "cd202e8c-86b0-4ff4-a4ea-3fce30572a7f")
-		)
-		(fp_line
-			(start 1.27 6.35)
-			(end -1.27 6.35)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(layer "F.Fab")
-			(uuid "cc6f8cdb-b67b-466e-b8b3-c4fd650f3e2e")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 2.54 90)
@@ -652,7 +542,7 @@
 		(embedded_fonts no)
 	)
 	(gr_rect
-		(start 142.5 89)
+		(start 144.5 89)
 		(end 155 111)
 		(stroke
 			(width 0.05)
@@ -676,43 +566,43 @@
 	)
 	(segment
 		(start 147.54 105)
-		(end 150 102.54)
+		(end 147.5 105)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 1)
-		(uuid "690820fd-701c-4a06-86a2-76d8a4025593")
+		(uuid "399349e7-7c9c-4030-9b9d-82708996065d")
 	)
 	(segment
-		(start 145 105)
+		(start 150 102.54)
 		(end 147.54 105)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 1)
-		(uuid "eed8ac79-89cd-4c4a-ab05-72ae339f2e5f")
+		(uuid "e7beaf46-d8b1-46fa-8992-aa376e7f2854")
 	)
 	(segment
-		(start 145 100)
-		(end 150 100)
+		(start 150 100)
+		(end 147.5 100)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 2)
-		(uuid "dcd0526e-d86a-41e2-bd4b-2edc4ae65232")
+		(uuid "d78c8780-1185-42a9-8409-0d31a437faa3")
 	)
 	(segment
-		(start 147.54 95)
-		(end 150 97.46)
+		(start 150 97.46)
+		(end 149.96 97.46)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 3)
-		(uuid "6975cdd5-5990-4656-acc5-e4ca3a603e6b")
+		(uuid "8c07b075-c024-4651-bed3-028b84698843")
 	)
 	(segment
-		(start 145 95)
-		(end 147.54 95)
+		(start 149.96 97.46)
+		(end 147.5 95)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 3)
-		(uuid "a0b1658a-246e-42ee-8a80-3d2e2b205873")
+		(uuid "f285ca7a-b2c4-4e2a-81fd-3ef5ca5add9b")
 	)
 	(embedded_fonts no)
 )
