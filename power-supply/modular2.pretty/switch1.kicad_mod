@@ -1,0 +1,94 @@
+(footprint "switch1"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -0.5 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "831eb041-00d1-4281-abb2-10fa9f6a0685")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "switch1"
+		(at 0 1 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "95b178de-9560-4efd-9eef-0b1d16400943")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "dfd74f55-7940-4a05-9e05-8c8483c60cc8")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "793ec7e5-b54a-432a-8f38-34615ff1c782")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr exclude_from_pos_files exclude_from_bom)
+	(fp_text user "${REFERENCE}"
+		(at 0 2.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "35242146-6696-49eb-a3e6-71726c69a732")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole oval
+		(at 0 -4)
+		(size 3.75 2)
+		(drill oval 2.75 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "6af435e6-1e0c-4388-ade0-a4f76e30efb5")
+	)
+	(pad "2" thru_hole oval
+		(at 0 -8.5)
+		(size 3.75 2)
+		(drill oval 2.75 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "81e80256-7313-4fd2-8e2e-956f27479312")
+	)
+	(pad "3" thru_hole oval
+		(at 0 -13)
+		(size 3.75 2)
+		(drill oval 2.75 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "579076b7-13d4-4295-b7a2-b322babccdd6")
+	)
+	(embedded_fonts no)
+)
