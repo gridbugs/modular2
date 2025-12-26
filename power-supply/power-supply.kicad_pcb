@@ -27132,8 +27132,8 @@
 		(layer "Edge.Cuts")
 		(uuid "be8682a7-7b8a-45bc-a5f7-7b92126d43fe")
 	)
-	(gr_text "POWER SUPPLY V1.1"
-		(at 88.5 166 0)
+	(gr_text "POWER SUPPLY V2"
+		(at 89.5 166 0)
 		(layer "F.SilkS")
 		(uuid "60230788-3659-4514-acba-f67b227a2c0a")
 		(effects

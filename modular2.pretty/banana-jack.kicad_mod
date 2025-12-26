@@ -4,7 +4,7 @@
 	(generator_version "9.0")
 	(layer "F.Cu")
 	(property "Reference" "J**"
-		(at 1.5 -6.5 0)
+		(at -0.5 7.5 0)
 		(unlocked yes)
 		(layer "F.SilkS")
 		(uuid "63d023f5-2e25-454a-81aa-690916ff6f10")
@@ -16,7 +16,7 @@
 		)
 	)
 	(property "Value" "banana-jack"
-		(at -6.5 -7.5 0)
+		(at -0.5 8 0)
 		(unlocked yes)
 		(layer "F.Fab")
 		(uuid "aab86367-af89-4a21-8217-b2f2c4b91eda")
@@ -55,8 +55,8 @@
 	)
 	(attr smd)
 	(fp_circle
-		(center 0 -14.024938)
-		(end 6 -14.024938)
+		(center 0 0)
+		(end 6 0)
 		(stroke
 			(width 0.1)
 			(type solid)
@@ -66,7 +66,7 @@
 		(uuid "c4b30d9d-64e6-40ca-a4da-e43afdd31f8f")
 	)
 	(fp_text user "${REFERENCE}"
-		(at -6 -6 0)
+		(at 0 9.5 0)
 		(unlocked yes)
 		(layer "F.Fab")
 		(uuid "2ce74d5c-f335-4a08-b220-ec62fb296f6e")
@@ -78,7 +78,7 @@
 		)
 	)
 	(pad "1" thru_hole circle
-		(at 0 -14)
+		(at 0 0.024938)
 		(size 8 8)
 		(drill 6)
 		(layers "*.Cu" "*.Mask")
