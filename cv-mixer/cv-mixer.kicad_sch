@@ -588,219 +588,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Connector_Audio:AudioJack4"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "J"
-				(at 0 8.89 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "AudioJack4"
-				(at 0 6.35 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Audio Jack, 4 Poles (TRRS)"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "audio jack receptacle stereo headphones TRRS connector"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "Jack*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "AudioJack4_0_1"
-				(rectangle
-					(start -6.35 -5.08)
-					(end -7.62 -7.62)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy -5.715 -5.08) (xy -5.08 -5.715) (xy -4.445 -5.08) (xy -4.445 2.54) (xy 2.54 2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.905 -5.08) (xy -1.27 -5.715) (xy -0.635 -5.08) (xy -0.635 -2.54) (xy 2.54 -2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -5.08) (xy 0.635 -5.715) (xy 1.27 -5.08) (xy 2.54 -5.08)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start 2.54 3.81)
-					(end -6.35 -7.62)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 0) (xy -2.54 0) (xy -2.54 -5.08) (xy -3.175 -5.715) (xy -3.81 -5.08)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "AudioJack4_1_1"
-				(pin passive line
-					(at 5.08 2.54 180)
-					(length 2.54)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "S"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 0 180)
-					(length 2.54)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "R2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 -2.54 180)
-					(length 2.54)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "R1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 -5.08 180)
-					(length 2.54)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "T"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Connector_Generic:Conn_02x03_Odd_Even"
 			(pin_names
 				(offset 1.016)
@@ -1049,145 +836,6 @@
 						)
 					)
 					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "Device:C"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0.254)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "C"
-				(at 0.635 2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "C"
-				(at 0.635 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" ""
-				(at 0.9652 -3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Unpolarized capacitor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "cap capacitor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "C_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "C_0_1"
-				(polyline
-					(pts
-						(xy -2.032 0.762) (xy 2.032 0.762)
-					)
-					(stroke
-						(width 0.508)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.032 -0.762) (xy 2.032 -0.762)
-					)
-					(stroke
-						(width 0.508)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "C_1_1"
-				(pin passive line
-					(at 0 3.81 270)
-					(length 2.794)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 2.794)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1584,191 +1232,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Switch:SW_Nidec_CAS-120A1"
-			(pin_names
-				(offset 1)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "SW"
-				(at 0 4.318 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "SW_Nidec_CAS-120A1"
-				(at 0 -5.08 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "Button_Switch_SMD:Nidec_Copal_CAS-120A"
-				(at 0 -10.16 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://www.nidec-components.com/e/catalog/switch/cas.pdf"
-				(at 0 -7.62 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Switch, single pole double throw"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "switch single-pole double-throw spdt ON-ON"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "*Nidec?Copal?CAS?120A*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "SW_Nidec_CAS-120A1_0_1"
-				(circle
-					(center -2.032 0)
-					(radius 0.4572)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.651 0.254) (xy 1.651 2.286)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 2.032 2.54)
-					(radius 0.4572)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 2.032 -2.54)
-					(radius 0.4572)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "SW_Nidec_CAS-120A1_1_1"
-				(rectangle
-					(start -3.175 3.81)
-					(end 3.175 -3.81)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(pin passive line
-					(at -5.08 0 0)
-					(length 2.54)
-					(name "B"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 2.54 180)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 -2.54 180)
-					(length 2.54)
-					(name "C"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "power:-12V"
 			(power)
 			(pin_numbers
@@ -2021,12 +1484,6 @@
 		(uuid "3d3c3285-4258-4c6f-9edf-57ae9575f264")
 	)
 	(junction
-		(at 170.18 95.25)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "3f2614e9-c9af-4d32-b9bc-c18b60817266")
-	)
-	(junction
 		(at 80.01 45.72)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2067,12 +1524,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "6b30bfb5-16ae-4861-8f3b-5b15e93fefc6")
-	)
-	(junction
-		(at 162.56 125.73)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "77c7efaf-0c42-4e7d-b139-a0a678aaa47e")
 	)
 	(junction
 		(at 80.01 102.87)
@@ -2123,12 +1574,6 @@
 		(uuid "b6077c04-804f-455c-87f0-ce4387699b6b")
 	)
 	(junction
-		(at 162.56 68.58)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c26ffa91-ecf4-4525-82da-ef29052a2ff6")
-	)
-	(junction
 		(at 88.9 48.26)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2167,10 +1612,6 @@
 		(uuid "1897476d-7bde-43a2-9261-f1da84bf355e")
 	)
 	(no_connect
-		(at 196.85 100.33)
-		(uuid "30a34709-a323-4170-ae99-784059086623")
-	)
-	(no_connect
 		(at 140.97 106.68)
 		(uuid "3e68282e-45d2-432f-8998-349e78024173")
 	)
@@ -2198,13 +1639,13 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 68.58) (xy 170.18 68.58)
+			(xy 102.87 68.58) (xy 110.49 68.58)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "0620a56d-3f94-456e-8da9-c6cb75d63000")
+		(uuid "0622fbd2-113b-453c-aa72-b297b2626164")
 	)
 	(wire
 		(pts
@@ -2398,6 +1839,26 @@
 	)
 	(wire
 		(pts
+			(xy 102.87 106.68) (xy 110.49 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "30ebed93-701b-40a6-8a35-523963945a4f")
+	)
+	(wire
+		(pts
+			(xy 102.87 125.73) (xy 110.49 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "327557b6-a1e6-4656-ba57-65482693a7ea")
+	)
+	(wire
+		(pts
 			(xy 123.19 68.58) (xy 129.54 68.58)
 		)
 		(stroke
@@ -2555,36 +2016,6 @@
 			(type default)
 		)
 		(uuid "506de35b-83d6-4e99-b992-3788e058b9d8")
-	)
-	(wire
-		(pts
-			(xy 162.56 111.76) (xy 162.56 125.73)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5087e63e-e5e5-4953-8c1a-859c6dd10bfd")
-	)
-	(wire
-		(pts
-			(xy 162.56 95.25) (xy 170.18 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "50b24df3-2efd-4811-a7c3-947473678500")
-	)
-	(wire
-		(pts
-			(xy 162.56 95.25) (xy 162.56 68.58)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "50cfe429-a69e-450b-ad12-3ba6e285019f")
 	)
 	(wire
 		(pts
@@ -2808,16 +2239,6 @@
 	)
 	(wire
 		(pts
-			(xy 172.72 106.68) (xy 170.18 106.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "79249839-245f-4eab-a731-6e522ab10c3f")
-	)
-	(wire
-		(pts
 			(xy 102.87 68.58) (xy 102.87 67.31)
 		)
 		(stroke
@@ -2825,16 +2246,6 @@
 			(type default)
 		)
 		(uuid "794656ea-dc08-426d-8913-b73640274ab2")
-	)
-	(wire
-		(pts
-			(xy 182.88 97.79) (xy 189.23 97.79)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "79c0ff66-f112-42e9-bb3b-283876ae6490")
 	)
 	(wire
 		(pts
@@ -2968,16 +2379,6 @@
 	)
 	(wire
 		(pts
-			(xy 170.18 95.25) (xy 189.23 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9bb8b6cd-7795-4977-a662-535b134aa01c")
-	)
-	(wire
-		(pts
 			(xy 102.87 67.31) (xy 88.9 67.31)
 		)
 		(stroke
@@ -3018,7 +2419,7 @@
 	)
 	(wire
 		(pts
-			(xy 144.78 125.73) (xy 162.56 125.73)
+			(xy 144.78 125.73) (xy 168.91 125.73)
 		)
 		(stroke
 			(width 0)
@@ -3148,6 +2549,16 @@
 	)
 	(wire
 		(pts
+			(xy 102.87 49.53) (xy 110.49 49.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c2f536a3-bf08-4a3d-a627-976f48c3ab8a")
+	)
+	(wire
+		(pts
 			(xy 132.08 97.79) (xy 132.08 110.49)
 		)
 		(stroke
@@ -3165,6 +2576,16 @@
 			(type default)
 		)
 		(uuid "c55820e7-d997-4c9f-8f7c-10e5d615b728")
+	)
+	(wire
+		(pts
+			(xy 102.87 144.78) (xy 110.49 144.78)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c6ac5fa4-8281-462c-9038-6601a050d1af")
 	)
 	(wire
 		(pts
@@ -3228,16 +2649,6 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 125.73) (xy 168.91 125.73)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ce0e58b3-0de8-4741-bc82-a0bde9d052f9")
-	)
-	(wire
-		(pts
 			(xy 88.9 63.5) (xy 88.9 67.31)
 		)
 		(stroke
@@ -3278,7 +2689,7 @@
 	)
 	(wire
 		(pts
-			(xy 144.78 68.58) (xy 162.56 68.58)
+			(xy 144.78 68.58) (xy 170.18 68.58)
 		)
 		(stroke
 			(width 0)
@@ -3408,13 +2819,13 @@
 	)
 	(wire
 		(pts
-			(xy 182.88 109.22) (xy 182.88 97.79)
+			(xy 102.87 87.63) (xy 110.49 87.63)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "f75345f5-d87b-4e15-b149-99cef37bad92")
+		(uuid "f612e2fd-0861-4708-93b5-b7fdf76759d6")
 	)
 	(wire
 		(pts
@@ -3425,16 +2836,6 @@
 			(type default)
 		)
 		(uuid "f95a3fbb-8ffb-4d3c-9883-4e725211dfe2")
-	)
-	(wire
-		(pts
-			(xy 172.72 111.76) (xy 162.56 111.76)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fae21222-55ac-43cf-817e-93f217198108")
 	)
 	(wire
 		(pts
@@ -3475,16 +2876,6 @@
 			(type default)
 		)
 		(uuid "fd7c6614-049d-4b68-b77b-2c1605a9488d")
-	)
-	(wire
-		(pts
-			(xy 170.18 106.68) (xy 170.18 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fdaba867-6961-4cb9-958a-751a610b0ff9")
 	)
 	(wire
 		(pts
@@ -3645,74 +3036,6 @@
 			(project "audio-mixer"
 				(path "/820de2a9-cffb-4c91-ab1e-db3943b5a57a"
 					(reference "J18")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 106.68 144.78 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "0c532fa5-cbda-43fd-8de3-11c580f48182")
-		(property "Reference" "C6"
-			(at 106.68 137.16 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10uF"
-			(at 106.68 139.7 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
-			(at 110.49 143.8148 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 106.68 144.78 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 106.68 144.78 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "cc75dd24-ba6e-4a1d-a5c7-05fcbb899385")
-		)
-		(pin "2"
-			(uuid "66b7ef07-e178-4417-8cf8-47b3f016ec4e")
-		)
-		(instances
-			(project "audio-mixer"
-				(path "/820de2a9-cffb-4c91-ab1e-db3943b5a57a"
-					(reference "C6")
 					(unit 1)
 				)
 			)
@@ -3918,74 +3241,6 @@
 			(project "audio-mixer"
 				(path "/820de2a9-cffb-4c91-ab1e-db3943b5a57a"
 					(reference "R2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 106.68 125.73 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "1f9a59a9-c15e-4627-9724-ab853d665ffb")
-		(property "Reference" "C5"
-			(at 106.68 118.11 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10uF"
-			(at 106.68 120.65 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
-			(at 110.49 124.7648 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 106.68 125.73 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 106.68 125.73 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "3af4c471-9213-4dac-a6f9-d1a4b5e3df4e")
-		)
-		(pin "2"
-			(uuid "1e1c7203-2fa4-4d96-92d2-d7019c1621ab")
-		)
-		(instances
-			(project "audio-mixer"
-				(path "/820de2a9-cffb-4c91-ab1e-db3943b5a57a"
-					(reference "C5")
 					(unit 1)
 				)
 			)
@@ -5003,74 +4258,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C")
-		(at 106.68 68.58 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "5c605293-b336-4fbb-a73b-4cfc48471bae")
-		(property "Reference" "C2"
-			(at 106.68 60.96 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10uF"
-			(at 106.68 63.5 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
-			(at 110.49 67.6148 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 106.68 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 106.68 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "7b6769b4-f160-4ec0-9bc2-5a177c0c4ea1")
-		)
-		(pin "2"
-			(uuid "9ddd86c4-1f32-4aa4-839d-e889c4f89d0a")
-		)
-		(instances
-			(project "audio-mixer"
-				(path "/820de2a9-cffb-4c91-ab1e-db3943b5a57a"
-					(reference "C2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Connector:Conn_01x01_Pin")
 		(at 68.58 49.53 0)
 		(unit 1)
@@ -5628,82 +4815,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Audio:AudioJack4")
-		(at 201.93 100.33 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "77abafe1-807a-41ca-8c33-aeebe4406cdc")
-		(property "Reference" "J17"
-			(at 210.82 97.1549 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "AudioJack4"
-			(at 210.82 99.6949 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "modular2:audio jack breakout"
-			(at 201.93 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 201.93 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Audio Jack, 4 Poles (TRRS)"
-			(at 201.93 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "S"
-			(uuid "d4e3be4e-0776-4d0a-8896-7a3c24e03df0")
-		)
-		(pin "R2"
-			(uuid "9bce39a0-56b0-4785-8624-9ad664114de6")
-		)
-		(pin "T"
-			(uuid "ac3fda3b-f4aa-4042-a4cc-eea54f884bc4")
-		)
-		(pin "R1"
-			(uuid "bc7c9bf1-dd11-4252-b7b6-ac7a752e0915")
-		)
-		(instances
-			(project ""
-				(path "/820de2a9-cffb-4c91-ab1e-db3943b5a57a"
-					(reference "J17")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R_Potentiometer_Trim_US")
 		(at 80.01 87.63 180)
 		(unit 1)
@@ -5973,142 +5084,6 @@
 			(project "audio-mixer"
 				(path "/820de2a9-cffb-4c91-ab1e-db3943b5a57a"
 					(reference "RV7")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 193.04 95.25 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "81f16b34-5584-47b5-bb6b-f14e07435019")
-		(property "Reference" "R9"
-			(at 193.04 88.9 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1K"
-			(at 193.04 91.44 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
-			(at 193.294 94.234 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 193.04 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 193.04 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "88f22cac-646e-4098-919e-6442f8d0bad8")
-		)
-		(pin "1"
-			(uuid "8a6afa63-0461-48a0-b4ab-8073a0b3fa9a")
-		)
-		(instances
-			(project "audio-mixer"
-				(path "/820de2a9-cffb-4c91-ab1e-db3943b5a57a"
-					(reference "R9")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 106.68 49.53 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "82056d7c-3e80-47e9-9b41-c69852adfc32")
-		(property "Reference" "C1"
-			(at 106.68 41.91 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10uF"
-			(at 106.68 44.45 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
-			(at 110.49 48.5648 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 106.68 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 106.68 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "319d4af1-0cc9-481b-acb8-2a4c872ef327")
-		)
-		(pin "2"
-			(uuid "822af80d-fe50-4947-9101-a0ac7d72314b")
-		)
-		(instances
-			(project ""
-				(path "/820de2a9-cffb-4c91-ab1e-db3943b5a57a"
-					(reference "C1")
 					(unit 1)
 				)
 			)
@@ -6539,140 +5514,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C")
-		(at 106.68 87.63 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "97d37553-8c86-456e-9b15-47fa0f6b5967")
-		(property "Reference" "C3"
-			(at 106.68 80.01 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10uF"
-			(at 106.68 82.55 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
-			(at 110.49 86.6648 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 106.68 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 106.68 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "ad425d00-1ee4-4936-80d4-38f056f29f17")
-		)
-		(pin "2"
-			(uuid "0c08319c-2896-431b-8ec7-9e6d2372e989")
-		)
-		(instances
-			(project "audio-mixer"
-				(path "/820de2a9-cffb-4c91-ab1e-db3943b5a57a"
-					(reference "C3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 196.85 102.87 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "9944ea96-ddd3-4a86-bbb8-a9dd3fdde737")
-		(property "Reference" "#PWR09"
-			(at 196.85 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 196.85 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 196.85 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 196.85 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 196.85 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "ea2239af-b2cf-41e3-b7e4-76c1fbf1d98c")
-		)
-		(instances
-			(project "audio-mixer"
-				(path "/820de2a9-cffb-4c91-ab1e-db3943b5a57a"
-					(reference "#PWR09")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Amplifier_Operational:TL072")
 		(at 217.17 25.4 90)
 		(unit 3)
@@ -6754,74 +5595,6 @@
 				(path "/820de2a9-cffb-4c91-ab1e-db3943b5a57a"
 					(reference "U1")
 					(unit 3)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 193.04 97.79 90)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "a086fb38-8f65-47f7-8a4d-424290765a92")
-		(property "Reference" "R10"
-			(at 193.04 104.14 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1K"
-			(at 193.04 101.6 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
-			(at 193.294 98.806 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 193.04 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 193.04 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "5672b1c9-e09a-43f1-8b43-b19b2ce98ea9")
-		)
-		(pin "1"
-			(uuid "4d68c7d2-f061-4872-aa03-11191a622cf0")
-		)
-		(instances
-			(project "audio-mixer"
-				(path "/820de2a9-cffb-4c91-ab1e-db3943b5a57a"
-					(reference "R10")
-					(unit 1)
 				)
 			)
 		)
@@ -7522,144 +6295,6 @@
 			(project "audio-mixer"
 				(path "/820de2a9-cffb-4c91-ab1e-db3943b5a57a"
 					(reference "RV6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 106.68 106.68 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "cca41dbd-61cc-435e-9bb8-33883f2a378c")
-		(property "Reference" "C4"
-			(at 106.68 99.06 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10uF"
-			(at 106.68 101.6 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
-			(at 110.49 105.7148 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 106.68 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 106.68 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "9d07bcfd-6f06-4fc8-a593-b53e97401d71")
-		)
-		(pin "2"
-			(uuid "fd2ee2d6-d3bb-4872-ab55-7f8e57757876")
-		)
-		(instances
-			(project "audio-mixer"
-				(path "/820de2a9-cffb-4c91-ab1e-db3943b5a57a"
-					(reference "C4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Switch:SW_Nidec_CAS-120A1")
-		(at 177.8 109.22 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "cf035f3d-4ec0-48dc-8fe0-fd116a7c9b6a")
-		(property "Reference" "SW1"
-			(at 176.53 101.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Mono/Stereo"
-			(at 176.784 103.378 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "modular2:switch1"
-			(at 177.8 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.nidec-components.com/e/catalog/switch/cas.pdf"
-			(at 177.8 101.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Switch, single pole double throw"
-			(at 177.8 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b8277d57-266f-4886-86f6-cafaa6e0050e")
-		)
-		(pin "3"
-			(uuid "51ef6ce5-4117-4e95-838e-3984ccf679be")
-		)
-		(pin "2"
-			(uuid "cb409061-76fe-401a-aa23-14cba58771de")
-		)
-		(instances
-			(project "audio-mixer"
-				(path "/820de2a9-cffb-4c91-ab1e-db3943b5a57a"
-					(reference "SW1")
 					(unit 1)
 				)
 			)
