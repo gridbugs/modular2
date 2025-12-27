@@ -5,17 +5,17 @@
       "Application": "Pcbnew",
       "Version": "9.0.5"
     },
-    "CreationDate": "2025-12-27T19:53:49+11:00"
+    "CreationDate": "2025-12-27T20:09:46+11:00"
   },
   "GeneralSpecs": {
     "ProjectId": {
-      "Name": "oscillator",
-      "GUID": "6f736369-6c6c-4617-946f-722e6b696361",
+      "Name": "power-expander",
+      "GUID": "706f7765-722d-4657-9870-616e6465722e",
       "Revision": "rev?"
     },
     "Size": {
-      "X": 71.05,
-      "Y": 108.05
+      "X": 50.55,
+      "Y": 55.55
     },
     "LayerNumber": 2,
     "BoardThickness": 1.6,
@@ -32,47 +32,47 @@
   ],
   "FilesAttributes": [
     {
-      "Path": "oscillator-F_Cu.gbr",
+      "Path": "power-expander-F_Cu.gbr",
       "FileFunction": "Copper,L1,Top",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "oscillator-B_Cu.gbr",
+      "Path": "power-expander-B_Cu.gbr",
       "FileFunction": "Copper,L2,Bot",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "oscillator-F_Paste.gbr",
+      "Path": "power-expander-F_Paste.gbr",
       "FileFunction": "SolderPaste,Top",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "oscillator-B_Paste.gbr",
+      "Path": "power-expander-B_Paste.gbr",
       "FileFunction": "SolderPaste,Bot",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "oscillator-F_Silkscreen.gbr",
+      "Path": "power-expander-F_Silkscreen.gbr",
       "FileFunction": "Legend,Top",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "oscillator-B_Silkscreen.gbr",
+      "Path": "power-expander-B_Silkscreen.gbr",
       "FileFunction": "Legend,Bot",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "oscillator-F_Mask.gbr",
+      "Path": "power-expander-F_Mask.gbr",
       "FileFunction": "SolderMask,Top",
       "FilePolarity": "Negative"
     },
     {
-      "Path": "oscillator-B_Mask.gbr",
+      "Path": "power-expander-B_Mask.gbr",
       "FileFunction": "SolderMask,Bot",
       "FilePolarity": "Negative"
     },
     {
-      "Path": "oscillator-Edge_Cuts.gbr",
+      "Path": "power-expander-Edge_Cuts.gbr",
       "FileFunction": "Profile",
       "FilePolarity": "Positive"
     }
@@ -88,29 +88,24 @@
     },
     {
       "Type": "SolderMask",
-      "Thickness": 0.01,
       "Name": "Top Solder Mask"
     },
     {
       "Type": "Copper",
-      "Thickness": 0.035,
       "Name": "F.Cu"
     },
     {
       "Type": "Dielectric",
-      "Thickness": 1.51,
       "Material": "FR4",
       "Name": "F.Cu/B.Cu",
       "Notes": "Type: dielectric layer 1 (from F.Cu to B.Cu)"
     },
     {
       "Type": "Copper",
-      "Thickness": 0.035,
       "Name": "B.Cu"
     },
     {
       "Type": "SolderMask",
-      "Thickness": 0.01,
       "Name": "Bottom Solder Mask"
     },
     {

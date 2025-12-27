@@ -4348,7 +4348,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Output"
+		(property "Value" "Power"
 			(at 248.158 45.466 90)
 			(effects
 				(font
@@ -5248,7 +5248,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Output"
+		(property "Value" "Power"
 			(at 225.298 45.466 90)
 			(effects
 				(font

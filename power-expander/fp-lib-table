@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "modular2")(type "KiCad")(uri "/home/s/src/modular2/modular2.pretty")(options "")(descr ""))
+)

@@ -1460,7 +1460,7 @@
 			)
 		)
 		(property "Value" "Frequency CV Input"
-			(at -1.269 -22.721469 0)
+			(at 4.004324 -5.548247 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(uuid "bc55189a-4c95-4d06-ab03-4bf0260c04a4")
@@ -1514,7 +1514,7 @@
 			(uuid "4271330b-e102-4d26-910a-99bceb710af4")
 		)
 		(fp_text user "${REFERENCE}"
-			(at -0.769 -21.221469 0)
+			(at 4.504324 -4.048247 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(uuid "1abfe4f1-d89f-404d-b319-dddcb6562577")
@@ -2077,7 +2077,7 @@
 			)
 		)
 		(property "Value" "PWM CV Input"
-			(at -1.269 -22.721469 0)
+			(at -6.563928 -5.644742 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(uuid "ae879ce4-d239-4ba1-b6e7-89acf81d4be8")
@@ -2131,7 +2131,7 @@
 			(uuid "c63f43ed-d96d-4654-b662-7f9163850651")
 		)
 		(fp_text user "${REFERENCE}"
-			(at -0.769 -21.221469 0)
+			(at -6.063928 -4.144742 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(uuid "840dfbf3-3a0d-44d8-9a54-944fbd60233e")
@@ -4795,7 +4795,7 @@
 		(uuid "8f5855dc-32ef-4f86-97b6-3805c04faa49")
 		(at 100.5 124)
 		(property "Reference" "J3"
-			(at 0.09 7.087531 0)
+			(at -4.5 5.5 0)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(uuid "93c06a34-b47e-41ee-bebf-7d0e045daa45")
@@ -7012,7 +7012,7 @@
 		(uuid "e21a1e81-fb95-4fcb-a143-50b67f5ac838")
 		(at 85 124)
 		(property "Reference" "J4"
-			(at 0.09 7.087531 0)
+			(at -4.5 5.5 0)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(uuid "dcd4d8b4-e5e4-40f8-a0e3-c7cb3a59993c")
@@ -7290,7 +7290,7 @@
 		(uuid "e566290a-768a-4870-9855-ae4190faa09e")
 		(at 69.5 124)
 		(property "Reference" "J5"
-			(at 0.09 7.087531 0)
+			(at -4.5 5.5 0)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(uuid "df31f52b-dcb2-428a-bb9b-cdce954c5723")
@@ -8263,61 +8263,66 @@
 		(uuid "868025e4-1c72-4032-913f-13604df46ffa")
 	)
 	(gr_text "PWM OFFSET"
-		(at 56.85 82.75 0)
+		(at 55 83 0)
 		(layer "F.SilkS")
 		(uuid "0314f11e-2358-4c2e-8d1e-408d2b7cabf1")
 		(effects
 			(font
-				(size 1 1)
-				(thickness 0.1)
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
 			)
 			(justify left bottom)
 		)
 	)
 	(gr_text "SAWTOOTH"
-		(at 82 133 0)
+		(at 79 133 0)
 		(layer "F.SilkS")
 		(uuid "05e88724-2a21-46a8-b57a-452e66bc791d")
 		(effects
 			(font
-				(size 1 1)
-				(thickness 0.1)
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
 			)
 			(justify left bottom)
 		)
 	)
 	(gr_text "FREQ OFFSET"
-		(at 103.35 82.75 0)
+		(at 101 83 0)
 		(layer "F.SilkS")
 		(uuid "15e57eca-537d-4fed-9423-ad0235403078")
 		(effects
 			(font
-				(size 1 1)
-				(thickness 0.1)
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
 			)
 			(justify left bottom)
 		)
 	)
 	(gr_text "PWM CV SCALE"
-		(at 79.35 82.75 0)
+		(at 77 83 0)
 		(layer "F.SilkS")
 		(uuid "51f1649c-5995-426c-bd57-f4e191a54806")
 		(effects
 			(font
-				(size 1 1)
-				(thickness 0.1)
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
 			)
 			(justify left bottom)
 		)
 	)
 	(gr_text "LFO"
-		(at 115.5 108 0)
+		(at 115 108 0)
 		(layer "F.SilkS")
 		(uuid "685224e0-2890-4225-8703-023fcc7cb099")
 		(effects
 			(font
-				(size 1 1)
-				(thickness 0.1)
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
 			)
 			(justify left bottom)
 		)
@@ -8328,20 +8333,22 @@
 		(uuid "6b00abc1-9cf0-41cf-ac85-338ae3b01eaa")
 		(effects
 			(font
-				(size 1 1)
-				(thickness 0.1)
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
 			)
 			(justify left bottom)
 		)
 	)
 	(gr_text "VCO"
-		(at 115.5 96 0)
+		(at 115.5 97 0)
 		(layer "F.SilkS")
 		(uuid "6d52d6d2-c27a-43a5-93eb-7d3c973b4dbf")
 		(effects
 			(font
-				(size 1 1)
-				(thickness 0.1)
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
 			)
 			(justify left bottom)
 		)
@@ -8359,61 +8366,53 @@
 		)
 	)
 	(gr_text "FREQ CV"
-		(at 104.5 40 0)
+		(at 103 39.5 0)
 		(layer "F.SilkS")
 		(uuid "a988d88a-ecc3-4d1f-a00e-7ebf1b6c0f3c")
 		(effects
 			(font
-				(size 1 1)
-				(thickness 0.1)
-			)
-			(justify left bottom)
-		)
-	)
-	(gr_text "VCO / LFO"
-		(at 106.5 94 0)
-		(layer "F.SilkS")
-		(uuid "b4009ebd-a317-4ed3-8bbc-f5d5efd19f0a")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.1)
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
 			)
 			(justify left bottom)
 		)
 	)
 	(gr_text "PWM CV"
-		(at 59 40 0)
+		(at 57.5 39.5 0)
 		(layer "F.SilkS")
 		(uuid "d6fe0cc8-48a3-4a70-a1a2-0b99f166526f")
 		(effects
 			(font
-				(size 1 1)
-				(thickness 0.1)
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
 			)
 			(justify left bottom)
 		)
 	)
 	(gr_text "TRIANGLE"
-		(at 97.5 133 0)
+		(at 95 133 0)
 		(layer "F.SilkS")
 		(uuid "ecb492ce-726e-4c2a-8c2e-8d7599e77cdf")
 		(effects
 			(font
-				(size 1 1)
-				(thickness 0.1)
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
 			)
 			(justify left bottom)
 		)
 	)
 	(gr_text "PULSE"
-		(at 67.5 133.162469 0)
+		(at 65.5 133 0)
 		(layer "F.SilkS")
 		(uuid "f0abd154-cbad-4dc7-84f5-85e750966c9d")
 		(effects
 			(font
-				(size 1 1)
-				(thickness 0.1)
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
 			)
 			(justify left bottom)
 		)
