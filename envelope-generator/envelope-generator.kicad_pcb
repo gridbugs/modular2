@@ -72,9 +72,9 @@
 			(subtractmaskfromsilk no)
 			(outputformat 1)
 			(mirror no)
-			(drillshape 1)
+			(drillshape 0)
 			(scaleselection 1)
-			(outputdirectory "")
+			(outputdirectory "gerbers/")
 		)
 	)
 	(net 0 "")
@@ -6651,6 +6651,17 @@
 				(bold yes)
 			)
 			(justify left bottom)
+		)
+	)
+	(gr_text "ENVELOPE\nGENERATOR\nV1"
+		(at 70 96 0)
+		(layer "F.SilkS")
+		(uuid "854c432c-cf6d-47f8-88e1-cf9a4e35d38f")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
 		)
 	)
 	(gr_text "GATE IN"
