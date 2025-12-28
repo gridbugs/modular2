@@ -72,9 +72,9 @@
 			(subtractmaskfromsilk no)
 			(outputformat 1)
 			(mirror no)
-			(drillshape 1)
+			(drillshape 0)
 			(scaleselection 1)
-			(outputdirectory "")
+			(outputdirectory "gerbers/")
 		)
 	)
 	(net 0 "")
@@ -7456,7 +7456,7 @@
 		(descr "C, Disc series, Radial, pin pitch=5.00mm, diameter*width=4.3*1.9mm^2, Capacitor, http://www.vishay.com/docs/45233/krseries.pdf")
 		(tags "C Disc series Radial pin pitch 5.00mm diameter 4.3mm width 1.9mm Capacitor")
 		(property "Reference" "C4"
-			(at 2.5 -2.2 90)
+			(at 2.323249 1.852446 90)
 			(layer "F.SilkS")
 			(uuid "9861a92f-495f-4f8f-8cc2-36a398605e41")
 			(effects
@@ -8646,6 +8646,17 @@
 				(bold yes)
 			)
 			(justify left bottom)
+		)
+	)
+	(gr_text "LOW-PASS FILTER\nV1"
+		(at 54 141 0)
+		(layer "F.SilkS")
+		(uuid "dc15b97c-a259-4501-8cf7-73341645c46e")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
 		)
 	)
 	(gr_text "CUTOFF CV"
