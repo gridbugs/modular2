@@ -1,4 +1,4 @@
-(footprint "switch1"
+(footprint "switch2"
 	(version 20241229)
 	(generator "pcbnew")
 	(generator_version "9.0")
@@ -15,7 +15,7 @@
 			)
 		)
 	)
-	(property "Value" "switch1"
+	(property "Value" "switch2"
 		(at 0 9.5 0)
 		(unlocked yes)
 		(layer "F.Fab")
@@ -55,8 +55,8 @@
 	)
 	(attr exclude_from_pos_files exclude_from_bom)
 	(fp_rect
-		(start -4 -6.5)
-		(end 4 6.5)
+		(start -6 -6.5)
+		(end 6 6.5)
 		(stroke
 			(width 0.1)
 			(type solid)
@@ -78,7 +78,7 @@
 		)
 	)
 	(pad "1" thru_hole oval
-		(at 0 4.5)
+		(at -2.5 4.5)
 		(size 3.75 2)
 		(drill oval 2.75 1)
 		(layers "*.Cu" "*.Mask")
@@ -86,20 +86,44 @@
 		(uuid "6af435e6-1e0c-4388-ade0-a4f76e30efb5")
 	)
 	(pad "2" thru_hole oval
-		(at 0 0)
+		(at -2.5 0)
 		(size 3.75 2)
 		(drill oval 2.75 1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
-		(uuid "81e80256-7313-4fd2-8e2e-956f27479312")
+		(uuid "10bea085-5e44-4bd9-b4ae-d9a6126e5898")
 	)
 	(pad "3" thru_hole oval
-		(at 0 -4.5)
+		(at -2.5 -4.5)
 		(size 3.75 2)
 		(drill oval 2.75 1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
-		(uuid "579076b7-13d4-4295-b7a2-b322babccdd6")
+		(uuid "47bf18cf-239a-4fe7-aff2-50664e587eb8")
+	)
+	(pad "4" thru_hole oval
+		(at 2.5 4.5)
+		(size 3.75 2)
+		(drill oval 2.75 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "22103251-4d47-49ac-9a42-b716bd823cc0")
+	)
+	(pad "5" thru_hole oval
+		(at 2.5 0)
+		(size 3.75 2)
+		(drill oval 2.75 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "8d3f27d4-6680-4e87-87f6-585fa46246f7")
+	)
+	(pad "6" thru_hole oval
+		(at 2.5 -4.5)
+		(size 3.75 2)
+		(drill oval 2.75 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "6eb52a85-d9a4-4e04-9ef4-7895e2ad1b5a")
 	)
 	(embedded_fonts no)
 )

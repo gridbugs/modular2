@@ -5179,7 +5179,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
 			(at 31.75 120.65 0)
 			(effects
 				(font
@@ -6136,7 +6136,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
 			(at 41.91 120.65 0)
 			(effects
 				(font
@@ -6610,7 +6610,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
 			(at 251.46 92.71 0)
 			(effects
 				(font
@@ -6678,7 +6678,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
 			(at 245.11 38.1 0)
 			(effects
 				(font
@@ -6998,7 +6998,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "61e9089a-ed14-450e-9075-cf208c080369")
-		(property "Reference" "R21"
+		(property "Reference" "R17"
 			(at 241.3 132.08 90)
 			(effects
 				(font
@@ -7050,7 +7050,7 @@
 		(instances
 			(project "low-pass-filter"
 				(path "/8654abdc-c56c-4f7a-a1d7-4eb247d6aa0a"
-					(reference "R21")
+					(reference "R17")
 					(unit 1)
 				)
 			)
@@ -8375,7 +8375,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
 			(at 153.67 41.91 0)
 			(effects
 				(font
@@ -9938,7 +9938,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
 			(at 138.43 105.41 0)
 			(effects
 				(font
