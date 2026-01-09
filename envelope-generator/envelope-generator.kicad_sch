@@ -2662,6 +2662,12 @@
 		(uuid "9e8437eb-8224-43e0-9e23-388613449d3f")
 	)
 	(junction
+		(at 128.27 148.59)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a4fd82e1-3dc0-4bcb-9a94-6b5482c7fd69")
+	)
+	(junction
 		(at 217.17 60.96)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2672,6 +2678,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b2c13679-3930-4c93-8264-a5a7dc3d67a8")
+	)
+	(junction
+		(at 113.03 148.59)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b9f0fcf2-7c33-4752-9884-237f35525b95")
 	)
 	(junction
 		(at 252.73 109.22)
@@ -4334,6 +4346,75 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C")
+		(at 113.03 152.4 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "3aae7548-5f66-4a38-9d5b-00965f30e18e")
+		(property "Reference" "C7"
+			(at 104.648 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "100nF"
+			(at 104.648 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
+			(at 112.0648 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 113.03 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 113.03 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "979a2004-41a0-4b75-a301-0d89f4a3a9f0")
+		)
+		(pin "2"
+			(uuid "b24a4075-5737-4421-ac90-ba3ac5e43991")
+		)
+		(instances
+			(project "envelope-generator"
+				(path "/507f021b-704c-4b75-989e-31405ea53b96"
+					(reference "C7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 252.73 133.35 0)
 		(unit 1)
@@ -4691,7 +4772,7 @@
 	)
 	(symbol
 		(lib_id "power:VCC")
-		(at 60.96 45.72 270)
+		(at 128.27 148.59 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4700,7 +4781,7 @@
 		(fields_autoplaced yes)
 		(uuid "52b632a7-8419-4bbf-bb5a-f9bdde50c268")
 		(property "Reference" "#PWR09"
-			(at 57.15 45.72 0)
+			(at 124.46 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4709,7 +4790,7 @@
 			)
 		)
 		(property "Value" "-12V"
-			(at 64.77 45.7199 90)
+			(at 132.08 148.5899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4718,7 +4799,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 60.96 45.72 0)
+			(at 128.27 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4727,7 +4808,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 60.96 45.72 0)
+			(at 128.27 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4736,7 +4817,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"VCC\""
-			(at 60.96 45.72 0)
+			(at 128.27 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5404,7 +5485,7 @@
 	)
 	(symbol
 		(lib_id "power:-12V")
-		(at 45.72 45.72 90)
+		(at 113.03 148.59 90)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
@@ -5413,7 +5494,7 @@
 		(dnp no)
 		(uuid "7212fe30-6f27-4c1f-88b0-6453895fb1a5")
 		(property "Reference" "#PWR02"
-			(at 49.53 45.72 0)
+			(at 116.84 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5422,7 +5503,7 @@
 			)
 		)
 		(property "Value" "12V"
-			(at 40.64 45.72 90)
+			(at 107.95 148.59 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5430,7 +5511,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 45.72 45.72 0)
+			(at 113.03 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5439,7 +5520,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 45.72 45.72 0)
+			(at 113.03 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5448,7 +5529,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"-12V\""
-			(at 45.72 45.72 0)
+			(at 113.03 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5624,8 +5705,75 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 113.03 156.21 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "839ea870-9acd-4aa4-8f1d-51a1830e5277")
+		(property "Reference" "#PWR014"
+			(at 113.03 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 113.03 161.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 113.03 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 113.03 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 113.03 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "effa4616-d0d9-4140-9629-e6bdc5f821ee")
+		)
+		(instances
+			(project "envelope-generator"
+				(path "/507f021b-704c-4b75-989e-31405ea53b96"
+					(reference "#PWR014")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Amplifier_Operational:TL072")
-		(at 53.34 43.18 90)
+		(at 120.65 146.05 90)
 		(unit 3)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5634,7 +5782,7 @@
 		(fields_autoplaced yes)
 		(uuid "8a09647f-58c8-408a-b042-7e37e283ef75")
 		(property "Reference" "U1"
-			(at 53.34 40.64 90)
+			(at 120.65 143.51 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5642,7 +5790,7 @@
 			)
 		)
 		(property "Value" "TL072"
-			(at 53.34 43.18 90)
+			(at 120.65 146.05 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5650,7 +5798,7 @@
 			)
 		)
 		(property "Footprint" "Package_DIP:DIP-8_W7.62mm_Socket"
-			(at 53.34 43.18 0)
+			(at 120.65 146.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5659,7 +5807,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/tl071.pdf"
-			(at 53.34 43.18 0)
+			(at 120.65 146.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5668,7 +5816,7 @@
 			)
 		)
 		(property "Description" "Dual Low-Noise JFET-Input Operational Amplifiers, DIP-8/SOIC-8"
-			(at 53.34 43.18 0)
+			(at 120.65 146.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6963,6 +7111,73 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 128.27 156.21 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "dd26acae-f39f-4ad3-908e-d158ca5877ac")
+		(property "Reference" "#PWR08"
+			(at 128.27 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 128.27 161.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 128.27 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 128.27 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 128.27 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5d4aa424-33a2-4d2d-afc1-b32be878efaf")
+		)
+		(instances
+			(project "envelope-generator"
+				(path "/507f021b-704c-4b75-989e-31405ea53b96"
+					(reference "#PWR08")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector:Conn_01x03_Socket")
 		(at 209.55 52.07 90)
 		(mirror x)
@@ -7168,6 +7383,76 @@
 			(project "envelope-generator"
 				(path "/507f021b-704c-4b75-989e-31405ea53b96"
 					(reference "RV1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 128.27 152.4 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f969ba4c-9941-4772-b624-77c2c30d8548")
+		(property "Reference" "C8"
+			(at 132.08 151.1299 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "100nF"
+			(at 132.08 153.6699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
+			(at 127.3048 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 128.27 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 128.27 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "61985a0b-6cce-4e8c-9999-e627a6a193c5")
+		)
+		(pin "2"
+			(uuid "dfa93051-9d51-4ce0-82f1-7634dd8ccd1c")
+		)
+		(instances
+			(project "envelope-generator"
+				(path "/507f021b-704c-4b75-989e-31405ea53b96"
+					(reference "C8")
 					(unit 1)
 				)
 			)
