@@ -2307,6 +2307,12 @@
 		(uuid "06ebbeb0-b673-47f7-bc20-b0b310862239")
 	)
 	(junction
+		(at 129.54 173.99)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "48fa5914-a1d3-4f54-b6d5-9b089fc69c47")
+	)
+	(junction
 		(at 168.91 132.08)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2337,6 +2343,12 @@
 		(uuid "6eb96165-a90b-46ae-a0e0-47ef2d8cc674")
 	)
 	(junction
+		(at 114.3 173.99)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "739f3f13-a57a-4f91-bc90-fdacfe72cce3")
+	)
+	(junction
 		(at 129.54 52.07)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2347,6 +2359,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "86725da3-a940-498f-ab1e-193870de227d")
+	)
+	(junction
+		(at 165.1 173.99)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "93da6d1f-0a99-4bcf-a300-6d68721f3236")
 	)
 	(junction
 		(at 109.22 54.61)
@@ -2379,10 +2397,10 @@
 		(uuid "db2b104c-e772-482c-8804-1cf7562720aa")
 	)
 	(junction
-		(at 87.63 173.99)
+		(at 149.86 173.99)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "e33c2b8a-2e87-454f-b416-e2764185dab0")
+		(uuid "e221e214-7e9c-47f9-bf87-7760a2e6c09c")
 	)
 	(no_connect
 		(at 29.21 180.34)
@@ -2464,6 +2482,16 @@
 	)
 	(wire
 		(pts
+			(xy 149.86 176.53) (xy 149.86 173.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1837d1b4-3ee1-442e-8630-16001f1f84c7")
+	)
+	(wire
+		(pts
 			(xy 114.3 118.11) (xy 91.44 118.11)
 		)
 		(stroke
@@ -2471,6 +2499,16 @@
 			(type default)
 		)
 		(uuid "1b7193d8-c4d0-4c16-8596-85083ae34136")
+	)
+	(wire
+		(pts
+			(xy 114.3 176.53) (xy 114.3 173.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1cbf65c4-8409-4199-9a0d-09cfffdca36b")
 	)
 	(wire
 		(pts
@@ -2694,6 +2732,16 @@
 	)
 	(wire
 		(pts
+			(xy 165.1 176.53) (xy 165.1 173.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7671ce5d-19ff-4a24-b9d1-f8a087567e46")
+	)
+	(wire
+		(pts
 			(xy 95.25 119.38) (xy 95.25 124.46)
 		)
 		(stroke
@@ -2794,16 +2842,6 @@
 	)
 	(wire
 		(pts
-			(xy 90.17 173.99) (xy 87.63 173.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a38cfebb-46f7-4f57-8921-dd9d785dd600")
-	)
-	(wire
-		(pts
 			(xy 129.54 102.87) (xy 129.54 106.68)
 		)
 		(stroke
@@ -2894,6 +2932,16 @@
 	)
 	(wire
 		(pts
+			(xy 129.54 176.53) (xy 129.54 173.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b4b4433f-f814-4cca-84ff-b508829decca")
+	)
+	(wire
+		(pts
 			(xy 139.7 54.61) (xy 139.7 57.15)
 		)
 		(stroke
@@ -2941,16 +2989,6 @@
 			(type default)
 		)
 		(uuid "cd90a980-6ff3-4dc4-98f0-cfa7c4c2ce43")
-	)
-	(wire
-		(pts
-			(xy 87.63 173.99) (xy 85.09 173.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d490c709-5546-45b5-8cc5-f11c181942cd")
 	)
 	(wire
 		(pts
@@ -3474,6 +3512,73 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 149.86 181.61 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "13c5d8e4-7866-4a54-9c8b-0c401234d657")
+		(property "Reference" "#PWR017"
+			(at 149.86 187.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 149.86 185.42 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 149.86 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 149.86 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 149.86 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ebaf52d6-8b2c-4199-bb43-02ae042eff77")
+		)
+		(instances
+			(project "voltage-controlled-amplifier"
+				(path "/0f19a595-1828-46b6-962d-c026599b21a6"
+					(reference "#PWR017")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R_US")
 		(at 109.22 60.96 0)
 		(unit 1)
@@ -3780,139 +3885,6 @@
 			(project "voltage-controlled-amplifier"
 				(path "/0f19a595-1828-46b6-962d-c026599b21a6"
 					(reference "#PWR08")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:-12V")
-		(at 80.01 173.99 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "1b295e87-ed36-4531-ad21-43b04b7aeb2d")
-		(property "Reference" "#PWR02"
-			(at 83.82 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "-12V"
-			(at 74.422 173.99 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 80.01 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 80.01 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"-12V\""
-			(at 80.01 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "c54226a0-6e23-47fe-a1f7-fab63ca3480a")
-		)
-		(instances
-			(project "voltage-controlled-amplifier"
-				(path "/0f19a595-1828-46b6-962d-c026599b21a6"
-					(reference "#PWR02")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Small")
-		(at 92.71 173.99 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "1c6d4828-fa01-4a7a-863a-16e258b785d6")
-		(property "Reference" "C2"
-			(at 92.7163 167.64 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100nf"
-			(at 92.7163 170.18 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
-			(at 92.71 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 92.71 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 92.71 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "a6a528e8-3ca5-4e31-87a6-2a8511a977ae")
-		)
-		(pin "1"
-			(uuid "4422075d-be93-435e-8c7c-cc90c01282bf")
-		)
-		(instances
-			(project "voltage-controlled-amplifier"
-				(path "/0f19a595-1828-46b6-962d-c026599b21a6"
-					(reference "C2")
 					(unit 1)
 				)
 			)
@@ -4271,6 +4243,73 @@
 			(project "voltage-controlled-amplifier"
 				(path "/0f19a595-1828-46b6-962d-c026599b21a6"
 					(reference "J5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 114.3 181.61 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "36f2625e-cfce-4b04-b21a-52b1c96874ac")
+		(property "Reference" "#PWR019"
+			(at 114.3 187.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 114.3 185.42 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 114.3 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 114.3 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 114.3 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bf7e4481-e6dc-423f-a802-dd37ee03de5d")
+		)
+		(instances
+			(project "voltage-controlled-amplifier"
+				(path "/0f19a595-1828-46b6-962d-c026599b21a6"
+					(reference "#PWR019")
 					(unit 1)
 				)
 			)
@@ -4679,6 +4718,74 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C_Small")
+		(at 149.86 179.07 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "48a12ad3-c121-4add-aada-f80cd5836906")
+		(property "Reference" "C3"
+			(at 143.51 179.0637 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nf"
+			(at 146.05 179.0637 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
+			(at 149.86 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 149.86 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 149.86 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "f7f975d5-70a8-4a96-bc6b-a3bd13590df2")
+		)
+		(pin "1"
+			(uuid "7d222435-f594-4180-8f9f-105fda2ac0ad")
+		)
+		(instances
+			(project "voltage-controlled-amplifier"
+				(path "/0f19a595-1828-46b6-962d-c026599b21a6"
+					(reference "C3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector:Conn_01x01_Pin")
 		(at 109.22 73.66 90)
 		(unit 1)
@@ -4810,6 +4917,73 @@
 			(project "voltage-controlled-amplifier"
 				(path "/0f19a595-1828-46b6-962d-c026599b21a6"
 					(reference "R2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 165.1 181.61 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "51218594-f179-4c45-892b-bed3979ec522")
+		(property "Reference" "#PWR018"
+			(at 165.1 187.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 165.1 185.42 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 165.1 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 165.1 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 165.1 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "93ce620f-e4e6-4cd5-8f95-3228ffef45a0")
+		)
+		(instances
+			(project "voltage-controlled-amplifier"
+				(path "/0f19a595-1828-46b6-962d-c026599b21a6"
+					(reference "#PWR018")
 					(unit 1)
 				)
 			)
@@ -5194,72 +5368,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:-12V")
-		(at 95.25 173.99 270)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "5ff99e75-0226-448b-83e4-fcea5a824849")
-		(property "Reference" "#PWR05"
-			(at 91.44 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "12V"
-			(at 100.33 173.99 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 95.25 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 95.25 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"-12V\""
-			(at 95.25 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "2ebfcee7-0fab-4517-a4a8-f3615817d7d9")
-		)
-		(instances
-			(project "voltage-controlled-amplifier"
-				(path "/0f19a595-1828-46b6-962d-c026599b21a6"
-					(reference "#PWR05")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R_US")
 		(at 139.7 60.96 0)
 		(unit 1)
@@ -5324,74 +5432,6 @@
 			(project "voltage-controlled-amplifier"
 				(path "/0f19a595-1828-46b6-962d-c026599b21a6"
 					(reference "R5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Small")
-		(at 82.55 173.99 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6562d907-bae3-4ac1-91e8-0bab8cf945f2")
-		(property "Reference" "C1"
-			(at 82.5563 167.64 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100nf"
-			(at 82.5563 170.18 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
-			(at 82.55 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 82.55 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 82.55 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "752dd682-66f7-4b13-b51d-7fd859a93bfe")
-		)
-		(pin "1"
-			(uuid "532dc8fc-7c34-418c-99e2-27e752be61af")
-		)
-		(instances
-			(project "voltage-controlled-amplifier"
-				(path "/0f19a595-1828-46b6-962d-c026599b21a6"
-					(reference "C1")
 					(unit 1)
 				)
 			)
@@ -5663,6 +5703,76 @@
 			(project "voltage-controlled-amplifier"
 				(path "/0f19a595-1828-46b6-962d-c026599b21a6"
 					(reference "#PWR0101")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 114.3 179.07 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "6fe18948-c743-4b83-a779-7acab7026a23")
+		(property "Reference" "C1"
+			(at 116.84 177.7935 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "100nf"
+			(at 116.84 180.3335 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
+			(at 114.3 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 114.3 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 114.3 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "8dc027ee-5d86-4bdd-8f2a-e554792d2cc2")
+		)
+		(pin "1"
+			(uuid "60e64fb0-9b9c-45d0-a51e-ea3610493906")
+		)
+		(instances
+			(project "voltage-controlled-amplifier"
+				(path "/0f19a595-1828-46b6-962d-c026599b21a6"
+					(reference "C1")
 					(unit 1)
 				)
 			)
@@ -6700,6 +6810,74 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C_Small")
+		(at 165.1 179.07 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b275ffcb-8815-41e5-9f1e-3a40afda2b9d")
+		(property "Reference" "C4"
+			(at 171.45 179.0763 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nf"
+			(at 168.91 179.0763 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
+			(at 165.1 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 165.1 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 165.1 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "04832667-9713-40f6-81ec-61fc2e667949")
+		)
+		(pin "1"
+			(uuid "0312bd06-07a9-4b76-bc31-10efd6d822d4")
+		)
+		(instances
+			(project "voltage-controlled-amplifier"
+				(path "/0f19a595-1828-46b6-962d-c026599b21a6"
+					(reference "C4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:-12V")
 		(at 34.29 167.64 270)
 		(mirror x)
@@ -6913,17 +7091,35 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 87.63 173.99 0)
+		(lib_id "Device:C_Small")
+		(at 129.54 179.07 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "dcf7a6a3-a912-4aba-88ee-2e827338e1af")
-		(property "Reference" "#PWR04"
-			(at 87.63 180.34 0)
+		(uuid "dd9f7566-cab1-459e-960d-69d817638055")
+		(property "Reference" "C2"
+			(at 132.08 177.8062 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nf"
+			(at 132.08 180.3462 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
+			(at 129.54 179.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6931,26 +7127,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "GND"
-			(at 87.63 177.8 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 87.63 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 87.63 173.99 0)
+		(property "Datasheet" "~"
+			(at 129.54 179.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6959,7 +7137,77 @@
 			)
 		)
 		(property "Description" ""
-			(at 87.63 173.99 0)
+			(at 129.54 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "649cdb91-cd73-4294-ab1a-94d34a8b0964")
+		)
+		(pin "1"
+			(uuid "f2cbf537-cace-4989-9019-0f727d4dd00c")
+		)
+		(instances
+			(project "voltage-controlled-amplifier"
+				(path "/0f19a595-1828-46b6-962d-c026599b21a6"
+					(reference "C2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 129.54 181.61 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e6019599-8d8d-40cd-af98-73d41892cc19")
+		(property "Reference" "#PWR020"
+			(at 129.54 187.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 129.54 185.42 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 129.54 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 129.54 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 129.54 181.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6968,12 +7216,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "98e7875d-cb37-42ba-9b07-6859873a4843")
+			(uuid "1e4fb5c9-3069-47c3-b6f5-3a89cb0ec370")
 		)
 		(instances
 			(project "voltage-controlled-amplifier"
 				(path "/0f19a595-1828-46b6-962d-c026599b21a6"
-					(reference "#PWR04")
+					(reference "#PWR020")
 					(unit 1)
 				)
 			)

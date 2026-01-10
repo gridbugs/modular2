@@ -4354,7 +4354,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3aae7548-5f66-4a38-9d5b-00965f30e18e")
-		(property "Reference" "C7"
+		(property "Reference" "C3"
 			(at 104.648 151.13 0)
 			(effects
 				(font
@@ -4408,7 +4408,7 @@
 		(instances
 			(project "envelope-generator"
 				(path "/507f021b-704c-4b75-989e-31405ea53b96"
-					(reference "C7")
+					(reference "C3")
 					(unit 1)
 				)
 			)
@@ -6016,7 +6016,7 @@
 				)
 			)
 		)
-		(property "Footprint" "modular2:button1"
+		(property "Footprint" "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 			(at 57.15 72.39 0)
 			(effects
 				(font
@@ -7398,7 +7398,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f969ba4c-9941-4772-b624-77c2c30d8548")
-		(property "Reference" "C8"
+		(property "Reference" "C4"
 			(at 132.08 151.1299 0)
 			(effects
 				(font
@@ -7452,7 +7452,7 @@
 		(instances
 			(project "envelope-generator"
 				(path "/507f021b-704c-4b75-989e-31405ea53b96"
-					(reference "C8")
+					(reference "C4")
 					(unit 1)
 				)
 			)

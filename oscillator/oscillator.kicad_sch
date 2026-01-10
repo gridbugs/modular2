@@ -2627,6 +2627,12 @@
 		(uuid "67852328-6e8f-445b-a421-a957c2f31fd6")
 	)
 	(junction
+		(at 243.84 17.78)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "70483a94-1570-4f56-aeda-adbca8d324d1")
+	)
+	(junction
 		(at 170.18 44.45)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2687,10 +2693,22 @@
 		(uuid "e23f12b5-7d04-4622-93f9-5860575e358f")
 	)
 	(junction
+		(at 127 54.61)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ec78307d-4309-4f94-a624-bea15bec9f43")
+	)
+	(junction
 		(at 92.71 173.99)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f34c3326-15ac-4e82-bf41-8706bc5fcfbf")
+	)
+	(junction
+		(at 259.08 17.78)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f46cbc0f-4088-4149-8bcd-1d3a9794dedf")
 	)
 	(junction
 		(at 53.34 96.52)
@@ -3028,7 +3046,7 @@
 	)
 	(wire
 		(pts
-			(xy 127 69.85) (xy 127 44.45)
+			(xy 127 69.85) (xy 127 54.61)
 		)
 		(stroke
 			(width 0)
@@ -3268,6 +3286,16 @@
 	)
 	(wire
 		(pts
+			(xy 259.08 17.78) (xy 259.08 19.05)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "64849909-5a5c-40c0-b91c-2c3c51e65977")
+	)
+	(wire
+		(pts
 			(xy 53.34 160.02) (xy 76.2 160.02)
 		)
 		(stroke
@@ -3325,6 +3353,16 @@
 			(type default)
 		)
 		(uuid "77c5ef08-013b-40b0-8d44-8293aa6d41f1")
+	)
+	(wire
+		(pts
+			(xy 127 54.61) (xy 127 44.45)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7b606cae-d6f5-4d96-ac26-3ed7577fa8ab")
 	)
 	(wire
 		(pts
@@ -3615,6 +3653,16 @@
 			(type default)
 		)
 		(uuid "ae7b4426-769d-41db-a6fc-35124a185c38")
+	)
+	(wire
+		(pts
+			(xy 243.84 17.78) (xy 243.84 19.05)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "af3e4032-fb18-4511-b739-2c5b1b3d2a62")
 	)
 	(wire
 		(pts
@@ -4476,6 +4524,74 @@
 			(project "oscillator"
 				(path "/c72fe8b1-85da-49dc-a7d3-e7ef310dfbdd"
 					(reference "R7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 124.46 54.61 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "18e747c4-9d63-40fd-9454-5a3266e9b0f8")
+		(property "Reference" "C6"
+			(at 124.4537 60.96 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nf"
+			(at 124.4537 58.42 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
+			(at 124.46 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 124.46 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 124.46 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "014bff8b-3b98-4fce-9b87-2ac74395e0e8")
+		)
+		(pin "1"
+			(uuid "5f4394bb-2e34-49a5-8a44-23df4b90cb9a")
+		)
+		(instances
+			(project "oscillator"
+				(path "/c72fe8b1-85da-49dc-a7d3-e7ef310dfbdd"
+					(reference "C6")
 					(unit 1)
 				)
 			)
@@ -6101,6 +6217,74 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C_Small")
+		(at 243.84 21.59 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "6a1317ae-2681-41f7-8d70-6487addaecbf")
+		(property "Reference" "C4"
+			(at 237.49 21.5837 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nf"
+			(at 240.03 21.5837 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
+			(at 243.84 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 243.84 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 243.84 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "2d16990a-4008-4cee-b710-8ac1efa5f228")
+		)
+		(pin "1"
+			(uuid "e2ec7c83-7d61-471e-a0d3-0885366b7d4d")
+		)
+		(instances
+			(project "oscillator"
+				(path "/c72fe8b1-85da-49dc-a7d3-e7ef310dfbdd"
+					(reference "C4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 236.22 50.8 0)
 		(mirror y)
@@ -6161,6 +6345,74 @@
 			(project "oscillator"
 				(path "/c72fe8b1-85da-49dc-a7d3-e7ef310dfbdd"
 					(reference "#PWR024")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 259.08 21.59 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7213ebeb-9d43-427d-99c2-b1885b4ab569")
+		(property "Reference" "C5"
+			(at 265.43 21.5963 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nf"
+			(at 262.89 21.5963 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
+			(at 259.08 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 259.08 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 259.08 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "23caab26-79fc-4b89-afb5-fc5e4c453a9d")
+		)
+		(pin "1"
+			(uuid "92152ace-e40f-4b3f-a4f7-f75448ab9945")
+		)
+		(instances
+			(project "oscillator"
+				(path "/c72fe8b1-85da-49dc-a7d3-e7ef310dfbdd"
+					(reference "C5")
 					(unit 1)
 				)
 			)
@@ -6577,6 +6829,73 @@
 			(project "oscillator"
 				(path "/c72fe8b1-85da-49dc-a7d3-e7ef310dfbdd"
 					(reference "RV1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 121.92 54.61 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7f5e71da-e0ec-42af-bce3-7663f002c58b")
+		(property "Reference" "#PWR015"
+			(at 115.57 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 116.84 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 121.92 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 121.92 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 121.92 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f03d73e7-a5d4-44aa-a936-221df0aa85c8")
+		)
+		(instances
+			(project "oscillator"
+				(path "/c72fe8b1-85da-49dc-a7d3-e7ef310dfbdd"
+					(reference "#PWR015")
 					(unit 1)
 				)
 			)
@@ -8048,6 +8367,73 @@
 	)
 	(symbol
 		(lib_id "power:GND")
+		(at 243.84 24.13 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "badd7d29-ebcb-4ccb-bd11-af812c1059c0")
+		(property "Reference" "#PWR011"
+			(at 243.84 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 243.84 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 243.84 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 243.84 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 243.84 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "581808a9-6a5d-4672-b473-42fe1da3576f")
+		)
+		(instances
+			(project "oscillator"
+				(path "/c72fe8b1-85da-49dc-a7d3-e7ef310dfbdd"
+					(reference "#PWR011")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
 		(at 243.84 148.59 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8577,6 +8963,73 @@
 			(project "oscillator"
 				(path "/c72fe8b1-85da-49dc-a7d3-e7ef310dfbdd"
 					(reference "#PWR020")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 259.08 24.13 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d948ea31-5913-4d6c-b788-be12a0c250e4")
+		(property "Reference" "#PWR010"
+			(at 259.08 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 259.08 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 259.08 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 259.08 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 259.08 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1cd6b26c-ea76-457e-b553-54b6cd6a15a5")
+		)
+		(instances
+			(project "oscillator"
+				(path "/c72fe8b1-85da-49dc-a7d3-e7ef310dfbdd"
+					(reference "#PWR010")
 					(unit 1)
 				)
 			)
