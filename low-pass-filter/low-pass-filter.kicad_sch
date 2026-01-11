@@ -3055,12 +3055,6 @@
 		(uuid "57bb1750-2a06-4d55-9e5f-7a6a1cef20c6")
 	)
 	(junction
-		(at 245.11 162.56)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "5b694c46-707b-4fff-95a5-8d3b176e13f5")
-	)
-	(junction
 		(at 212.09 142.24)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3083,6 +3077,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "6dcd1eae-ad71-4ca2-89f1-11bb8965045a")
+	)
+	(junction
+		(at 245.11 162.56)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6f5da476-5498-4feb-8d23-a1f9e19e4263")
 	)
 	(junction
 		(at 191.77 41.91)
@@ -4999,7 +4999,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "10746a60-6326-4a93-9a25-847705dbea6d")
 		(property "Reference" "Q2"
 			(at 237.49 106.68 90)
@@ -5009,8 +5008,8 @@
 				)
 			)
 		)
-		(property "Value" "PNP"
-			(at 237.49 109.22 90)
+		(property "Value" "PNP (e.g. BC558)"
+			(at 235.966 109.22 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6256,8 +6255,8 @@
 	)
 	(symbol
 		(lib_id "power:-12V")
-		(at 245.11 162.56 0)
-		(mirror x)
+		(at 245.11 152.4 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6265,7 +6264,7 @@
 		(dnp no)
 		(uuid "36bad6e0-8629-4d0d-a9c1-d4e040708caf")
 		(property "Reference" "#PWR025"
-			(at 245.11 158.75 0)
+			(at 245.11 156.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6274,7 +6273,7 @@
 			)
 		)
 		(property "Value" "12V"
-			(at 242.316 164.846 0)
+			(at 247.904 150.114 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6282,7 +6281,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 245.11 162.56 0)
+			(at 245.11 152.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6291,7 +6290,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 245.11 162.56 0)
+			(at 245.11 152.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6300,7 +6299,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"-12V\""
-			(at 245.11 162.56 0)
+			(at 245.11 152.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8561,8 +8560,8 @@
 	)
 	(symbol
 		(lib_id "power:-12V")
-		(at 245.11 152.4 0)
-		(mirror y)
+		(at 245.11 162.56 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8570,7 +8569,7 @@
 		(dnp no)
 		(uuid "a8e17b5a-eafd-4193-b7f9-699887c61cad")
 		(property "Reference" "#PWR022"
-			(at 245.11 149.86 0)
+			(at 245.11 165.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8579,7 +8578,7 @@
 			)
 		)
 		(property "Value" "-12V"
-			(at 245.11 148.59 90)
+			(at 245.11 166.37 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8588,7 +8587,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 245.11 152.4 0)
+			(at 245.11 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8597,7 +8596,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 245.11 152.4 0)
+			(at 245.11 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8606,7 +8605,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 245.11 152.4 0)
+			(at 245.11 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9547,7 +9546,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "d7e98393-4b5e-4321-9b2f-b3865a82ce94")
 		(property "Reference" "Q1"
 			(at 251.46 106.68 90)
@@ -9557,8 +9555,8 @@
 				)
 			)
 		)
-		(property "Value" "PNP"
-			(at 251.46 109.22 90)
+		(property "Value" "PNP (e.g. BC558)"
+			(at 254 109.22 90)
 			(effects
 				(font
 					(size 1.27 1.27)
