@@ -3531,7 +3531,6 @@
 	(symbol
 		(lib_id "Connector:Conn_01x03_Socket")
 		(at 95.25 49.53 0)
-		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3539,7 +3538,7 @@
 		(dnp no)
 		(uuid "07e60e3b-cc28-46f9-8fdb-4eac4e8165e9")
 		(property "Reference" "J2"
-			(at 100.076 48.006 90)
+			(at 100.076 51.054 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3548,7 +3547,7 @@
 			)
 		)
 		(property "Value" "Pot"
-			(at 97.536 48.006 90)
+			(at 97.536 51.054 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3752,7 +3751,8 @@
 	)
 	(symbol
 		(lib_id "Device:R_Potentiometer_Trim_US")
-		(at 80.01 49.53 180)
+		(at 80.01 49.53 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4355,7 +4355,8 @@
 	)
 	(symbol
 		(lib_id "Device:R_Potentiometer_Trim_US")
-		(at 80.01 68.58 180)
+		(at 80.01 68.58 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4893,7 +4894,6 @@
 	(symbol
 		(lib_id "Connector:Conn_01x03_Socket")
 		(at 95.25 144.78 0)
-		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4901,7 +4901,7 @@
 		(dnp no)
 		(uuid "4a7f32e4-adfe-467a-9b44-cb399f78bd5e")
 		(property "Reference" "J12"
-			(at 100.076 143.256 90)
+			(at 100.076 146.304 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4910,7 +4910,7 @@
 			)
 		)
 		(property "Value" "Pot"
-			(at 97.536 143.256 90)
+			(at 97.536 146.304 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5099,8 +5099,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x03_Socket")
-		(at 137.16 91.44 270)
-		(mirror x)
+		(at 137.16 91.44 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5108,7 +5107,7 @@
 		(dnp no)
 		(uuid "55636503-f8f6-4cf8-b486-90a45345b71b")
 		(property "Reference" "J15"
-			(at 135.636 86.614 90)
+			(at 138.684 86.614 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5117,7 +5116,7 @@
 			)
 		)
 		(property "Value" "Pot"
-			(at 135.636 89.154 90)
+			(at 138.684 89.154 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5573,7 +5572,6 @@
 	(symbol
 		(lib_id "Connector:Conn_01x03_Socket")
 		(at 95.25 87.63 0)
-		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5581,7 +5579,7 @@
 		(dnp no)
 		(uuid "6a400068-30c2-4bdd-a2ff-74175eab802f")
 		(property "Reference" "J6"
-			(at 100.076 86.106 90)
+			(at 100.076 89.154 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5590,7 +5588,7 @@
 			)
 		)
 		(property "Value" "Pot"
-			(at 97.536 86.106 90)
+			(at 97.536 89.154 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5873,7 +5871,8 @@
 	)
 	(symbol
 		(lib_id "Device:R_Potentiometer_Trim_US")
-		(at 80.01 87.63 180)
+		(at 80.01 87.63 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6008,7 +6007,8 @@
 	)
 	(symbol
 		(lib_id "Device:R_Potentiometer_Trim_US")
-		(at 137.16 106.68 270)
+		(at 137.16 106.68 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6078,7 +6078,8 @@
 	)
 	(symbol
 		(lib_id "Device:R_Potentiometer_Trim_US")
-		(at 138.43 49.53 270)
+		(at 138.43 49.53 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6637,7 +6638,6 @@
 	(symbol
 		(lib_id "Connector:Conn_01x03_Socket")
 		(at 95.25 125.73 0)
-		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6645,7 +6645,7 @@
 		(dnp no)
 		(uuid "93fc55bc-1e41-4d60-9dd9-8d558c5c8ff5")
 		(property "Reference" "J10"
-			(at 100.076 124.206 90)
+			(at 100.076 127.254 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6654,7 +6654,7 @@
 			)
 		)
 		(property "Value" "Pot"
-			(at 97.536 124.206 90)
+			(at 97.536 127.254 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7198,7 +7198,6 @@
 	(symbol
 		(lib_id "Connector:Conn_01x03_Socket")
 		(at 95.25 106.68 0)
-		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7206,7 +7205,7 @@
 		(dnp no)
 		(uuid "a4b90151-9c79-41e8-9cd2-b96d2f3e86df")
 		(property "Reference" "J8"
-			(at 100.076 105.156 90)
+			(at 100.076 108.204 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7215,7 +7214,7 @@
 			)
 		)
 		(property "Value" "Pot"
-			(at 97.536 105.156 90)
+			(at 97.536 108.204 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7270,8 +7269,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x03_Socket")
-		(at 138.43 34.29 270)
-		(mirror x)
+		(at 138.43 34.29 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7279,7 +7277,7 @@
 		(dnp no)
 		(uuid "aa1dd58a-9abe-4987-b234-535991f17a20")
 		(property "Reference" "J13"
-			(at 136.906 29.464 90)
+			(at 139.954 29.464 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7288,7 +7286,7 @@
 			)
 		)
 		(property "Value" "Pot"
-			(at 136.906 32.004 90)
+			(at 139.954 32.004 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7543,7 +7541,8 @@
 	)
 	(symbol
 		(lib_id "Device:R_Potentiometer_Trim_US")
-		(at 80.01 106.68 180)
+		(at 80.01 106.68 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7694,7 +7693,8 @@
 	)
 	(symbol
 		(lib_id "Device:R_Potentiometer_Trim_US")
-		(at 80.01 144.78 180)
+		(at 80.01 144.78 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7969,7 +7969,6 @@
 	(symbol
 		(lib_id "Connector:Conn_01x03_Socket")
 		(at 95.25 68.58 0)
-		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7977,7 +7976,7 @@
 		(dnp no)
 		(uuid "e1127c93-fdf8-4f9f-88f5-33ef0d727ed9")
 		(property "Reference" "J4"
-			(at 100.076 67.056 90)
+			(at 100.076 70.104 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7986,7 +7985,7 @@
 			)
 		)
 		(property "Value" "Pot"
-			(at 97.536 67.056 90)
+			(at 97.536 70.104 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8308,7 +8307,8 @@
 	)
 	(symbol
 		(lib_id "Device:R_Potentiometer_Trim_US")
-		(at 80.01 125.73 180)
+		(at 80.01 125.73 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
