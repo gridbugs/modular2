@@ -3213,6 +3213,10 @@
 		(uuid "5f8dab4a-b0af-4b83-b3be-689c3d8be0a2")
 	)
 	(no_connect
+		(at 72.39 187.96)
+		(uuid "8620f11b-234c-4db0-a791-ab467a0b62f3")
+	)
+	(no_connect
 		(at 41.91 125.73)
 		(uuid "b60b1ed0-a5fc-4a40-aa34-b70c00af9142")
 	)
@@ -4565,6 +4569,72 @@
 		(uuid "ffa98d14-25fa-4ba5-814b-e8c2cd1e29fa")
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 74.93 187.96 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0303ce26-a66c-48d5-839f-8365ad95b05e")
+		(property "Reference" "#PWR027"
+			(at 74.93 194.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 70.866 190.246 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 74.93 187.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 74.93 187.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 74.93 187.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8cdab099-d139-46f9-a96b-33a5dbf82ab9")
+		)
+		(instances
+			(project "low-pass-filter"
+				(path "/8654abdc-c56c-4f7a-a1d7-4eb247d6aa0a"
+					(reference "#PWR027")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector:Conn_01x03_Socket")
 		(at 220.98 147.32 0)
 		(mirror x)
@@ -4921,6 +4991,87 @@
 			(project "low-pass-filter"
 				(path "/8654abdc-c56c-4f7a-a1d7-4eb247d6aa0a"
 					(reference "#PWR0104")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_02x03_Odd_Even")
+		(at 74.93 180.34 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0ece8a0f-5174-4679-b78c-fc68d896ba7d")
+		(property "Reference" "J8"
+			(at 66.294 180.848 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Power"
+			(at 64.008 182.626 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_IDC:IDC-Header_2x03_P2.54mm_Vertical"
+			(at 74.93 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 74.93 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, double row, 02x03, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 74.93 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "4"
+			(uuid "b6488b9d-bff7-4ba2-b168-3eb614b1a17d")
+		)
+		(pin "1"
+			(uuid "b424aa13-f3e5-47ea-aa60-3583eba845e1")
+		)
+		(pin "5"
+			(uuid "3524e6e8-f361-43d0-b902-e32df92cc54b")
+		)
+		(pin "3"
+			(uuid "9c2de59e-27ca-4bdf-b992-0db5a5ee09f2")
+		)
+		(pin "6"
+			(uuid "07348d0f-d96a-4f99-9ffa-4601d4c26c50")
+		)
+		(pin "2"
+			(uuid "6b7b35e8-9e3b-4fb7-85ba-11e040ab9eef")
+		)
+		(instances
+			(project "low-pass-filter"
+				(path "/8654abdc-c56c-4f7a-a1d7-4eb247d6aa0a"
+					(reference "J8")
 					(unit 1)
 				)
 			)
@@ -5596,6 +5747,72 @@
 			(project "low-pass-filter"
 				(path "/8654abdc-c56c-4f7a-a1d7-4eb247d6aa0a"
 					(reference "#PWR08")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:-12V")
+		(at 77.47 175.26 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2697b297-9f9b-4140-88d9-127d7fff64b1")
+		(property "Reference" "#PWR032"
+			(at 73.66 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "12V"
+			(at 82.55 175.26 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 77.47 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 77.47 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"-12V\""
+			(at 77.47 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fb17b348-d390-4128-8e4a-53ed02aa65d0")
+		)
+		(instances
+			(project "low-pass-filter"
+				(path "/8654abdc-c56c-4f7a-a1d7-4eb247d6aa0a"
+					(reference "#PWR032")
 					(unit 1)
 				)
 			)
@@ -7401,6 +7618,73 @@
 	)
 	(symbol
 		(lib_id "power:GND")
+		(at 74.93 175.26 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "6ac07962-2ace-418e-88ce-f31112f56d06")
+		(property "Reference" "#PWR026"
+			(at 74.93 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 74.93 170.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 74.93 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 74.93 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 74.93 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fa4521ab-d6b5-43c9-afd6-02fdc03437c2")
+		)
+		(instances
+			(project "low-pass-filter"
+				(path "/8654abdc-c56c-4f7a-a1d7-4eb247d6aa0a"
+					(reference "#PWR026")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
 		(at 29.21 187.96 0)
 		(mirror y)
 		(unit 1)
@@ -8153,6 +8437,72 @@
 			(project "low-pass-filter"
 				(path "/8654abdc-c56c-4f7a-a1d7-4eb247d6aa0a"
 					(reference "J6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:-12V")
+		(at 72.39 175.26 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "886afa2b-5d8a-4764-b2ed-aea53aebc338")
+		(property "Reference" "#PWR021"
+			(at 76.2 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "5V"
+			(at 67.31 175.26 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 72.39 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 72.39 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"-12V\""
+			(at 72.39 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3210f8bf-85cf-434c-a7f0-bf7b819eaf24")
+		)
+		(instances
+			(project "low-pass-filter"
+				(path "/8654abdc-c56c-4f7a-a1d7-4eb247d6aa0a"
+					(reference "#PWR021")
 					(unit 1)
 				)
 			)
@@ -8931,6 +9281,71 @@
 			(project ""
 				(path "/8654abdc-c56c-4f7a-a1d7-4eb247d6aa0a"
 					(reference "#PWR01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:-12V")
+		(at 77.47 187.96 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "aff3e457-d9f5-4941-ae17-b32e34fa378a")
+		(property "Reference" "#PWR033"
+			(at 73.66 187.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "-12V"
+			(at 83.058 187.96 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 77.47 187.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 77.47 187.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"-12V\""
+			(at 77.47 187.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6fae53da-ef89-4d20-af27-e4c2d0b64ea9")
+		)
+		(instances
+			(project "low-pass-filter"
+				(path "/8654abdc-c56c-4f7a-a1d7-4eb247d6aa0a"
+					(reference "#PWR033")
 					(unit 1)
 				)
 			)
