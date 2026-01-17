@@ -2075,6 +2075,12 @@
 		(uuid "6ffaf88d-f84f-415d-94f9-10ff6e7eb0cb")
 	)
 	(junction
+		(at 241.3 139.7)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7f0636ad-39cd-4146-9d95-dda90b0f1757")
+	)
+	(junction
 		(at 80.01 114.3)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2140,6 +2146,22 @@
 		(color 0 0 0 0)
 		(uuid "e01d98bf-952b-4d57-aedf-eb9411a414d7")
 	)
+	(junction
+		(at 246.38 137.16)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e2cbfc71-8f94-4f92-96f0-d8838c3a5af2")
+	)
+	(junction
+		(at 246.38 163.83)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "fd922e8c-8610-472e-8194-111a83183b68")
+	)
+	(no_connect
+		(at 215.9 158.75)
+		(uuid "1ac184c2-a139-4dc8-a540-b9dee1a352b5")
+	)
 	(no_connect
 		(at 53.34 101.6)
 		(uuid "5640495f-4be2-4964-aae0-82bae6bd6452")
@@ -2164,13 +2186,13 @@
 	)
 	(wire
 		(pts
-			(xy 246.38 163.83) (xy 271.78 163.83)
+			(xy 246.38 137.16) (xy 271.78 137.16)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "0234eb1a-bb72-4c9d-9306-9b6223540aef")
+		(uuid "0c5852ad-f949-4401-9ed4-5ca63eeede83")
 	)
 	(wire
 		(pts
@@ -2234,6 +2256,26 @@
 	)
 	(wire
 		(pts
+			(xy 220.98 158.75) (xy 220.98 163.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "310c3a50-1b4c-4a4a-a101-6e85d720b8bb")
+	)
+	(wire
+		(pts
+			(xy 246.38 163.83) (xy 271.78 163.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "31828070-8729-49fe-9d2d-75da5c6c3142")
+	)
+	(wire
+		(pts
 			(xy 163.83 83.82) (xy 170.18 83.82)
 		)
 		(stroke
@@ -2284,6 +2326,16 @@
 	)
 	(wire
 		(pts
+			(xy 220.98 146.05) (xy 220.98 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3a2d57f8-c2d4-4673-8add-c410d3ddb507")
+	)
+	(wire
+		(pts
 			(xy 247.65 30.48) (xy 254 30.48)
 		)
 		(stroke
@@ -2311,6 +2363,16 @@
 			(type default)
 		)
 		(uuid "4b047aeb-e2dc-400a-9dac-65a634eb1a56")
+	)
+	(wire
+		(pts
+			(xy 220.98 163.83) (xy 246.38 163.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4c01e23b-25fe-40a2-b894-7cf94e53248e")
 	)
 	(wire
 		(pts
@@ -2424,6 +2486,26 @@
 	)
 	(wire
 		(pts
+			(xy 220.98 137.16) (xy 246.38 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "836e7efa-b3aa-4368-9e06-55a8a60a3c44")
+	)
+	(wire
+		(pts
+			(xy 215.9 146.05) (xy 215.9 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "84452ade-c22f-412e-b445-d2f0e5ff4502")
+	)
+	(wire
+		(pts
 			(xy 170.18 83.82) (xy 184.15 83.82)
 		)
 		(stroke
@@ -2474,6 +2556,16 @@
 	)
 	(wire
 		(pts
+			(xy 215.9 139.7) (xy 241.3 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "93ab8095-5e55-48fb-8875-f715c32fa90b")
+	)
+	(wire
+		(pts
 			(xy 67.31 114.3) (xy 80.01 114.3)
 		)
 		(stroke
@@ -2481,16 +2573,6 @@
 			(type default)
 		)
 		(uuid "958f5945-757d-4fbd-b48c-7e58921387b4")
-	)
-	(wire
-		(pts
-			(xy 246.38 137.16) (xy 271.78 137.16)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9745bb91-631b-4853-b527-9c7f356f23e5")
 	)
 	(wire
 		(pts
@@ -2767,6 +2849,153 @@
 			(project "power-supply"
 				(path "/71e7480b-4148-4d0b-bbe2-57d9a5092859"
 					(reference "C1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 218.44 158.75 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "076c5576-7bd1-4b18-bac5-69f40b69fc69")
+		(property "Reference" "#PWR024"
+			(at 218.44 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 214.376 161.036 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 218.44 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 218.44 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 218.44 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7d320123-8c4b-4ce3-adae-8eac037a235d")
+		)
+		(instances
+			(project "power-supply"
+				(path "/71e7480b-4148-4d0b-bbe2-57d9a5092859"
+					(reference "#PWR024")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_02x03_Odd_Even")
+		(at 218.44 151.13 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0f5f4f5e-fa88-4ff1-8a5e-f6b0ed277076")
+		(property "Reference" "J4"
+			(at 211.582 151.384 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Output"
+			(at 207.518 153.416 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_IDC:IDC-Header_2x03_P2.54mm_Vertical"
+			(at 218.44 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 218.44 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, double row, 02x03, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 218.44 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "4"
+			(uuid "d122f224-7d82-454c-bf0c-4026f76086a1")
+		)
+		(pin "1"
+			(uuid "c531458b-0630-407a-a203-c5539e9d4f01")
+		)
+		(pin "5"
+			(uuid "45a7cb7a-3c43-46d0-8d17-08be265da0c9")
+		)
+		(pin "3"
+			(uuid "7b661fe1-9438-4eba-a301-85cadfa3b792")
+		)
+		(pin "6"
+			(uuid "455802de-060e-47dc-a768-946e94455244")
+		)
+		(pin "2"
+			(uuid "ed281563-8af5-4156-829f-4887863ac5ad")
+		)
+		(instances
+			(project "power-supply"
+				(path "/71e7480b-4148-4d0b-bbe2-57d9a5092859"
+					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -4762,6 +4991,73 @@
 			(project "power-supply"
 				(path "/71e7480b-4148-4d0b-bbe2-57d9a5092859"
 					(reference "D6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 218.44 146.05 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "91ad6604-5477-4649-9ac2-b7b11af6a499")
+		(property "Reference" "#PWR021"
+			(at 218.44 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 218.44 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 218.44 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 218.44 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 218.44 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a690ecf3-6c08-46c6-a79b-40f06ee42862")
+		)
+		(instances
+			(project "power-supply"
+				(path "/71e7480b-4148-4d0b-bbe2-57d9a5092859"
+					(reference "#PWR021")
 					(unit 1)
 				)
 			)

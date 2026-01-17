@@ -2982,6 +2982,26 @@
 		)
 		(uuid "ec79ce2b-4ba1-479c-9c19-23335829c639")
 	)
+	(text_box "R17 controls the maximum effect of CV. Reduce its resistance to increase the max CV effect."
+		(exclude_from_sim no)
+		(at 200.66 125.73 0)
+		(size 36.83 7.62)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "f69b622a-55ff-4213-9f3e-e6c55e2bf8a0")
+	)
 	(junction
 		(at 116.84 68.58)
 		(diameter 0)
@@ -7499,7 +7519,7 @@
 				)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "24k"
 			(at 241.3 134.62 90)
 			(effects
 				(font

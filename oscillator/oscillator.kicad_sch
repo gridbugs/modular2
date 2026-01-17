@@ -2721,14 +2721,6 @@
 		(uuid "05192d89-8f2c-4656-a013-19c82c190b67")
 	)
 	(no_connect
-		(at 123.19 96.52)
-		(uuid "21ae2d99-1f5e-4b24-9c94-d7e4f1dee7e3")
-	)
-	(no_connect
-		(at 97.79 88.9)
-		(uuid "35741af9-368d-4bbb-8138-75a6322d597a")
-	)
-	(no_connect
 		(at 270.51 54.61)
 		(uuid "4e76bbe7-9e69-410f-ac0b-b1752394be46")
 	)
@@ -3310,6 +3302,16 @@
 	)
 	(wire
 		(pts
+			(xy 123.19 96.52) (xy 137.16 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6c80d688-ae10-4a3f-90c2-b267820bfcd4")
+	)
+	(wire
+		(pts
 			(xy 97.79 96.52) (xy 88.9 96.52)
 		)
 		(stroke
@@ -3357,6 +3359,16 @@
 			(type default)
 		)
 		(uuid "77c5ef08-013b-40b0-8d44-8293aa6d41f1")
+	)
+	(wire
+		(pts
+			(xy 97.79 88.9) (xy 95.25 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7ad32181-8934-4e2f-bc0a-71488f809b05")
 	)
 	(wire
 		(pts
@@ -4107,6 +4119,73 @@
 			(type default)
 		)
 		(uuid "fe4dc514-ed96-4b39-a0f8-ff83e8245bf3")
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 92.71 88.9 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "02419647-f96b-4e8c-8679-d399ff341da7")
+		(property "Reference" "C8"
+			(at 92.71 91.694 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nf"
+			(at 92.71 94.234 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
+			(at 92.71 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 92.71 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 92.71 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "7bec7fc9-d147-42b5-b880-da68da50b52c")
+		)
+		(pin "1"
+			(uuid "c7603a9c-5bdf-4f30-b61a-5bdc57dbca51")
+		)
+		(instances
+			(project "oscillator"
+				(path "/c72fe8b1-85da-49dc-a7d3-e7ef310dfbdd"
+					(reference "C8")
+					(unit 1)
+				)
+			)
+		)
 	)
 	(symbol
 		(lib_id "power:-12V")
@@ -5286,6 +5365,72 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:Conn_01x01_Pin")
+		(at 147.32 96.52 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2df56aab-6d0a-491c-866f-575b24eadab3")
+		(property "Reference" "J12"
+			(at 152.908 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Soft Sync"
+			(at 156.21 94.742 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "modular2:banana-jack"
+			(at 147.32 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 147.32 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x01, script generated"
+			(at 147.32 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e8e08dd5-518d-4cea-bd5f-860cf3d911a4")
+		)
+		(instances
+			(project "oscillator"
+				(path "/c72fe8b1-85da-49dc-a7d3-e7ef310dfbdd"
+					(reference "J12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:-12V")
 		(at 255.27 53.34 270)
 		(unit 1)
@@ -5491,6 +5636,74 @@
 			(project "oscillator"
 				(path "/c72fe8b1-85da-49dc-a7d3-e7ef310dfbdd"
 					(reference "#PWR036")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 139.7 96.52 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "411a3607-45e0-4457-b6d7-4f4c43f8361d")
+		(property "Reference" "C7"
+			(at 139.6937 102.87 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nf"
+			(at 139.6937 100.33 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
+			(at 139.7 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 139.7 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 139.7 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "e82abf81-cacb-4e62-b6f4-8238d5111ed0")
+		)
+		(pin "1"
+			(uuid "b5ff6b02-ac9b-4d7c-954e-a0fa0c954c07")
+		)
+		(instances
+			(project "oscillator"
+				(path "/c72fe8b1-85da-49dc-a7d3-e7ef310dfbdd"
+					(reference "C7")
 					(unit 1)
 				)
 			)
@@ -7520,6 +7733,72 @@
 				(path "/c72fe8b1-85da-49dc-a7d3-e7ef310dfbdd"
 					(reference "U2")
 					(unit 4)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x01_Pin")
+		(at 85.09 88.9 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "843c9a23-af42-4c8e-b328-04905f410647")
+		(property "Reference" "J13"
+			(at 79.502 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Hard Sync"
+			(at 79.502 90.678 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "modular2:banana-jack"
+			(at 85.09 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 85.09 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x01, script generated"
+			(at 85.09 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "385e0390-e085-4d67-a3a9-ec2eeb7961c3")
+		)
+		(instances
+			(project "oscillator"
+				(path "/c72fe8b1-85da-49dc-a7d3-e7ef310dfbdd"
+					(reference "J13")
+					(unit 1)
 				)
 			)
 		)
