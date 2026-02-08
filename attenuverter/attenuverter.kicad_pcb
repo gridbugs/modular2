@@ -17414,7 +17414,7 @@
 		)
 	)
 	(gr_text "ATTENU\n-VERTER\nV2"
-		(at 20.7 21 0)
+		(at 24 21 0)
 		(layer "F.SilkS")
 		(uuid "feebcd2b-3f6b-49e1-aff3-2af082460521")
 		(effects
@@ -17422,7 +17422,6 @@
 				(size 1 1)
 				(thickness 0.15)
 			)
-			(justify left)
 		)
 	)
 	(gr_text "+1.0"
