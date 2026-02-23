@@ -78,9 +78,6 @@ void set_clock_source(bool external) {
 
 int main(void) {
 
-    // Wait for debouncing capacitors to charge.
-    for (long int i = 0; i < 1000000; i++);
-
     // Initializing analog pins, leaving the bottom 2 for use as digital IO pins.
     ADC_init(0xFC);
 
@@ -112,6 +109,9 @@ int main(void) {
 
     // Clock select pull-up resistor
     PORTC |= BIT(1);
+
+    // Wait for debouncing capacitors to charge.
+    for (long int i = 0; i < 1000000; i++);
 
     channel_t channels[NUM_CHANNELS] = {
         [0] = {
