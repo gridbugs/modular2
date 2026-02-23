@@ -32,9 +32,13 @@ void set_count_leds(uint8_t count) {
     PORTD |= count_bits;
 }
 
+uint16_t get_delay_adc(void) {
+    return ADC_read(6);
+}
+
 uint32_t get_delay(void) {
-    uint32_t tempo_adc = (uint32_t)ADC_read(6);
-    return (4096 + 128) - tempo_adc;
+    uint32_t tempo_adc = (uint32_t)get_delay_adc() + 1;
+    return 400000 / (tempo_adc + 40); // (hand-tuned)
 }
 
 uint8_t get_num_steps(void) {
@@ -42,7 +46,7 @@ uint8_t get_num_steps(void) {
     return (uint8_t)(num_steps_adc >> 7) + 1;
 }
 
-bool get_clear_button(void) {
+bool get_shift_button(void) {
     return (PINB & BIT(5)) == 0;
 }
 
@@ -74,9 +78,12 @@ void set_clock_source(bool external) {
 
 }
 
+#define MIN_GATE 8
 #define NUM_STEPS_DISPLAY_DELAY 2000
+#define SHIFT_RESET_WINDOW 1000
 
 int main(void) {
+    timer_init();
 
     // Initializing analog pins, leaving the bottom 2 for use as digital IO pins.
     ADC_init(0xFC);
@@ -150,12 +157,15 @@ int main(void) {
 
     uint8_t count = 0;
 
-    uint32_t cycles_since_last_tick = 0;
     uint8_t prev_num_steps = get_num_steps();
     uint32_t num_steps_display_countdown = 0;
     bool prev_external_clock = clock_source_is_external();
     set_clock_source(prev_external_clock);
     bool prev_external_clock_high = false;
+    timer_reset();
+    uint16_t prev_period = 0;
+    uint32_t clock_delay = get_delay();
+    uint64_t cycles_since_shift = 0;
     while (1) {
         bool external_clock = clock_source_is_external();
 
@@ -165,21 +175,26 @@ int main(void) {
             prev_external_clock = external_clock;
         }
 
-        uint32_t delay;
+        bool shift = get_shift_button();
+
+        if (shift && cycles_since_shift > 0 && cycles_since_shift < SHIFT_RESET_WINDOW) {
+            count = 0;
+            timer_reset();
+        }
+
         bool tick_this_frame;
+        uint16_t timer_value = timer_read();
+        clock_delay = get_delay();
         if (external_clock) {
             // TODO use time between last two ticks
-            delay = get_delay();
             bool external_clock_high = get_clock_in();
             tick_this_frame = external_clock_high && !prev_external_clock_high;
             prev_external_clock_high = external_clock_high;
         } else {
-            delay = get_delay();
-            tick_this_frame = cycles_since_last_tick >= delay;
+            tick_this_frame = timer_value > clock_delay;
         }
 
         // Process buttons
-        bool clear = get_clear_button();
         channels[0].pressed_now = !(PIND & BIT(5));
         channels[1].pressed_now = !(PIND & BIT(6));
         channels[2].pressed_now = !(PIND & BIT(7));
@@ -187,20 +202,23 @@ int main(void) {
         for (int i = 0; i < NUM_CHANNELS; i++) {
             channel_t *ch = &channels[i];
             if (ch->pressed_now) {
-                if (clear) {
+                if (shift) {
                     ch->sequence[count] = false;
                 } else if (ch->allow_fill || !ch->pressed_prev) {
                     ch->sequence[count] = true;
                 }
             }
-            ch->pressed_prev = ch->pressed_now;
-            uint32_t threshold = ((uint32_t)ADC_read(ch->adc_index) * delay) / 4096;
-            threshold = threshold == 0 ? 1 : threshold;
-            if (ch->sequence[count] && (cycles_since_last_tick < threshold)) {
+            uint32_t gate_threshold = ((uint32_t)ADC_read(ch->adc_index) * prev_period) / 4096;
+            if (gate_threshold < MIN_GATE) {
+                // make sure there's always a pulse
+                gate_threshold = MIN_GATE;
+            }
+            if (ch->sequence[count] && (timer_value < gate_threshold)) {
                 PORTB |= BIT(ch->out_portb_index);
             } else {
                 PORTB &= ~BIT(ch->out_portb_index);
             }
+            ch->pressed_prev = ch->pressed_now;
         }
 
         uint8_t num_steps = get_num_steps();
@@ -213,18 +231,24 @@ int main(void) {
             if (count >= num_steps) {
                 count = 0;
             }
-            cycles_since_last_tick = 0;
+            timer_reset();
+            prev_period = timer_value;
+            set_clock_out(true);
         } else {
-            cycles_since_last_tick += 1;
+            set_clock_out(timer_value < (prev_period / 2));
         }
-        set_clock_out(cycles_since_last_tick < (delay / 2));
         if (num_steps_display_countdown > 0) {
             num_steps_display_countdown--;
             set_count_leds(num_steps);
         } else {
             set_count_leds(count);
         }
-    }
+        if (shift) {
+            cycles_since_shift = 0;
+        } else {
+            cycles_since_shift++;
+        }
 
+    }
     return 0;
 }
