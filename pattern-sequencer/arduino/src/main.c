@@ -38,7 +38,7 @@ uint16_t get_delay_adc(void) {
 
 uint32_t get_delay(void) {
     uint32_t tempo_adc = (uint32_t)get_delay_adc() + 1;
-    return 400000 / (tempo_adc + 40); // (hand-tuned)
+    return 1082137 / (tempo_adc + 132); // (hand-tuned)
 }
 
 uint8_t get_num_steps(void) {
@@ -80,7 +80,7 @@ void set_clock_source(bool external) {
 
 #define MIN_GATE 8
 #define NUM_STEPS_DISPLAY_DELAY 2000
-#define SHIFT_RESET_WINDOW 1000
+#define SHIFT_RESET_WINDOW 500
 
 int main(void) {
     timer_init();
@@ -194,6 +194,12 @@ int main(void) {
             tick_this_frame = timer_value > clock_delay;
         }
 
+        uint8_t num_steps = get_num_steps();
+        if (prev_num_steps != num_steps) {
+            prev_num_steps = num_steps;
+            num_steps_display_countdown = NUM_STEPS_DISPLAY_DELAY;
+        }
+
         // Process buttons
         channels[0].pressed_now = !(PIND & BIT(5));
         channels[1].pressed_now = !(PIND & BIT(6));
@@ -202,10 +208,14 @@ int main(void) {
         for (int i = 0; i < NUM_CHANNELS; i++) {
             channel_t *ch = &channels[i];
             if (ch->pressed_now) {
+                uint8_t count_to_update = count;
+                if (timer_value > (3 * prev_period) / 4) {
+                    count_to_update = (count_to_update + 1) % num_steps;
+                }
                 if (shift) {
-                    ch->sequence[count] = false;
+                    ch->sequence[count_to_update] = false;
                 } else if (ch->allow_fill || !ch->pressed_prev) {
-                    ch->sequence[count] = true;
+                    ch->sequence[count_to_update] = true;
                 }
             }
             uint32_t gate_threshold = ((uint32_t)ADC_read(ch->adc_index) * prev_period) / 4096;
@@ -221,11 +231,6 @@ int main(void) {
             ch->pressed_prev = ch->pressed_now;
         }
 
-        uint8_t num_steps = get_num_steps();
-        if (prev_num_steps != num_steps) {
-            prev_num_steps = num_steps;
-            num_steps_display_countdown = NUM_STEPS_DISPLAY_DELAY;
-        }
         if (tick_this_frame) {
             count += 1;
             if (count >= num_steps) {
@@ -235,9 +240,9 @@ int main(void) {
             prev_period = timer_value;
             set_clock_out(true);
         } else {
-            set_clock_out(timer_value < (prev_period / 2));
+            set_clock_out(timer_value < (prev_period / 8));
         }
-        if (num_steps_display_countdown > 0) {
+        if (num_steps_display_countdown > 0 && !shift) {
             num_steps_display_countdown--;
             set_count_leds(num_steps);
         } else {
