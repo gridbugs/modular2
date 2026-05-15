@@ -2749,6 +2749,12 @@
 		(uuid "14564caf-75f7-418f-b268-06aafa591788")
 	)
 	(junction
+		(at 248.92 149.86)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "17725788-c9f5-4947-ac3f-be10f0d8c813")
+	)
+	(junction
 		(at 152.4 45.72)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2765,12 +2771,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "1f173e34-26c4-4aa7-b993-0ec3a7763d5d")
-	)
-	(junction
-		(at 248.92 144.78)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "22b24ef3-fbe5-4127-9266-8018f68b8388")
 	)
 	(junction
 		(at 233.68 147.32)
@@ -3013,16 +3013,16 @@
 		(uuid "fae9141b-77c1-44e0-a976-c50e1f1ba78c")
 	)
 	(no_connect
+		(at 191.77 64.77)
+		(uuid "08080073-7fce-4892-91cd-82b2baeaafc7")
+	)
+	(no_connect
 		(at 48.26 190.5)
 		(uuid "31e2c86f-bc86-465e-be57-05a8b9956cd4")
 	)
 	(no_connect
 		(at 25.4 190.5)
 		(uuid "3db92c92-282d-4071-b6b0-a018c05dfd89")
-	)
-	(no_connect
-		(at 69.85 190.5)
-		(uuid "eb198491-b8b1-4367-a825-523f931495ec")
 	)
 	(wire
 		(pts
@@ -3486,6 +3486,16 @@
 	)
 	(wire
 		(pts
+			(xy 245.11 147.32) (xy 245.11 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3a8905b9-4f5d-4b7b-8177-6200a413cd72")
+	)
+	(wire
+		(pts
 			(xy 60.96 135.89) (xy 66.04 135.89)
 		)
 		(stroke
@@ -3503,6 +3513,16 @@
 			(type default)
 		)
 		(uuid "3bce8358-442f-4e90-a404-cb1093c450b5")
+	)
+	(wire
+		(pts
+			(xy 245.11 149.86) (xy 248.92 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3e1dd1e7-570a-40e4-8334-cae97964e6e2")
 	)
 	(wire
 		(pts
@@ -4316,16 +4336,6 @@
 	)
 	(wire
 		(pts
-			(xy 245.11 147.32) (xy 245.11 144.78)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b7d87dab-c9d3-406c-9172-12113f921aba")
-	)
-	(wire
-		(pts
 			(xy 167.64 45.72) (xy 167.64 48.26)
 		)
 		(stroke
@@ -4433,16 +4443,6 @@
 			(type default)
 		)
 		(uuid "c367dfc1-9591-45f6-a94c-674b7129ffe7")
-	)
-	(wire
-		(pts
-			(xy 245.11 144.78) (xy 248.92 144.78)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c3e25ff0-3271-46b4-b717-996ec35d0180")
 	)
 	(wire
 		(pts
@@ -5323,8 +5323,7 @@
 	)
 	(symbol
 		(lib_id "Switch:SW_DPDT_x2")
-		(at 154.94 81.28 0)
-		(mirror y)
+		(at 154.94 81.28 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5332,7 +5331,7 @@
 		(dnp no)
 		(uuid "0b8e7657-bcf5-49c3-8973-706af8da2ccd")
 		(property "Reference" "SW3"
-			(at 154.94 72.39 0)
+			(at 154.94 75.184 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5340,7 +5339,7 @@
 			)
 		)
 		(property "Value" "BPF"
-			(at 154.94 74.93 0)
+			(at 154.94 72.644 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7402,75 +7401,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 72.39 190.5 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "41c3cd66-5533-40b7-8938-6482d792907f")
-		(property "Reference" "#PWR042"
-			(at 72.39 196.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 68.326 192.786 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 72.39 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 72.39 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 72.39 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "bbe3db9f-855e-4410-8ac7-f86daf0a1437")
-		)
-		(instances
-			(project "diode-ladder-filter"
-				(path "/1d10b6b0-c321-4ea4-ad67-0183c7b0afdd"
-					(reference "#PWR042")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Switch:SW_DPDT_x2")
-		(at 123.19 34.29 0)
-		(mirror y)
+		(at 123.19 34.29 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7478,7 +7410,7 @@
 		(dnp no)
 		(uuid "41d3e6b2-6ca0-476c-b6b2-94781ba2a741")
 		(property "Reference" "SW1"
-			(at 123.19 25.4 0)
+			(at 123.444 28.194 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7486,7 +7418,7 @@
 			)
 		)
 		(property "Value" "LPF"
-			(at 123.19 27.94 0)
+			(at 123.444 25.654 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7748,7 +7680,8 @@
 	)
 	(symbol
 		(lib_id "Device:R_Potentiometer_US")
-		(at 260.35 82.55 180)
+		(at 260.35 82.55 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7756,7 +7689,7 @@
 		(dnp no)
 		(uuid "44626e7f-e66a-4f94-b7fa-7169fd226769")
 		(property "Reference" "RV2"
-			(at 261.874 81.534 0)
+			(at 261.874 83.566 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7765,7 +7698,7 @@
 			)
 		)
 		(property "Value" "100K - Resonance"
-			(at 261.62 83.82 0)
+			(at 261.62 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8041,7 +7974,7 @@
 				)
 			)
 		)
-		(property "Value" "100"
+		(property "Value" "1K"
 			(at 208.28 140.97 90)
 			(effects
 				(font
@@ -9220,87 +9153,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_02x03_Odd_Even")
-		(at 72.39 182.88 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "6a4eca40-8670-4bb7-8ee9-048742e45cb8")
-		(property "Reference" "J7"
-			(at 63.754 183.388 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "Power"
-			(at 61.468 185.166 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Connector_IDC:IDC-Header_2x03_P2.54mm_Vertical"
-			(at 72.39 182.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 72.39 182.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Generic connector, double row, 02x03, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 72.39 182.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "4"
-			(uuid "a5516b12-0de4-4974-a543-0fddb49581e7")
-		)
-		(pin "1"
-			(uuid "3edd2107-e1c1-4d86-9b72-e37d25410129")
-		)
-		(pin "5"
-			(uuid "73ad99e0-2621-4f66-a612-5d37fb3b612e")
-		)
-		(pin "3"
-			(uuid "f5e24796-1ee3-4149-b609-c7c28f3f0aa5")
-		)
-		(pin "6"
-			(uuid "7e82840f-0fde-41e8-97fd-cc9f730b5312")
-		)
-		(pin "2"
-			(uuid "1c56108d-c364-40ac-8575-d7d2878cf05f")
-		)
-		(instances
-			(project "diode-ladder-filter"
-				(path "/1d10b6b0-c321-4ea4-ad67-0183c7b0afdd"
-					(reference "J7")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:D")
 		(at 189.23 114.3 90)
 		(unit 1)
@@ -10463,72 +10315,6 @@
 	)
 	(symbol
 		(lib_id "power:-12V")
-		(at 74.93 177.8 270)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "8e43a119-25e5-4d46-bc02-2e9273526c24")
-		(property "Reference" "#PWR029"
-			(at 71.12 177.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "12V"
-			(at 80.01 177.8 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 74.93 177.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 74.93 177.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"-12V\""
-			(at 74.93 177.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "3b6ccf60-198c-452f-aec4-cd6b753d536a")
-		)
-		(instances
-			(project "diode-ladder-filter"
-				(path "/1d10b6b0-c321-4ea4-ad67-0183c7b0afdd"
-					(reference "#PWR029")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:-12V")
 		(at 53.34 177.8 270)
 		(mirror x)
 		(unit 1)
@@ -11129,8 +10915,7 @@
 	)
 	(symbol
 		(lib_id "Switch:SW_DPDT_x2")
-		(at 139.7 95.25 0)
-		(mirror y)
+		(at 139.7 95.25 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -11138,7 +10923,7 @@
 		(dnp no)
 		(uuid "9f2cecbe-b614-4f55-a87c-4acf458e855d")
 		(property "Reference" "SW4"
-			(at 139.7 86.36 0)
+			(at 139.954 89.662 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11146,7 +10931,7 @@
 			)
 		)
 		(property "Value" "HPF"
-			(at 139.7 88.9 0)
+			(at 139.954 87.122 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12596,71 +12381,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:-12V")
-		(at 74.93 190.5 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "c60c73a1-0bf8-433b-a756-7d65e01289e7")
-		(property "Reference" "#PWR043"
-			(at 71.12 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "-12V"
-			(at 80.518 190.5 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 74.93 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 74.93 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"-12V\""
-			(at 74.93 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "48a17a77-7b84-46c7-8d02-a958f4d27f15")
-		)
-		(instances
-			(project "diode-ladder-filter"
-				(path "/1d10b6b0-c321-4ea4-ad67-0183c7b0afdd"
-					(reference "#PWR043")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 55.88 151.13 0)
 		(mirror y)
@@ -13009,72 +12729,6 @@
 			(project "diode-ladder-filter"
 				(path "/1d10b6b0-c321-4ea4-ad67-0183c7b0afdd"
 					(reference "SW2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:-12V")
-		(at 69.85 177.8 90)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "d59cd990-880b-4c9c-a4de-b09ed60adeaa")
-		(property "Reference" "#PWR027"
-			(at 73.66 177.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "5V"
-			(at 64.77 177.8 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 69.85 177.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 69.85 177.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"-12V\""
-			(at 69.85 177.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "259d1659-7c78-4e09-b0fa-bd6fb9dfe6b6")
-		)
-		(instances
-			(project "diode-ladder-filter"
-				(path "/1d10b6b0-c321-4ea4-ad67-0183c7b0afdd"
-					(reference "#PWR027")
 					(unit 1)
 				)
 			)
@@ -13751,73 +13405,6 @@
 			(project "diode-ladder-filter"
 				(path "/1d10b6b0-c321-4ea4-ad67-0183c7b0afdd"
 					(reference "#PWR032")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 72.39 177.8 0)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "fdf67bfd-0c14-415a-958f-57401e12f724")
-		(property "Reference" "#PWR028"
-			(at 72.39 171.45 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 72.39 172.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 72.39 177.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 72.39 177.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 72.39 177.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "2ad461e0-d4f1-4ee6-a879-179139a5a21e")
-		)
-		(instances
-			(project "diode-ladder-filter"
-				(path "/1d10b6b0-c321-4ea4-ad67-0183c7b0afdd"
-					(reference "#PWR028")
 					(unit 1)
 				)
 			)
