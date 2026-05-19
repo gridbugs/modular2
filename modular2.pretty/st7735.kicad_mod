@@ -115,8 +115,8 @@
 		(uuid "cf2cbe34-ced7-4a4e-9a03-51eeedc1b0ac")
 	)
 	(fp_rect
-		(start -8 -15)
-		(end 36 28)
+		(start -9 -16)
+		(end 37 29)
 		(stroke
 			(width 0.1)
 			(type solid)
