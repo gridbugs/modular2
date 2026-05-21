@@ -12035,7 +12035,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "01572ee3-66a3-4c0c-ac2d-fd4f0e498d37")
-		(property "Reference" "J6"
+		(property "Reference" "J9"
 			(at 120.396 147.32 0)
 			(effects
 				(font
@@ -12084,7 +12084,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J6")
+					(reference "J9")
 					(unit 1)
 				)
 			)
@@ -12099,7 +12099,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "019009c7-69ee-43ec-81b0-b23fe1d074ac")
-		(property "Reference" "D33"
+		(property "Reference" "D27"
 			(at 139.065 181.229 0)
 			(effects
 				(font
@@ -12151,7 +12151,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D33")
+					(reference "D27")
 					(unit 1)
 				)
 			)
@@ -12166,7 +12166,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "04026ae8-6fd8-44cc-903f-b98fd70c4a8b")
-		(property "Reference" "J28"
+		(property "Reference" "J33"
 			(at 133.35 228.854 0)
 			(effects
 				(font
@@ -12215,7 +12215,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J28")
+					(reference "J33")
 					(unit 1)
 				)
 			)
@@ -12296,7 +12296,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "05468157-814a-4014-92b9-948419a7ab26")
-		(property "Reference" "J42"
+		(property "Reference" "J32"
 			(at 128.27 228.854 0)
 			(effects
 				(font
@@ -12345,7 +12345,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J42")
+					(reference "J32")
 					(unit 1)
 				)
 			)
@@ -12361,7 +12361,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "06bc7772-799d-40b1-90c4-89eb3065e4fd")
-		(property "Reference" "SW3"
+		(property "Reference" "SW35"
 			(at 140.97 58.4199 90)
 			(effects
 				(font
@@ -12418,7 +12418,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW3")
+					(reference "SW35")
 					(unit 1)
 				)
 			)
@@ -12433,7 +12433,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "08c49e52-bbc8-4dda-b868-ec8a524f3596")
-		(property "Reference" "C1"
+		(property "Reference" "C2"
 			(at 74.676 70.866 90)
 			(effects
 				(font
@@ -12487,7 +12487,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "C1")
+					(reference "C2")
 					(unit 1)
 				)
 			)
@@ -12502,7 +12502,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0915794b-a404-4994-9ab6-fe35017e33cf")
-		(property "Reference" "SW8"
+		(property "Reference" "SW5"
 			(at 211.328 50.8 90)
 			(effects
 				(font
@@ -12554,7 +12554,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW8")
+					(reference "SW5")
 					(unit 1)
 				)
 			)
@@ -12636,7 +12636,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "09a77c11-4bfa-4190-bc75-b3b3af71ac43")
-		(property "Reference" "J48"
+		(property "Reference" "J44"
 			(at 113.03 207.6449 90)
 			(effects
 				(font
@@ -12690,7 +12690,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J48")
+					(reference "J44")
 					(unit 1)
 				)
 			)
@@ -12705,7 +12705,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0c07ffb7-6e6d-481d-a999-94ce5a247e33")
-		(property "Reference" "D18"
+		(property "Reference" "D25"
 			(at 139.065 153.289 0)
 			(effects
 				(font
@@ -12757,7 +12757,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D18")
+					(reference "D25")
 					(unit 1)
 				)
 			)
@@ -12772,7 +12772,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0cde0699-3a29-4692-b966-f2b31862b5b6")
-		(property "Reference" "R5"
+		(property "Reference" "R9"
 			(at 136.398 144.78 90)
 			(effects
 				(font
@@ -12826,7 +12826,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R5")
+					(reference "R9")
 					(unit 1)
 				)
 			)
@@ -12907,7 +12907,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "10146ef7-aa9b-45e8-b495-5f479d991790")
-		(property "Reference" "R20"
+		(property "Reference" "R4"
 			(at 161.798 172.72 90)
 			(effects
 				(font
@@ -12961,7 +12961,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R20")
+					(reference "R4")
 					(unit 1)
 				)
 			)
@@ -12976,7 +12976,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "108d2dd5-f2e2-463b-843c-a2beee364e8a")
-		(property "Reference" "SW14"
+		(property "Reference" "SW11"
 			(at 249.428 73.66 90)
 			(effects
 				(font
@@ -13028,7 +13028,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW14")
+					(reference "SW11")
 					(unit 1)
 				)
 			)
@@ -13109,7 +13109,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1316002a-f913-47f7-9dbe-d56d05f358e4")
-		(property "Reference" "D35"
+		(property "Reference" "D23"
 			(at 164.465 181.229 0)
 			(effects
 				(font
@@ -13161,7 +13161,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D35")
+					(reference "D23")
 					(unit 1)
 				)
 			)
@@ -13176,7 +13176,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "15985faa-c4d0-44f7-9708-b0fe5e4cf923")
-		(property "Reference" "SW22"
+		(property "Reference" "SW19"
 			(at 249.428 119.38 90)
 			(effects
 				(font
@@ -13228,7 +13228,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW22")
+					(reference "SW19")
 					(unit 1)
 				)
 			)
@@ -13310,7 +13310,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1b3d4660-882e-461d-8ec4-2ce869258c76")
-		(property "Reference" "J19"
+		(property "Reference" "J8"
 			(at 145.796 189.23 0)
 			(effects
 				(font
@@ -13359,7 +13359,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J19")
+					(reference "J8")
 					(unit 1)
 				)
 			)
@@ -13374,7 +13374,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1c242915-8020-48ff-be78-8207b21e0310")
-		(property "Reference" "J13"
+		(property "Reference" "J15"
 			(at 94.996 175.26 0)
 			(effects
 				(font
@@ -13423,7 +13423,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J13")
+					(reference "J15")
 					(unit 1)
 				)
 			)
@@ -13505,7 +13505,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1ebf322f-fd47-40d3-b040-6396d759f555")
-		(property "Reference" "J37"
+		(property "Reference" "J53"
 			(at 158.75 207.6449 90)
 			(effects
 				(font
@@ -13559,7 +13559,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J37")
+					(reference "J53")
 					(unit 1)
 				)
 			)
@@ -13574,7 +13574,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1ec3d57f-e09c-4e81-b8f3-9f2039d9b163")
-		(property "Reference" "J44"
+		(property "Reference" "J34"
 			(at 138.43 228.854 0)
 			(effects
 				(font
@@ -13623,7 +13623,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J44")
+					(reference "J34")
 					(unit 1)
 				)
 			)
@@ -13638,7 +13638,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1ffb5584-ed79-4a6b-a91c-1228b9e0373d")
-		(property "Reference" "R24"
+		(property "Reference" "R15"
 			(at 136.398 186.69 90)
 			(effects
 				(font
@@ -13692,7 +13692,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R24")
+					(reference "R15")
 					(unit 1)
 				)
 			)
@@ -13707,7 +13707,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "20bb809f-11e2-4ed2-9801-1f00045c79ca")
-		(property "Reference" "D10"
+		(property "Reference" "D24"
 			(at 139.065 139.319 0)
 			(effects
 				(font
@@ -13759,7 +13759,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D10")
+					(reference "D24")
 					(unit 1)
 				)
 			)
@@ -13925,7 +13925,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "25db09fd-67cd-4c68-8f93-a3aa46983f30")
-		(property "Reference" "R17"
+		(property "Reference" "R3"
 			(at 160.274 165.354 90)
 			(effects
 				(font
@@ -13979,7 +13979,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R17")
+					(reference "R3")
 					(unit 1)
 				)
 			)
@@ -14060,7 +14060,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "27e1c8fe-53fc-4be2-b2d3-2efce9020a27")
-		(property "Reference" "R32"
+		(property "Reference" "R16"
 			(at 134.874 193.294 90)
 			(effects
 				(font
@@ -14114,7 +14114,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R32")
+					(reference "R16")
 					(unit 1)
 				)
 			)
@@ -14129,7 +14129,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2c36d4b6-f3fb-490d-9ffe-a64f529cad1b")
-		(property "Reference" "J30"
+		(property "Reference" "J37"
 			(at 153.67 228.854 0)
 			(effects
 				(font
@@ -14178,7 +14178,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J30")
+					(reference "J37")
 					(unit 1)
 				)
 			)
@@ -14193,7 +14193,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2c75b8da-a777-44a1-87e3-0ee7952960e1")
-		(property "Reference" "SW5"
+		(property "Reference" "SW2"
 			(at 230.378 27.94 90)
 			(effects
 				(font
@@ -14245,7 +14245,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW5")
+					(reference "SW2")
 					(unit 1)
 				)
 			)
@@ -14260,7 +14260,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2d2b2a5a-d7cb-46aa-8961-b2388642b1d4")
-		(property "Reference" "SW6"
+		(property "Reference" "SW3"
 			(at 249.428 27.94 90)
 			(effects
 				(font
@@ -14312,7 +14312,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW6")
+					(reference "SW3")
 					(unit 1)
 				)
 			)
@@ -14327,7 +14327,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2db72b7f-bcdd-4e02-adfb-08a7d797b47b")
-		(property "Reference" "D1"
+		(property "Reference" "D2"
 			(at 225.298 34.798 90)
 			(effects
 				(font
@@ -14399,7 +14399,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D1")
+					(reference "D2")
 					(unit 1)
 				)
 			)
@@ -14480,7 +14480,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3065ae2c-5034-4190-b152-46ad8f7e1440")
-		(property "Reference" "SW16"
+		(property "Reference" "SW13"
 			(at 211.328 96.52 90)
 			(effects
 				(font
@@ -14532,7 +14532,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW16")
+					(reference "SW13")
 					(unit 1)
 				)
 			)
@@ -14676,7 +14676,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "315c2f9b-ce4f-4001-8587-ad44ba726f9f")
-		(property "Reference" "J45"
+		(property "Reference" "J36"
 			(at 148.59 228.854 0)
 			(effects
 				(font
@@ -14725,7 +14725,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J45")
+					(reference "J36")
 					(unit 1)
 				)
 			)
@@ -14740,7 +14740,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "31a1b8c1-4902-41a5-bf9c-c0d04ebc8fe9")
-		(property "Reference" "SW7"
+		(property "Reference" "SW4"
 			(at 267.208 27.94 90)
 			(effects
 				(font
@@ -14792,7 +14792,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW7")
+					(reference "SW4")
 					(unit 1)
 				)
 			)
@@ -14807,7 +14807,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "33483b96-1dbb-4608-b6f4-6fec889bd294")
-		(property "Reference" "D22"
+		(property "Reference" "D13"
 			(at 206.248 103.378 90)
 			(effects
 				(font
@@ -14879,7 +14879,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D22")
+					(reference "D13")
 					(unit 1)
 				)
 			)
@@ -15093,7 +15093,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "384567ae-fee2-4489-858e-374e3021106e")
-		(property "Reference" "D13"
+		(property "Reference" "D34"
 			(at 88.265 153.289 0)
 			(effects
 				(font
@@ -15145,7 +15145,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D13")
+					(reference "D34")
 					(unit 1)
 				)
 			)
@@ -15160,7 +15160,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "398a730f-3545-42e2-a4ba-46f3c64c88c8")
-		(property "Reference" "R33"
+		(property "Reference" "R7"
 			(at 160.274 193.294 90)
 			(effects
 				(font
@@ -15214,7 +15214,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R33")
+					(reference "R7")
 					(unit 1)
 				)
 			)
@@ -15362,7 +15362,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3ba52774-a690-4f27-8a56-12333b477e00")
-		(property "Reference" "J25"
+		(property "Reference" "J27"
 			(at 102.87 228.854 0)
 			(effects
 				(font
@@ -15411,7 +15411,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J25")
+					(reference "J27")
 					(unit 1)
 				)
 			)
@@ -15426,7 +15426,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3bf0f592-e148-4e95-afc7-b637c3ed50b4")
-		(property "Reference" "SW23"
+		(property "Reference" "SW20"
 			(at 267.208 119.38 90)
 			(effects
 				(font
@@ -15478,7 +15478,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW23")
+					(reference "SW20")
 					(unit 1)
 				)
 			)
@@ -15493,7 +15493,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3c64d15c-5b09-4533-9b0a-ea0019aaefc9")
-		(property "Reference" "R12"
+		(property "Reference" "R10"
 			(at 134.874 151.384 90)
 			(effects
 				(font
@@ -15547,7 +15547,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R12")
+					(reference "R10")
 					(unit 1)
 				)
 			)
@@ -15631,7 +15631,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3da5300a-dbb4-47b6-ae2e-4206e79fbd3c")
-		(property "Reference" "SW18"
+		(property "Reference" "SW15"
 			(at 249.428 96.52 90)
 			(effects
 				(font
@@ -15683,7 +15683,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW18")
+					(reference "SW15")
 					(unit 1)
 				)
 			)
@@ -15764,7 +15764,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "45bd4cfc-2d34-450f-95ec-ce3b70d972b1")
-		(property "Reference" "D25"
+		(property "Reference" "D26"
 			(at 139.065 167.259 0)
 			(effects
 				(font
@@ -15816,7 +15816,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D25")
+					(reference "D26")
 					(unit 1)
 				)
 			)
@@ -15831,7 +15831,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "45cba6df-58c5-404a-84df-06a01ca957c6")
-		(property "Reference" "SW13"
+		(property "Reference" "SW10"
 			(at 230.378 73.66 90)
 			(effects
 				(font
@@ -15883,7 +15883,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW13")
+					(reference "SW10")
 					(unit 1)
 				)
 			)
@@ -15898,7 +15898,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "45f268ba-518d-4ba5-a4f0-0d2b21429a97")
-		(property "Reference" "J1"
+		(property "Reference" "J19"
 			(at 191.008 151.384 90)
 			(effects
 				(font
@@ -15964,7 +15964,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J1")
+					(reference "J19")
 					(unit 1)
 				)
 			)
@@ -15980,7 +15980,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "46b6e9f4-0431-4958-910b-72d5eff6741c")
-		(property "Reference" "J33"
+		(property "Reference" "J41"
 			(at 97.79 207.6449 90)
 			(effects
 				(font
@@ -16034,7 +16034,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J33")
+					(reference "J41")
 					(unit 1)
 				)
 			)
@@ -16213,7 +16213,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4a847321-2bf9-4331-b02d-e43f2e0c9f0c")
-		(property "Reference" "R27"
+		(property "Reference" "R22"
 			(at 109.474 179.324 90)
 			(effects
 				(font
@@ -16267,7 +16267,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R27")
+					(reference "R22")
 					(unit 1)
 				)
 			)
@@ -16282,7 +16282,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4b6521e2-56e1-4be2-9e3f-07cfefc78fd8")
-		(property "Reference" "J3"
+		(property "Reference" "J21"
 			(at 239.014 152.908 90)
 			(effects
 				(font
@@ -16348,7 +16348,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J3")
+					(reference "J21")
 					(unit 1)
 				)
 			)
@@ -16363,7 +16363,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4e224afd-3934-481f-8d79-969fa1b10465")
-		(property "Reference" "J29"
+		(property "Reference" "J35"
 			(at 143.51 228.854 0)
 			(effects
 				(font
@@ -16412,7 +16412,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J29")
+					(reference "J35")
 					(unit 1)
 				)
 			)
@@ -16427,7 +16427,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4e59a56b-f6fb-47bf-9f8e-febbd62b64c9")
-		(property "Reference" "R18"
+		(property "Reference" "R29"
 			(at 85.598 172.72 90)
 			(effects
 				(font
@@ -16481,7 +16481,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R18")
+					(reference "R29")
 					(unit 1)
 				)
 			)
@@ -16628,7 +16628,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "53d4523a-f454-4fec-9104-5dae590a024d")
-		(property "Reference" "D27"
+		(property "Reference" "D16"
 			(at 262.128 103.378 90)
 			(effects
 				(font
@@ -16700,7 +16700,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D27")
+					(reference "D16")
 					(unit 1)
 				)
 			)
@@ -16715,7 +16715,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "55484ce3-1471-477f-b79c-5b44e8df341b")
-		(property "Reference" "D8"
+		(property "Reference" "D5"
 			(at 206.248 57.658 90)
 			(effects
 				(font
@@ -16787,7 +16787,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D8")
+					(reference "D5")
 					(unit 1)
 				)
 			)
@@ -16802,7 +16802,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "562ecb6e-a632-43f6-9b7e-e5c3ff1d9651")
-		(property "Reference" "D14"
+		(property "Reference" "D9"
 			(at 206.248 80.518 90)
 			(effects
 				(font
@@ -16874,7 +16874,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D14")
+					(reference "D9")
 					(unit 1)
 				)
 			)
@@ -16955,7 +16955,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "57dc17cc-4ffb-46e6-b2df-61e2cdf7c175")
-		(property "Reference" "J9"
+		(property "Reference" "J14"
 			(at 94.996 161.29 0)
 			(effects
 				(font
@@ -17004,7 +17004,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J9")
+					(reference "J14")
 					(unit 1)
 				)
 			)
@@ -17019,7 +17019,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5b46dae6-e32c-406d-bab3-28f1c57c535f")
-		(property "Reference" "R15"
+		(property "Reference" "R20"
 			(at 109.474 165.354 90)
 			(effects
 				(font
@@ -17073,7 +17073,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R15")
+					(reference "R20")
 					(unit 1)
 				)
 			)
@@ -17088,7 +17088,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5b7790e9-4d99-42e1-9967-0b23da783026")
-		(property "Reference" "J4"
+		(property "Reference" "J17"
 			(at 150.876 49.53 0)
 			(effects
 				(font
@@ -17137,7 +17137,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J4")
+					(reference "J17")
 					(unit 1)
 				)
 			)
@@ -17152,7 +17152,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5c2587e1-8cf6-4860-957a-1878a88e5f61")
-		(property "Reference" "D32"
+		(property "Reference" "D17"
 			(at 206.248 126.238 90)
 			(effects
 				(font
@@ -17224,7 +17224,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D32")
+					(reference "D17")
 					(unit 1)
 				)
 			)
@@ -17304,7 +17304,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5f58438b-1190-4905-9268-0bbeaa37732e")
-		(property "Reference" "D34"
+		(property "Reference" "D19"
 			(at 244.348 126.238 90)
 			(effects
 				(font
@@ -17376,7 +17376,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D34")
+					(reference "D19")
 					(unit 1)
 				)
 			)
@@ -17391,7 +17391,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5fc2516d-55bb-4ad9-aff7-8284bbfe0f12")
-		(property "Reference" "J26"
+		(property "Reference" "J31"
 			(at 123.19 228.854 0)
 			(effects
 				(font
@@ -17440,7 +17440,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J26")
+					(reference "J31")
 					(unit 1)
 				)
 			)
@@ -17455,7 +17455,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "601b8ba6-0c61-445c-aee5-70940ec3f9a4")
-		(property "Reference" "D17"
+		(property "Reference" "D11"
 			(at 244.348 80.518 90)
 			(effects
 				(font
@@ -17527,7 +17527,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D17")
+					(reference "D11")
 					(unit 1)
 				)
 			)
@@ -17543,7 +17543,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "637a484f-49d8-4fb4-8044-65c78ecd56ba")
-		(property "Reference" "RV1"
+		(property "Reference" "RV2"
 			(at 25.908 67.564 0)
 			(effects
 				(font
@@ -17600,7 +17600,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "RV1")
+					(reference "RV2")
 					(unit 1)
 				)
 			)
@@ -17615,7 +17615,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "646c9b28-5b21-4a11-84ca-9e9255d46744")
-		(property "Reference" "J16"
+		(property "Reference" "J3"
 			(at 171.196 175.26 0)
 			(effects
 				(font
@@ -17664,7 +17664,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J16")
+					(reference "J3")
 					(unit 1)
 				)
 			)
@@ -17679,7 +17679,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "674966e4-2dbc-4b01-95ab-64565a00ced5")
-		(property "Reference" "J39"
+		(property "Reference" "J24"
 			(at 87.63 228.854 0)
 			(effects
 				(font
@@ -17728,7 +17728,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J39")
+					(reference "J24")
 					(unit 1)
 				)
 			)
@@ -17743,7 +17743,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6a1317ae-2681-41f7-8d70-6487addaecbf")
-		(property "Reference" "C2"
+		(property "Reference" "C3"
 			(at 72.136 50.546 90)
 			(effects
 				(font
@@ -17797,7 +17797,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "C2")
+					(reference "C3")
 					(unit 1)
 				)
 			)
@@ -17879,7 +17879,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6c6f2b26-c31b-416e-b0c4-9f0e494e4ba7")
-		(property "Reference" "R16"
+		(property "Reference" "R12"
 			(at 134.874 165.354 90)
 			(effects
 				(font
@@ -17933,7 +17933,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R16")
+					(reference "R12")
 					(unit 1)
 				)
 			)
@@ -18080,7 +18080,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6f00caa6-b963-4867-a754-1d5b6fd5c4ae")
-		(property "Reference" "D21"
+		(property "Reference" "D35"
 			(at 88.265 167.259 0)
 			(effects
 				(font
@@ -18132,7 +18132,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D21")
+					(reference "D35")
 					(unit 1)
 				)
 			)
@@ -18348,7 +18348,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "75608c64-8d3b-497a-88c0-c737bfa60507")
-		(property "Reference" "R2"
+		(property "Reference" "R25"
 			(at 85.598 144.78 90)
 			(effects
 				(font
@@ -18402,7 +18402,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R2")
+					(reference "R25")
 					(unit 1)
 				)
 			)
@@ -18552,7 +18552,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "78086e4e-0746-4c72-a329-f771b313c985")
-		(property "Reference" "R21"
+		(property "Reference" "R13"
 			(at 136.398 172.72 90)
 			(effects
 				(font
@@ -18606,7 +18606,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R21")
+					(reference "R13")
 					(unit 1)
 				)
 			)
@@ -18621,7 +18621,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "79dbb83b-bb1f-4a42-88be-df6306659d00")
-		(property "Reference" "R31"
+		(property "Reference" "R24"
 			(at 109.474 193.294 90)
 			(effects
 				(font
@@ -18675,7 +18675,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R31")
+					(reference "R24")
 					(unit 1)
 				)
 			)
@@ -18690,7 +18690,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7a2360e8-e7e2-45ba-b4b4-1b4fb2410f74")
-		(property "Reference" "J5"
+		(property "Reference" "J13"
 			(at 94.996 147.32 0)
 			(effects
 				(font
@@ -18739,7 +18739,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J5")
+					(reference "J13")
 					(unit 1)
 				)
 			)
@@ -18820,7 +18820,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7ed47238-b0f6-447a-abda-d216ccd3c177")
-		(property "Reference" "R26"
+		(property "Reference" "R30"
 			(at 84.074 179.324 90)
 			(effects
 				(font
@@ -18874,7 +18874,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R26")
+					(reference "R30")
 					(unit 1)
 				)
 			)
@@ -18956,7 +18956,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "83ca9247-cf3c-4a0b-8088-bb57c0e1c81c")
-		(property "Reference" "J43"
+		(property "Reference" "J30"
 			(at 118.11 228.854 0)
 			(effects
 				(font
@@ -19005,7 +19005,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J43")
+					(reference "J30")
 					(unit 1)
 				)
 			)
@@ -19021,7 +19021,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "83d82b50-b22c-4f5f-b2b5-2c280d80803e")
-		(property "Reference" "J38"
+		(property "Reference" "J51"
 			(at 148.59 207.6449 90)
 			(effects
 				(font
@@ -19075,7 +19075,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J38")
+					(reference "J51")
 					(unit 1)
 				)
 			)
@@ -19090,7 +19090,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "847252da-540d-4475-bfd7-4a1b3c7dbe1e")
-		(property "Reference" "D20"
+		(property "Reference" "D12"
 			(at 262.128 80.518 90)
 			(effects
 				(font
@@ -19162,7 +19162,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D20")
+					(reference "D12")
 					(unit 1)
 				)
 			)
@@ -19177,7 +19177,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "84ad0c56-58ae-45b3-a27f-8af42d63a1e7")
-		(property "Reference" "D5"
+		(property "Reference" "D33"
 			(at 88.265 139.319 0)
 			(effects
 				(font
@@ -19229,7 +19229,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D5")
+					(reference "D33")
 					(unit 1)
 				)
 			)
@@ -19398,7 +19398,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8c4a747e-cc27-4168-98fb-ea3fc80e5490")
-		(property "Reference" "R3"
+		(property "Reference" "R17"
 			(at 110.998 144.78 90)
 			(effects
 				(font
@@ -19452,7 +19452,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R3")
+					(reference "R17")
 					(unit 1)
 				)
 			)
@@ -19467,7 +19467,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8d9f8498-05aa-497c-8516-19e2d6845374")
-		(property "Reference" "J41"
+		(property "Reference" "J28"
 			(at 107.95 228.854 0)
 			(effects
 				(font
@@ -19516,7 +19516,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J41")
+					(reference "J28")
 					(unit 1)
 				)
 			)
@@ -19531,7 +19531,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8e4606c6-8c70-49a7-8fe4-fbcc5e38ad16")
-		(property "Reference" "R8"
+		(property "Reference" "R11"
 			(at 136.398 158.75 90)
 			(effects
 				(font
@@ -19585,7 +19585,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R8")
+					(reference "R11")
 					(unit 1)
 				)
 			)
@@ -19666,7 +19666,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "903ebe86-fc6f-4ff0-b24f-5f0e2657c137")
-		(property "Reference" "J12"
+		(property "Reference" "J1"
 			(at 171.196 161.29 0)
 			(effects
 				(font
@@ -19715,7 +19715,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J12")
+					(reference "J1")
 					(unit 1)
 				)
 			)
@@ -19730,7 +19730,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "92570d53-af11-4c51-96ee-085bb4a576a1")
-		(property "Reference" "J24"
+		(property "Reference" "J25"
 			(at 92.71 228.854 0)
 			(effects
 				(font
@@ -19779,7 +19779,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J24")
+					(reference "J25")
 					(unit 1)
 				)
 			)
@@ -19861,7 +19861,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "93c9d670-3966-48b5-b2d2-9121bb18872d")
-		(property "Reference" "J53"
+		(property "Reference" "J52"
 			(at 153.67 207.6449 90)
 			(effects
 				(font
@@ -19915,7 +19915,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J53")
+					(reference "J52")
 					(unit 1)
 				)
 			)
@@ -19930,7 +19930,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "93e6d691-8cc9-4fd7-ad81-6d67c56b2e20")
-		(property "Reference" "D9"
+		(property "Reference" "D7"
 			(at 244.348 57.658 90)
 			(effects
 				(font
@@ -20002,7 +20002,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D9")
+					(reference "D7")
 					(unit 1)
 				)
 			)
@@ -20083,7 +20083,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9676c9ed-cab6-4268-a8ed-2215ef1d4840")
-		(property "Reference" "D19"
+		(property "Reference" "D21"
 			(at 164.465 153.289 0)
 			(effects
 				(font
@@ -20135,7 +20135,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D19")
+					(reference "D21")
 					(unit 1)
 				)
 			)
@@ -20150,7 +20150,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "975cced7-7846-476f-bd47-3d09741550a1")
-		(property "Reference" "R19"
+		(property "Reference" "R21"
 			(at 110.998 172.72 90)
 			(effects
 				(font
@@ -20204,7 +20204,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R19")
+					(reference "R21")
 					(unit 1)
 				)
 			)
@@ -20352,7 +20352,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9c8327eb-90a0-4ae2-87bc-6685ec321be5")
-		(property "Reference" "SW4"
+		(property "Reference" "SW1"
 			(at 211.328 27.94 90)
 			(effects
 				(font
@@ -20404,7 +20404,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW4")
+					(reference "SW1")
 					(unit 1)
 				)
 			)
@@ -20420,7 +20420,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9f30e8dc-29b4-4afb-956d-41245e0527a0")
-		(property "Reference" "SW1"
+		(property "Reference" "SW22"
 			(at 119.38 73.6599 90)
 			(effects
 				(font
@@ -20477,7 +20477,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW1")
+					(reference "SW22")
 					(unit 1)
 				)
 			)
@@ -20492,7 +20492,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9f8d9d12-c741-457e-8c80-2cc71d14b63f")
-		(property "Reference" "R11"
+		(property "Reference" "R18"
 			(at 109.474 151.384 90)
 			(effects
 				(font
@@ -20546,7 +20546,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R11")
+					(reference "R18")
 					(unit 1)
 				)
 			)
@@ -20562,7 +20562,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a083337d-92d4-460a-9f85-5d47973a1f53")
-		(property "Reference" "RV2"
+		(property "Reference" "RV1"
 			(at 25.908 48.514 0)
 			(effects
 				(font
@@ -20619,7 +20619,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "RV2")
+					(reference "RV1")
 					(unit 1)
 				)
 			)
@@ -20634,7 +20634,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a196e04f-9c56-4cdf-b81e-a485cbcf1be3")
-		(property "Reference" "SW19"
+		(property "Reference" "SW17"
 			(at 211.328 119.38 90)
 			(effects
 				(font
@@ -20686,7 +20686,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW19")
+					(reference "SW17")
 					(unit 1)
 				)
 			)
@@ -20701,7 +20701,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a38904c8-aafb-4cae-ad7e-17f6b1ed99f7")
-		(property "Reference" "D11"
+		(property "Reference" "D8"
 			(at 262.128 57.658 90)
 			(effects
 				(font
@@ -20773,7 +20773,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D11")
+					(reference "D8")
 					(unit 1)
 				)
 			)
@@ -20788,7 +20788,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a4797fdb-6acf-4847-a6b5-04be71c917ad")
-		(property "Reference" "J17"
+		(property "Reference" "J16"
 			(at 94.996 189.23 0)
 			(effects
 				(font
@@ -20837,7 +20837,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J17")
+					(reference "J16")
 					(unit 1)
 				)
 			)
@@ -20852,7 +20852,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a5079223-6f5e-4f83-9f5a-231fa79cfcbf")
-		(property "Reference" "R1"
+		(property "Reference" "R33"
 			(at 139.954 53.594 90)
 			(effects
 				(font
@@ -20906,7 +20906,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R1")
+					(reference "R33")
 					(unit 1)
 				)
 			)
@@ -20921,7 +20921,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a775dd0f-a691-407f-9a5a-3034915652e1")
-		(property "Reference" "R7"
+		(property "Reference" "R19"
 			(at 110.998 158.75 90)
 			(effects
 				(font
@@ -20975,7 +20975,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R7")
+					(reference "R19")
 					(unit 1)
 				)
 			)
@@ -20990,7 +20990,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a96049ef-9105-412b-957e-34df0b846e38")
-		(property "Reference" "R9"
+		(property "Reference" "R2"
 			(at 161.798 158.75 90)
 			(effects
 				(font
@@ -21044,7 +21044,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R9")
+					(reference "R2")
 					(unit 1)
 				)
 			)
@@ -21059,7 +21059,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "aa4dfcf1-a1ec-4c6d-a3f9-f9cc74ca9aac")
-		(property "Reference" "J20"
+		(property "Reference" "J4"
 			(at 171.196 189.23 0)
 			(effects
 				(font
@@ -21108,7 +21108,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J20")
+					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -21189,7 +21189,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "abe09c7e-1a07-49c3-827e-c25d3dc5f5da")
-		(property "Reference" "J46"
+		(property "Reference" "J38"
 			(at 158.75 228.854 0)
 			(effects
 				(font
@@ -21238,7 +21238,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J46")
+					(reference "J38")
 					(unit 1)
 				)
 			)
@@ -21253,7 +21253,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "af475fec-756d-4a84-be04-998055eec914")
-		(property "Reference" "D16"
+		(property "Reference" "D10"
 			(at 225.298 80.518 90)
 			(effects
 				(font
@@ -21325,7 +21325,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D16")
+					(reference "D10")
 					(unit 1)
 				)
 			)
@@ -21341,7 +21341,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "af7be835-3734-48e5-bec8-6ec5e7b88e47")
-		(property "Reference" "J32"
+		(property "Reference" "J43"
 			(at 107.95 207.6449 90)
 			(effects
 				(font
@@ -21395,7 +21395,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J32")
+					(reference "J43")
 					(unit 1)
 				)
 			)
@@ -21410,7 +21410,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "afa32a16-467f-41f4-a82d-f53596cba747")
-		(property "Reference" "D29"
+		(property "Reference" "D22"
 			(at 164.465 167.259 0)
 			(effects
 				(font
@@ -21462,7 +21462,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D29")
+					(reference "D22")
 					(unit 1)
 				)
 			)
@@ -21477,7 +21477,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "afc200e5-f0ae-4f70-9367-9a2d205ede25")
-		(property "Reference" "J15"
+		(property "Reference" "J7"
 			(at 145.796 175.26 0)
 			(effects
 				(font
@@ -21526,7 +21526,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J15")
+					(reference "J7")
 					(unit 1)
 				)
 			)
@@ -21541,7 +21541,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b0ffe68d-bf4c-49a7-a1a0-f45eb8433cce")
-		(property "Reference" "SW11"
+		(property "Reference" "SW9"
 			(at 211.328 73.66 90)
 			(effects
 				(font
@@ -21593,7 +21593,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW11")
+					(reference "SW9")
 					(unit 1)
 				)
 			)
@@ -21674,7 +21674,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b4e7c36c-6afc-44ba-89bc-d89b72a643fe")
-		(property "Reference" "D12"
+		(property "Reference" "D32"
 			(at 164.465 139.319 0)
 			(effects
 				(font
@@ -21726,7 +21726,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D12")
+					(reference "D32")
 					(unit 1)
 				)
 			)
@@ -21807,7 +21807,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b50aaac6-9fec-4d83-862b-5c13bbd24cde")
-		(property "Reference" "J2"
+		(property "Reference" "J20"
 			(at 213.614 151.638 90)
 			(effects
 				(font
@@ -21873,7 +21873,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J2")
+					(reference "J20")
 					(unit 1)
 				)
 			)
@@ -21888,7 +21888,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b621a824-65ea-4090-aa38-7b1b5ecdf838")
-		(property "Reference" "D28"
+		(property "Reference" "D36"
 			(at 88.265 181.229 0)
 			(effects
 				(font
@@ -21940,7 +21940,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D28")
+					(reference "D36")
 					(unit 1)
 				)
 			)
@@ -22021,7 +22021,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b7b3f52e-05a3-48fa-8a31-d691e9ca6c1b")
-		(property "Reference" "SW20"
+		(property "Reference" "SW16"
 			(at 267.208 96.52 90)
 			(effects
 				(font
@@ -22073,7 +22073,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW20")
+					(reference "SW16")
 					(unit 1)
 				)
 			)
@@ -22088,7 +22088,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b9025133-d5f1-44eb-bd04-17dc7dc81481")
-		(property "Reference" "SW15"
+		(property "Reference" "SW12"
 			(at 267.208 73.66 90)
 			(effects
 				(font
@@ -22140,7 +22140,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW15")
+					(reference "SW12")
 					(unit 1)
 				)
 			)
@@ -22155,7 +22155,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b971a1ec-030d-4333-87d4-17bdfcb1a7f7")
-		(property "Reference" "SW12"
+		(property "Reference" "SW8"
 			(at 267.208 50.8 90)
 			(effects
 				(font
@@ -22207,7 +22207,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW12")
+					(reference "SW8")
 					(unit 1)
 				)
 			)
@@ -22222,7 +22222,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "bbbdbf2f-5960-4c6c-8c06-c4a0a9bb7789")
-		(property "Reference" "D24"
+		(property "Reference" "D30"
 			(at 113.665 167.259 0)
 			(effects
 				(font
@@ -22274,7 +22274,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D24")
+					(reference "D30")
 					(unit 1)
 				)
 			)
@@ -22290,7 +22290,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "bd07dff0-271f-4e80-977d-33e37200c644")
-		(property "Reference" "J31"
+		(property "Reference" "J39"
 			(at 87.63 207.6449 90)
 			(effects
 				(font
@@ -22344,7 +22344,7 @@
 		(instances
 			(project ""
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J31")
+					(reference "J39")
 					(unit 1)
 				)
 			)
@@ -22359,7 +22359,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "bef4c853-c2ec-47c1-ae03-fb8d15cf29f3")
-		(property "Reference" "J11"
+		(property "Reference" "J6"
 			(at 145.796 161.29 0)
 			(effects
 				(font
@@ -22408,7 +22408,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J11")
+					(reference "J6")
 					(unit 1)
 				)
 			)
@@ -22424,7 +22424,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c013187c-5dff-4c0f-814f-89d428f5a1c3")
-		(property "Reference" "J52"
+		(property "Reference" "J50"
 			(at 143.51 207.6449 90)
 			(effects
 				(font
@@ -22478,7 +22478,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J52")
+					(reference "J50")
 					(unit 1)
 				)
 			)
@@ -22625,7 +22625,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c23ebf80-d2ff-4821-9d84-63a3d4e5a4b3")
-		(property "Reference" "R6"
+		(property "Reference" "R27"
 			(at 85.598 158.75 90)
 			(effects
 				(font
@@ -22679,7 +22679,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R6")
+					(reference "R27")
 					(unit 1)
 				)
 			)
@@ -22694,7 +22694,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c3056abf-33eb-4c24-8b3e-c21c004e9ca8")
-		(property "Reference" "J8"
+		(property "Reference" "J2"
 			(at 171.196 147.32 0)
 			(effects
 				(font
@@ -22743,7 +22743,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J8")
+					(reference "J2")
 					(unit 1)
 				)
 			)
@@ -22759,7 +22759,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c40d24fc-c053-4a4e-b4e6-7c1d7aa0a1d0")
-		(property "Reference" "J35"
+		(property "Reference" "J47"
 			(at 128.27 207.6449 90)
 			(effects
 				(font
@@ -22813,7 +22813,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J35")
+					(reference "J47")
 					(unit 1)
 				)
 			)
@@ -22829,7 +22829,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c503f694-786b-404b-b4aa-083168b0e4e9")
-		(property "Reference" "J51"
+		(property "Reference" "J48"
 			(at 133.35 207.6449 90)
 			(effects
 				(font
@@ -22883,7 +22883,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J51")
+					(reference "J48")
 					(unit 1)
 				)
 			)
@@ -22898,7 +22898,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c5690b34-62e5-4b51-8fb8-2ef2addab06c")
-		(property "Reference" "SW17"
+		(property "Reference" "SW14"
 			(at 230.378 96.52 90)
 			(effects
 				(font
@@ -22950,7 +22950,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW17")
+					(reference "SW14")
 					(unit 1)
 				)
 			)
@@ -22965,7 +22965,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c76dcef7-4eec-4cf7-a870-2b22f24ce034")
-		(property "Reference" "R30"
+		(property "Reference" "R32"
 			(at 84.074 193.294 90)
 			(effects
 				(font
@@ -23019,7 +23019,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R30")
+					(reference "R32")
 					(unit 1)
 				)
 			)
@@ -23167,7 +23167,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "cca28607-d3ab-42db-b57f-fd686bcfc1fa")
-		(property "Reference" "R22"
+		(property "Reference" "R31"
 			(at 85.598 186.69 90)
 			(effects
 				(font
@@ -23221,7 +23221,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R22")
+					(reference "R31")
 					(unit 1)
 				)
 			)
@@ -23236,7 +23236,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d0a8eadd-1fc1-4cbf-b5ce-6c87f4eca5bc")
-		(property "Reference" "J40"
+		(property "Reference" "J26"
 			(at 97.79 228.854 0)
 			(effects
 				(font
@@ -23285,7 +23285,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J40")
+					(reference "J26")
 					(unit 1)
 				)
 			)
@@ -23300,7 +23300,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d0abf322-8119-458f-9a83-6c7fc93b19d4")
-		(property "Reference" "J27"
+		(property "Reference" "J29"
 			(at 113.03 228.854 0)
 			(effects
 				(font
@@ -23349,7 +23349,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J27")
+					(reference "J29")
 					(unit 1)
 				)
 			)
@@ -23364,7 +23364,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d0e2f1b4-c7a1-4cda-9b1c-08e1865041e4")
-		(property "Reference" "R14"
+		(property "Reference" "R1"
 			(at 160.274 151.384 90)
 			(effects
 				(font
@@ -23418,7 +23418,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R14")
+					(reference "R1")
 					(unit 1)
 				)
 			)
@@ -23499,7 +23499,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d101a297-34f6-42f7-a386-2d381a81abab")
-		(property "Reference" "J18"
+		(property "Reference" "J12"
 			(at 120.396 189.23 0)
 			(effects
 				(font
@@ -23548,7 +23548,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J18")
+					(reference "J12")
 					(unit 1)
 				)
 			)
@@ -23563,7 +23563,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d4a33ab4-65f5-4e4b-b9bd-6cac0d6f23e8")
-		(property "Reference" "R25"
+		(property "Reference" "R6"
 			(at 161.798 186.69 90)
 			(effects
 				(font
@@ -23617,7 +23617,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R25")
+					(reference "R6")
 					(unit 1)
 				)
 			)
@@ -23699,7 +23699,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d9549776-d898-4bd6-b85b-692788a0374f")
-		(property "Reference" "J14"
+		(property "Reference" "J11"
 			(at 120.396 175.26 0)
 			(effects
 				(font
@@ -23748,7 +23748,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J14")
+					(reference "J11")
 					(unit 1)
 				)
 			)
@@ -23763,7 +23763,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "da974bc9-a81d-4dd9-9049-b929677826ad")
-		(property "Reference" "R13"
+		(property "Reference" "R28"
 			(at 84.074 165.354 90)
 			(effects
 				(font
@@ -23817,7 +23817,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R13")
+					(reference "R28")
 					(unit 1)
 				)
 			)
@@ -23832,7 +23832,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "da995a6c-1faf-42b9-a402-badc0bc44697")
-		(property "Reference" "R28"
+		(property "Reference" "R14"
 			(at 134.874 179.324 90)
 			(effects
 				(font
@@ -23886,7 +23886,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R28")
+					(reference "R14")
 					(unit 1)
 				)
 			)
@@ -23968,7 +23968,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "dc366830-5336-46b9-915c-f1cca86aafdf")
-		(property "Reference" "R10"
+		(property "Reference" "R26"
 			(at 84.074 151.384 90)
 			(effects
 				(font
@@ -24022,7 +24022,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R10")
+					(reference "R26")
 					(unit 1)
 				)
 			)
@@ -24038,7 +24038,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ddd08b5f-69a0-4630-a58a-a229a35cf4ac")
-		(property "Reference" "J34"
+		(property "Reference" "J45"
 			(at 118.11 207.6449 90)
 			(effects
 				(font
@@ -24092,7 +24092,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J34")
+					(reference "J45")
 					(unit 1)
 				)
 			)
@@ -24194,7 +24194,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "de83741c-2beb-46cb-9bd0-a327835ce804")
-		(property "Reference" "R4"
+		(property "Reference" "R8"
 			(at 161.798 144.78 90)
 			(effects
 				(font
@@ -24248,7 +24248,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R4")
+					(reference "R8")
 					(unit 1)
 				)
 			)
@@ -24263,7 +24263,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "df3c7099-fa4a-4acf-9e87-502545aa9460")
-		(property "Reference" "D26"
+		(property "Reference" "D15"
 			(at 244.348 103.378 90)
 			(effects
 				(font
@@ -24335,7 +24335,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D26")
+					(reference "D15")
 					(unit 1)
 				)
 			)
@@ -24417,7 +24417,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e05dbfb3-1c90-4921-95e7-d7fca93421f0")
-		(property "Reference" "J47"
+		(property "Reference" "J40"
 			(at 92.71 207.6449 90)
 			(effects
 				(font
@@ -24471,7 +24471,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J47")
+					(reference "J40")
 					(unit 1)
 				)
 			)
@@ -24486,7 +24486,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e1ba48cf-9807-46c8-94c9-c26575ae01ce")
-		(property "Reference" "D30"
+		(property "Reference" "D18"
 			(at 225.298 126.238 90)
 			(effects
 				(font
@@ -24558,7 +24558,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D30")
+					(reference "D18")
 					(unit 1)
 				)
 			)
@@ -24574,7 +24574,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e36b7398-f179-4eb0-bcdd-244999f136ba")
-		(property "Reference" "SW2"
+		(property "Reference" "SW21"
 			(at 125.73 62.2299 90)
 			(effects
 				(font
@@ -24631,7 +24631,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW2")
+					(reference "SW21")
 					(unit 1)
 				)
 			)
@@ -24646,7 +24646,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e3b42e59-0df9-4af3-b32a-3afe267e86fe")
-		(property "Reference" "D36"
+		(property "Reference" "D20"
 			(at 262.128 126.238 90)
 			(effects
 				(font
@@ -24718,7 +24718,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D36")
+					(reference "D20")
 					(unit 1)
 				)
 			)
@@ -24799,7 +24799,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "eb579206-8caa-41dd-ad22-bb3825908345")
-		(property "Reference" "D6"
+		(property "Reference" "D28"
 			(at 113.665 139.319 0)
 			(effects
 				(font
@@ -24851,7 +24851,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D6")
+					(reference "D28")
 					(unit 1)
 				)
 			)
@@ -24866,7 +24866,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "eb78a7f9-a2f8-406c-b344-a54f097f1d57")
-		(property "Reference" "D7"
+		(property "Reference" "D6"
 			(at 225.298 57.658 90)
 			(effects
 				(font
@@ -24938,7 +24938,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D7")
+					(reference "D6")
 					(unit 1)
 				)
 			)
@@ -24954,7 +24954,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ec0ebfbe-e8ac-4133-b38c-83c11bf797af")
-		(property "Reference" "J21"
+		(property "Reference" "J18"
 			(at 125.73 83.82 90)
 			(effects
 				(font
@@ -25102,7 +25102,7 @@
 		(instances
 			(project ""
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J21")
+					(reference "J18")
 					(unit 1)
 				)
 			)
@@ -25117,7 +25117,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "ecf3dd89-563e-4b16-a6eb-ccb2aa0b8b82")
-		(property "Reference" "SW21"
+		(property "Reference" "SW18"
 			(at 230.378 119.38 90)
 			(effects
 				(font
@@ -25169,7 +25169,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW21")
+					(reference "SW18")
 					(unit 1)
 				)
 			)
@@ -25184,7 +25184,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "edc12ff4-0bf4-42fe-b243-d81541aef5d7")
-		(property "Reference" "D23"
+		(property "Reference" "D14"
 			(at 225.298 103.378 90)
 			(effects
 				(font
@@ -25256,7 +25256,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D23")
+					(reference "D14")
 					(unit 1)
 				)
 			)
@@ -25271,7 +25271,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f0a8405e-23ab-48de-ab8c-c70ed0152edf")
-		(property "Reference" "J7"
+		(property "Reference" "J5"
 			(at 145.796 147.32 0)
 			(effects
 				(font
@@ -25320,7 +25320,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J7")
+					(reference "J5")
 					(unit 1)
 				)
 			)
@@ -25335,7 +25335,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f1387143-2069-4373-b314-c4e3ba0747ab")
-		(property "Reference" "SW9"
+		(property "Reference" "SW6"
 			(at 230.378 50.8 90)
 			(effects
 				(font
@@ -25387,7 +25387,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW9")
+					(reference "SW6")
 					(unit 1)
 				)
 			)
@@ -25402,7 +25402,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f252edeb-39f7-42d4-89b5-b637fae60597")
-		(property "Reference" "R29"
+		(property "Reference" "R5"
 			(at 160.274 179.324 90)
 			(effects
 				(font
@@ -25456,7 +25456,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "R29")
+					(reference "R5")
 					(unit 1)
 				)
 			)
@@ -25472,7 +25472,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f27d793b-5066-4ae2-8eb4-f4589a490359")
-		(property "Reference" "J50"
+		(property "Reference" "J46"
 			(at 123.19 207.6449 90)
 			(effects
 				(font
@@ -25526,7 +25526,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J50")
+					(reference "J46")
 					(unit 1)
 				)
 			)
@@ -25541,7 +25541,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f356b7a4-76d1-4878-af79-d799d9c36054")
-		(property "Reference" "D2"
+		(property "Reference" "D1"
 			(at 206.248 34.798 90)
 			(effects
 				(font
@@ -25613,7 +25613,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D2")
+					(reference "D1")
 					(unit 1)
 				)
 			)
@@ -25760,7 +25760,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f91f59db-8148-4d3c-ab62-a45fdc3a754c")
-		(property "Reference" "D15"
+		(property "Reference" "D29"
 			(at 113.665 153.289 0)
 			(effects
 				(font
@@ -25812,7 +25812,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "D15")
+					(reference "D29")
 					(unit 1)
 				)
 			)
@@ -25894,7 +25894,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f9d2cbe2-58bc-47f4-9287-6f1902e93139")
-		(property "Reference" "J49"
+		(property "Reference" "J42"
 			(at 102.87 207.6449 90)
 			(effects
 				(font
@@ -25948,7 +25948,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J49")
+					(reference "J42")
 					(unit 1)
 				)
 			)
@@ -25963,7 +25963,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "fa77985c-6734-4419-8361-160de57c2050")
-		(property "Reference" "SW10"
+		(property "Reference" "SW7"
 			(at 249.428 50.8 90)
 			(effects
 				(font
@@ -26015,7 +26015,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "SW10")
+					(reference "SW7")
 					(unit 1)
 				)
 			)
@@ -26031,7 +26031,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "fc894f16-da1b-404f-bde8-d6540dafa48a")
-		(property "Reference" "J36"
+		(property "Reference" "J49"
 			(at 138.43 207.6449 90)
 			(effects
 				(font
@@ -26085,7 +26085,7 @@
 		(instances
 			(project "gate-sequencer"
 				(path "/31522de5-8525-4b90-9c9d-8e8f236168e4"
-					(reference "J36")
+					(reference "J49")
 					(unit 1)
 				)
 			)
