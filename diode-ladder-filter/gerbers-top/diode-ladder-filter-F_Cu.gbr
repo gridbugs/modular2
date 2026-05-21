@@ -1,0 +1,56 @@
+%TF.GenerationSoftware,KiCad,Pcbnew,9.0.6*%
+%TF.CreationDate,2026-05-21T23:56:23+10:00*%
+%TF.ProjectId,diode-ladder-filter,64696f64-652d-46c6-9164-6465722d6669,rev?*%
+%TF.SameCoordinates,Original*%
+%TF.FileFunction,Copper,L1,Top*%
+%TF.FilePolarity,Positive*%
+%FSLAX46Y46*%
+G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
+G04 Created by KiCad (PCBNEW 9.0.6) date 2026-05-21 23:56:23*
+%MOMM*%
+%LPD*%
+G01*
+G04 APERTURE LIST*
+%TA.AperFunction,ComponentPad*%
+%ADD10R,1.700000X1.700000*%
+%TD*%
+%TA.AperFunction,ComponentPad*%
+%ADD11C,1.700000*%
+%TD*%
+%TA.AperFunction,ComponentPad*%
+%ADD12C,8.000000*%
+%TD*%
+G04 APERTURE END LIST*
+D10*
+%TO.P,J12,1,Pin_1*%
+%TO.N,Net-(J12-Pin_1)*%
+X85948413Y-283681586D03*
+D11*
+%TO.P,J12,2,Pin_2*%
+%TO.N,Net-(J12-Pin_2)*%
+X88488413Y-283681586D03*
+%TO.P,J12,3,Pin_3*%
+%TO.N,Net-(J10-Pin_1)*%
+X91028413Y-283681586D03*
+%TO.P,J12,4,Pin_4*%
+%TO.N,Net-(J11-Pin_1)*%
+X93568413Y-283681586D03*
+%TD*%
+D12*
+%TO.P,J10,1,Pin_1*%
+%TO.N,Net-(J10-Pin_1)*%
+X65065310Y-265708468D03*
+%TD*%
+%TO.P,J8,1,Pin_1*%
+%TO.N,Net-(J12-Pin_1)*%
+X65210503Y-204773709D03*
+%TD*%
+%TO.P,J9,1,Pin_1*%
+%TO.N,Net-(J12-Pin_2)*%
+X65163208Y-224761355D03*
+%TD*%
+%TO.P,J11,1,Pin_1*%
+%TO.N,Net-(J11-Pin_1)*%
+X114565310Y-265818413D03*
+%TD*%
+M02*

@@ -1,0 +1,23 @@
+%TF.GenerationSoftware,KiCad,Pcbnew,9.0.6*%
+%TF.CreationDate,2026-05-21T23:56:02+10:00*%
+%TF.ProjectId,diode-ladder-filter,64696f64-652d-46c6-9164-6465722d6669,rev?*%
+%TF.SameCoordinates,Original*%
+%TF.FileFunction,Profile,NP*%
+%FSLAX46Y46*%
+G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
+G04 Created by KiCad (PCBNEW 9.0.6) date 2026-05-21 23:56:02*
+%MOMM*%
+%LPD*%
+G01*
+G04 APERTURE LIST*
+%TA.AperFunction,Profile*%
+%ADD10C,0.050000*%
+%TD*%
+G04 APERTURE END LIST*
+D10*
+X58006080Y-29500000D02*
+X122500000Y-29500000D01*
+X122500000Y-158298323D01*
+X58006080Y-158298323D01*
+X58006080Y-29500000D01*
+M02*
