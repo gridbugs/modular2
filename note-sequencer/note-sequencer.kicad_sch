@@ -7033,6 +7033,16 @@
 	)
 	(wire
 		(pts
+			(xy 71.12 86.36) (xy 71.12 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8d3ebf8f-76a3-4cc2-b9da-f523a007d441")
+	)
+	(wire
+		(pts
 			(xy 120.65 59.69) (xy 120.65 161.29)
 		)
 		(stroke
@@ -7653,16 +7663,6 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 71.12) (xy 71.12 140.97)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c68be203-2067-4641-be12-2b52ed728cd4")
-	)
-	(wire
-		(pts
 			(xy 172.72 92.71) (xy 196.85 92.71)
 		)
 		(stroke
@@ -7743,6 +7743,16 @@
 	)
 	(wire
 		(pts
+			(xy 71.12 86.36) (xy 73.66 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d1dda6b6-694e-4355-b68e-f921d0728a66")
+	)
+	(wire
+		(pts
 			(xy 64.77 128.27) (xy 82.55 128.27)
 		)
 		(stroke
@@ -7813,7 +7823,7 @@
 	)
 	(wire
 		(pts
-			(xy 62.23 71.12) (xy 71.12 71.12)
+			(xy 62.23 71.12) (xy 73.66 71.12)
 		)
 		(stroke
 			(width 0)
@@ -8836,6 +8846,76 @@
 			(project "note-sequencer"
 				(path "/f98772eb-f079-4488-8f73-e60cea43bd5f"
 					(reference "#PWR033")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Switch:SW_DIP_x01")
+		(at 73.66 78.74 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0d6323ee-6446-481a-8a97-d8489bdd8c54")
+		(property "Reference" "SW30"
+			(at 77.47 77.4699 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "SW_DIP_x01"
+			(at 77.47 80.0099 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Button_Switch_THT:SW_DIP_SPSTx01_Slide_9.78x4.72mm_W7.62mm_P2.54mm"
+			(at 73.66 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 73.66 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "1x DIP Switch, Single Pole Single Throw (SPST) switch, small symbol"
+			(at 73.66 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8556012d-9984-4a9b-ac4a-608c4ebfe09f")
+		)
+		(pin "2"
+			(uuid "6bd5848f-f128-4f1a-8fc1-7750fab39fae")
+		)
+		(instances
+			(project "note-sequencer"
+				(path "/f98772eb-f079-4488-8f73-e60cea43bd5f"
+					(reference "SW30")
 					(unit 1)
 				)
 			)

@@ -192,6 +192,7 @@
 	(net 112 "Net-(J13-Pin_1)")
 	(net 113 "Net-(J14-Pin_2)")
 	(net 114 "Net-(J14-Pin_1)")
+	(net 115 "Net-(U1-Lite)")
 	(footprint "MountingHole:MountingHole_3.2mm_M3"
 		(layer "F.Cu")
 		(uuid "01f24b62-5fe4-46d7-924a-5ee3697a8f5a")
@@ -294,10 +295,10 @@
 		(at 133.9 80.5 -90)
 		(descr "Alps rotary encoder, EC11E... with switch, vertical shaft, http://www.alps.com/prod/info/E/HTML/Encoder/Incremental/EC11/EC11E15204A3.html")
 		(tags "rotary encoder")
-		(property "Reference" "SW7"
+		(property "Reference" "SW31"
 			(at 2.8 -4.7 90)
 			(layer "F.SilkS")
-			(uuid "d0173fe5-b0b1-4476-8b42-67da9fa123b0")
+			(uuid "6062eb99-fb31-4a1e-b6fc-3c869b810515")
 			(effects
 				(font
 					(size 1 1)
@@ -308,7 +309,7 @@
 		(property "Value" "RotaryEncoder_Switch"
 			(at 7.5 10.4 90)
 			(layer "F.Fab")
-			(uuid "097567e9-0642-4368-bba7-c9d5a4acf626")
+			(uuid "ed52a496-9e19-42b8-9e41-3df3b3149752")
 			(effects
 				(font
 					(size 1 1)
@@ -321,7 +322,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "30a31afe-0fdb-4838-851d-6aa6115da8be")
+			(uuid "1bff00f0-73a3-4f31-96a1-dc95223b338b")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -334,7 +335,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "595d0a48-6d35-44fb-9775-ed0bd26a2627")
+			(uuid "6d4284aa-2da4-4b7a-8ce1-3ce948310eb1")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -714,7 +715,7 @@
 			(at -4.5 3 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "da859caf-d914-4bbe-bb52-553bfd288d83")
+			(uuid "802f917f-d00c-4aa7-baec-7eb25dc2198a")
 			(effects
 				(font
 					(size 1 1)
@@ -725,7 +726,7 @@
 		(property "Value" "MountingHole_3.2mm_M3"
 			(at 0 4.15 0)
 			(layer "F.Fab")
-			(uuid "3da2d4b6-a288-4ebf-bb3d-3f16e115bed6")
+			(uuid "fb308c36-6cea-47e0-b34e-183a0c724683")
 			(effects
 				(font
 					(size 1 1)
@@ -737,7 +738,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "48d3f912-562b-4f64-a45a-6f575b0b9352")
+			(uuid "e4601d92-64f7-4438-acab-5ab262c3a375")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -749,7 +750,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b39f0e6d-2e3f-4c35-85c2-715e65b27fe8")
+			(uuid "e30a724f-8136-4985-9cd6-c194630eff0b")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -800,11 +801,174 @@
 		)
 		(embedded_fonts no)
 	)
+	(footprint "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
+		(layer "F.Cu")
+		(uuid "075d0b27-d6d8-4e27-ab60-42e4fd9c4d9c")
+		(at 140.5 50)
+		(descr "C, Disc series, Radial, pin pitch=5.00mm, diameter*width=4.3*1.9mm^2, Capacitor, http://www.vishay.com/docs/45233/krseries.pdf")
+		(tags "C Disc series Radial pin pitch 5.00mm diameter 4.3mm width 1.9mm Capacitor")
+		(property "Reference" "C2"
+			(at 2.5 -2.2 0)
+			(layer "F.SilkS")
+			(uuid "5f87e8ce-f6e6-4b7c-923d-1c0b56b24357")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "100nf"
+			(at 2.5 2.2 0)
+			(layer "F.Fab")
+			(uuid "341b2099-5970-4361-942e-bb2066e4e19f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "3739eb27-730f-423c-a384-fa5b2a3316db")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "f7532d00-2a70-42f1-aad8-12acb7c49e1f")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property ki_fp_filters "C_*")
+		(path "/08c49e52-bbc8-4dda-b868-ec8a524f3596")
+		(sheetname "/")
+		(sheetfile "note-sequencer.kicad_sch")
+		(attr through_hole)
+		(fp_line
+			(start 0.23 -1.07)
+			(end 4.77 -1.07)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "042e3b05-16a3-462b-8f5d-c2b343de031f")
+		)
+		(fp_line
+			(start 0.23 -1.014)
+			(end 0.23 -1.07)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "58d92f1b-21ed-4bf2-8bce-af5af212caab")
+		)
+		(fp_line
+			(start 4.77 1.014)
+			(end 4.77 1.07)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "b72cab7b-a52c-4d04-848f-193e6d36bb09")
+		)
+		(fp_line
+			(start 4.77 1.07)
+			(end 0.23 1.07)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "9de41ff8-e354-42ba-b261-33c7dd4a3cee")
+		)
+		(fp_rect
+			(start -1.05 -1.2)
+			(end 6.05 1.2)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "a1b9a241-477c-4ed9-bfee-67b26c126150")
+		)
+		(fp_rect
+			(start 0.35 -0.95)
+			(end 4.65 0.95)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "c442cb17-845a-4d74-b1cb-fa52b04cb94b")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 2.5 0 0)
+			(layer "F.Fab")
+			(uuid "f85b2ab9-1ba9-4781-bb05-be73ff7a0f37")
+			(effects
+				(font
+					(size 0.86 0.86)
+					(thickness 0.129)
+				)
+			)
+		)
+		(pad "1" thru_hole circle
+			(at 0 0)
+			(size 1.6 1.6)
+			(drill 0.8)
+			(layers "*.Cu" "*.Mask")
+			(remove_unused_layers no)
+			(net 8 "GND")
+			(pintype "passive")
+			(uuid "c2b779f8-63d7-416b-9141-53845927e7f8")
+		)
+		(pad "2" thru_hole circle
+			(at 5 0)
+			(size 1.6 1.6)
+			(drill 0.8)
+			(layers "*.Cu" "*.Mask")
+			(remove_unused_layers no)
+			(net 20 "5V")
+			(pintype "passive")
+			(uuid "4b1562e5-3083-41c2-aa31-ca460459f5ea")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/C_Disc_D4.3mm_W1.9mm_P5.00mm.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
 	(footprint "modular2:switch1"
 		(layer "F.Cu")
 		(uuid "0765e47f-7bff-4f68-80d5-07bd84d75144")
 		(at 150.25 88)
-		(property "Reference" "SW8"
+		(property "Reference" "SW33"
 			(at 0 8 0)
 			(unlocked yes)
 			(layer "F.SilkS")
@@ -923,7 +1087,7 @@
 		(at 129.010495 169.912305)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D29"
+		(property "Reference" "D23"
 			(at 3.81 1.911005 0)
 			(layer "F.SilkS")
 			(uuid "102df030-8097-49c3-a0ff-3f9fa4751703")
@@ -1400,10 +1564,10 @@
 		(at 50.064337 82.915669)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW3"
+		(property "Reference" "SW27"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "c6ed3797-8b2a-475a-a989-3a0eff5f7974")
+			(uuid "155db7a6-9fcb-410d-a597-d72329acdf2f")
 			(effects
 				(font
 					(size 1 1)
@@ -1414,7 +1578,7 @@
 		(property "Value" "X2"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "c0955cae-a56b-4c8a-bec9-2811a66382a6")
+			(uuid "70fd43af-9283-4684-95aa-51777269af0e")
 			(effects
 				(font
 					(size 1 1)
@@ -1427,7 +1591,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "6f16c083-0eae-4a14-8223-c9d28119d732")
+			(uuid "0a74c308-98a9-4fe5-b7de-50bff1dcfcd4")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1440,7 +1604,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "06da2a88-03f5-44f8-996c-bfb6e5fa1caf")
+			(uuid "0da7a934-f195-4623-ace8-3d17c815faef")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1685,11 +1849,11 @@
 		(at 65.865414 246.117078)
 		(descr "Through hole straight pin header, 1x02, 2.54mm pitch, single row")
 		(tags "Through hole pin header THT 1x02 2.54mm single row")
-		(property "Reference" "J13"
+		(property "Reference" "J14"
 			(at 0 -2.38 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "dd5d4963-05be-4263-9237-5b044816b5c5")
+			(uuid "f1aa3f52-153b-4c79-9945-4696a4ac96c1")
 			(effects
 				(font
 					(size 1 1)
@@ -1700,7 +1864,7 @@
 		(property "Value" "LED Socket"
 			(at 0 4.92 0)
 			(layer "F.Fab")
-			(uuid "d8394852-7552-4bf9-b120-fb24d92137a1")
+			(uuid "c210a629-f933-46bd-96a1-d6be78847b6e")
 			(effects
 				(font
 					(size 1 1)
@@ -1712,7 +1876,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "976f0f51-f7d5-4421-84f8-442562c1c5e9")
+			(uuid "ce4ef01d-1813-49bb-8a52-4122ba32100d")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1724,7 +1888,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "a23061df-2f25-40be-9f51-2c182f113111")
+			(uuid "442b5a22-de76-4fb8-af53-38b511bb38c6")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2102,7 +2266,7 @@
 		(at 90.450495 169.912305)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D28"
+		(property "Reference" "D19"
 			(at 3.81 1.911005 0)
 			(layer "F.SilkS")
 			(uuid "7cf96be5-b7ca-41c3-bddf-43e1199aa26e")
@@ -2387,7 +2551,7 @@
 		(at 31.69 189.162305)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D21"
+		(property "Reference" "D31"
 			(at 7.31 1.975011 0)
 			(layer "F.SilkS")
 			(uuid "6c4bb56f-6d34-4061-8c56-ea7bfd249328")
@@ -2768,7 +2932,7 @@
 		(at 22.34 47.5)
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=10.16mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 10.16mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
-		(property "Reference" "R1"
+		(property "Reference" "R5"
 			(at -2.17 0 0)
 			(layer "F.SilkS")
 			(uuid "9baf9ed9-d8e9-4e6f-9361-01aad1c326c1")
@@ -2942,7 +3106,7 @@
 		(at 51.950495 169.912305)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D22"
+		(property "Reference" "D16"
 			(at 3.81 1.911005 0)
 			(layer "F.SilkS")
 			(uuid "427d436e-63dc-45af-bd72-c9f6c0f0d123")
@@ -3221,16 +3385,314 @@
 			)
 		)
 	)
+	(footprint "Button_Switch_THT:SW_DIP_SPSTx01_Slide_9.78x4.72mm_W7.62mm_P2.54mm"
+		(layer "F.Cu")
+		(uuid "22030dbb-028a-487a-94b8-b7f1cff9221d")
+		(at 127.88 48.574973)
+		(descr "1x-dip-switch SPST , Slide, row spacing 7.62 mm (300 mils), body size 9.78x4.72mm (see e.g. https://www.ctscorp.com/wp-content/uploads/206-208.pdf)")
+		(tags "DIP Switch SPST Slide 7.62mm 300mil")
+		(property "Reference" "SW30"
+			(at -2.38 0 90)
+			(layer "F.SilkS")
+			(uuid "e3631fec-8b0b-4118-8a67-763bc4af37f4")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "SW_DIP_x01"
+			(at 3.81 3.42 0)
+			(layer "F.Fab")
+			(uuid "100ff155-ffd0-40de-a1ec-2ba383de859a")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "1517e2cc-d801-4392-945d-c6dbdada9a1b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" "1x DIP Switch, Single Pole Single Throw (SPST) switch, small symbol"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "f8dc6a1c-bda4-4ad2-a351-46814cbd9b94")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property ki_fp_filters "SW?DIP?x1*")
+		(path "/0d6323ee-6446-481a-8a97-d8489bdd8c54")
+		(sheetname "/")
+		(sheetfile "note-sequencer.kicad_sch")
+		(attr through_hole)
+		(fp_line
+			(start -1.38 -2.66)
+			(end -1.38 -1.277)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "bf1014a0-127a-4ff8-93c7-94cba03939b5")
+		)
+		(fp_line
+			(start -1.38 -2.66)
+			(end 0.003 -2.66)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "1c7bab5a-bfd1-43f8-af66-b268805a2aa5")
+		)
+		(fp_line
+			(start -1.14 -2.42)
+			(end -1.14 2.42)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "6d631d20-56a2-470e-adc5-1260128051b5")
+		)
+		(fp_line
+			(start -1.14 -2.42)
+			(end 8.76 -2.42)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "61b99076-5f0c-4db4-bdf1-e6b2dc1908b9")
+		)
+		(fp_line
+			(start -1.14 2.42)
+			(end 8.76 2.42)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "f2c6cfca-cfbf-4c31-b64d-84330e7c4327")
+		)
+		(fp_line
+			(start 3.133333 -0.635)
+			(end 3.133333 0.635)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "ab0b0493-78a7-42a0-ba6b-8ecf6d9ba350")
+		)
+		(fp_line
+			(start 8.76 -2.42)
+			(end 8.76 2.42)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "a856fab2-26d8-4e51-aa6b-41f35b2145bb")
+		)
+		(fp_rect
+			(start 1.78 -0.635)
+			(end 3.133333 0.635)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(fill yes)
+			(layer "F.SilkS")
+			(uuid "c98b1543-dd24-4b36-a94b-ce2744823be4")
+		)
+		(fp_rect
+			(start 1.78 -0.635)
+			(end 5.84 0.635)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "10f87a2e-10b7-492b-b6ab-8f218bf01aea")
+		)
+		(fp_rect
+			(start -1.33 -2.67)
+			(end 8.95 2.67)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "18dcc223-5bb3-406f-9f1c-bb7db86bb02f")
+		)
+		(fp_line
+			(start -1.08 -1.36)
+			(end -0.08 -2.36)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "aa772c90-a63d-446e-a3e7-7dbefe37fad7")
+		)
+		(fp_line
+			(start -1.08 2.36)
+			(end -1.08 -1.36)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "7abbe5d3-4722-45f3-99ba-b92c0bff68c9")
+		)
+		(fp_line
+			(start -0.08 -2.36)
+			(end 8.7 -2.36)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "cef71338-192d-4820-a15f-1225917e88a7")
+		)
+		(fp_line
+			(start 3.133333 -0.635)
+			(end 3.133333 0.635)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "2d0958c0-10d8-437f-8aa0-662f9b6fc6e4")
+		)
+		(fp_line
+			(start 8.7 -2.36)
+			(end 8.7 2.36)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "e9a97274-ae03-473a-af95-6a94f4252fb9")
+		)
+		(fp_line
+			(start 8.7 2.36)
+			(end -1.08 2.36)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "6488c926-9fae-4203-a38f-a20bb8036418")
+		)
+		(fp_rect
+			(start 1.78 -0.635)
+			(end 3.133333 0.635)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(fill yes)
+			(layer "F.Fab")
+			(uuid "d574d819-a358-470a-ada5-0cbf0bd4b4bc")
+		)
+		(fp_rect
+			(start 1.78 -0.635)
+			(end 5.84 0.635)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "d897b653-9910-46db-9d93-3bf3ef568a50")
+		)
+		(fp_text user "on"
+			(at 5.365 -1.4975 0)
+			(layer "F.Fab")
+			(uuid "8fa3a851-6b69-4c70-85ed-145421287f8b")
+			(effects
+				(font
+					(size 0.6 0.6)
+					(thickness 0.09)
+				)
+			)
+		)
+		(fp_text user "${REFERENCE}"
+			(at 7.27 0 90)
+			(layer "F.Fab")
+			(uuid "fe1a59ed-0f52-4697-b4f4-ef971eaeac30")
+			(effects
+				(font
+					(size 0.6 0.6)
+					(thickness 0.09)
+				)
+			)
+		)
+		(pad "1" thru_hole roundrect
+			(at 0 0)
+			(size 1.6 1.6)
+			(drill 0.8)
+			(layers "*.Cu" "*.Mask")
+			(remove_unused_layers no)
+			(roundrect_rratio 0.15625)
+			(net 115 "Net-(U1-Lite)")
+			(pintype "passive")
+			(uuid "02922c00-1ee4-4bc5-8397-da753162dd1b")
+		)
+		(pad "2" thru_hole circle
+			(at 7.62 0)
+			(size 1.6 1.6)
+			(drill 0.8)
+			(layers "*.Cu" "*.Mask")
+			(remove_unused_layers no)
+			(net 81 "Net-(A2-D2)")
+			(pintype "passive")
+			(uuid "9d3c3fe2-69f0-43c3-bcd7-012e975a1a1f")
+		)
+		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Button_Switch_THT.3dshapes/SW_DIP_SPSTx01_Slide_9.78x4.72mm_W7.62mm_P2.54mm.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 90)
+			)
+		)
+	)
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "22700cd3-9b40-4000-84cb-2348d8fc639e")
 		(at 126.982656 175.726989)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW33"
+		(property "Reference" "SW22"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "c2977b48-d10b-49c6-97ee-0ea0b84de147")
+			(uuid "35ae962f-5727-46de-b3c3-63a00aa4c676")
 			(effects
 				(font
 					(size 1 1)
@@ -3241,7 +3703,7 @@
 		(property "Value" "A2"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "131a1455-ab82-4d04-9b21-89198a28acf2")
+			(uuid "31c00e65-b25c-460a-ad54-8fc09e202723")
 			(effects
 				(font
 					(size 1 1)
@@ -3254,7 +3716,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "cd17a11e-430a-44c9-8641-200da8689943")
+			(uuid "f765ba2b-038f-4a73-a133-d18190cc9275")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3267,7 +3729,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "2e15ad23-215a-4ba2-bead-4b70b9e5af47")
+			(uuid "37e0cdb2-c1f1-45c3-a072-bd8072a1d367")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3510,7 +3972,7 @@
 		(layer "F.Cu")
 		(uuid "22973de4-88e0-49e9-a64e-7a10bf23ce55")
 		(at 41.75 38.75 90)
-		(property "Reference" "U1"
+		(property "Reference" "U2"
 			(at 0 -0.5 90)
 			(unlocked yes)
 			(layer "F.SilkS")
@@ -3793,7 +4255,7 @@
 		(at 80.88456 189.175201)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D25"
+		(property "Reference" "D18"
 			(at 3.802344 1.975011 0)
 			(layer "F.SilkS")
 			(uuid "a5d17766-7589-42d7-824f-b2984d5640b8")
@@ -4078,7 +4540,7 @@
 		(at 64 58.92 -90)
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=10.16mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 10.16mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
-		(property "Reference" "R5"
+		(property "Reference" "R7"
 			(at 5.08 -2.37 90)
 			(layer "F.SilkS")
 			(uuid "ded5e0e0-a8f0-445a-9e84-ee5d026e4650")
@@ -4252,10 +4714,10 @@
 		(at 107.733595 129.404711)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW19"
+		(property "Reference" "SW8"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "0cb3a38e-507c-4a6c-b95a-4b48fa91bc72")
+			(uuid "00b41c1c-dcce-493c-bda7-a2ca54152466")
 			(effects
 				(font
 					(size 1 1)
@@ -4266,7 +4728,7 @@
 		(property "Value" "G1"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "37a22afa-ea87-4814-8185-a86097efb3a3")
+			(uuid "8b813e0d-d0ef-4158-a8ef-5b6a33d574c8")
 			(effects
 				(font
 					(size 1 1)
@@ -4279,7 +4741,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b62e6082-81db-409c-89bf-cd79c4d060af")
+			(uuid "fd35acaf-5d2c-4ec8-abd1-aa4eac6711a5")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4292,7 +4754,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "42dfdb86-393d-4484-9f88-17a096ca6cb8")
+			(uuid "dca14e19-6e9b-41e2-a5ad-699c9e679f04")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4537,7 +4999,7 @@
 		(at 151.69 189.175201)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D32"
+		(property "Reference" "D25"
 			(at 1.81 1.975011 0)
 			(layer "F.SilkS")
 			(uuid "6001c856-a2c4-4519-a800-c088ba55f2b3")
@@ -4822,10 +5284,10 @@
 		(at 107.745826 175.734711)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW32"
+		(property "Reference" "SW20"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "5a1e2bb7-2048-48df-835c-4f5875c5ff81")
+			(uuid "5578bc83-bd37-4982-b413-e11757355b16")
 			(effects
 				(font
 					(size 1 1)
@@ -4836,7 +5298,7 @@
 		(property "Value" "G2"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "9e055a58-ecf3-40d4-bd6d-563841e32342")
+			(uuid "89ccb046-f5e0-4bee-8450-4ce9d1026d25")
 			(effects
 				(font
 					(size 1 1)
@@ -4849,7 +5311,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "922da0b2-7081-47c4-a5b6-6a52484c3b05")
+			(uuid "2dd366a2-cc5e-4a2c-ad36-68ef6efc4518")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4862,7 +5324,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "9b40bc22-be54-4b3f-a2ea-23db5822b977")
+			(uuid "52fa2dfb-0fed-4091-b9e1-36cc9cf06e87")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5203,7 +5665,7 @@
 		(at 61.654101 189.174035)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D24"
+		(property "Reference" "D17"
 			(at 3.802344 1.975011 0)
 			(layer "F.SilkS")
 			(uuid "c58a5ecb-c1ad-4210-81bb-cfae47b7d90b")
@@ -5488,10 +5950,10 @@
 		(at 30.798507 175.721815)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW28"
+		(property "Reference" "SW32"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "112791b6-edb2-4b8c-9896-d99f346a07b5")
+			(uuid "e880d761-4ed6-4111-8ec0-861ff463b108")
 			(effects
 				(font
 					(size 1 1)
@@ -5502,7 +5964,7 @@
 		(property "Value" "C2"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "1b30f9d6-33af-4d6c-9eaf-2c3524719745")
+			(uuid "4e15441e-c3cd-4857-9206-2b36462b8270")
 			(effects
 				(font
 					(size 1 1)
@@ -5515,7 +5977,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "288cdf67-0f49-4822-95b7-a50b484f1fa3")
+			(uuid "ca3de0da-decd-475e-a8cb-3f8fb1cf0964")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5528,7 +5990,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "5830f07f-30cd-4ca0-9876-2e34dd8269d1")
+			(uuid "66b5aec5-ebed-443b-ab3b-b42085ab63d0")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5869,10 +6331,10 @@
 		(at 69.272166 175.733545)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW31"
+		(property "Reference" "SW17"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "c93ea2d9-ff32-4ecd-b79a-1b9ca6d497a8")
+			(uuid "54a6316b-2e5c-4f12-b713-3b9541fde8d5")
 			(effects
 				(font
 					(size 1 1)
@@ -5883,7 +6345,7 @@
 		(property "Value" "E2"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "a41fbf7d-8c12-44e7-9944-a90f0112042e")
+			(uuid "cc30ca31-05b1-434c-93c7-145789c92fb4")
 			(effects
 				(font
 					(size 1 1)
@@ -5896,7 +6358,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b14eeac5-ab17-41b4-aa6c-551508d6b3ac")
+			(uuid "6cd8d077-598b-469b-b0fb-a68f89408397")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5909,7 +6371,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "6aa21d70-70d0-4ed3-b4c0-9f84e23b857c")
+			(uuid "2df889db-323d-494a-abac-58085e0e7fd1")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6151,13 +6613,13 @@
 	(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 		(layer "F.Cu")
 		(uuid "38c4c597-09cb-4d90-9a45-12cb0460fe29")
-		(at 151.16 47.044 180)
+		(at 158.08 47 180)
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=10.16mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 10.16mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
-		(property "Reference" "R9"
+		(property "Reference" "R2"
 			(at -2.25 0 0)
 			(layer "F.SilkS")
-			(uuid "90077863-6f35-4781-bd56-7268fb8299ea")
+			(uuid "49fdbbfe-017d-46d9-a38f-62a7603fb7f2")
 			(effects
 				(font
 					(size 1 1)
@@ -6168,7 +6630,7 @@
 		(property "Value" "4.7K"
 			(at 5.08 2.37 0)
 			(layer "F.Fab")
-			(uuid "89135ac5-8cde-4d1d-b0c9-1e09edc46ebc")
+			(uuid "6eb89f4c-3fb7-4db0-804e-00c17ab5e617")
 			(effects
 				(font
 					(size 1 1)
@@ -6180,7 +6642,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "7a7654d6-98f8-454b-969b-a50ba8535c33")
+			(uuid "388cd57e-ac2b-40f6-8054-d28826ff090f")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6192,7 +6654,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "4ded228c-662f-4d5b-b849-e73a47f815e7")
+			(uuid "d0e8bb0b-ad09-49e9-85db-c2e85b326e78")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6328,7 +6790,7 @@
 		(at 64 44.25 90)
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=10.16mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 10.16mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
-		(property "Reference" "R7"
+		(property "Reference" "R8"
 			(at 5.08 2.5 90)
 			(layer "F.SilkS")
 			(uuid "2a55cd3d-597a-4254-8a4b-15ab090a0961")
@@ -6506,7 +6968,7 @@
 			(at -4.5 3 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "b488a7b9-b5c0-421c-90ae-6fbed206ac37")
+			(uuid "5b4346e7-d2dd-4870-9b6a-3d303e3e00ad")
 			(effects
 				(font
 					(size 1 1)
@@ -6517,7 +6979,7 @@
 		(property "Value" "MountingHole_3.2mm_M3"
 			(at 0 4.15 0)
 			(layer "F.Fab")
-			(uuid "8d286b66-b512-45f9-945d-62c76ce1a26c")
+			(uuid "0a1e5666-792d-4f72-8022-6dc3d9819a6d")
 			(effects
 				(font
 					(size 1 1)
@@ -6529,7 +6991,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e9a52b76-2af5-47f7-9124-67c4d186ed00")
+			(uuid "47c99039-e2cd-4c2a-81bf-619164f0e68d")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6541,7 +7003,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "676acde1-2e64-4ff9-8566-fb12434ff156")
+			(uuid "eb87da41-a604-4691-8732-f733ce4a7c3b")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6595,13 +7057,13 @@
 	(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 		(layer "F.Cu")
 		(uuid "3df748eb-ba69-4601-9512-da24613ceaf2")
-		(at 151.16 50.044 180)
+		(at 158.08 50 180)
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=10.16mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 10.16mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
-		(property "Reference" "R8"
+		(property "Reference" "R1"
 			(at -2 0 0)
 			(layer "F.SilkS")
-			(uuid "d3b76268-399a-4455-9e3a-1e6eef462eab")
+			(uuid "cbc1fa0c-cbf6-45ad-b455-aa99ce135546")
 			(effects
 				(font
 					(size 1 1)
@@ -6612,7 +7074,7 @@
 		(property "Value" "4.7K"
 			(at 5.08 2.37 0)
 			(layer "F.Fab")
-			(uuid "d9c37a5e-b8de-4938-ac81-0852f46603e8")
+			(uuid "a3ffda2e-5441-4d83-811b-600b90712a31")
 			(effects
 				(font
 					(size 1 1)
@@ -6624,7 +7086,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "c937eb61-33bc-4932-aa20-17c20bc08cb8")
+			(uuid "b6e02008-c406-49b0-abea-a08f3a8a5081")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6636,7 +7098,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e08d0151-908b-4e62-8d31-430edd56f29b")
+			(uuid "5942b63a-07a1-4b32-b77d-15d478b4adbc")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6772,7 +7234,7 @@
 		(at 130.594126 68.55772 90)
 		(descr "Arduino Nano, http://www.mouser.com/pdfdocs/Gravitech_Arduino_Nano3_0.pdf")
 		(tags "Arduino Nano")
-		(property "Reference" "A2"
+		(property "Reference" "A1"
 			(at 7.62 -5.08 90)
 			(layer "F.SilkS")
 			(uuid "f7ff107c-07d5-46e7-b162-5a9cdca9553a")
@@ -7507,10 +7969,10 @@
 		(at 117.359971 156.518022)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW26"
+		(property "Reference" "SW21"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "4e8984b7-8784-428c-8eea-35442d763ecd")
+			(uuid "62286b13-bdbc-4373-9223-9d5a67f0f707")
 			(effects
 				(font
 					(size 1 1)
@@ -7521,7 +7983,7 @@
 		(property "Value" "G#2"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "196429f0-ccbc-4ba7-80a1-a4f79ef0512c")
+			(uuid "dc3be53d-e140-4f6b-8528-409685aa6a28")
 			(effects
 				(font
 					(size 1 1)
@@ -7534,7 +7996,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "291f5208-2bf8-48ad-9ad9-1f40d78033bc")
+			(uuid "fb12d4e6-6574-437e-a2cc-00b5c57f22c7")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7547,7 +8009,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "8a904299-b6bf-4962-8995-041e781953b5")
+			(uuid "b7693059-f2ab-4953-aa5a-62e32dce7bdd")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7792,7 +8254,7 @@
 		(at 100.127995 189.175201)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D27"
+		(property "Reference" "D20"
 			(at 3.802344 1.975011 0)
 			(layer "F.SilkS")
 			(uuid "2c5bafd7-9a83-4fff-b586-1cd9255f452e")
@@ -8081,7 +8543,7 @@
 			(at -4.5 3 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "371fce1e-9929-4cd8-9ac5-fd709086515a")
+			(uuid "6e59ead9-fed3-436a-b671-9e9619b6487d")
 			(effects
 				(font
 					(size 1 1)
@@ -8092,7 +8554,7 @@
 		(property "Value" "MountingHole_3.2mm_M3"
 			(at 0 4.15 0)
 			(layer "F.Fab")
-			(uuid "462ab7e5-3dad-4fd7-ac25-7126c8a8d446")
+			(uuid "19c396fe-6f7f-4b5d-ae07-c2da255cf622")
 			(effects
 				(font
 					(size 1 1)
@@ -8104,7 +8566,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "106ee127-2970-42f7-9595-cbf811f761e4")
+			(uuid "4e7a3d65-b0d1-43ab-9e06-6d557c85ccb7")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8116,7 +8578,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "2a316521-74af-43f8-bbd4-f2f05168839c")
+			(uuid "07795505-b8c1-45b6-948e-6bbe1f103ff9")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8173,7 +8635,7 @@
 		(at 42.433769 189.174081)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D23"
+		(property "Reference" "D15"
 			(at 3.802344 1.975011 0)
 			(layer "F.SilkS")
 			(uuid "8a0b4b20-c713-4ad8-972d-e3894a5e7001")
@@ -8554,7 +9016,7 @@
 		(at 100.260711 142.88282)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D16"
+		(property "Reference" "D8"
 			(at 3.81 1.911005 0)
 			(layer "F.SilkS")
 			(uuid "afc421d2-818e-44ab-909f-8612117740ac")
@@ -9046,10 +9508,10 @@
 		(at 136.59455 110.188022)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW13"
+		(property "Reference" "SW11"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "8dc5f8e8-6c53-481e-80ac-54b7e1ed3539")
+			(uuid "99d675d1-d8b9-4f58-8a8b-ef3fa14dcb6c")
 			(effects
 				(font
 					(size 1 1)
@@ -9060,7 +9522,7 @@
 		(property "Value" "A#1"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "3bf5b89a-4ea1-4a6c-930c-93c3fff5e6b4")
+			(uuid "53106791-2259-4e67-87c8-055d2f7a8173")
 			(effects
 				(font
 					(size 1 1)
@@ -9073,7 +9535,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "23dff39e-9a72-48c6-b52d-8f14a16cf75e")
+			(uuid "8938433c-2a7d-44bb-ad5d-c56c61f77f9d")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9086,7 +9548,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e86e337f-624f-4cfb-b6a2-a319e68d368f")
+			(uuid "fff99b09-f55a-4f1a-9b5c-6953155b4d77")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9331,10 +9793,10 @@
 		(at 163.769446 48.574973)
 		(descr "1x-dip-switch SPST , Slide, row spacing 7.62 mm (300 mils), body size 9.78x4.72mm (see e.g. https://www.ctscorp.com/wp-content/uploads/206-208.pdf)")
 		(tags "DIP Switch SPST Slide 7.62mm 300mil")
-		(property "Reference" "SW1"
-			(at -3.269446 0.219027 0)
+		(property "Reference" "SW34"
+			(at 9.730554 0.219027 270)
 			(layer "F.SilkS")
-			(uuid "ce5438bd-a6d1-4bfa-bea1-8196a85e8285")
+			(uuid "aef463d6-37e8-43bc-96c1-51b620a6df2d")
 			(effects
 				(font
 					(size 1 1)
@@ -9345,7 +9807,7 @@
 		(property "Value" "SW_DIP_x01"
 			(at 3.81 3.42 0)
 			(layer "F.Fab")
-			(uuid "3aa4cc27-6c60-49df-8d2a-dd3828725e0c")
+			(uuid "82913e72-f363-4ebb-92ba-7c2efe6dcd2d")
 			(effects
 				(font
 					(size 1 1)
@@ -9357,7 +9819,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "06044f54-9fd1-4145-8ca4-1590a0b229b0")
+			(uuid "e3cc8360-997e-46e8-8f5f-4f8a8eda708f")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9369,7 +9831,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "789bdd27-0bee-4e59-a89f-5ad264d751a2")
+			(uuid "23c52bd6-53e9-4056-aa86-67c5f5700fb1")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9724,7 +10186,7 @@
 		(at 44 19.54 90)
 		(descr "Through hole IDC box header, 2x03, 2.54mm pitch, DIN 41651 / IEC 60603-13, double rows, https://docs.google.com/spreadsheets/d/16SsEcesNF15N3Lb4niX7dcUr-NY5_MFPQhobNuNppn4/edit#gid=0")
 		(tags "Through hole vertical IDC box header THT 2x03 2.54mm double row")
-		(property "Reference" "J3"
+		(property "Reference" "J5"
 			(at 1.27 -6.1 90)
 			(layer "F.SilkS")
 			(uuid "d6b84653-935a-455a-81c2-c8c1021352e9")
@@ -10172,7 +10634,7 @@
 		(at 119.363634 189.167479)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D30"
+		(property "Reference" "D22"
 			(at 3.802344 1.975011 0)
 			(layer "F.SilkS")
 			(uuid "f3842e32-484c-48a0-884b-d712eff95c37")
@@ -10455,11 +10917,11 @@
 		(layer "F.Cu")
 		(uuid "58a867ee-af0b-40e7-9430-d6176177b0ea")
 		(at 81.75225 41.728789)
-		(property "Reference" "U3"
+		(property "Reference" "U1"
 			(at -3.25225 -7.228789 0)
 			(unlocked yes)
 			(layer "F.SilkS")
-			(uuid "eb6f2973-bb76-4038-882c-2918debfb9b3")
+			(uuid "d99e40d7-0f33-487b-9f50-d58bf9b716fe")
 			(effects
 				(font
 					(size 1 1)
@@ -10471,7 +10933,7 @@
 			(at 15 9.5 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "072eb3eb-8736-4bab-9f0c-9de77624a1ba")
+			(uuid "d71512de-43b8-4a0c-8988-f1f3065eab20")
 			(effects
 				(font
 					(size 1 1)
@@ -10484,7 +10946,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "be54329d-7e24-4a7b-873f-fe1d6007d7c8")
+			(uuid "685f5af4-68dc-49ab-80e9-c722e4e0903a")
 			(effects
 				(font
 					(size 1 1)
@@ -10497,7 +10959,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "a0a08f7a-66b2-4f76-a791-dc071afd3e7a")
+			(uuid "835f42ca-7f51-4889-a8ee-cde3d1cac34d")
 			(effects
 				(font
 					(size 1 1)
@@ -10885,7 +11347,7 @@
 			(drill 1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 81 "Net-(A2-D2)")
+			(net 115 "Net-(U1-Lite)")
 			(pinfunction "Lite")
 			(pintype "passive")
 			(uuid "025e86fd-aa19-429f-a0a5-43ff8ab85e88")
@@ -10898,7 +11360,7 @@
 		(at 69 42.84)
 		(descr "Through hole straight socket strip, 1x06, 2.54mm pitch, single row (from Kicad 4.0.7), script generated")
 		(tags "Through hole socket strip THT 1x06 2.54mm single row")
-		(property "Reference" "J6"
+		(property "Reference" "J8"
 			(at 0 -2.77 0)
 			(layer "F.SilkS")
 			(uuid "bdca70b1-df5c-4777-85bb-a20cf7073899")
@@ -11195,10 +11657,10 @@
 		(at 30.800711 82.915669)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW2"
+		(property "Reference" "SW26"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "92744e03-b23a-443d-a2ae-93b1c6e0820a")
+			(uuid "fb93d116-b7d9-4aab-860b-3b30cd864e5e")
 			(effects
 				(font
 					(size 1 1)
@@ -11209,7 +11671,7 @@
 		(property "Value" "X1"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "122159a5-7517-4c51-8beb-ff7fd049288b")
+			(uuid "e6b8044c-7520-44e9-9035-0f3854128949")
 			(effects
 				(font
 					(size 1 1)
@@ -11222,7 +11684,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "d5e39107-d615-4ce5-bedc-b342f0e63ebd")
+			(uuid "a8bf83a2-0220-427d-949d-b65d4ab4e29b")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11235,7 +11697,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "bb5e9ef7-079a-44af-be5b-0375fa3ad495")
+			(uuid "f3417ccf-ee77-4f5b-9e84-192d333a88d7")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11480,7 +11942,7 @@
 		(at 42.44 96.25)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D4"
+		(property "Reference" "D27"
 			(at 4.12 2 0)
 			(layer "F.SilkS")
 			(uuid "be516425-a33e-4cb1-a9fa-0e67bfe8a60f")
@@ -12049,10 +12511,10 @@
 		(at 50.035337 175.733591)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW29"
+		(property "Reference" "SW15"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "b4cfafed-c5de-4a58-a73d-c6620868e8f8")
+			(uuid "63268318-ecd7-4d3d-a455-e83a81ce02be")
 			(effects
 				(font
 					(size 1 1)
@@ -12063,7 +12525,7 @@
 		(property "Value" "D2"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "09c422fb-97f5-4f06-b560-9853a4f3c7c6")
+			(uuid "2a4cb6b0-9443-4850-bbfb-fcda3dad1e16")
 			(effects
 				(font
 					(size 1 1)
@@ -12076,7 +12538,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e1da4ce8-0474-459a-a8c3-eeb637404612")
+			(uuid "364ce48c-535b-4786-aeba-70ca862cd4a8")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12089,7 +12551,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "bcedea47-1483-4b6e-9b36-a37e0f73a209")
+			(uuid "3df62156-4220-4534-8508-fae325fdd67b")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12328,174 +12790,11 @@
 			)
 		)
 	)
-	(footprint "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm"
-		(layer "F.Cu")
-		(uuid "664241ea-5373-4064-8ae8-20f0276985cc")
-		(at 133.25 50.044)
-		(descr "C, Disc series, Radial, pin pitch=5.00mm, diameter*width=4.3*1.9mm^2, Capacitor, http://www.vishay.com/docs/45233/krseries.pdf")
-		(tags "C Disc series Radial pin pitch 5.00mm diameter 4.3mm width 1.9mm Capacitor")
-		(property "Reference" "C3"
-			(at -2.25 0 0)
-			(layer "F.SilkS")
-			(uuid "29247330-cdca-4c07-abc4-df5561bbc2cc")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Value" "100nf"
-			(at 2.5 2.2 0)
-			(layer "F.Fab")
-			(uuid "e432151f-c30f-4c01-a524-c4b53b7ec64a")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "17fb38d5-9cfb-4ac4-9673-d0792c3d2c37")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "bb84ce2e-d3c0-4dfc-89b6-ebbecd536284")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property ki_fp_filters "C_*")
-		(path "/08c49e52-bbc8-4dda-b868-ec8a524f3596")
-		(sheetname "/")
-		(sheetfile "note-sequencer.kicad_sch")
-		(attr through_hole)
-		(fp_line
-			(start 0.23 -1.07)
-			(end 4.77 -1.07)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "9845b12f-47bb-4875-a71c-e26189b56942")
-		)
-		(fp_line
-			(start 0.23 -1.014)
-			(end 0.23 -1.07)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "925495ba-9429-48c7-bf40-4fd24b214ab8")
-		)
-		(fp_line
-			(start 4.77 1.014)
-			(end 4.77 1.07)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "86871405-5ed3-4c8f-88aa-0dffe35c12b3")
-		)
-		(fp_line
-			(start 4.77 1.07)
-			(end 0.23 1.07)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "6164ad22-1e5b-4111-9ef0-74227d8d67d2")
-		)
-		(fp_rect
-			(start -1.05 -1.2)
-			(end 6.05 1.2)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(fill no)
-			(layer "F.CrtYd")
-			(uuid "ea83a17f-1606-41f7-959d-1c48eef0df36")
-		)
-		(fp_rect
-			(start 0.35 -0.95)
-			(end 4.65 0.95)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(fill no)
-			(layer "F.Fab")
-			(uuid "eeace5c5-b43a-4663-afd6-fb8ed92cd617")
-		)
-		(fp_text user "${REFERENCE}"
-			(at 2.5 0 0)
-			(layer "F.Fab")
-			(uuid "aa78ba47-cb10-4af0-a9fa-2a5c155124cf")
-			(effects
-				(font
-					(size 0.86 0.86)
-					(thickness 0.129)
-				)
-			)
-		)
-		(pad "1" thru_hole circle
-			(at 0 0)
-			(size 1.6 1.6)
-			(drill 0.8)
-			(layers "*.Cu" "*.Mask")
-			(remove_unused_layers no)
-			(net 8 "GND")
-			(pintype "passive")
-			(uuid "8837028e-6be3-46a9-873b-e32c41562d30")
-		)
-		(pad "2" thru_hole circle
-			(at 5 0)
-			(size 1.6 1.6)
-			(drill 0.8)
-			(layers "*.Cu" "*.Mask")
-			(remove_unused_layers no)
-			(net 20 "5V")
-			(pintype "passive")
-			(uuid "b509faf4-5a65-4c84-bb2f-b1832e35d445")
-		)
-		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/C_Disc_D4.3mm_W1.9mm_P5.00mm.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
-	)
 	(footprint "modular2:mcp4725_breakout"
 		(layer "F.Cu")
 		(uuid "670b6deb-f376-47e3-acb0-ee178c4d6368")
 		(at 41.776428 71.136998 90)
-		(property "Reference" "U4"
+		(property "Reference" "U3"
 			(at 0 -0.5 90)
 			(unlocked yes)
 			(layer "F.SilkS")
@@ -12776,12 +13075,12 @@
 		(layer "F.Cu")
 		(uuid "673292e5-6d2e-4c93-9440-3d3894e0301e")
 		(at 29.022437 264.574034)
-		(property "Reference" "J11"
+		(property "Reference" "J10"
 			(at -0.5 7.5 0)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "71573b27-10d2-47dc-8105-e1b8c7a6be08")
+			(uuid "a1e3577f-8c00-4af4-83bb-b455188b9915")
 			(effects
 				(font
 					(size 1 1)
@@ -12793,7 +13092,7 @@
 			(at -0.5 8 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "46c7db39-6155-425d-97db-e6ed24fda377")
+			(uuid "608d6fa2-808f-43a3-be6e-0d8d811bf3e1")
 			(effects
 				(font
 					(size 1 1)
@@ -12806,7 +13105,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "c1c323ae-4553-4769-88e3-8297255c44fe")
+			(uuid "5a291d5a-33ba-4f72-8286-0441d79bc037")
 			(effects
 				(font
 					(size 1 1)
@@ -12819,7 +13118,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "989139d7-843f-4c3c-8c90-d7e01d6f630d")
+			(uuid "2e434b62-0c23-4d94-9a1d-49fb8602a63a")
 			(effects
 				(font
 					(size 1 1)
@@ -12878,7 +13177,7 @@
 			(at -4.5 3 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "09c953f3-377a-4246-8b65-5759569245fb")
+			(uuid "0eb664ff-9d82-4e19-a93b-109778f564b4")
 			(effects
 				(font
 					(size 1 1)
@@ -12889,7 +13188,7 @@
 		(property "Value" "MountingHole_3.2mm_M3"
 			(at 0 4.15 0)
 			(layer "F.Fab")
-			(uuid "311d90de-8293-45d0-a299-855df3907585")
+			(uuid "ce8872fe-68cd-42a1-b690-f461d7d9d9ff")
 			(effects
 				(font
 					(size 1 1)
@@ -12901,7 +13200,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "8a461eb4-8865-41ee-b887-fbf4f97c6c70")
+			(uuid "0483f671-bdc7-4a03-9374-a45e2aca7f2a")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12913,7 +13212,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "271710df-7c98-4686-a42a-cb72f1cc058b")
+			(uuid "1571232a-04a3-42fb-8494-085f1ef29b74")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12970,7 +13269,7 @@
 		(at 93.112934 19.5 90)
 		(descr "Through hole IDC box header, 2x03, 2.54mm pitch, DIN 41651 / IEC 60603-13, double rows, https://docs.google.com/spreadsheets/d/16SsEcesNF15N3Lb4niX7dcUr-NY5_MFPQhobNuNppn4/edit#gid=0")
 		(tags "Through hole vertical IDC box header THT 2x03 2.54mm double row")
-		(property "Reference" "J4"
+		(property "Reference" "J6"
 			(at 1.27 -6.612934 90)
 			(layer "F.SilkS")
 			(uuid "0af8214e-e49a-485d-9805-a068e6379ae9")
@@ -13418,7 +13717,7 @@
 		(at 138.700711 142.88282)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D17"
+		(property "Reference" "D12"
 			(at 3.81 1.911005 0)
 			(layer "F.SilkS")
 			(uuid "864eab9c-3c60-40a6-b1a9-a831ef840812")
@@ -13703,10 +14002,10 @@
 		(at 117.34774 110.188022)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW14"
+		(property "Reference" "SW9"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "f3290790-11fe-449b-bbf4-5f797c5e9069")
+			(uuid "09b64eca-95b4-489e-8fe6-3ec26e40f5eb")
 			(effects
 				(font
 					(size 1 1)
@@ -13717,7 +14016,7 @@
 		(property "Value" "G#1"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "8c5ac4c3-dec5-4524-b3c5-681e1f527f3b")
+			(uuid "23c89e82-8705-429d-85b8-5b121c2ab569")
 			(effects
 				(font
 					(size 1 1)
@@ -13730,7 +14029,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "22a3cb6f-dcad-4450-8ad8-2f0ae75815c1")
+			(uuid "f201e833-cea1-4313-81f1-91982b5471eb")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13743,7 +14042,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "55eb3059-99d9-4121-b407-e262ae16d88b")
+			(uuid "3063250a-1a81-486f-badd-a2bee46701a2")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13988,7 +14287,7 @@
 		(at 61.696226 96.2487)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D3"
+		(property "Reference" "D28"
 			(at 4.12 2 0)
 			(layer "F.SilkS")
 			(uuid "85bfb178-eabe-4f76-8b0c-50a895830b67")
@@ -14273,7 +14572,7 @@
 		(at 80.700711 143.13282)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D15"
+		(property "Reference" "D6"
 			(at 3.81 1.911005 0)
 			(layer "F.SilkS")
 			(uuid "2c2f43e3-c638-4bcc-80c7-8db991fce6ad")
@@ -14658,7 +14957,7 @@
 			(at -4.5 3 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "4183aa7b-43bb-4007-9f4e-c3f28c85cb1b")
+			(uuid "5632cc00-8464-4cd0-800c-b623bf47f803")
 			(effects
 				(font
 					(size 1 1)
@@ -14669,7 +14968,7 @@
 		(property "Value" "MountingHole_3.2mm_M3"
 			(at 0 4.15 0)
 			(layer "F.Fab")
-			(uuid "cd837a97-50ee-47b6-ae5d-9de11f68db02")
+			(uuid "75b7ab94-e557-4001-90b9-2d4f13e1b86f")
 			(effects
 				(font
 					(size 1 1)
@@ -14681,7 +14980,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "47af8080-de93-4715-bb5d-ab55d63394f4")
+			(uuid "b0b9baa9-e9da-468c-b537-d76610527b1a")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14693,7 +14992,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "77a58e9a-27d4-4206-ad0c-97ff927551e0")
+			(uuid "8865ce6a-0ae8-4bfb-9e1d-e0f95820c5d4")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14750,10 +15049,10 @@
 		(at 165.456315 175.734711)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW35"
+		(property "Reference" "SW25"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "55d5c6aa-c951-4c54-97a6-bbe9b5be7e23")
+			(uuid "df6bb07d-145a-442b-bd0c-69dc74571d89")
 			(effects
 				(font
 					(size 1 1)
@@ -14764,7 +15063,7 @@
 		(property "Value" "C3"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "109a414c-2445-4133-aba9-f3fa006c9030")
+			(uuid "534648c3-0301-4102-adaf-3b1149242994")
 			(effects
 				(font
 					(size 1 1)
@@ -14777,7 +15076,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "d264d4da-5f32-4520-939f-b306d9ed4203")
+			(uuid "5d5788ca-4966-4adb-a9a4-5e639d801274")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14790,7 +15089,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "f8a45c2b-e48f-40de-b571-45f48a207971")
+			(uuid "3ae94608-c220-4845-bd1f-b34f0336b2ef")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15035,10 +15334,10 @@
 		(at 165.444084 129.404711)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW22"
+		(property "Reference" "SW13"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "0b1e28cf-2dc9-498b-896b-87199361d50a")
+			(uuid "2faaa397-a512-4a19-b1de-22439fb767e5")
 			(effects
 				(font
 					(size 1 1)
@@ -15049,7 +15348,7 @@
 		(property "Value" "C2"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "cadbd49d-3e24-4525-aecb-a4ee94880fa6")
+			(uuid "dc2971b1-cb12-482a-97d9-10a1b9e7fd49")
 			(effects
 				(font
 					(size 1 1)
@@ -15062,7 +15361,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "ecdc439c-f0e5-41c8-bbbd-b4cda67f0731")
+			(uuid "5d0d546a-5fec-4a9e-b08f-45393a4ad649")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15075,7 +15374,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b747fa2f-2e8f-4b59-ab87-2b45c074c240")
+			(uuid "b3092be2-fd10-4f1f-ab24-f64231d3b5dd")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15416,7 +15715,7 @@
 		(at 64 46.5 -90)
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=10.16mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 10.16mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
-		(property "Reference" "R6"
+		(property "Reference" "R9"
 			(at 5.08 -2.37 90)
 			(layer "F.SilkS")
 			(uuid "3f5a9d3f-e8d8-4a90-85a6-b5890c8f557f")
@@ -15590,10 +15889,10 @@
 		(at 126.970425 129.404711)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW20"
+		(property "Reference" "SW10"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "5f8a2b11-5f2a-472d-84e9-ccb62f2faabc")
+			(uuid "d8b580e8-3f6e-4aac-b499-0e960b241f1a")
 			(effects
 				(font
 					(size 1 1)
@@ -15604,7 +15903,7 @@
 		(property "Value" "A1"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "602debf2-11b2-4f2f-b5f3-0025957a2522")
+			(uuid "d736092b-deb8-48a5-ac4f-ec4d3ec85dd2")
 			(effects
 				(font
 					(size 1 1)
@@ -15617,7 +15916,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "aee0aba1-ac21-4542-a419-d1ff3a45a771")
+			(uuid "14b57351-bce7-4d8b-a653-67e66b7bd2b6")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15630,7 +15929,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "926deaa8-d315-4070-8e8a-e578ffe7c238")
+			(uuid "f374c739-2fbc-4c37-964a-749907eaf123")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15875,7 +16174,7 @@
 		(at 32.700495 169.912305)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D20"
+		(property "Reference" "D14"
 			(at 3.81 1.911005 0)
 			(layer "F.SilkS")
 			(uuid "459e1aca-8607-45e3-84d0-d8675dbe1812")
@@ -16323,7 +16622,7 @@
 			(remove_unused_layers no)
 			(net 105 "unconnected-(RV2-Pad1)")
 			(pinfunction "1")
-			(pintype "passive")
+			(pintype "passive+no_connect")
 			(uuid "e20937d5-80af-44a6-87f2-e193ff84ee12")
 		)
 		(pad "2" thru_hole circle
@@ -16371,7 +16670,7 @@
 			(at -4.5 3 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "72c2b720-4c79-458e-a402-0bb8d4323ef3")
+			(uuid "ba11f885-b092-4533-89f3-2eba38fcde14")
 			(effects
 				(font
 					(size 1 1)
@@ -16382,7 +16681,7 @@
 		(property "Value" "MountingHole_3.2mm_M3"
 			(at 0 4.15 0)
 			(layer "F.Fab")
-			(uuid "f8cdd43f-c48c-4bcc-8b0c-d33ea53da6ce")
+			(uuid "c93bd8d6-75e4-4a67-95b9-c54f6e0015ed")
 			(effects
 				(font
 					(size 1 1)
@@ -16394,7 +16693,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "ad51ffdf-c123-475f-8f6b-8a700453a7d1")
+			(uuid "564f5e79-0f88-4ac9-b66b-ea0396659e1a")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16406,7 +16705,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "5925532e-c6b2-4212-a77a-50305b0fe667")
+			(uuid "2bbd0d00-e705-46be-897c-7cb2041147a9")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16463,10 +16762,10 @@
 		(at 59.643533 156.518022)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW24"
+		(property "Reference" "SW16"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "42f7497a-e98e-46d1-aa7e-899bfc8037ae")
+			(uuid "143a0cc1-5f12-458e-b1d2-0593fe052d75")
 			(effects
 				(font
 					(size 1 1)
@@ -16477,7 +16776,7 @@
 		(property "Value" "D#2"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "fe6b2a13-aca8-406b-be2e-930d691abb07")
+			(uuid "514cc07b-5369-44eb-9cb4-59442cc3eadc")
 			(effects
 				(font
 					(size 1 1)
@@ -16490,7 +16789,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "feb22a76-4f75-4d4b-86fb-aa33adb0e53a")
+			(uuid "07d07448-0a94-492b-b321-e1689868967d")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16503,7 +16802,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e4fab271-b059-4936-a175-0d41305a65d7")
+			(uuid "e4110b13-0bbd-4301-8a54-9f8599e30fd9")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16748,10 +17047,10 @@
 		(at 88.508996 175.734711)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW30"
+		(property "Reference" "SW18"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "93d2b96b-ef40-4131-8d69-d5f4203b7596")
+			(uuid "695b8b17-f052-49cf-853a-ad26f9a02d3f")
 			(effects
 				(font
 					(size 1 1)
@@ -16762,7 +17061,7 @@
 		(property "Value" "F2"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "d506ae47-cd2b-4f79-8ade-8e68838d4201")
+			(uuid "490c4be2-156c-4888-b218-760886000b2f")
 			(effects
 				(font
 					(size 1 1)
@@ -16775,7 +17074,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "c19d2ad6-f968-4dfe-b4f7-b7b2c941bee5")
+			(uuid "b11dcdda-5d31-4abc-a0fd-9d659d29dbe3")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16788,7 +17087,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "34ec7e1b-c9f8-49af-891e-0beac292e81a")
+			(uuid "ad3bdc41-c8e6-4557-bc78-4faef271c7fe")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17037,7 +17336,7 @@
 			(at -4.5 3 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "d044a629-74be-4f00-9bbd-3e221e46c036")
+			(uuid "890f824f-cd64-47be-acd5-e31ca6470e61")
 			(effects
 				(font
 					(size 1 1)
@@ -17048,7 +17347,7 @@
 		(property "Value" "MountingHole_3.2mm_M3"
 			(at 0 4.15 0)
 			(layer "F.Fab")
-			(uuid "6b8c69a5-6ff1-4d40-8a00-7e5cf9d3ac04")
+			(uuid "49e20a93-908a-4326-b14a-a66eea6be6a5")
 			(effects
 				(font
 					(size 1 1)
@@ -17060,7 +17359,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "14b2d6c0-a600-4817-94d6-fbe7473b24bf")
+			(uuid "ee7b41a3-0f06-4ef7-82f1-3fb4a2aa9e1d")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17072,7 +17371,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e39af034-57e7-4333-937f-7648827bdce9")
+			(uuid "dcfb307e-b1e6-4a78-ae1b-432c89fd2493")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17129,10 +17428,10 @@
 		(at 30.786276 129.404711)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW15"
+		(property "Reference" "SW1"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "152d425d-cc54-4e80-956f-17c75d4fe262")
+			(uuid "1ac757a9-49e9-4c6d-bee7-99515746f39f")
 			(effects
 				(font
 					(size 1 1)
@@ -17143,7 +17442,7 @@
 		(property "Value" "C1"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "656fe5b3-f255-4da5-83bf-b360dc019e2e")
+			(uuid "72d6aba4-c214-4d38-9d0a-f32f71404837")
 			(effects
 				(font
 					(size 1 1)
@@ -17156,7 +17455,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "47d08261-9c8e-4efa-b7dd-5b56995251c5")
+			(uuid "b6b2ea19-2ab3-4411-b3f4-0c02f88d232a")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17169,7 +17468,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b5339ac3-ca44-4c44-a559-d653a4f0cbf1")
+			(uuid "4f636291-ed3a-4905-a335-78737d37dad1")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17418,7 +17717,7 @@
 			(at -4.5 3 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "f9b1c246-5508-49be-b394-fad51c0fd1c4")
+			(uuid "d11abcb7-3847-44a7-885d-61c3c4e904b8")
 			(effects
 				(font
 					(size 1 1)
@@ -17429,7 +17728,7 @@
 		(property "Value" "MountingHole_3.2mm_M3"
 			(at 0 4.15 0)
 			(layer "F.Fab")
-			(uuid "2d08d9a7-68d3-4460-9ca9-6e51a21c7749")
+			(uuid "fecd90d2-cd8f-4a6f-a3ca-a140312fb729")
 			(effects
 				(font
 					(size 1 1)
@@ -17441,7 +17740,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "1795395a-44f4-46b1-84a0-815254b55c8c")
+			(uuid "0784c4a3-a94d-4416-af5b-982883cf0910")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17453,7 +17752,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "6c34a15c-0441-4a27-81ff-e86dbe6cdbbe")
+			(uuid "5732da58-3644-4994-9a8a-8a870e042cd4")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17508,12 +17807,12 @@
 		(layer "F.Cu")
 		(uuid "9808a179-a4c7-4841-9a6b-f6da360ef593")
 		(at 29.022437 237.324034)
-		(property "Reference" "J9"
+		(property "Reference" "J11"
 			(at -0.5 7.5 0)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "a8c32d67-36d1-43bb-a76d-c66f9c7305f0")
+			(uuid "e0daf8c2-b309-4ccc-8dc0-21a1a73c0e2a")
 			(effects
 				(font
 					(size 1 1)
@@ -17525,7 +17824,7 @@
 			(at -0.5 8 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "2a70a21f-db53-4a0a-ad99-77616301b86d")
+			(uuid "ac596c80-16fb-41d4-9739-3985cc8c3fc8")
 			(effects
 				(font
 					(size 1 1)
@@ -17538,7 +17837,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "3f45a79a-f5e7-44b3-8fe6-a7ba832fdbbe")
+			(uuid "4a7fa50d-d4fe-43f5-8cd4-aa6c23efc1a9")
 			(effects
 				(font
 					(size 1 1)
@@ -17551,7 +17850,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b0c25293-7188-4b6e-b303-95c25c7497d9")
+			(uuid "4b4b1dfa-5821-42c7-9883-f6e9e5c80740")
 			(effects
 				(font
 					(size 1 1)
@@ -17606,10 +17905,10 @@
 		(at 146.207254 129.404711)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW21"
+		(property "Reference" "SW12"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "5e5a25ca-2d52-4479-8960-1a02c89281d4")
+			(uuid "9b1ef124-0d7f-4c30-919d-fe86b41feaec")
 			(effects
 				(font
 					(size 1 1)
@@ -17620,7 +17919,7 @@
 		(property "Value" "B1"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "754b8d2c-92cd-455b-a291-478a241b4dda")
+			(uuid "54649f98-f05f-4685-82d6-9322bcfb3946")
 			(effects
 				(font
 					(size 1 1)
@@ -17633,7 +17932,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b5f3ad11-82a1-41b6-819c-ff6c9c1ba8ac")
+			(uuid "1a0ec49e-013f-46f2-a123-5f0b5d8d6f38")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17646,7 +17945,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "0a7a6017-8552-4a98-a64a-d8f38881d0f0")
+			(uuid "d8d35166-95cd-4bcc-b8e8-a9f0a820e170")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17889,7 +18188,7 @@
 		(layer "F.Cu")
 		(uuid "99e609e5-52a2-40f7-9416-2510dd638aeb")
 		(at 163.5 88)
-		(property "Reference" "SW9"
+		(property "Reference" "SW35"
 			(at 0 8 0)
 			(unlocked yes)
 			(layer "F.SilkS")
@@ -18012,7 +18311,7 @@
 			(at -4.5 3 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "f1c1e320-77d3-40be-8c7d-4452b68c074f")
+			(uuid "1d7b7775-bbc3-4293-9dfc-bb34756a5f05")
 			(effects
 				(font
 					(size 1 1)
@@ -18023,7 +18322,7 @@
 		(property "Value" "MountingHole_3.2mm_M3"
 			(at 0 4.15 0)
 			(layer "F.Fab")
-			(uuid "02a2fa60-ca13-49df-aa73-fdab04d66ede")
+			(uuid "ad846a47-c5bf-4e3f-be36-fc38a8eb305f")
 			(effects
 				(font
 					(size 1 1)
@@ -18035,7 +18334,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "c92a3539-9bda-44bb-9590-435d18f7640d")
+			(uuid "b2968294-b032-4d01-9b02-d88554fd9198")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18047,7 +18346,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "bffb654a-220a-4531-9246-a45aa4bc4a92")
+			(uuid "9bf454da-6aa3-4535-8ae8-84fa12b5848a")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18104,7 +18403,7 @@
 		(at 158.010711 142.88282)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D19"
+		(property "Reference" "D13"
 			(at 3.81 1.911005 0)
 			(layer "F.SilkS")
 			(uuid "60352a19-6c92-4f7e-92be-1c4861e5a7a0")
@@ -18389,7 +18688,7 @@
 		(at 81.195215 96.245669)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D5"
+		(property "Reference" "D29"
 			(at 4.12 2 0)
 			(layer "F.SilkS")
 			(uuid "62a69285-21d1-4b42-8613-d8a57aef8c65")
@@ -18674,7 +18973,7 @@
 		(at 43.56 48.19 180)
 		(descr "C, Disc series, Radial, pin pitch=5.00mm, diameter*width=4.3*1.9mm^2, Capacitor, http://www.vishay.com/docs/45233/krseries.pdf")
 		(tags "C Disc series Radial pin pitch 5.00mm diameter 4.3mm width 1.9mm Capacitor")
-		(property "Reference" "C2"
+		(property "Reference" "C5"
 			(at -2.44 0.19 0)
 			(layer "F.SilkS")
 			(uuid "366cb670-bd06-42b1-9215-b4a847465233")
@@ -18837,7 +19136,7 @@
 		(at 56.260294 48.722353 90)
 		(descr "LED, diameter 5.0mm, 2 pins, http://cdn-reichelt.de/documents/datenblatt/A500/LL-504BC2E-009.pdf, generated by kicad-footprint-generator")
 		(tags "LED")
-		(property "Reference" "D1"
+		(property "Reference" "D32"
 			(at 1.27 -3.96 90)
 			(layer "F.SilkS")
 			(uuid "e3093bb3-f712-4670-a3e7-c959662af4f3")
@@ -19151,10 +19450,10 @@
 		(at 40.408264 110.188022)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW11"
+		(property "Reference" "SW2"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "95f112bf-a6ba-44f5-ae9a-103a008e82b6")
+			(uuid "c07a5da0-51a0-406c-b22e-8ab10bd092b9")
 			(effects
 				(font
 					(size 1 1)
@@ -19165,7 +19464,7 @@
 		(property "Value" "C#1"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "f714f219-fe48-4dff-86dc-83de7221af32")
+			(uuid "e6794f33-3d6c-4515-8f75-047b5f102e91")
 			(effects
 				(font
 					(size 1 1)
@@ -19178,7 +19477,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "d6f68125-c141-46ba-9687-982abcc38752")
+			(uuid "d95fd58f-7d9d-43f2-978f-ef24beeda440")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19191,7 +19490,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "f6c2a185-c00a-4350-9bf3-18b05f8534e9")
+			(uuid "91ee0cb7-32d8-4603-b8e9-03ca13056b01")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19436,7 +19735,7 @@
 		(at 23.200711 96.2513)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D2"
+		(property "Reference" "D26"
 			(at 4.12 2 0)
 			(layer "F.SilkS")
 			(uuid "c1f03d30-fbf8-447b-8640-fcc96d21514b")
@@ -19721,10 +20020,10 @@
 		(at 136.606781 156.518022)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW27"
+		(property "Reference" "SW23"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "2a1eb4c0-923a-441f-bd49-c97df20781a5")
+			(uuid "60e0831b-7c0f-4ce1-89c2-7a23a55da2f4")
 			(effects
 				(font
 					(size 1 1)
@@ -19735,7 +20034,7 @@
 		(property "Value" "A#2"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "8f63c28a-6448-475d-8322-45a67e605407")
+			(uuid "6df72ec7-2035-4220-be84-d0703f204be6")
 			(effects
 				(font
 					(size 1 1)
@@ -19748,7 +20047,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "823c4d80-61a4-4b87-a695-fdea0c3e5d91")
+			(uuid "6f525a29-c587-4f77-9d49-a676fda4d1f9")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19761,7 +20060,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "821314db-d842-4588-881e-7be4ae2fda81")
+			(uuid "1ee8e09b-60a1-451d-ad8d-6b7185cb3cfe")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20006,10 +20305,10 @@
 		(at 40.420495 156.518022)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW23"
+		(property "Reference" "SW14"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "67ae95e0-8356-418f-89b0-5737b3630f19")
+			(uuid "1b26ff17-5e54-44e0-8a34-2d210f4f76c0")
 			(effects
 				(font
 					(size 1 1)
@@ -20020,7 +20319,7 @@
 		(property "Value" "C#2"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "bfac2060-90df-4d19-ae1c-3900ec30f787")
+			(uuid "19b03f4e-1b8d-4ce7-93f0-357b32ae2bbd")
 			(effects
 				(font
 					(size 1 1)
@@ -20033,7 +20332,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "9e8e0f62-f750-4e65-8953-e0fb2b7ab17d")
+			(uuid "eb22502c-fb76-469e-810b-facd986be50d")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20046,7 +20345,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "026a82a0-320f-4c2b-8ce4-8b174025d359")
+			(uuid "296dea41-90d7-49c8-803b-07e6a8b598c3")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20391,7 +20690,7 @@
 			(at -4.5 3 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "16bd5a09-6922-447a-9ebe-d349c1ecf9ec")
+			(uuid "e8ddc65a-7df2-41d9-adc0-95336b2843f5")
 			(effects
 				(font
 					(size 1 1)
@@ -20402,7 +20701,7 @@
 		(property "Value" "MountingHole_3.2mm_M3"
 			(at 0 4.15 0)
 			(layer "F.Fab")
-			(uuid "c86223be-b26f-427a-8b6e-107fd939df80")
+			(uuid "79a1cc9a-ac2b-4ef0-9419-2db0b07a31b5")
 			(effects
 				(font
 					(size 1 1)
@@ -20414,7 +20713,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "d17871eb-fde5-473b-8437-7e9cb5f0a7b0")
+			(uuid "9295a950-8475-41fc-8169-6c46340f2476")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20426,7 +20725,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "0882e482-3b85-446c-86c0-33687890fcb6")
+			(uuid "e849f3a4-edbe-4b06-9c5b-c444c38a834b")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20481,7 +20780,7 @@
 		(layer "F.Cu")
 		(uuid "b4f88e57-4f7a-49d8-973e-11669111b7d9")
 		(at 27.5 64.975062)
-		(property "Reference" "J7"
+		(property "Reference" "J3"
 			(at -0.5 7.5 0)
 			(unlocked yes)
 			(layer "F.SilkS")
@@ -20582,7 +20881,7 @@
 			(at -4.5 3 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "9a16d073-657b-40fd-8106-442e402c2370")
+			(uuid "a39524f7-fbbb-462a-85b8-59e27bacdcc6")
 			(effects
 				(font
 					(size 1 1)
@@ -20593,7 +20892,7 @@
 		(property "Value" "MountingHole_3.2mm_M3"
 			(at 0 4.15 0)
 			(layer "F.Fab")
-			(uuid "dc8e471f-a934-49c0-b512-b9bdea9be5f8")
+			(uuid "9bb2c178-1e6a-48aa-b261-be3bc31c8d78")
 			(effects
 				(font
 					(size 1 1)
@@ -20605,7 +20904,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "27938d76-0bc5-4aa9-885e-041570e5d022")
+			(uuid "e6c33e8a-bfc8-4122-ab06-a81c7867bcec")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20617,7 +20916,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "269b96a2-f7e6-49b5-9273-653307132e82")
+			(uuid "4b5e75f8-1513-4802-8f2c-d1655d730e29")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20672,12 +20971,12 @@
 		(layer "F.Cu")
 		(uuid "b68547d0-c3fb-40ee-ba9d-323c6b762d7d")
 		(at 57.772437 237.324034)
-		(property "Reference" "J10"
+		(property "Reference" "J13"
 			(at -0.5 7.5 0)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "112d26b8-18bd-4ee3-b6da-bd51081f4237")
+			(uuid "7d8ac5c2-7776-41c0-9b77-4f568d957eb9")
 			(effects
 				(font
 					(size 1 1)
@@ -20689,7 +20988,7 @@
 			(at -0.5 8 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "164a0e9a-c5e6-4d9a-8746-6d7806cb68f1")
+			(uuid "bb6c75cb-63a9-4bea-9369-c28ce25a3c0d")
 			(effects
 				(font
 					(size 1 1)
@@ -20702,7 +21001,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "ec9ae76d-2a42-445f-bcf8-983aca26fbea")
+			(uuid "17a0cc35-3637-4711-86a4-5cc86d82e7c7")
 			(effects
 				(font
 					(size 1 1)
@@ -20715,7 +21014,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "a6e374f2-9214-4060-8dbe-c2ed44243a93")
+			(uuid "4dae22a7-0a45-45a7-8540-c98918776583")
 			(effects
 				(font
 					(size 1 1)
@@ -20773,7 +21072,7 @@
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "eaa955f2-82b6-4d30-ade9-b0243600ddfc")
+			(uuid "f37e5756-ec72-4a70-92b0-3adaff08ea7e")
 			(effects
 				(font
 					(size 1 1)
@@ -20785,7 +21084,7 @@
 			(at -0.5 8 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "04f78269-27a5-4c22-8840-b8109ae8c02f")
+			(uuid "1a0d9bc5-da80-4c4f-a260-260ae059c861")
 			(effects
 				(font
 					(size 1 1)
@@ -20798,7 +21097,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "1c68fe63-0da7-4253-b8cf-79581383d117")
+			(uuid "1462ea34-68ea-405d-a53f-7d5cc5b1b95b")
 			(effects
 				(font
 					(size 1 1)
@@ -20811,7 +21110,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "45d5e778-ec6f-4cc6-bf6a-f4e9905b9903")
+			(uuid "42c42ff9-2563-4d21-b34f-b30902b7e45b")
 			(effects
 				(font
 					(size 1 1)
@@ -20870,7 +21169,7 @@
 			(at -4.5 3 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "235e2eaa-0b20-40d3-a10e-b660cefa5b09")
+			(uuid "a1d00121-abd6-4332-9c2a-ee877abe089f")
 			(effects
 				(font
 					(size 1 1)
@@ -20881,7 +21180,7 @@
 		(property "Value" "MountingHole_3.2mm_M3"
 			(at 0 4.15 0)
 			(layer "F.Fab")
-			(uuid "0cce1f47-1062-43c9-8307-1cad4e5ba0cb")
+			(uuid "57e9c0ea-e7e5-4f7c-9d2c-5a6ba3cf3d31")
 			(effects
 				(font
 					(size 1 1)
@@ -20893,7 +21192,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "087af74c-9b85-4c00-9666-7e58ea5905cd")
+			(uuid "234bf7ee-b1de-437a-a802-21ccbc0d7ea9")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20905,7 +21204,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "7c4f1948-ed44-4368-93e0-c52ac0add50e")
+			(uuid "cb366f17-161b-4702-9f8f-9e0ac6d3bf10")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20962,7 +21261,7 @@
 		(at 141.92 19.5 90)
 		(descr "Through hole IDC box header, 2x03, 2.54mm pitch, DIN 41651 / IEC 60603-13, double rows, https://docs.google.com/spreadsheets/d/16SsEcesNF15N3Lb4niX7dcUr-NY5_MFPQhobNuNppn4/edit#gid=0")
 		(tags "Through hole vertical IDC box header THT 2x03 2.54mm double row")
-		(property "Reference" "J5"
+		(property "Reference" "J7"
 			(at 1.27 -6.1 90)
 			(layer "F.SilkS")
 			(uuid "a18a8c35-ec57-4101-9aa8-d00279bd7488")
@@ -21410,11 +21709,11 @@
 		(at 70.497502 242.477069)
 		(descr "Through hole straight pin header, 1x06, 2.54mm pitch, single row")
 		(tags "Through hole pin header THT 1x06 2.54mm single row")
-		(property "Reference" "J14"
+		(property "Reference" "J9"
 			(at 0 -2.38 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "a2562c58-9728-474b-b50c-5b3ff313b91d")
+			(uuid "3da2b671-5490-4461-a009-16e4d89e979b")
 			(effects
 				(font
 					(size 1 1)
@@ -21425,7 +21724,7 @@
 		(property "Value" "Conn_01x06_Pin"
 			(at 0 15.08 0)
 			(layer "F.Fab")
-			(uuid "f351fc35-51a0-48a6-a8f0-a0007942c368")
+			(uuid "d1c3696f-e617-41ee-be85-fb6a9c1664eb")
 			(effects
 				(font
 					(size 1 1)
@@ -21437,7 +21736,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "1941635b-0287-4977-b47a-446539b224d8")
+			(uuid "666409a1-3743-4a47-989d-01a1d9ac1e96")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21449,7 +21748,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e673c2c5-af40-4ad4-be00-1c9742fde610")
+			(uuid "928525c9-0922-48c7-9156-0b342205590a")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21708,7 +22007,7 @@
 		(at 42.450711 142.88282)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D13"
+		(property "Reference" "D3"
 			(at 3.81 1.911005 0)
 			(layer "F.SilkS")
 			(uuid "1b187e04-b27c-4ccd-8d9e-2d6d487bf667")
@@ -21993,7 +22292,7 @@
 		(at 90.48093 123.636385)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D10"
+		(property "Reference" "D7"
 			(at 3.782447 1.927727 0)
 			(layer "F.SilkS")
 			(uuid "e4082c2f-2fad-4ac7-b371-1a65fe69d26f")
@@ -22278,10 +22577,10 @@
 		(at 146.219485 175.734711)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW34"
+		(property "Reference" "SW24"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "8a7b6618-0f85-41ae-b02d-749d8eeb2d38")
+			(uuid "cd43a279-8c57-4012-ae49-366d87a5b709")
 			(effects
 				(font
 					(size 1 1)
@@ -22292,7 +22591,7 @@
 		(property "Value" "B2"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "0496cff4-5d46-4f01-a814-0e0ed27e558a")
+			(uuid "7818c29b-2cb5-40c9-8f8f-72b3709daa29")
 			(effects
 				(font
 					(size 1 1)
@@ -22305,7 +22604,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "53d9c554-a6b4-4f28-aecb-72d0ff847b6b")
+			(uuid "16ccc0e4-e75e-41f4-8504-536c3416b4cb")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22318,7 +22617,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "54b2eeea-19cc-4e68-847b-fc51250cea68")
+			(uuid "d9ae260a-6559-4bf2-a7a2-4bbd84a611bc")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22563,10 +22862,10 @@
 		(at 98.113161 156.518022)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW25"
+		(property "Reference" "SW19"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "19a8a564-7367-4fad-a741-8e0bee53be8f")
+			(uuid "857494ac-42e1-4a1d-a182-4fb6b635586d")
 			(effects
 				(font
 					(size 1 1)
@@ -22577,7 +22876,7 @@
 		(property "Value" "F#2"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "e64013f7-f8b6-4c30-a5a1-a5136e91d547")
+			(uuid "ac9f5f71-4dbc-421b-aa4d-2f64ce394a9a")
 			(effects
 				(font
 					(size 1 1)
@@ -22590,7 +22889,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "80150e62-a21f-4fec-97eb-887b5443f1e0")
+			(uuid "e9914ef9-e8da-4eae-ba94-a446268de9bd")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22603,7 +22902,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "7e3b8214-4a1d-4279-ad1d-187889049da0")
+			(uuid "cfb889d7-20c8-4a7a-b8c1-96d67c2aee55")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23022,10 +23321,10 @@
 		(at 88.496765 129.404711)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW18"
+		(property "Reference" "SW6"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "8efbafbe-25b3-47be-8b61-8bc60095b614")
+			(uuid "5ec7485b-b212-4326-9b55-717f44e72896")
 			(effects
 				(font
 					(size 1 1)
@@ -23036,7 +23335,7 @@
 		(property "Value" "F1"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "1e17e44e-b409-4b72-a5e1-612d746c5c71")
+			(uuid "d6fde161-6179-4e84-93d8-a5cde9ab6eca")
 			(effects
 				(font
 					(size 1 1)
@@ -23049,7 +23348,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "ed98da93-a37f-4f31-b7d0-f49ad6d98d39")
+			(uuid "6348097e-1ede-4ba1-a1a4-689cb73ce80d")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23062,7 +23361,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "6e45dc85-838b-4b96-996a-09b7f3b08d45")
+			(uuid "fdfe934e-7d23-4b92-9f0d-aa9bc5460ef3")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23592,10 +23891,10 @@
 		(at 59.631302 110.188022)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW10"
+		(property "Reference" "SW4"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "418f5662-9768-4e4a-8c6c-3f6e19fa1ac2")
+			(uuid "9cdbfe2c-bc24-4a3c-a026-a0a05cd8bb72")
 			(effects
 				(font
 					(size 1 1)
@@ -23606,7 +23905,7 @@
 		(property "Value" "D#1"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "cdce0abc-f05c-4b24-8225-55fdea7190ee")
+			(uuid "4b3d8aba-6e53-4a4e-bb4b-3e9f88322ea3")
 			(effects
 				(font
 					(size 1 1)
@@ -23619,7 +23918,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "3e2c8c98-da94-4692-bc17-43d4618689f2")
+			(uuid "98c4ae9a-184c-4cda-b7f8-73cfc6eb6b50")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23632,7 +23931,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "8fae7527-3417-4b9b-b9f1-873154000586")
+			(uuid "378c7747-a5ed-48c5-a2c7-8bb6c7c051be")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23877,7 +24176,7 @@
 		(at 41.31 61.44)
 		(descr "C, Disc series, Radial, pin pitch=5.00mm, diameter*width=4.3*1.9mm^2, Capacitor, http://www.vishay.com/docs/45233/krseries.pdf")
 		(tags "C Disc series Radial pin pitch 5.00mm diameter 4.3mm width 1.9mm Capacitor")
-		(property "Reference" "C1"
+		(property "Reference" "C6"
 			(at -2.31 0.06 0)
 			(layer "F.SilkS")
 			(uuid "7a9caa29-cef1-4266-ae2d-98cac108a264")
@@ -24040,7 +24339,7 @@
 		(at 109.760495 170.162305)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D26"
+		(property "Reference" "D21"
 			(at 3.81 1.911005 0)
 			(layer "F.SilkS")
 			(uuid "4a522dce-e40e-4751-a872-8cf01073cfbd")
@@ -24325,7 +24624,7 @@
 		(at 119.38 142.88282)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D18"
+		(property "Reference" "D10"
 			(at 3.81 1.911005 0)
 			(layer "F.SilkS")
 			(uuid "ddd4b9a9-7718-429f-a361-b750b94623cb")
@@ -24610,7 +24909,7 @@
 		(at 61.510711 142.88282)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D14"
+		(property "Reference" "D5"
 			(at 3.81 1.911005 0)
 			(layer "F.SilkS")
 			(uuid "6d8fd73e-cd7c-4238-a1be-c849505a669b")
@@ -24895,10 +25194,10 @@
 		(at 50.023106 129.404711)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW16"
+		(property "Reference" "SW3"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "39157899-9a46-42cc-bd40-714450a10f2f")
+			(uuid "eae8e20e-a8be-4af6-8f9f-568d85c29f85")
 			(effects
 				(font
 					(size 1 1)
@@ -24909,7 +25208,7 @@
 		(property "Value" "D1"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "f99773fe-8e39-48fd-9c57-7cc912d8e72e")
+			(uuid "84fcbcf2-d7d8-4af5-b788-164ec1e57df5")
 			(effects
 				(font
 					(size 1 1)
@@ -24922,7 +25221,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "76afba3c-58fc-451d-ba49-712dc549488f")
+			(uuid "afbf0167-f256-4572-b97b-11ae6466cc8c")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24935,7 +25234,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "8366508c-5e19-4bef-8a00-e5f4f4795d31")
+			(uuid "0f5d89c5-1e1f-482e-87b6-3c0fe72bc7fc")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -25180,7 +25479,7 @@
 		(at 32.788264 123.63282)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D7"
+		(property "Reference" "D2"
 			(at 3.782447 1.927727 0)
 			(layer "F.SilkS")
 			(uuid "7ae5e97a-7adf-4f75-8189-cf075311d3b8")
@@ -25639,7 +25938,7 @@
 		(at 46.31 50.94 -90)
 		(descr "8-lead though-hole mounted DIP package, row spacing 7.62mm (300 mils), Socket")
 		(tags "THT DIP DIL PDIP 2.54mm 7.62mm 300mil Socket")
-		(property "Reference" "U2"
+		(property "Reference" "U4"
 			(at 9.06 9.81 90)
 			(layer "F.SilkS")
 			(uuid "b4c10d71-e027-4b28-94da-8dca0582ac62")
@@ -25951,10 +26250,10 @@
 		(at 88.591589 82.915669)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW5"
+		(property "Reference" "SW29"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "84086af9-6e9e-42b5-b4ce-2d95768136ed")
+			(uuid "1c62a273-b98e-490d-807b-53862c427521")
 			(effects
 				(font
 					(size 1 1)
@@ -25965,7 +26264,7 @@
 		(property "Value" "X4"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "c54ca115-c223-40bf-a019-87b4a9b46c85")
+			(uuid "4ea1d119-a522-47f1-a861-6dd4d6d8392c")
 			(effects
 				(font
 					(size 1 1)
@@ -25978,7 +26277,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "88ddf503-5ce0-4eab-8000-9cba99ffdceb")
+			(uuid "c1e6a462-0641-4a09-9e0a-498db1f88249")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -25991,7 +26290,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "02034cd1-eea0-406d-bccb-df2cd75a01ca")
+			(uuid "c92ca239-c842-48a8-8b51-1c77bb7664a1")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -26236,7 +26535,7 @@
 		(at 138.614867 189.175201)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D31"
+		(property "Reference" "D24"
 			(at 3.802344 1.975011 0)
 			(layer "F.SilkS")
 			(uuid "f72bb8fb-e710-4f30-be59-41cd128fd944")
@@ -26616,7 +26915,7 @@
 		(at 23.200711 142.88282)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D12"
+		(property "Reference" "D1"
 			(at 3.81 1.911005 0)
 			(layer "F.SilkS")
 			(uuid "2dc46a36-2fde-4af6-8aef-6ee3349797c0")
@@ -26901,7 +27200,7 @@
 		(at 130.59 43.784 90)
 		(descr "Arduino Nano, http://www.mouser.com/pdfdocs/Gravitech_Arduino_Nano3_0.pdf")
 		(tags "Arduino Nano")
-		(property "Reference" "A1"
+		(property "Reference" "A2"
 			(at 7.62 -5.08 90)
 			(layer "F.SilkS")
 			(uuid "4874ef14-30ce-4917-9966-3ea349c9228b")
@@ -27636,7 +27935,7 @@
 		(at 22.34 51)
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=10.16mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 10.16mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
-		(property "Reference" "R2"
+		(property "Reference" "R6"
 			(at -2.25 0 0)
 			(layer "F.SilkS")
 			(uuid "eb94c7eb-58bd-42b0-b216-1e7aad50afdb")
@@ -27810,10 +28109,10 @@
 		(at 69.259935 129.404711)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW17"
+		(property "Reference" "SW5"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "8fe29a90-3b67-4ee1-b153-c67dfe0eec3c")
+			(uuid "c6962d56-5607-4321-84fc-df2b477bf023")
 			(effects
 				(font
 					(size 1 1)
@@ -27824,7 +28123,7 @@
 		(property "Value" "E1"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "d6bc9319-0673-4413-a889-291dcd097762")
+			(uuid "92e057d4-2490-441a-b22d-2a305698da6a")
 			(effects
 				(font
 					(size 1 1)
@@ -27837,7 +28136,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "da68cea5-37b7-4528-8684-46e92eca5622")
+			(uuid "6ba1b67a-481b-4f82-9d09-5b8f5b90ab0f")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27850,7 +28149,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "5db8bc8d-ebb3-488c-99cb-a7e670f830a1")
+			(uuid "32d9b729-7545-4952-9a3a-a337ef6ec090")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28191,7 +28490,7 @@
 		(at 52.011302 123.62207)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D8"
+		(property "Reference" "D4"
 			(at 3.782447 1.927727 0)
 			(layer "F.SilkS")
 			(uuid "19b41289-1460-4505-8151-0f0aa1c883f5")
@@ -28476,7 +28775,7 @@
 		(at 100.414504 96.229051)
 		(descr "Diode, DO-35_SOD27 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=4*2mm^2, http://www.diodes.com/_files/packages/DO-35.pdf")
 		(tags "Diode DO-35_SOD27 series Axial Horizontal pin pitch 7.62mm  length 4mm diameter 2mm")
-		(property "Reference" "D6"
+		(property "Reference" "D30"
 			(at 4.12 2 0)
 			(layer "F.SilkS")
 			(uuid "e6088a77-044b-4e56-b7c2-627332122cf3")
@@ -28761,10 +29060,10 @@
 		(at 98.10093 110.188022)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW12"
+		(property "Reference" "SW7"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "2c638334-b540-4324-ae44-d7d46615f8a9")
+			(uuid "0129a98d-f2c2-4c0f-9a84-3233a0ce09ae")
 			(effects
 				(font
 					(size 1 1)
@@ -28775,7 +29074,7 @@
 		(property "Value" "F#1"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "47909392-7d80-47f0-b8e6-75f3ec004884")
+			(uuid "1f776923-b7d9-449e-b0b7-5bcc596ab07c")
 			(effects
 				(font
 					(size 1 1)
@@ -28788,7 +29087,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "9d82ee62-b75a-483d-8c5a-e81d91a7366d")
+			(uuid "c3eb4539-9ba9-49f8-94fe-e982aab0b7bb")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28801,7 +29100,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "54413985-2ba5-4246-bb0b-626df1077308")
+			(uuid "bba1e5fd-b433-40ea-9e44-27d8a6548707")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29146,7 +29445,7 @@
 			(at -4.5 3 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "89603e69-2271-4cf4-a5fc-85623b0b23e2")
+			(uuid "c9f2b3fe-a158-4bd3-aa80-65fc8711eaa8")
 			(effects
 				(font
 					(size 1 1)
@@ -29157,7 +29456,7 @@
 		(property "Value" "MountingHole_3.2mm_M3"
 			(at 0 4.15 0)
 			(layer "F.Fab")
-			(uuid "39d7b5e4-aec0-49d8-8472-954aeb02550a")
+			(uuid "bab1187d-c6ca-48ea-b69e-3a52be70fe46")
 			(effects
 				(font
 					(size 1 1)
@@ -29169,7 +29468,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "c66ba454-1e78-44cf-9eef-00c38dc7fd92")
+			(uuid "83cce190-a85a-4dc3-9a3d-0a6426a97ccd")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29181,7 +29480,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "4e70a2b8-217d-4319-8f99-4ff31d4c54f1")
+			(uuid "b6dcf2d0-64dc-4c65-b979-aba833f11671")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29236,7 +29535,7 @@
 		(layer "F.Cu")
 		(uuid "f62c1504-4a09-4552-84df-390d35bf392d")
 		(at 56.25 64.975062)
-		(property "Reference" "J8"
+		(property "Reference" "J4"
 			(at -0.5 7.5 0)
 			(unlocked yes)
 			(layer "F.SilkS")
@@ -29333,10 +29632,10 @@
 		(at 69.327963 82.915669)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
-		(property "Reference" "SW4"
+		(property "Reference" "SW28"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "94fd61e5-7dcb-4311-bf33-c16c3f1d733f")
+			(uuid "61a31314-5119-4758-b8d6-29662512e57e")
 			(effects
 				(font
 					(size 1 1)
@@ -29347,7 +29646,7 @@
 		(property "Value" "X3"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "66465235-1d86-4190-8413-22fea8883139")
+			(uuid "b68a89f7-0a8a-42f1-b8df-e9e1de6744c1")
 			(effects
 				(font
 					(size 1 1)
@@ -29360,7 +29659,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "ef11b5f9-1b5d-46c3-b1ba-7d018ce121e5")
+			(uuid "d3ada6a1-c250-4213-b3be-6d23e4b797c0")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29373,7 +29672,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "bd03448a-3024-40b6-8bdf-0fb47ffe50c3")
+			(uuid "96ba21a1-f45a-4af9-b57d-d53402687201")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -30248,17 +30547,6 @@
 		(net 8)
 		(uuid "92060807-465b-4d47-b033-9e9f5e9b2d6e")
 	)
-	(gr_rect
-		(start 155.5 13)
-		(end 158 18)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(fill no)
-		(layer "Dwgs.User")
-		(uuid "524749e7-e41e-4d5f-b7f1-6298d05d348c")
-	)
 	(gr_circle
 		(center 25.5 254)
 		(end 26.5 255)
@@ -31129,12 +31417,28 @@
 		(uuid "f0f5e6be-ed8b-4ae0-a0b5-8f5f851fe413")
 	)
 	(segment
+		(start 139.311 42.683)
+		(end 141.20605 42.683)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 8)
+		(uuid "13eb4d14-29b4-416f-bd53-cfaf110a1973")
+	)
+	(segment
 		(start 133.13 38.704)
 		(end 138.21 43.784)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 8)
 		(uuid "164b762a-6cab-4bf9-929a-306138dfaf34")
+	)
+	(segment
+		(start 141.20605 42.683)
+		(end 141.851 43.32795)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 8)
+		(uuid "1c6d8baf-9e9e-4f5c-ab0f-29c9df0b87f3")
 	)
 	(segment
 		(start 136.517 27.443)
@@ -31145,12 +31449,12 @@
 		(uuid "2384808a-fa53-4a80-a8b3-ad6a00f3f666")
 	)
 	(segment
-		(start 133.134126 53.31772)
-		(end 133.134126 50.159874)
+		(start 138.21 43.784)
+		(end 139.311 42.683)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 8)
-		(uuid "2d9b0b45-6bd3-4c03-96e7-f8e80eb87d5f")
+		(uuid "24874725-47fb-42a2-b62b-96d70c224c30")
 	)
 	(segment
 		(start 133.13 28.544)
@@ -31217,20 +31521,12 @@
 		(uuid "889cd242-b5da-4f7a-9547-747db7fec411")
 	)
 	(segment
-		(start 138.21 43.784)
-		(end 138.21 45.084)
+		(start 140.5 50)
+		(end 136.451846 50)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 8)
-		(uuid "88badbe0-0dae-452d-9a21-5817a127f5f6")
-	)
-	(segment
-		(start 133.134126 50.159874)
-		(end 133.25 50.044)
-		(width 0.2)
-		(layer "F.Cu")
-		(net 8)
-		(uuid "962d471f-30ec-4a52-9309-d6b05e6cbb5c")
+		(uuid "8e2a7fc8-1d7c-4097-9617-50c8ec666534")
 	)
 	(segment
 		(start 133.9 95)
@@ -31265,12 +31561,28 @@
 		(uuid "bede91aa-8227-4b66-83a5-992de68701bc")
 	)
 	(segment
-		(start 138.21 45.084)
-		(end 133.25 50.044)
+		(start 141.851 48.649)
+		(end 140.5 50)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 8)
-		(uuid "de779121-6871-4b55-8b15-3157d6004a63")
+		(uuid "d50df567-5e3b-4181-ac3c-c15063695788")
+	)
+	(segment
+		(start 136.451846 50)
+		(end 133.134126 53.31772)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 8)
+		(uuid "d7c272ac-5d6d-4746-8080-0186abaf721c")
+	)
+	(segment
+		(start 141.851 43.32795)
+		(end 141.851 48.649)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 8)
+		(uuid "e5134c36-c88c-46f7-a8ad-11c68b69c635")
 	)
 	(segment
 		(start 62.978647 47.521353)
@@ -32961,22 +33273,6 @@
 		(uuid "d6afe159-08d4-4000-9c46-003a7af4caf7")
 	)
 	(segment
-		(start 141 50.044)
-		(end 141 47.044)
-		(width 0.2)
-		(layer "F.Cu")
-		(net 20)
-		(uuid "0e7ce103-b992-49ab-9058-9ad56206ea9c")
-	)
-	(segment
-		(start 138.21 28.544)
-		(end 139.311 29.645)
-		(width 0.2)
-		(layer "F.Cu")
-		(net 20)
-		(uuid "1cc7b41e-880d-4567-8925-4d946f4a1f0f")
-	)
-	(segment
 		(start 145.849 18.349)
 		(end 147 19.5)
 		(width 0.2)
@@ -33009,36 +33305,20 @@
 		(uuid "44a099e1-26ef-4c57-bba1-3da56b129378")
 	)
 	(segment
-		(start 138.25 50.044)
-		(end 138.25 53.281846)
+		(start 145.5 50)
+		(end 144 51.5)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 20)
-		(uuid "4a3bdfb3-3ab2-41ad-9b30-99430ca20332")
+		(uuid "4b26d84e-ab0e-44ad-9c30-befec95dbf40")
 	)
 	(segment
-		(start 138.25 53.281846)
-		(end 138.214126 53.31772)
+		(start 144.5 44.71137)
+		(end 144.5 34.834)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 20)
-		(uuid "55c46d6b-2469-4b54-b300-fd9ace39719a")
-	)
-	(segment
-		(start 138.25 50.044)
-		(end 141 50.044)
-		(width 0.2)
-		(layer "F.Cu")
-		(net 20)
-		(uuid "602243e2-49b5-4965-9021-70936f1a4675")
-	)
-	(segment
-		(start 139.311 29.645)
-		(end 139.311 45.355)
-		(width 0.2)
-		(layer "F.Cu")
-		(net 20)
-		(uuid "68e1c59e-2ec5-4ab1-bad2-fce26d0afe7e")
+		(uuid "6d4e1cd9-a180-404e-aa6e-d52d3d3a4c1e")
 	)
 	(segment
 		(start 138.21 28.29)
@@ -33065,6 +33345,14 @@
 		(uuid "8bfb04fa-2dbd-4ced-bef6-a556187111f8")
 	)
 	(segment
+		(start 147.92 47)
+		(end 146.78863 47)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 20)
+		(uuid "998cf133-0aef-4b92-863c-059b53601526")
+	)
+	(segment
 		(start 50.271 18.349)
 		(end 97.041934 18.349)
 		(width 0.2)
@@ -33081,12 +33369,44 @@
 		(uuid "bae84e4d-49af-4fb1-95ac-bea4d7738cc7")
 	)
 	(segment
-		(start 139.311 45.355)
-		(end 141 47.044)
+		(start 147.92 50)
+		(end 147.92 47)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 20)
-		(uuid "bdf0a304-0c84-4132-9263-68ba32d75d37")
+		(uuid "bf773682-acf4-4788-bad6-acce5c654b12")
+	)
+	(segment
+		(start 140.031846 51.5)
+		(end 138.214126 53.31772)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 20)
+		(uuid "c1b93b3e-f61d-4503-9696-d227770f0eeb")
+	)
+	(segment
+		(start 144.5 34.834)
+		(end 138.21 28.544)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 20)
+		(uuid "d34975c7-7502-4c76-b974-8a14579bc415")
+	)
+	(segment
+		(start 144 51.5)
+		(end 140.031846 51.5)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 20)
+		(uuid "f17e8f71-ff18-4805-b5e7-6ee08e0310a6")
+	)
+	(segment
+		(start 146.78863 47)
+		(end 144.5 44.71137)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 20)
+		(uuid "f28302e8-ead9-4a85-8b1c-ab20bb3e2cf4")
 	)
 	(segment
 		(start 45.209 45.207574)
@@ -33095,6 +33415,14 @@
 		(layer "F.Cu")
 		(net 20)
 		(uuid "f40ec358-ea81-4c46-b346-58c3a8a41766")
+	)
+	(segment
+		(start 145.5 50)
+		(end 147.92 50)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 20)
+		(uuid "f47c0758-915a-4d5e-86b7-d496efa1c5ec")
 	)
 	(segment
 		(start 49.08 19.54)
@@ -33889,28 +34217,20 @@
 		(uuid "b19b4bbf-8b31-4d39-bb66-1fe1b88c9ca7")
 	)
 	(segment
-		(start 100.681898 35.752562)
-		(end 132.718562 35.752562)
-		(width 0.2)
-		(layer "B.Cu")
-		(net 81)
-		(uuid "2e162561-92ae-4408-b603-ed9984b1c7a7")
-	)
-	(segment
-		(start 132.718562 35.752562)
+		(start 140.290973 43.784)
 		(end 140.75 43.784)
 		(width 0.2)
-		(layer "B.Cu")
+		(layer "F.Cu")
 		(net 81)
-		(uuid "d8db1f82-f079-45fa-b5ff-4677e4956e19")
+		(uuid "a3bd7291-863e-4f5e-b017-7af629a41636")
 	)
 	(segment
-		(start 75.505671 60.928789)
-		(end 100.681898 35.752562)
+		(start 135.5 48.574973)
+		(end 140.290973 43.784)
 		(width 0.2)
-		(layer "B.Cu")
+		(layer "F.Cu")
 		(net 81)
-		(uuid "e613d158-cd4e-4a0c-8301-9f759db93f1c")
+		(uuid "dce63484-abca-4679-803f-65977a2fcf4a")
 	)
 	(segment
 		(start 64 56.66)
@@ -34665,12 +34985,20 @@
 		(uuid "15b834b1-84e3-44d6-9ef5-6efee75269a5")
 	)
 	(segment
-		(start 148.37 28.544)
-		(end 149.471 29.645)
+		(start 148.374126 53.31772)
+		(end 154.691846 47)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 102)
-		(uuid "198a4cf4-e0a1-4e11-a407-592138cff3d5")
+		(uuid "2b09bad5-41e2-4580-85db-f9ab76ec8a3b")
+	)
+	(segment
+		(start 148.37 28.544)
+		(end 154.691846 34.865846)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 102)
+		(uuid "2c41a3d1-316e-409c-9e66-306baa7dea61")
 	)
 	(segment
 		(start 67.849 41.689)
@@ -34689,20 +35017,20 @@
 		(uuid "46534a24-93dc-44c6-aab1-17e1d13cf5b7")
 	)
 	(segment
+		(start 154.691846 34.865846)
+		(end 154.691846 47)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 102)
+		(uuid "487836c0-b864-4e70-ab0e-b271b3a1b205")
+	)
+	(segment
 		(start 44.727574 43.149)
 		(end 66.389 43.149)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 102)
 		(uuid "50f20b8f-a2a5-4ce9-8bde-5a9a5b5f9a90")
-	)
-	(segment
-		(start 149.471 29.645)
-		(end 149.471 45.355)
-		(width 0.2)
-		(layer "F.Cu")
-		(net 102)
-		(uuid "54ace861-d901-41e6-830c-da0a503fe33b")
 	)
 	(segment
 		(start 43.013572 44.863002)
@@ -34745,6 +35073,14 @@
 		(uuid "87afcfa1-575d-4009-90ba-ba5fab0a560f")
 	)
 	(segment
+		(start 154.691846 47)
+		(end 158.08 47)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 102)
+		(uuid "b6bd129a-f444-48d5-8bfe-c09be192335c")
+	)
+	(segment
 		(start 71.5 43.038)
 		(end 71.5 49)
 		(width 0.2)
@@ -34769,30 +35105,6 @@
 		(uuid "d78ca962-df5b-4c5e-aede-e053cb1def8b")
 	)
 	(segment
-		(start 149.471 45.355)
-		(end 151.16 47.044)
-		(width 0.2)
-		(layer "F.Cu")
-		(net 102)
-		(uuid "f76d4774-e795-4747-b32c-e1c7960234bf")
-	)
-	(segment
-		(start 148.374126 53.31772)
-		(end 148.374126 49.829874)
-		(width 0.2)
-		(layer "B.Cu")
-		(net 102)
-		(uuid "dfc26664-b631-4bcd-9d88-fc4c0cec0f28")
-	)
-	(segment
-		(start 148.374126 49.829874)
-		(end 151.16 47.044)
-		(width 0.2)
-		(layer "B.Cu")
-		(net 102)
-		(uuid "ef3ea22f-a5c1-482f-981c-9724bc53f2b6")
-	)
-	(segment
 		(start 40.5 77.25)
 		(end 39.791 76.541)
 		(width 0.2)
@@ -34809,12 +35121,12 @@
 		(uuid "35be4efd-d893-4089-a124-bdd5fe2b3209")
 	)
 	(segment
-		(start 151.16 50.044)
-		(end 149.107846 50.044)
+		(start 146.15933 53.31772)
+		(end 149.471 50.00605)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 103)
-		(uuid "434be725-ba01-4423-87b3-accec3dfb0aa")
+		(uuid "40d88e01-c96b-48f6-9954-019f40450e4d")
 	)
 	(segment
 		(start 67.6829 41.288)
@@ -34825,12 +35137,12 @@
 		(uuid "4ab6802b-82fc-4f54-ba79-fe6091697acd")
 	)
 	(segment
-		(start 145.83 28.544)
-		(end 146.931 29.645)
+		(start 145.834126 53.31772)
+		(end 146.15933 53.31772)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 103)
-		(uuid "5ae25ae8-afab-400d-a045-bb5b025f1940")
+		(uuid "4ad217a3-14ad-4a09-94c9-8fd2307e62c5")
 	)
 	(segment
 		(start 74.018789 49.617789)
@@ -34857,14 +35169,6 @@
 		(uuid "72aef8d2-6eab-466a-8ad3-56c5c19291dc")
 	)
 	(segment
-		(start 146.931 29.645)
-		(end 146.931 45.815)
-		(width 0.2)
-		(layer "F.Cu")
-		(net 103)
-		(uuid "8203d778-de11-4aa8-95ee-131b1a4dc28c")
-	)
-	(segment
 		(start 71.901 42.8719)
 		(end 70.3171 41.288)
 		(width 0.2)
@@ -34881,14 +35185,6 @@
 		(uuid "905f08a1-6803-444d-acec-33fad40459c7")
 	)
 	(segment
-		(start 146.931 45.815)
-		(end 151.16 50.044)
-		(width 0.2)
-		(layer "F.Cu")
-		(net 103)
-		(uuid "91a7d61c-0085-493d-8678-912e5446d06b")
-	)
-	(segment
 		(start 42.588574 42.748)
 		(end 40.473572 44.863002)
 		(width 0.2)
@@ -34897,12 +35193,12 @@
 		(uuid "a5d80e4c-349d-424c-8972-44895a031368")
 	)
 	(segment
-		(start 149.107846 50.044)
-		(end 145.834126 53.31772)
+		(start 149.471 50.00605)
+		(end 149.471 32.185)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 103)
-		(uuid "b06940ca-aea6-4670-a2c4-a33844a84c6a")
+		(uuid "ae39630c-aaa2-4089-a133-0cd2ab740f55")
 	)
 	(segment
 		(start 39.791 45.545574)
@@ -34945,6 +35241,38 @@
 		(uuid "ec64fd62-8f8e-4c81-b844-fea9ba48d72c")
 	)
 	(segment
+		(start 149.471 32.185)
+		(end 145.83 28.544)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 103)
+		(uuid "ed25af1a-8de4-45f6-baa5-cbc84fd9ac1d")
+	)
+	(segment
+		(start 145.834126 53.31772)
+		(end 146.15933 53.31772)
+		(width 0.2)
+		(layer "B.Cu")
+		(net 103)
+		(uuid "01bd33f1-32ea-4f91-bd9b-8dc1b7c8649c")
+	)
+	(segment
+		(start 146.15933 53.31772)
+		(end 149.47705 50)
+		(width 0.2)
+		(layer "B.Cu")
+		(net 103)
+		(uuid "0bc1dedb-084d-458f-a8e2-5e459a651ce8")
+	)
+	(segment
+		(start 149.47705 50)
+		(end 158.08 50)
+		(width 0.2)
+		(layer "B.Cu")
+		(net 103)
+		(uuid "a3cb9891-7f84-4bfe-bf3e-81268648efea")
+	)
+	(segment
 		(start 166.646699 53.31772)
 		(end 166.154126 53.31772)
 		(width 0.2)
@@ -34961,28 +35289,20 @@
 		(uuid "9c2dd680-3415-4034-9e75-4c0d6c195c0a")
 	)
 	(segment
-		(start 137.829 45.943)
-		(end 135.67 43.784)
+		(start 135.67 43.784)
+		(end 140.460973 48.574973)
 		(width 0.2)
 		(layer "B.Cu")
 		(net 108)
-		(uuid "35561bcd-249d-47cc-b37f-0ef0c199f09f")
+		(uuid "104334de-96b8-4d5d-95fb-d620360404bf")
 	)
 	(segment
-		(start 161.137473 45.943)
-		(end 137.829 45.943)
+		(start 140.460973 48.574973)
+		(end 163.769446 48.574973)
 		(width 0.2)
 		(layer "B.Cu")
 		(net 108)
-		(uuid "d7f76b7a-a892-482c-8c6a-fb159e04671d")
-	)
-	(segment
-		(start 163.769446 48.574973)
-		(end 161.137473 45.943)
-		(width 0.2)
-		(layer "B.Cu")
-		(net 108)
-		(uuid "fefa2d9c-6292-4d55-8abc-2972a45a2c6e")
+		(uuid "d8b5b5bf-23ad-476b-bfba-62ce018e4c0b")
 	)
 	(segment
 		(start 37.29334 256.328069)
@@ -35151,6 +35471,22 @@
 		(layer "B.Cu")
 		(net 114)
 		(uuid "d89a3b7d-f924-47e8-af02-88c1b0823a28")
+	)
+	(segment
+		(start 127.88 48.574973)
+		(end 87.859487 48.574973)
+		(width 0.2)
+		(layer "B.Cu")
+		(net 115)
+		(uuid "56a634c5-6b86-4aab-a722-6186e4de4c7f")
+	)
+	(segment
+		(start 87.859487 48.574973)
+		(end 75.505671 60.928789)
+		(width 0.2)
+		(layer "B.Cu")
+		(net 115)
+		(uuid "72272f4f-759c-460d-aa81-8d17dfb20bb3")
 	)
 	(embedded_fonts no)
 )
