@@ -9055,6 +9055,17 @@
 		(layer "Edge.Cuts")
 		(uuid "b3f86aff-f849-4649-95c7-b68ecb2a3d7c")
 	)
+	(gr_text "CV MIXER\nV3"
+		(at 35.25 16 0)
+		(layer "F.SilkS")
+		(uuid "163b2722-d3e2-41f5-ac20-c06984248a83")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
 	(gr_text "INPUT A3"
 		(at 32.75 101.75 0)
 		(layer "F.SilkS")
@@ -9081,14 +9092,14 @@
 			(justify left bottom)
 		)
 	)
-	(gr_text "CV MIXER V3"
-		(at 36.58 146 0)
+	(gr_text "CV\nMIXER"
+		(at 37.75 142.5 0)
 		(layer "F.SilkS")
 		(uuid "32e28ee1-67fb-4408-9f62-401d71315ed7")
 		(effects
 			(font
-				(size 1 1)
-				(thickness 0.1)
+				(size 3 3)
+				(thickness 0.375)
 			)
 		)
 	)
