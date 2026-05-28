@@ -6737,7 +6737,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Potentiometer_THT:Potentiometer_Alps_RK09K_Single_Vertical"
+		(property "Footprint" "modular2:Potentiometer_Alps_RK09K_Single_Vertical - knob padding"
 			(at 34.29 43.18 0)
 			(effects
 				(font
@@ -7037,7 +7037,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Potentiometer_THT:Potentiometer_Alps_RK09K_Single_Vertical"
+		(property "Footprint" "modular2:Potentiometer_Alps_RK09K_Single_Vertical - knob padding"
 			(at 119.38 172.72 0)
 			(effects
 				(font
@@ -7508,7 +7508,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Potentiometer_THT:Potentiometer_Alps_RK09K_Single_Vertical"
+		(property "Footprint" "modular2:Potentiometer_Alps_RK09K_Single_Vertical - knob padding"
 			(at 133.35 105.41 0)
 			(effects
 				(font
@@ -8525,7 +8525,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Potentiometer_THT:Potentiometer_Alps_RK09K_Single_Vertical"
+		(property "Footprint" "modular2:Potentiometer_Alps_RK09K_Single_Vertical - knob padding"
 			(at 106.68 130.81 0)
 			(effects
 				(font
@@ -8664,7 +8664,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Potentiometer_THT:Potentiometer_Alps_RK09K_Single_Vertical"
+		(property "Footprint" "modular2:Potentiometer_Alps_RK09K_Single_Vertical - knob padding"
 			(at 151.13 160.02 0)
 			(effects
 				(font
@@ -9838,7 +9838,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Potentiometer_THT:Potentiometer_Alps_RK09K_Single_Vertical"
+		(property "Footprint" "modular2:Potentiometer_Alps_RK09K_Single_Vertical - knob padding"
 			(at 35.56 92.71 0)
 			(effects
 				(font
@@ -9978,7 +9978,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Potentiometer_THT:Potentiometer_Alps_RK09K_Single_Vertical"
+		(property "Footprint" "modular2:Potentiometer_Alps_RK09K_Single_Vertical - knob padding"
 			(at 34.29 58.42 0)
 			(effects
 				(font
@@ -10190,7 +10190,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Potentiometer_THT:Potentiometer_Alps_RK09K_Single_Vertical"
+		(property "Footprint" "modular2:Potentiometer_Alps_RK09K_Single_Vertical - knob padding"
 			(at 39.37 133.35 0)
 			(effects
 				(font
@@ -11396,7 +11396,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Potentiometer_THT:Potentiometer_Alps_RK09K_Single_Vertical"
+		(property "Footprint" "modular2:Potentiometer_Alps_RK09K_Single_Vertical - knob padding"
 			(at 35.56 76.2 0)
 			(effects
 				(font
