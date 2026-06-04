@@ -393,18 +393,6 @@ int main(void) {
 #define SECONDARY_ARDUINO_TWI_ADDRESS 0x42
   while (twi_send_byte(SECONDARY_ARDUINO_TWI_ADDRESS, 'x') != 0);
 
-  int i = 0;
-  for (int j = 0; j < 8; j++) {
-    char buf[14];
-    sprintf(buf, "hello %d", i);
-    twi_send_bytes(SECONDARY_ARDUINO_TWI_ADDRESS, (uint8_t*)buf, strlen(buf));
-    i++;
-    if (i == 10) {
-      i = 0;
-    }
-  }
-
-
   key_matrix_init();
   key_states_t key_states = {0};
 
@@ -439,7 +427,7 @@ int main(void) {
     if (note_stack_size > 0) {
       current_note = note_stack[note_stack_size - 1];
     }
-    printf("%d\n\r", current_note);
+    twi_send_byte(SECONDARY_ARDUINO_TWI_ADDRESS, current_note);
   }
 
   display_init();

@@ -15,22 +15,28 @@
 #define DISPLAY_BACKLIGHT_BRIGHTNESS 0x10
 #define TWI_ADDRESS 0x42
 
-#define BUFSIZE 64
-char buf[BUFSIZE];
-int buf_i = 0;
+#define COMMAND_BUF_SIZE 64
+uint8_t command_buf[COMMAND_BUF_SIZE];
+int command_buf_i = 0;
+
+static const char* note_names = "C 1C#1D 1D#1E 1F 1F#1G 1G#1A 1A#1B 1C 2C#2D 2D#2E 2F 2F#2G 2G#2A 2A#2B 2C 3";
+
+#define STRING_BUF_SIZE 64
+char string_buf[STRING_BUF_SIZE];
 
 ISR(TWI_vect) {
   switch (TWSR) {
     case TWI_SR_STATUS_SLAW:
-      buf_i = 0;
+      command_buf_i = 0;
       break;
     case TWI_SR_STATUS_DATA:
-      buf[buf_i] = TWDR;
-      buf_i++;
+      command_buf[command_buf_i] = TWDR;
+      command_buf_i++;
       break;
     case TWI_SR_STATUS_STOP:
-      buf[buf_i] = '\0';
-      display_text(buf, 0, 0, WHITE, BLACK, 1);
+      strncpy(string_buf, note_names + (command_buf[0] * 3), 3);
+      string_buf[3] = '\0';
+      display_text(string_buf, 0, 0, WHITE, BLACK, 1);
       break;
     default:
       break;

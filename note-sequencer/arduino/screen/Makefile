@@ -28,4 +28,4 @@ clean:
 tags: generate_tags.sh $(wildcard $(SRC_DIR)/*.[ch])
 	./$<
 
-.PHONY: clean
+.PHONY: clean tags
