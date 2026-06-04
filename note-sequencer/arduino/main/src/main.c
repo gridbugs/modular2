@@ -13,6 +13,7 @@
 #include "display.h"
 #include "note.h"
 #include "notes.h"
+#include "key_matrix.h"
 
 #define DISPLAY_BACKLIGHT_BRIGHTNESS 0x20
 
@@ -271,7 +272,111 @@ void display_bottom_line(void) {
   display_text(status_buffer, 0, DISPLAY_HEIGHT - 8, BLACK, WHITE, 0);
 }
 
+typedef enum {
+  KEY_C_1,
+  KEY_C_SHARP_1,
+  KEY_D_1,
+  KEY_D_SHARP_1,
+  KEY_E_1,
+  KEY_F_1,
+  KEY_F_SHARP_1,
+  KEY_G_1,
+  KEY_G_SHARP_1,
+  KEY_A_1,
+  KEY_A_SHARP_1,
+  KEY_B_1,
+  KEY_C_2,
+  KEY_C_SHARP_2,
+  KEY_D_2,
+  KEY_D_SHARP_2,
+  KEY_E_2,
+  KEY_F_2,
+  KEY_F_SHARP_2,
+  KEY_G_2,
+  KEY_G_SHARP_2,
+  KEY_A_2,
+  KEY_A_SHARP_2,
+  KEY_B_2,
+  KEY_C_3,
+  KEY_X_1,
+  KEY_X_2,
+  KEY_X_3,
+  KEY_X_4,
+  KEY_CLOCK_SOURCE,
+} key_t;
+
+const key_t keys_by_key_matrix_bit[] = {
+  KEY_X_1,
+  KEY_G_SHARP_2,
+  KEY_D_SHARP_2,
+  KEY_A_SHARP_1,
+  KEY_F_1,
+  KEY_C_1,
+  KEY_X_2,
+  KEY_A_2,
+  KEY_E_2,
+  KEY_B_1,
+  KEY_F_SHARP_1,
+  KEY_C_SHARP_1,
+  KEY_X_3,
+  KEY_A_SHARP_2,
+  KEY_F_2,
+  KEY_C_2,
+  KEY_G_1,
+  KEY_D_1,
+  KEY_X_4,
+  KEY_B_2,
+  KEY_F_SHARP_2,
+  KEY_C_SHARP_2,
+  KEY_G_SHARP_1,
+  KEY_D_SHARP_1,
+  KEY_CLOCK_SOURCE,
+  KEY_C_3,
+  KEY_G_2,
+  KEY_D_2,
+  KEY_A_1,
+  KEY_E_1,
+};
+
+typedef enum {
+  KEY_NOTE_C_1,
+  KEY_NOTE_C_SHARP_1,
+  KEY_NOTE_D_1,
+  KEY_NOTE_D_SHARP_1,
+  KEY_NOTE_E_1,
+  KEY_NOTE_F_1,
+  KEY_NOTE_F_SHARP_1,
+  KEY_NOTE_G_1,
+  KEY_NOTE_G_SHARP_1,
+  KEY_NOTE_A_1,
+  KEY_NOTE_A_SHARP_1,
+  KEY_NOTE_B_1,
+  KEY_NOTE_C_2,
+  KEY_NOTE_C_SHARP_2,
+  KEY_NOTE_D_2,
+  KEY_NOTE_D_SHARP_2,
+  KEY_NOTE_E_2,
+  KEY_NOTE_F_2,
+  KEY_NOTE_F_SHARP_2,
+  KEY_NOTE_G_2,
+  KEY_NOTE_G_SHARP_2,
+  KEY_NOTE_A_2,
+  KEY_NOTE_A_SHARP_2,
+  KEY_NOTE_B_2,
+  KEY_NOTE_C_3,
+} key_note_t;
+
+#define KEY_NOTE_COUNT 25
+
+key_note_t note_stack[KEY_NOTE_COUNT] = {0};
+uint8_t note_stack_size = 0 ;
+key_note_t current_note = KEY_NOTE_C_1;
+
 int main(void) {
+
+  // Allow printing over UART. The UART pins double up as digital IO pins so this
+  // will mess with functionality, but handy in emergencies.
+  USART0_bitbanged_init();
 
   // Turn off the other arduino by driving its reset pin low
   DDRB |= BIT(5);
@@ -279,9 +384,6 @@ int main(void) {
 
   timer2_init_pwm_port_d_bit_3(DISPLAY_BACKLIGHT_BRIGHTNESS);
 
-  // Allow printing over UART. The UART pins double up as digital IO pins so this
-  // will mess with functionality, but handy in emergencies.
-  USART0_bitbanged_init();
 
   // Wait some time to ensure the second arduino is fully off, then turn it  back on.
   delay_ms(50);
@@ -292,7 +394,7 @@ int main(void) {
   while (twi_send_byte(SECONDARY_ARDUINO_TWI_ADDRESS, 'x') != 0);
 
   int i = 0;
-  while(1) {
+  for (int j = 0; j < 8; j++) {
     char buf[14];
     sprintf(buf, "hello %d", i);
     twi_send_bytes(SECONDARY_ARDUINO_TWI_ADDRESS, (uint8_t*)buf, strlen(buf));
@@ -300,6 +402,44 @@ int main(void) {
     if (i == 10) {
       i = 0;
     }
+  }
+
+
+  key_matrix_init();
+  key_states_t key_states = {0};
+
+  while (1) {
+    key_matrix_scan(&key_states);
+    uint32_t delta = key_states.curr ^ key_states.prev;
+    uint32_t pressed = delta & key_states.curr;
+    while (pressed) {
+      uint8_t pressed_bit = __builtin_stdc_trailing_zeros(pressed);
+      pressed &= ~BIT(pressed_bit);
+      key_t key = keys_by_key_matrix_bit[pressed_bit];
+      if (key < KEY_NOTE_COUNT) {
+        note_stack[note_stack_size] = (key_note_t)key;
+        note_stack_size++;
+      }
+    }
+    uint32_t released = delta & key_states.prev;
+    while (released) {
+      uint8_t released_bit = __builtin_stdc_trailing_zeros(released);
+      released &= ~BIT(released_bit);
+      key_t key = keys_by_key_matrix_bit[released_bit];
+      for (int i = 0; i < note_stack_size; i++) {
+        if (note_stack[i] == (key_note_t)key) {
+          for (; i < note_stack_size - 1; i++) {
+            note_stack[i] = note_stack[i + 1];
+          }
+          note_stack_size--;
+          break;
+        }
+      }
+    }
+    if (note_stack_size > 0) {
+      current_note = note_stack[note_stack_size - 1];
+    }
+    printf("%d\n\r", current_note);
   }
 
   display_init();
