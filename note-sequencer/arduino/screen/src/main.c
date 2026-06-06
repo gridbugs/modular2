@@ -60,8 +60,6 @@ int main(void) {
   display_text("hypoth-", 10, 50, WHITE, BLACK, 1);
   display_text("esis", 50, 70, WHITE, BLACK, 1);
 
-  printf("Hello, World!\n\r");
-
   display_clear(BLACK);
 
   sei();
