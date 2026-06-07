@@ -14,6 +14,8 @@
 #define PORTC_DECODER_INHIBIT BIT(4)
 #define PORTC_DECODER_STROBE BIT(5)
 
+#define PORTB_RUN BIT(4)
+
 #define ADC_CHANNEL_DUTY 6
 #define ADC_CHANNEL_TEMPO 7
 #define ADC_CHANNEL_BIT_DUTY BIT(ADC_CHANNEL_DUTY)
@@ -49,9 +51,16 @@ int main(void) {
   DDRC |= (PORTC_DECODER_ABCD | PORTC_DECODER_STROBE | PORTC_DECODER_INHIBIT);
   PORTC = 0;
 
+  DDRB &= ~PORTB_RUN;
+  PORTB |= PORTB_RUN;
+
   int8_t count = 0;
 
   while (1) {
+
+    if ((PINB & PORTB_RUN) == 0) {
+      continue;
+    }
 
     uint16_t clock_delay = get_delay();
     uint16_t timer_value = timer1_read();
