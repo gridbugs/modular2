@@ -1,0 +1,1 @@
+#define OSC_HZ 16000000
