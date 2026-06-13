@@ -46,9 +46,8 @@ typedef struct {
   out_port_t out_port;
   uint8_t out_port_bit;
   uint8_t btn_portd_bit;
-  bool pressed_now;
-  bool pressed_prev;
   bool sequence[MAX_NUM_STEPS];
+  bool prev_pressed;
 } channel_t;
 
 void set_count_leds(uint8_t count) {
@@ -123,6 +122,10 @@ uint8_t get_clock_divider_base(void) {
   return 0;
 }
 
+bool is_mode_run(void) {
+  return (PIND & PORTD_MODE_SELECT_BIT) != 0;
+}
+
 int main(void) {
 
   // Allow printing over UART. The UART pins double up as digital IO pins so this
@@ -163,24 +166,21 @@ int main(void) {
       .out_port_bit = PORTB_OUT_1_BIT,
       .btn_portd_bit = PORTD_BTN_1_BIT,
       .sequence = { 0 },
-      .pressed_now = false,
-      .pressed_prev = false,
+      .prev_pressed = false,
     },
     [1] = {
       .out_port = OUT_PORT_D,
       .out_port_bit = PORTD_OUT_2_BIT,
       .btn_portd_bit = PORTD_BTN_2_BIT,
       .sequence = { 0 },
-      .pressed_now = false,
-      .pressed_prev = false,
+      .prev_pressed = false,
     },
     [2] = {
       .out_port = OUT_PORT_D,
       .out_port_bit = PORTD_OUT_3_BIT,
       .btn_portd_bit = PORTD_BTN_3_BIT,
       .sequence = { 0 },
-      .pressed_now = false,
-      .pressed_prev = false,
+      .prev_pressed = false,
     },
   };
 
@@ -199,6 +199,8 @@ int main(void) {
 
   while (1) {
 
+    bool running = is_mode_run();
+
     if (shift_timeout > 0) {
       shift_timeout--;
     }
@@ -215,7 +217,7 @@ int main(void) {
     bool shift = get_shift_button();
     bool shift_this_frame = shift && !prev_shift;
     prev_shift = shift;
-    if (shift_this_frame) {
+    if (shift_this_frame && running) {
       if (shift_timeout > 0) {
         count = num_steps;
         divider_count = 0xFF;
@@ -239,18 +241,32 @@ int main(void) {
       tick_this_frame = external_clock_high && !prev_external_clock_high;
       prev_external_clock_high = external_clock_high;
     } else {
-      tick_this_frame = shift_this_frame || (timer_value > clock_delay);
+      tick_this_frame = (running && shift_this_frame) || (timer_value > clock_delay);
+    }
+
+    if (!running) {
+      if (shift_this_frame) {
+        count++;
+        if (count >= num_steps) {
+          count = 0;
+        }
+      }
     }
 
     for (int i = 0; i < NUM_CHANNELS; i++) {
       channel_t *channel = &channels[i];
       bool *step_value = &channel->sequence[count];
       bool btn_pressed = (PIND & channel->btn_portd_bit) == 0;
-      if (btn_pressed) {
-        *step_value = !shift;
+      if (btn_pressed && (shift || !channel->prev_pressed)) {
+        if (running) {
+          *step_value = !shift;
+        } else {
+          *step_value = !*step_value;
+        }
       }
+      channel->prev_pressed = btn_pressed;
       bool out_value;
-      if (timer_value < (prev_period / 2)) {
+      if (!running || (timer_value < (prev_period / 2))) {
         out_value = *step_value;
       } else {
         out_value = false;
@@ -276,19 +292,18 @@ int main(void) {
     if (tick_this_frame) {
       uint8_t prev_divider_count = divider_count;
       divider_count++;
-      count++;
-      if (count >= num_steps) {
-        count = 0;
+      if (running) {
+        count++;
+        if (count >= num_steps) {
+          count = 0;
+        }
       }
-      timer_reset();
       prev_period = timer_value;
       if (!external_clock) {
         set_clock_out(true);
       }
-      if (num_steps_change_display_timeout == 0) {
-        set_count_leds(count);
-      }
       set_clock_divider((divider_count ^ prev_divider_count) >> get_clock_divider_base());
+      timer_reset();
     } else {
       if (timer_value > (prev_period / 2)) {
         if (!external_clock) {
@@ -296,6 +311,9 @@ int main(void) {
         }
         set_clock_divider(0);
       }
+    }
+    if (num_steps_change_display_timeout == 0) {
+      set_count_leds(count);
     }
   }
   return 0;
