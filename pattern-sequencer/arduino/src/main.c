@@ -14,9 +14,9 @@
 
 #define PORTC_CLOCK_SELECT_BIT BIT(0)
 
-#define PORTB_OUT_3_BIT BIT(5)
-#define PORTD_OUT_2_BIT BIT(0)
-#define PORTD_OUT_1_BIT BIT(1)
+#define PORTB_OUT_1_BIT BIT(5)
+#define PORTD_OUT_2_BIT BIT(1)
+#define PORTD_OUT_3_BIT BIT(0)
 
 #define PORTD_BTN_1_BIT BIT(2)
 #define PORTD_BTN_2_BIT BIT(3)
@@ -35,6 +35,7 @@
 #define MAX_NUM_STEPS 16
 
 #define NUM_STEPS_CHANGE_DISPLAY_TIME 4000
+#define DOUBLE_TAP_TIME 1000
 
 typedef enum {
   OUT_PORT_B,
@@ -134,7 +135,7 @@ int main(void) {
 
 
   // Initialize digital IO ports:
-  DDRD |= (PORTD_OUT_2_BIT | PORTD_OUT_1_BIT);
+  DDRD |= (PORTD_OUT_2_BIT | PORTD_OUT_3_BIT);
   DDRD &= ~(PORTD_BTN_1_BIT |
       PORTD_BTN_2_BIT |
       PORTD_BTN_3_BIT |
@@ -148,7 +149,7 @@ int main(void) {
       PORTD_CLOCK_DIVIDER_BASE_1_BIT |
       PORTD_MODE_SELECT_BIT);
 
-  DDRB |= (PORTB_COUNT_MASK | PORTB_OUT_3_BIT);
+  DDRB |= (PORTB_COUNT_MASK | PORTB_OUT_1_BIT);
   DDRB &= ~PORTB_SHIFT_BIT;
   PORTB = PORTB_SHIFT_BIT;
 
@@ -158,8 +159,8 @@ int main(void) {
 
   channel_t channels[NUM_CHANNELS] = {
     [0] = {
-      .out_port = OUT_PORT_D,
-      .out_port_bit = PORTD_OUT_1_BIT,
+      .out_port = OUT_PORT_B,
+      .out_port_bit = PORTB_OUT_1_BIT,
       .btn_portd_bit = PORTD_BTN_1_BIT,
       .sequence = { 0 },
       .pressed_now = false,
@@ -174,8 +175,8 @@ int main(void) {
       .pressed_prev = false,
     },
     [2] = {
-      .out_port = OUT_PORT_B,
-      .out_port_bit = PORTB_OUT_3_BIT,
+      .out_port = OUT_PORT_D,
+      .out_port_bit = PORTD_OUT_3_BIT,
       .btn_portd_bit = PORTD_BTN_3_BIT,
       .sequence = { 0 },
       .pressed_now = false,
@@ -187,6 +188,7 @@ int main(void) {
   uint8_t divider_count = 0;
   uint8_t prev_num_steps = get_num_steps();
   uint16_t num_steps_change_display_timeout = 0;
+  uint16_t shift_timeout = 0;
   bool prev_external_clock = clock_source_is_external();
   set_clock_source(prev_external_clock);
   bool prev_external_clock_high = false;
@@ -194,7 +196,12 @@ int main(void) {
   uint16_t prev_period = 0;
   uint32_t clock_delay = get_delay();
   bool prev_shift = false;
+
   while (1) {
+
+    if (shift_timeout > 0) {
+      shift_timeout--;
+    }
 
     uint8_t num_steps = get_num_steps();
     if (prev_num_steps != num_steps) {
@@ -209,8 +216,11 @@ int main(void) {
     bool shift_this_frame = shift && !prev_shift;
     prev_shift = shift;
     if (shift_this_frame) {
-      count = num_steps;
-      divider_count = 0xFF;
+      if (shift_timeout > 0) {
+        count = num_steps;
+        divider_count = 0xFF;
+      }
+      shift_timeout = DOUBLE_TAP_TIME;
     }
 
     bool external_clock = clock_source_is_external();
@@ -230,6 +240,37 @@ int main(void) {
       prev_external_clock_high = external_clock_high;
     } else {
       tick_this_frame = shift_this_frame || (timer_value > clock_delay);
+    }
+
+    for (int i = 0; i < NUM_CHANNELS; i++) {
+      channel_t *channel = &channels[i];
+      bool *step_value = &channel->sequence[count];
+      bool btn_pressed = (PIND & channel->btn_portd_bit) == 0;
+      if (btn_pressed) {
+        *step_value = !shift;
+      }
+      bool out_value;
+      if (timer_value < (prev_period / 2)) {
+        out_value = *step_value;
+      } else {
+        out_value = false;
+      }
+      switch (channel->out_port) {
+        case OUT_PORT_B:
+          if (out_value) {
+            PORTB |= channel->out_port_bit;
+          } else {
+            PORTB &= ~channel->out_port_bit;
+          }
+          break;
+        case OUT_PORT_D:
+          if (out_value) {
+            PORTD |= channel->out_port_bit;
+          } else {
+            PORTD &= ~channel->out_port_bit;
+          }
+          break;
+      }
     }
 
     if (tick_this_frame) {
@@ -256,7 +297,6 @@ int main(void) {
         set_clock_divider(0);
       }
     }
-
   }
   return 0;
 }

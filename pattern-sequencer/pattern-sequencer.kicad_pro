@@ -658,7 +658,7 @@
       {
         "filename": "pattern-sequencer.kicad_sch",
         "name": "pattern-sequencer",
-        "uuid": "00000000-0000-0000-0000-000000000000"
+        "uuid": "ef63a6cf-21a9-4019-bc85-4241e64a977a"
       }
     ],
     "used_designators": "",
@@ -667,7 +667,7 @@
   "sheets": [
     [
       "ef63a6cf-21a9-4019-bc85-4241e64a977a",
-      "Root"
+      "pattern-sequencer"
     ]
   ],
   "text_variables": {},
