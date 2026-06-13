@@ -1,6 +1,7 @@
 TARGET=main
 
 SRC_DIR=src
+HEADERS=$(wildcard $(SRC_DIR)/*.h)
 SRC=$(wildcard $(SRC_DIR)/*.c)
 OBJ=$(SRC:.c=.o)
 
@@ -15,7 +16,7 @@ CFLAGS=-mmcu=$(MCU) -std=c99 -Wall --param=min-pagesize=0 -O1
 $(TARGET).elf: $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $@
 
-%.o : %.c
+%.o : %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean: 

@@ -1,6 +1,7 @@
 TARGET=main
 
 SRC_DIR=src
+HEADERS=$(wildcard $(SRC_DIR)/*.h)
 SRC=$(wildcard $(SRC_DIR)/*.c)
 OBJ=$(SRC:.c=.o)
 
@@ -14,7 +15,7 @@ $(TARGET).elf: $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $@
 	$(STRIP) $@
 
-%.o : %.c
+%.o : %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:

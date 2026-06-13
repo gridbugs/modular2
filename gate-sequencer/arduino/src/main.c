@@ -5,7 +5,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include "util.h"
-#include "uart_bitbanged.h"
+#include "uart.h"
 #include "adc.h"
 #include "timer.h"
 #include "key_matrix.h"
@@ -71,7 +71,7 @@ int main(void) {
 
   // Allow printing over UART. The UART pins double up as digital IO pins so this
   // will mess with functionality, but handy in emergencies.
-  //USART0_bitbanged_init();
+  //USART0_init();
 
   // Initialize ADC pins
   ADC_init(ADC_CHANNEL_BIT_DUTY | ADC_CHANNEL_BIT_TEMPO);

@@ -34,6 +34,8 @@
 #define NUM_CHANNELS 3
 #define MAX_NUM_STEPS 16
 
+#define NUM_STEPS_CHANGE_DISPLAY_TIME 4000
+
 typedef enum {
   OUT_PORT_B,
   OUT_PORT_D,
@@ -89,7 +91,7 @@ bool get_clock_in(void) {
 }
 
 bool clock_source_is_external(void) {
-  return (PINC & PORTC_CLOCK_SELECT_BIT) == 0;
+  return (PINC & PORTC_CLOCK_SELECT_BIT) != 0;
 }
 
 void set_clock_source(bool external) {
@@ -97,6 +99,8 @@ void set_clock_source(bool external) {
   if (external) {
     // Clock input pin
     DDRC &= ~PORTC_CLOCK_BIT;
+    // Make sure the clock's pull-up resistor is not active.
+    PORTC &= ~PORTC_CLOCK_BIT;
   } else {
     // Clock output pin
     DDRC |= PORTC_CLOCK_BIT;
@@ -120,7 +124,9 @@ uint8_t get_clock_divider_base(void) {
 
 int main(void) {
 
-  USART0_init();
+  // Allow printing over UART. The UART pins double up as digital IO pins so this
+  // will mess with functionality, but handy in emergencies.
+  //USART0_init();
   timer_init();
 
   // Initialize analog pins 6 and 7
@@ -180,12 +186,33 @@ int main(void) {
   uint8_t count = 0;
   uint8_t divider_count = 0;
   uint8_t prev_num_steps = get_num_steps();
+  uint16_t num_steps_change_display_timeout = 0;
   bool prev_external_clock = clock_source_is_external();
   set_clock_source(prev_external_clock);
+  bool prev_external_clock_high = false;
   timer_reset();
   uint16_t prev_period = 0;
   uint32_t clock_delay = get_delay();
+  bool prev_shift = false;
   while (1) {
+
+    uint8_t num_steps = get_num_steps();
+    if (prev_num_steps != num_steps) {
+      prev_num_steps = num_steps;
+      num_steps_change_display_timeout = NUM_STEPS_CHANGE_DISPLAY_TIME;
+    } else if (num_steps_change_display_timeout > 0) {
+      num_steps_change_display_timeout--;
+      set_count_leds(num_steps);
+    }
+
+    bool shift = get_shift_button();
+    bool shift_this_frame = shift && !prev_shift;
+    prev_shift = shift;
+    if (shift_this_frame) {
+      count = num_steps;
+      divider_count = 0xFF;
+    }
+
     bool external_clock = clock_source_is_external();
 
     // Handle change to the clock source
@@ -194,14 +221,15 @@ int main(void) {
       prev_external_clock = external_clock;
     }
 
-    bool tick_this_frame;
     uint16_t timer_value = timer_read();
     clock_delay = get_delay();
-    tick_this_frame = timer_value > clock_delay;
-
-    uint8_t num_steps = get_num_steps();
-    if (prev_num_steps != num_steps) {
-      prev_num_steps = num_steps;
+    bool tick_this_frame;
+    if (external_clock) {
+      bool external_clock_high = get_clock_in();
+      tick_this_frame = external_clock_high && !prev_external_clock_high;
+      prev_external_clock_high = external_clock_high;
+    } else {
+      tick_this_frame = shift_this_frame || (timer_value > clock_delay);
     }
 
     if (tick_this_frame) {
@@ -213,12 +241,18 @@ int main(void) {
       }
       timer_reset();
       prev_period = timer_value;
-      set_clock_out(true);
-      set_count_leds(count);
+      if (!external_clock) {
+        set_clock_out(true);
+      }
+      if (num_steps_change_display_timeout == 0) {
+        set_count_leds(count);
+      }
       set_clock_divider((divider_count ^ prev_divider_count) >> get_clock_divider_base());
     } else {
       if (timer_value > (prev_period / 2)) {
-        set_clock_out(false);
+        if (!external_clock) {
+          set_clock_out(false);
+        }
         set_clock_divider(0);
       }
     }
