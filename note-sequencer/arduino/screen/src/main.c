@@ -5,7 +5,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include "util.h"
-#include "uart_bitbanged.h"
+#include "uart.h"
 #include "timer.h"
 #include "twi.h"
 #include "display.h"
@@ -36,7 +36,6 @@ ISR(TWI_vect) {
     case TWI_SR_STATUS_STOP:
       strncpy(string_buf, note_names + (command_buf[0] * 3), 3);
       string_buf[3] = '\0';
-      display_text(string_buf, 0, 0, WHITE, BLACK, 1);
       break;
     default:
       break;
@@ -50,7 +49,7 @@ int main(void) {
 
   // Allow printing over UART (bitbanged for compatibility with fake arduinos
   // with faulty USB serial chips).
-  USART0_bitbanged_init();
+  USART0_init();
 
   display_init();
 
@@ -66,7 +65,9 @@ int main(void) {
 
   twi_sr(TWI_ADDRESS);
 
-  while(1);
+  while(1) {
+    display_text(string_buf, 0, 0, WHITE, BLACK, 1);
+  }
 
   return 0;
 }

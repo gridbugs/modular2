@@ -1,29 +1,17 @@
 #include <avr/io.h>
 #include <stdio.h>
 #include "util.h"
+#include "clock.h"
 
-// Bit duration measured in loop iterations (hand-tuned with oscilloscope)
-#define BAUD_300_BIT_DELAY 2222
+// The USART0 clock divides the oscillator clock rate by 16.
+#define USART0_CLOCK_HZ (OSC_HZ / 16)
+#define BAUD_RATE_HZ 9600
+#define UBRR_VALUE ((USART0_CLOCK_HZ / BAUD_RATE_HZ) - 1)
 
 // Send a character over USART0.
 int USART0_tx(char data, struct __file* _f) {
-    // Start bit
-    PORTD &= ~BIT(1);
-    for (long int i = BAUD_300_BIT_DELAY; i; i--);
-    // Data bits
-    for (int i = 0; i < 8; i++) {
-        if (data & BIT(i)) {
-            // Send a 1
-            PORTD |= BIT(1);
-        } else {
-            // Send a 0
-            PORTD &= ~BIT(1);
-        }
-        for (long int i = BAUD_300_BIT_DELAY; i; i--);
-    }
-    // Stop bit
-    PORTD |= BIT(1);
-    for (long int i = BAUD_300_BIT_DELAY; i; i--);
+    while (!(UCSR0A & (1 << UDRE0))); // wait for the data buffer to be empty
+    UDR0 = data; // write the character to the data buffer
     return 0;
 }
 
@@ -32,10 +20,9 @@ int USART0_tx(char data, struct __file* _f) {
 static FILE uartout = FDEV_SETUP_STREAM(USART0_tx, NULL, _FDEV_SETUP_WRITE);
 
 void USART0_init(void) {
-    // Set IO port pin corresponding to TX to be an output
-    DDRD |= BIT(1);
-    // Set the pin high as UART is high by default
-    PORTD |= BIT(1);
-    // Register stdout handler
+    UBRR0H = (UBRR_VALUE >> 8) & 0xF; // set the high byte of the baud rate
+    UBRR0L = UBRR_VALUE & 0xFF; // set the low byte of the baud rate
+    UCSR0B = 1 << TXEN0; // enable the USART0 transmitter
+    UCSR0C = 3 << UCSZ00; // use 8-bit characters
     stdout = &uartout;
 }

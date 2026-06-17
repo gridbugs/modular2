@@ -64,6 +64,7 @@ int twi_transmit_data(uint8_t data) {
 void twi_transmit_stop(void) {
   // Transmit STOP.
   TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWSTO);
+  while (TWCR & (1<<TWSTO));
 }
 
 int twi_send_bytes(uint8_t address, uint8_t *bytes, int nbytes) {

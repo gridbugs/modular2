@@ -39,6 +39,7 @@ void key_matrix_scan(key_states_t* key_states) {
     // Delay to give time for the output pins to change voltage and for the
     // input pins to detect the change.
     __asm__ __volatile__("nop");
+    __asm__ __volatile__("nop");
     // Write 1s to the current state for each pressed key.
     key_states->curr |= ((uint32_t)(((uint8_t)(~PIND)) >> INPUT_ROW_PORTD_MIN) << (i * INPUT_ROW_PORTD_COUNT));
     PORTB |= BIT(i);

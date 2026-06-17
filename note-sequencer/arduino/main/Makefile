@@ -16,7 +16,7 @@ $(TARGET).elf: $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $@
 	$(STRIP) $@
 
-%.o : %.c $(NOTES)
+%.o : %.c $(HEADERS) $(NOTES)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(SRC_DIR)/notes.h: notes_h.py

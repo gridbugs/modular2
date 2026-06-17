@@ -5,7 +5,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include "util.h"
-#include "uart_bitbanged.h"
+#include "uart.h"
 #include "adc.h"
 #include "timer.h"
 #include "twi.h"
@@ -376,7 +376,8 @@ int main(void) {
 
   // Allow printing over UART. The UART pins double up as digital IO pins so this
   // will mess with functionality, but handy in emergencies.
-  USART0_bitbanged_init();
+  USART0_init();
+  printf("Hello, World!\n\r");
 
   // Turn off the other arduino by driving its reset pin low
   DDRB |= BIT(5);
@@ -384,13 +385,14 @@ int main(void) {
 
   timer2_init_pwm_port_d_bit_3(DISPLAY_BACKLIGHT_BRIGHTNESS);
 
-
   // Wait some time to ensure the second arduino is fully off, then turn it  back on.
   delay_ms(50);
   PORTB |= BIT(5);
 
-  printf("starting\n\r");
 #define SECONDARY_ARDUINO_TWI_ADDRESS 0x42
+
+  TWBR = 0;
+
   while (twi_send_byte(SECONDARY_ARDUINO_TWI_ADDRESS, 'x') != 0);
 
   key_matrix_init();
