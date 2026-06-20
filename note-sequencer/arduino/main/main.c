@@ -14,6 +14,7 @@
 #include "note.h"
 #include "note_indices.h"
 #include "key_matrix.h"
+#include "command.h"
 
 #define DISPLAY_BACKLIGHT_BRIGHTNESS 0x20
 
@@ -300,8 +301,6 @@ key_note_t note_stack[KEY_NOTE_COUNT] = {0};
 uint8_t note_stack_size = 0 ;
 key_note_t current_note = KEY_NOTE_C_1;
 
-#define SECONDARY_ARDUINO_TWI_ADDRESS 0x42
-
 int main(void) {
 
   // Allow printing over UART. The UART pins double up as digital IO pins so this
@@ -320,7 +319,14 @@ int main(void) {
 
   TWBR = 0;
 
-  while (twi_send_byte(SECONDARY_ARDUINO_TWI_ADDRESS, 'x') != 0);
+  printf("Waiting for screen arduino...\n\r");
+  while (command_send(command_hello()) != 0);
+
+  printf("Screen arduino is online!\n\r");
+
+  command_send(command_show_splash());
+  delay_ms(1000);
+  command_send(command_show_ui());
 
   key_matrix_init();
   key_states_t key_states = {0};
@@ -356,7 +362,7 @@ int main(void) {
     if (note_stack_size > 0) {
       current_note = note_stack[note_stack_size - 1];
     }
-    twi_send_byte(SECONDARY_ARDUINO_TWI_ADDRESS, current_note);
+    command_send(command_set_note(current_note));
   }
 
   return 0;

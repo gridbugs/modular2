@@ -12,31 +12,32 @@
 #include "note.h"
 #include "note_indices.h"
 #include "state.h"
+#include "command.h"
 
 #define DISPLAY_BACKLIGHT_BRIGHTNESS 0x10
 #define TWI_ADDRESS 0x42
 
-#define COMMAND_BUF_SIZE 64
-uint8_t command_buf[COMMAND_BUF_SIZE];
-int command_buf_i = 0;
+#define COMMAND_RING_SIZE 16
 
-#define STRING_BUF_SIZE 64
-char string_buf[STRING_BUF_SIZE];
+volatile command_t command_ring[COMMAND_RING_SIZE];
+volatile unsigned long int command_ring_next_write_index = 0;
+volatile unsigned long int command_ring_prev_read_index = 0;
+
+uint8_t command_bytes[4];
+int command_bytes_index = 0;
 
 ISR(TWI_vect) {
   switch (TWSR) {
     case TWI_SR_STATUS_SLAW:
-      command_buf_i = 0;
       break;
     case TWI_SR_STATUS_DATA:
-      command_buf[command_buf_i] = TWDR;
-      command_buf_i++;
+      command_bytes[command_bytes_index] = TWDR;
+      command_bytes_index++;
       break;
     case TWI_SR_STATUS_STOP:
-      uint8_t note_index = command_buf[0];
-      strncpy(string_buf, note_name(note_index), 2);
-      string_buf[2] = '0' + note_octave(note_index);
-      string_buf[3] = '\0';
+      command_ring[command_ring_next_write_index % COMMAND_RING_SIZE] = command_from_bytes(command_bytes);
+      command_ring_next_write_index++;
+      command_bytes_index = 0;
       break;
     default:
       break;
@@ -83,6 +84,35 @@ void state_render(state_t *state) {
   state_render_cursor(state, '>', fg, bg);
 }
 
+void render_splash(void) {
+  display_clear(MAGENTA);
+  display_text("purple", 20, 20, WHITE, BLACK, 1);
+  display_text("earth", 30, 40, WHITE, BLACK, 1);
+  display_text("hypoth-", 10, 60, WHITE, BLACK, 1);
+  display_text("esis", 50, 80, WHITE, BLACK, 1);
+}
+
+void handle_command(command_t command, state_t *state) {
+  switch (command.typ) {
+    case COMMAND_HELLO:
+      printf("Hello, World!\n\r");
+      break;
+    case COMMAND_SHOW_SPLASH:
+      render_splash();
+      break;
+    case COMMAND_SHOW_UI:
+      display_clear(BLACK);
+      state_render(state);
+      break;
+    case COMMAND_SET_NOTE:
+      uint8_t note_index = command.args.set_note.note_index;
+      char buf[4];
+      sprintf(buf, "%s%d", note_name(note_index), note_octave(note_index));
+      display_text(buf, 0, 0, WHITE, BLACK, 1);
+      break;
+  }
+}
+
 int main(void) {
   timer2_init_pwm_port_d_bit_3(DISPLAY_BACKLIGHT_BRIGHTNESS);
 
@@ -92,14 +122,6 @@ int main(void) {
 
   display_init();
 
-  display_clear(MAGENTA);
-  display_text("purple", 20, 10, WHITE, BLACK, 1);
-  display_text("earth", 30, 30, WHITE, BLACK, 1);
-  display_text("hypoth-", 10, 50, WHITE, BLACK, 1);
-  display_text("esis", 50, 70, WHITE, BLACK, 1);
-
-  display_clear(BLACK);
-
   state_t state = state_new();
   state.sequence.steps[1] = (step_t) {
     .note_index = 42,
@@ -107,14 +129,16 @@ int main(void) {
     .accent = true,
     .glide = true,
   };
-  state_render(&state);
 
   sei();
 
   twi_sr(TWI_ADDRESS);
 
   while(1) {
-    display_text(string_buf, 0, 0, WHITE, BLACK, 1);
+    while (command_ring_prev_read_index < command_ring_next_write_index) {
+      handle_command(command_ring[command_ring_prev_read_index % COMMAND_RING_SIZE], &state);
+      command_ring_prev_read_index++;
+    }
   }
 
   return 0;

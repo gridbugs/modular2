@@ -1,17 +1,20 @@
 #include <stdbool.h>
+#include <stdio.h>
 #include <stdint.h>
+#include <avr/io.h>
 #include "util.h"
 #include "twi.h"
 
 int twi_transmit_start(void) {
   // Attempt to transmit START.
-  TWCR = BIT(TWINT)|BIT(TWSTA)|BIT(TWEN);
+  TWCR = (1<<TWINT)|(1<<TWSTA)|(1<<TWEN);
 
   // Wait for TWINT indicating START has been transmitted.
-  while (!(TWCR & BIT(TWINT)));
+  while (!(TWCR & (1<<TWINT)));
 
   // Check that START was transmitted.
   if ((TWSR & 0xF8) != 0x08) {
+    printf("start error %x\n\r", TWSR);
     return -1;
   }
 
@@ -23,13 +26,14 @@ int twi_transmit_address(uint8_t address, bool write) {
 
   // Transmit SLA+W.
   TWDR = (address << 1) | mode_flag;
-  TWCR = BIT(TWINT) | BIT(TWEN);
+  TWCR = (1<<TWINT) | (1<<TWEN);
 
   // Wait until SLA+W was ack'd.
-  while (!(TWCR & BIT(TWINT)));
+  while (!(TWCR & (1<<TWINT)));
 
   // Check that SLA+W was ack'd.
   if ((TWSR & 0xF8) != 0x18) {
+    printf("tx addr err %x\n\r", TWSR);
     return -1;
   }
 
@@ -41,10 +45,10 @@ void twi_transmit_data_start(uint8_t data) {
 }
 
 int twi_transmit_data_end(void) {
-  TWCR = BIT(TWINT) | BIT(TWEN);
+  TWCR = (1<<TWINT) | (1<<TWEN);
 
   // Wait until data was ack'd.
-  while (!(TWCR & BIT(TWINT)));
+  while (!(TWCR & (1<<TWINT)));
 
   // Check that the data was ack'd.
   if ((TWSR & 0xF8)!= 0x28) {
@@ -61,28 +65,30 @@ int twi_transmit_data(uint8_t data) {
 
 void twi_transmit_stop(void) {
   // Transmit STOP.
-  TWCR = BIT(TWINT)|BIT(TWEN)|BIT(TWSTO);
+  TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWSTO);
 }
 
 int twi_send_bytes(uint8_t address, uint8_t *bytes, int nbytes) {
   int error;
   error = twi_transmit_start();
   if (error != 0) {
-    return error;
+    goto end;
   }
   error = twi_transmit_address(address, true);
   if (error != 0) {
-    return error;
+    goto end;
   }
   for (int i = 0; i < nbytes; i++) {
     error = twi_transmit_data(*bytes);
     if (error != 0) {
-      return error;
+      goto end;
     }
     bytes++;
   }
+
+end:
   twi_transmit_stop();
-  return 0;
+  return error;
 }
 
 int twi_send_byte(uint8_t address, uint8_t byte) {
