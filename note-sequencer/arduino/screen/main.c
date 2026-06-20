@@ -11,6 +11,7 @@
 #include "display.h"
 #include "note.h"
 #include "note_indices.h"
+#include "state.h"
 
 #define DISPLAY_BACKLIGHT_BRIGHTNESS 0x10
 #define TWI_ADDRESS 0x42
@@ -44,6 +45,44 @@ ISR(TWI_vect) {
   twi_interrupt_ack();
 }
 
+#define SEQUENCE_TOP_Y 32
+
+void state_render_cursor(state_t *state, char cursor_char, int fg, int bg) {
+  int cursor_x = ((state->current_index * 2) / MAX_NUM_STEPS) * 64;
+  int cursor_y = SEQUENCE_TOP_Y + ((state->current_index % (MAX_NUM_STEPS / 2)) * 8);
+  char buf[] = { cursor_char, '\0' };
+  display_text(buf, cursor_x, cursor_y, fg, bg, 0);
+}
+
+void state_render_step(state_t *state, int step_index, int fg, int bg) {
+  static char buf[8];
+  int x = ((step_index * 2) / MAX_NUM_STEPS) * 64;
+  int y = SEQUENCE_TOP_Y + ((step_index % (MAX_NUM_STEPS / 2)) * 8);
+  int index_fg = GREY;
+  sprintf(buf, "%02d", step_index + 1);
+  display_text(buf, x + 8, y, index_fg, bg, 0);
+  step_t *step = &state->sequence.steps[step_index];
+  if (step->enabled) {
+    const char* name = note_name(step->note_index);
+    uint8_t octave = note_octave(step->note_index);
+    char accent = step->accent ? 'a' : ' ';
+    char glide = step->glide ? 'g' : ' ';
+    sprintf(buf, "%s%d%c%c", name, octave, accent, glide);
+    display_text(buf, x + 24, y, fg, bg, 0);
+  } else {
+    display_text("  -    ", x + 24, y, fg, bg, 0);
+  }
+}
+
+void state_render(state_t *state) {
+  int fg = WHITE;
+  int bg = BLACK;
+  for (int i = 0; i < MAX_NUM_STEPS; i++) {
+    state_render_step(state, i, fg, bg);
+  }
+  state_render_cursor(state, '>', fg, bg);
+}
+
 int main(void) {
   timer2_init_pwm_port_d_bit_3(DISPLAY_BACKLIGHT_BRIGHTNESS);
 
@@ -60,6 +99,15 @@ int main(void) {
   display_text("esis", 50, 70, WHITE, BLACK, 1);
 
   display_clear(BLACK);
+
+  state_t state = state_new();
+  state.sequence.steps[1] = (step_t) {
+    .note_index = 42,
+    .enabled = true,
+    .accent = true,
+    .glide = true,
+  };
+  state_render(&state);
 
   sei();
 
