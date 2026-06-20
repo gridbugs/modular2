@@ -12,7 +12,7 @@
 #include "mcp4725.h"
 #include "display.h"
 #include "note.h"
-#include "notes.h"
+#include "note_indices.h"
 #include "key_matrix.h"
 
 #define DISPLAY_BACKLIGHT_BRIGHTNESS 0x20
@@ -192,85 +192,13 @@ ISR(PCINT1_vect) {
   prev_pinc = pinc;
 }
 
-#define NOTE_DISPLAY_X 45
-#define NOTE_DISPLAY_Y 55
-#define NOTE_DISPLAY_FG WHITE
-#define NOTE_DISPLAY_BG BLACK
-
 typedef struct {
   bool enabled;
-  note_t note;
   uint8_t note_index;
   uint8_t velocity;
 } step_t;
 
 step_t sequence[NUM_STEPS];
-
-void step_set_note(step_t *step, uint8_t note_index) {
-  step->note_index = note_index;
-  note_t note = note_from_index(note_index);
-  memcpy(&step->note, &note, sizeof(note_t));
-}
-
-void sequence_enable_step(int i, uint8_t note_index, uint8_t velocity) {
-  step_t *step = &sequence[i];
-  step->enabled = true;
-  step->velocity = velocity;
-  step_set_note(step, note_index);
-}
-
-void sequence_disable_step(int i) {
-  sequence[i].enabled = false;
-}
-
-void init_sequence(void) {
-  for (int i = 0; i < NUM_STEPS; i++) {
-    sequence_enable_step(i, NOTE_C_3, 127);
-    sequence_disable_step(i);
-  }
-}
-
-char progress_buffer[6] = { 0 };
-char status_buffer[3] = { 0 };
-
-void display_current_note(void) {
-  step_t step = sequence[sequence_index];
-  uint16_t fg;
-  if (step.enabled) {
-    fg = WHITE;
-  } else {
-    fg = GREY;
-  }
-  display_text(step.note.name, NOTE_DISPLAY_X, NOTE_DISPLAY_Y, fg, NOTE_DISPLAY_BG, 1);
-}
-
-void display_current_velocity(void) {
-  static char buf[4];
-  step_t *step = &sequence[sequence_index];
-  sprintf(buf, "%03d", step->velocity);
-  display_text(buf, NOTE_DISPLAY_X, NOTE_DISPLAY_Y + 16, NOTE_DISPLAY_FG, NOTE_DISPLAY_BG, 1);
-}
-
-void clear_velocity(void) {
-  display_text("   ", NOTE_DISPLAY_X, NOTE_DISPLAY_Y + 16, NOTE_DISPLAY_FG, NOTE_DISPLAY_BG, 1);
-}
-
-void display_bottom_line(void) {
-  sprintf(progress_buffer, "%02d/%d", sequence_index, NUM_STEPS);
-  display_text(progress_buffer, DISPLAY_WIDTH - 5 * 8, DISPLAY_HEIGHT - 8, BLACK, WHITE, 0);
-
-  if (programming_mode) {
-    status_buffer[0] = 'P';
-  } else {
-    status_buffer[0] = 'R';
-  }
-  if (internal_clock) {
-    status_buffer[1] = 'I';
-  } else {
-    status_buffer[1] = 'E';
-  }
-  display_text(status_buffer, 0, DISPLAY_HEIGHT - 8, BLACK, WHITE, 0);
-}
 
 typedef enum {
   KEY_C_1,
@@ -372,12 +300,13 @@ key_note_t note_stack[KEY_NOTE_COUNT] = {0};
 uint8_t note_stack_size = 0 ;
 key_note_t current_note = KEY_NOTE_C_1;
 
+#define SECONDARY_ARDUINO_TWI_ADDRESS 0x42
+
 int main(void) {
 
   // Allow printing over UART. The UART pins double up as digital IO pins so this
   // will mess with functionality, but handy in emergencies.
   USART0_init();
-  printf("Hello, World!\n\r");
 
   // Turn off the other arduino by driving its reset pin low
   DDRB |= BIT(5);
@@ -388,8 +317,6 @@ int main(void) {
   // Wait some time to ensure the second arduino is fully off, then turn it  back on.
   delay_ms(50);
   PORTB |= BIT(5);
-
-#define SECONDARY_ARDUINO_TWI_ADDRESS 0x42
 
   TWBR = 0;
 
@@ -430,172 +357,6 @@ int main(void) {
       current_note = note_stack[note_stack_size - 1];
     }
     twi_send_byte(SECONDARY_ARDUINO_TWI_ADDRESS, current_note);
-  }
-
-  display_init();
-
-  display_clear(MAGENTA);
-  display_text("purple", 20, 10, WHITE, BLACK, 1);
-  display_text("earth", 30, 30, WHITE, BLACK, 1);
-  display_text("hypoth-", 10, 50, WHITE, BLACK, 1);
-  display_text("esis", 50, 70, WHITE, BLACK, 1);
-
-  sei();
-
-  DDRD &= ~PORTD_INPUT_PINS;
-  PORTD |= PORTD_INPUT_PINS;
-  PCICR |= BIT(PCIE2) | BIT(PCIE1);
-  PCMSK2 |= PORTD_INPUT_PINS;
-  prev_pind = PIND;
-
-  DDRC |= PORTC_GATE_PIN;
-  DDRC &= ~PORTC_CLOCK_PIN;
-  PCMSK1 |= PORTC_CLOCK_PIN;
-
-  init_sequence();
-  timer1_init();
-
-  // Delay before setting the gate after changing notes to account for the
-  // delay between sending the I2C message to change the DAC value and the
-  // DAC's voltage actually changing.
-  timer1_set_output_compare_a(1000);
-
-  // Delay before turning the gate back off.
-  timer1_set_output_compare_b(10000);
-
-  printf("Hello, World!\n\r");
-
-  display_clear(BLACK);
-
-  // Initial sequence
-  for (int i = 0; i < 2; i++) {
-    int offset = i * 8;
-    sequence_enable_step(offset + 0, NOTE_C_2, 127);
-    sequence_disable_step(offset + 1);
-    sequence_enable_step(offset + 2, NOTE_C_2, 127);
-    sequence_disable_step(offset + 3);
-    sequence_enable_step(offset + 4, NOTE_C_2, 255);
-    sequence_disable_step(offset + 5);
-    sequence_enable_step(offset + 6, NOTE_C_2, 127);
-    sequence_disable_step(offset + 7);
-  }
-
-
-#ifdef INIT_TUNE
-  sequence_disable_step(0);
-  sequence_enable_step(1, NOTE_C_3, 127);
-  sequence_enable_step(2, NOTE_C_4, 127);
-  sequence_enable_step(3, NOTE_C_3, 255);
-  sequence_enable_step(4, NOTE_D_SHARP_3, 127);
-  sequence_enable_step(5, NOTE_F_SHARP_3, 127);
-  sequence_enable_step(6, NOTE_A_3, 127);
-  sequence_disable_step(7);
-  sequence_enable_step(8, NOTE_C_4, 127);
-  sequence_disable_step(9);
-  sequence_enable_step(10, NOTE_F_SHARP_3, 127);
-  sequence_enable_step(11, NOTE_A_3, 255);
-  sequence_disable_step(12);
-  sequence_enable_step(13, NOTE_D_SHARP_3, 127);
-  sequence_disable_step(14);
-  sequence_enable_step(15, NOTE_F_SHARP_3,  255);
-#endif
-
-
-  display_text("...", NOTE_DISPLAY_X, NOTE_DISPLAY_Y, NOTE_DISPLAY_FG, NOTE_DISPLAY_BG, 1);
-  int16_t prev_rotary_encoder_position = rotary_encoder_position;
-  step_t *step = &sequence[sequence_index];
-  bool prev_programming_mode = programming_mode;
-
-  while (1) {
-    if (programming_mode) {
-      prev_programming_mode = true;
-      step = &sequence[sequence_index];
-      if (right_button_state) {
-        int16_t velocity = step->velocity;
-        if (rotary_encoder_position > prev_rotary_encoder_position) {
-          velocity += VELOCITY_STEP_SIZE;
-        } else if (rotary_encoder_position < prev_rotary_encoder_position) {
-          velocity -= VELOCITY_STEP_SIZE;
-        }
-        step->velocity = (uint8_t)velocity;
-      } else {
-        if (rotary_encoder_position > prev_rotary_encoder_position) {
-          step_set_note(step, step->note_index + 1);
-        } else if (rotary_encoder_position < prev_rotary_encoder_position) {
-          step_set_note(step, step->note_index - 1);
-        }
-      }
-      if (async_flag_check_and_clear(&left_button)) {
-        step->enabled = !step->enabled;
-      }
-      if (step->enabled) {
-        dac0_set_value(step->note.dac_value);
-        dac1_set_value(step->velocity << 4);
-      } else {
-        dac0_set_value(0);
-        dac1_set_value(0);
-      }
-      prev_rotary_encoder_position = rotary_encoder_position;
-      display_current_note();
-      display_current_velocity();
-      display_bottom_line();
-    } else {
-      if (prev_programming_mode) {
-        clear_velocity();
-      }
-      prev_programming_mode = false;
-      while (true) {
-        if (rotary_encoder_position > prev_rotary_encoder_position) {
-          step_set_note(step, step->note_index + 1);
-          dac0_set_value(step->note.dac_value);
-          dac1_set_value(step->velocity << 4);
-        } else if (rotary_encoder_position < prev_rotary_encoder_position) {
-          step_set_note(step, step->note_index - 1);
-          dac0_set_value(step->note.dac_value);
-          dac1_set_value(step->velocity << 4);
-        }
-        prev_rotary_encoder_position = rotary_encoder_position;
-
-        if (async_flag_check_and_clear(&left_button)) {
-          step->enabled = !step->enabled;
-        }
-        if (programming_mode) {
-          break;
-        } else if (internal_clock) {
-          delay_ms(internal_clock_delay);
-          break;
-        } else if (async_flag_check_and_clear(&clock_rising_edge)) {
-          break;
-        }
-
-      }
-      if (programming_mode) {
-        continue;
-      }
-
-      step = &sequence[sequence_index];
-
-
-      if (step->enabled) {
-        dac0_set_value(step->note.dac_value);
-        dac1_set_value(step->velocity << 4);
-
-        // Start the timer. A pair of compare interrupts will cause the gate to
-        // be set and cleared. This makes it easy to add a delay before setting
-        // the gate to account for a delay in the DAC output changinging, and to
-        // clear the gate after a fixed period of time.
-        timer1_reset_and_start();
-      }
-
-      display_current_note();
-      display_bottom_line();
-
-      sequence_index++;
-      if (sequence_index == NUM_STEPS) {
-        sequence_index = 0;
-      }
-
-    }
   }
 
   return 0;

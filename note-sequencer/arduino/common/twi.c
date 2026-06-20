@@ -85,6 +85,10 @@ int twi_send_bytes(uint8_t address, uint8_t *bytes, int nbytes) {
   return 0;
 }
 
+int twi_send_byte(uint8_t address, uint8_t byte) {
+  return twi_send_bytes(address, &byte, 1);
+}
+
 void twi_sr(uint8_t address) {
   TWCR = BIT(TWEA) | BIT(TWEN) | BIT(TWIE);
   TWAR = address << 1;

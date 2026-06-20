@@ -10,7 +10,7 @@
 #include "twi.h"
 #include "display.h"
 #include "note.h"
-#include "notes.h"
+#include "note_indices.h"
 
 #define DISPLAY_BACKLIGHT_BRIGHTNESS 0x10
 #define TWI_ADDRESS 0x42
@@ -18,8 +18,6 @@
 #define COMMAND_BUF_SIZE 64
 uint8_t command_buf[COMMAND_BUF_SIZE];
 int command_buf_i = 0;
-
-static const char* note_names = "C 1C#1D 1D#1E 1F 1F#1G 1G#1A 1A#1B 1C 2C#2D 2D#2E 2F 2F#2G 2G#2A 2A#2B 2C 3";
 
 #define STRING_BUF_SIZE 64
 char string_buf[STRING_BUF_SIZE];
@@ -34,7 +32,9 @@ ISR(TWI_vect) {
       command_buf_i++;
       break;
     case TWI_SR_STATUS_STOP:
-      strncpy(string_buf, note_names + (command_buf[0] * 3), 3);
+      uint8_t note_index = command_buf[0];
+      strncpy(string_buf, note_name(note_index), 2);
+      string_buf[2] = '0' + note_octave(note_index);
       string_buf[3] = '\0';
       break;
     default:

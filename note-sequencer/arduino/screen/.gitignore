@@ -1,5 +1,0 @@
-*.o
-*.hex
-*.elf
-tags
-src/notes.h

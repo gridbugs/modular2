@@ -2,4 +2,4 @@
 *.hex
 *.elf
 tags
-src/notes.h
+src/note_indices.h
