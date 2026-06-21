@@ -10,7 +10,7 @@ $CC -E -Wp,-v - < /dev/null 2>&1 | \
   # remove the first line of output which will be a heading
   tail -n+2 | \
   # remove the last line of output which will say "End of search list."
-  head -n-1 | \
+  sed -ne '$ ! p' | \
   # remove leading whitespace on each line
   xargs -n1 echo | \
   # put each include directory on a single line
