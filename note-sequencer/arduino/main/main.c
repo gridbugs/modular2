@@ -301,7 +301,7 @@ int main(void) {
     uint32_t pressed = delta & key_states.curr;
     bool shift = (key_states.curr & KEY_SHIFT_BIT) != 0;
     while (pressed) {
-      uint8_t pressed_bit = __builtin_ctz(pressed);
+      int pressed_bit = __builtin_ctzl(pressed);
       pressed &= ~BIT(pressed_bit);
       key_t key = keys_by_key_matrix_bit[pressed_bit];
       if (key < KEY_NOTE_COUNT) {
@@ -328,7 +328,7 @@ int main(void) {
     }
     uint32_t released = delta & key_states.prev;
     while (released) {
-      uint8_t released_bit = __builtin_ctz(released);
+      int released_bit = __builtin_ctzl(released);
       released &= ~BIT(released_bit);
       key_t key = keys_by_key_matrix_bit[released_bit];
       for (int i = 0; i < note_stack_size; i++) {
