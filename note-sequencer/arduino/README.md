@@ -11,5 +11,5 @@ make && avrdude -P /dev/ttyUSB0 -c arduino -p m328p -U flash:w:main.elf
 
 ### Connect USB serial console
 ```
-picocom -b300 /dev/ttyUSB0
+picocom -b9600 /dev/ttyUSB0
 ```
