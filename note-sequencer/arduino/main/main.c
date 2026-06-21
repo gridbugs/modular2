@@ -15,191 +15,78 @@
 #include "note_indices.h"
 #include "key_matrix.h"
 #include "command.h"
+#include "rotary_encoder.h"
+#include "state.h"
 
-#define DISPLAY_BACKLIGHT_BRIGHTNESS 0x20
+#define PORTC_ENCODER_BUTTON BIT(0)
+#define PORTC_ENCODER_A BIT(1)
+#define PORTC_ENCODER_B BIT(2)
 
-#define PORTD_ENCODER_A BIT(7)
-#define PORTD_ENCODER_B BIT(6)
-#define PORTD_ENCODER_BUTTON_PIN BIT(5)
-#define PORTD_BUTTON_RIGHT_PIN BIT(4)
-#define PORTD_BUTTON_MIDDLE_PIN BIT(2)
-#define PORTD_BUTTON_LEFT_PIN BIT(0)
-
-// Leave space for TX (bit 1) and PWM (bit 3)
-#define PORTD_INPUT_PINS ( \
-    PORTD_ENCODER_A | \
-    PORTD_ENCODER_B | \
-    PORTD_ENCODER_BUTTON_PIN | \
-    PORTD_BUTTON_RIGHT_PIN | \
-    PORTD_BUTTON_MIDDLE_PIN | \
-    PORTD_BUTTON_LEFT_PIN )
-
-#define NUM_STEPS 16
-#define VELOCITY_STEP_SIZE 32
-
-volatile int sequence_index = 0;
-volatile bool programming_mode = false;
-volatile bool internal_clock = true;
-
-// Unit is ms added to the iteration time of the main loop (which is pretty small!).
-uint16_t internal_clock_delay = 100;
-
-typedef enum {
-  REST_01 = 0,
-  REST_10 = 1,
-} rotary_encoder_rest_t;
-
-typedef enum {
-  TURN_00 = 0,
-  TURN_11 = 1,
-  TURN_INIT = 2,
-} rotary_encoder_turn_t;
-
+// A volatile counter that will be updated asynchronously from the main control
+// thread (by an ISR), and a copy that is expected tobe atomically synchronized
+// with the volatile counter by the main control thread. It's assumed that the
+// counters will never overflow.
 typedef struct {
-  rotary_encoder_rest_t last_rest;
-  rotary_encoder_turn_t last_turn;
-} rotary_encoder_history_t;
+  volatile int32_t volatile_value;
+  int32_t value;
+} async_counter_t;
 
-int8_t rotary_encoder_update(rotary_encoder_history_t *history, uint8_t current_state) {
-  switch (current_state) {
-    case 0:
-      history->last_turn = TURN_00;
-      break;
-    case 1:
-      if (history->last_rest == REST_10) {
-        history->last_rest = REST_01;
-        if (history->last_turn == TURN_00) {
-          return -1;
-        } else {
-          return 1;
-        }
-      }
-      break;
-    case 2:
-      if (history->last_rest == REST_01) {
-        history->last_rest = REST_10;
-        if (history->last_turn == TURN_00) {
-          return 1;
-        } else {
-          return -1;
-        }
-      }
-      break;
-    case 3:
-      history->last_turn = TURN_11;
-      break;
-  }
-  return 0;
-}
+// Returns the change in the counter value since the last time it was read (by
+// calling this function).
+int8_t async_counter_read_delta(async_counter_t *async_counter) {
+  // Atomically read the volatile value by reading it with interrupts disabled.
+  cli();
+  int32_t volatile_value = async_counter->volatile_value;
+  sei();
+  int32_t delta = volatile_value - async_counter->value;
+  async_counter->value = volatile_value;
 
-int16_t rotary_encoder_position = 0;
-rotary_encoder_history_t rotary_encoder_history = {
-  .last_rest = REST_01,
-  .last_turn = TURN_INIT,
-};
-
-uint8_t prev_pind;
-
-typedef struct {
-  volatile uint8_t count_setter_incremented;
-  uint8_t count_to_check;
-} async_flag_t;
-
-void async_flag_set(async_flag_t *async_flag) {
-  async_flag->count_setter_incremented++;
-}
-
-bool async_flag_check_and_clear(async_flag_t *async_flag) {
-  uint8_t count_copy = async_flag->count_setter_incremented;
-  bool ret = count_copy != async_flag->count_to_check;
-  async_flag->count_to_check = count_copy;
-  return ret;
-}
-
-async_flag_t left_button = { 0 };
-async_flag_t middle_button = { 0 };
-async_flag_t right_button = { 0 };
-
-volatile bool left_button_state = false;
-volatile bool middle_button_state = false;
-volatile bool right_button_state = false;
-
-ISR(PCINT2_vect) {
-  uint8_t pind = PIND;
-
-
-  right_button_state = !(pind & PORTD_BUTTON_RIGHT_PIN);
-  if ((prev_pind & PORTD_BUTTON_RIGHT_PIN) && right_button_state) {
-    async_flag_set(&right_button);
-    if (!programming_mode) {
-      internal_clock = !internal_clock;
-    }
-  }
-  if ((prev_pind & PORTD_BUTTON_MIDDLE_PIN) && !(pind & PORTD_BUTTON_MIDDLE_PIN)) {
-    programming_mode = !programming_mode;
-  }
-  if ((prev_pind & PORTD_ENCODER_BUTTON_PIN) && !(pind & PORTD_ENCODER_BUTTON_PIN)) {
-    if (programming_mode) {
-      sequence_index = (sequence_index + 1) % NUM_STEPS;
-    }
-  }
-  if ((prev_pind & PORTD_BUTTON_MIDDLE_PIN) && !(pind & PORTD_BUTTON_MIDDLE_PIN)) {
-    async_flag_set(&middle_button);
-  }
-  if ((prev_pind & PORTD_BUTTON_LEFT_PIN) && !(pind & PORTD_BUTTON_LEFT_PIN)) {
-    async_flag_set(&left_button);
+  // Clamp the delta so it fits in an int8_t. The use case is for a rotary
+  // encoder, and the delta exceeding the int8_t range would mean the encoder
+  // has been turned +/-128 positions since the last time its value was
+  // checked, which a) is very unlikely and b) would mean the consequence of a
+  // clamped value being used in place of the true value is negligable.
+  if (delta > 127) {
+    delta = 127;
+  } else if (delta < -128) {
+    delta = -128;
   }
 
-  uint8_t rotary_encoder_state = pind >> 6;
-  int8_t rotary_encoder_delta = rotary_encoder_update(&rotary_encoder_history, rotary_encoder_state);
-  rotary_encoder_position += (int16_t)rotary_encoder_delta;
-
-  prev_pind = pind;
+  return (int8_t)delta;
 }
 
-#define PORTC_GATE_PIN BIT(0)
-
-void gate_on(void) {
-  PORTC |= PORTC_GATE_PIN;
-}
-
-void gate_off(void) {
-  PORTC &= ~PORTC_GATE_PIN;
-}
-
-#define PORTC_CLOCK_PIN BIT(1)
-
-ISR(TIMER1_OVF_vect) {
-  timer1_stop();
-}
-
-ISR(TIMER1_COMPA_vect) {
-  gate_on();
-}
-
-ISR(TIMER1_COMPB_vect) {
-  gate_off();
-}
-
-async_flag_t clock_rising_edge = { 0 };
-
-uint8_t prev_pinc;
+async_counter_t rotary_encoder_position = { 0 };
+rotary_encoder_history_t rotary_encoder_history = ROTARY_ENCODER_HISTORY_INITIAL;
 
 ISR(PCINT1_vect) {
-  uint8_t pinc = PINC;
-  if (!(prev_pinc & PORTC_CLOCK_PIN) && (pinc & PORTC_CLOCK_PIN)) {
-    async_flag_set(&clock_rising_edge);
+  uint8_t rotary_encoder_state = (PINC >> 1) & 3;
+  int8_t direction = rotary_encoder_update(&rotary_encoder_history, rotary_encoder_state);
+  if (direction != 0) {
+    rotary_encoder_position.volatile_value += direction;
   }
-  prev_pinc = pinc;
 }
 
-typedef struct {
-  bool enabled;
-  uint8_t note_index;
-  uint8_t velocity;
-} step_t;
+inline int8_t rotary_encoder_read_delta(void) {
+  return async_counter_read_delta(&rotary_encoder_position);
+}
 
-step_t sequence[NUM_STEPS];
+inline bool rotary_encoder_pressed(void) {
+  return (PINC & PORTC_ENCODER_BUTTON) == 0;
+}
+
+void rotary_encoder_init(void) {
+  // Enable pin-changed interrupts for PORTC
+  PCICR |= BIT(PCIE1);
+
+  // Allow pin-changed interrupts associated with rotary encoder.
+  PCMSK1 |= PORTC_ENCODER_BUTTON | PORTC_ENCODER_A | PORTC_ENCODER_B;
+
+  // Set pins connected to encoder as input pins.
+  DDRC &= ~(PORTC_ENCODER_BUTTON | PORTC_ENCODER_A | PORTC_ENCODER_B);
+
+  // Enable pull-up resistors for encoder pins.
+  PORTC |= PORTC_ENCODER_BUTTON | PORTC_ENCODER_A | PORTC_ENCODER_B;
+}
 
 typedef enum {
   KEY_C_1,
@@ -296,10 +183,78 @@ typedef enum {
 } key_note_t;
 
 #define KEY_NOTE_COUNT 25
+#define KEY_CLEAR KEY_X_2
+#define KEY_ACCENT KEY_X_3
+#define KEY_GLIDE KEY_X_4
+
+// This is a bit in the raw key matrix input, not the key_note_t type.
+#define KEY_SHIFT_BIT BIT(0)
 
 key_note_t note_stack[KEY_NOTE_COUNT] = {0};
 uint8_t note_stack_size = 0 ;
 key_note_t current_note = KEY_NOTE_C_1;
+
+typedef struct {
+  command_t commands[32];
+  uint8_t num_commands;
+} command_buffer_t;
+
+void command_buffer_send(command_buffer_t *cb) {
+  if (cb->num_commands > 0) {
+    commands_send(cb->commands, cb->num_commands);
+    cb->num_commands = 0;
+  }
+}
+
+void command_buffer_push(command_buffer_t *cb, command_t command) {
+  cb->commands[cb->num_commands] = command;
+  cb->num_commands++;
+}
+
+void command_buffer_add_to_sequence_index(command_buffer_t *cb, state_t *state, int8_t delta) {
+  state_add_to_current_index(state, delta);
+  command_buffer_push(cb, command_set_sequence_index(state->current_index));
+}
+
+void command_buffer_press_note_key(command_buffer_t *cb, state_t *state, key_note_t key_note) {
+  step_t *step = state_current_step(state);
+  step->note_index = key_note;
+  step->enabled = true;
+  command_buffer_push(cb, command_set_sequence_note(state->current_index, key_note));
+}
+
+void command_buffer_clear_note(command_buffer_t *cb, state_t *state) {
+  step_t *step = state_current_step(state);
+  step->enabled = false;
+  command_buffer_push(cb, command_clear_sequence_note(state->current_index));
+}
+
+// This function has the side effect of sending buffers of commands to save on buffer size.
+void command_buffer_clear_all(command_buffer_t *cb, state_t *state) {
+  state->current_index = 0;
+  command_buffer_push(cb, command_set_sequence_index(0));
+  for (int i = 0; i < MAX_NUM_STEPS / 2; i++) {
+    step_t *step = &state->sequence.steps[i];
+    step->enabled = false;
+    step->flags = 0;
+    command_buffer_push(cb, command_clear_sequence_note(i));
+    command_buffer_push(cb, command_set_step_flags(i, 0));
+  }
+  command_buffer_send(cb);
+  delay_ms(10);
+  for (int i = MAX_NUM_STEPS / 2; i < MAX_NUM_STEPS; i++) {
+    step_t *step = &state->sequence.steps[i];
+    step->flags = 0;
+    command_buffer_push(cb, command_clear_sequence_note(i));
+    command_buffer_push(cb, command_set_step_flags(i, 0));
+  }
+}
+
+void command_buffer_toggle_flag(command_buffer_t *cb, state_t *state, uint8_t flag) {
+  step_t *step = state_current_step(state);
+  step->flags ^= flag;
+  command_buffer_push(cb, command_set_step_flags(state->current_index, step->flags));
+}
 
 int main(void) {
 
@@ -307,23 +262,22 @@ int main(void) {
   // will mess with functionality, but handy in emergencies.
   USART0_init();
 
+  rotary_encoder_init();
+
   // Turn off the other arduino by driving its reset pin low
   DDRB |= BIT(5);
   PORTB &= ~BIT(5);
 
-  timer2_init_pwm_port_d_bit_3(DISPLAY_BACKLIGHT_BRIGHTNESS);
-
   // Wait some time to ensure the second arduino is fully off, then turn it  back on.
   delay_ms(50);
   PORTB |= BIT(5);
-
-  TWBR = 0;
 
   printf("Waiting for screen arduino...\n\r");
   while (command_send(command_hello()) != 0);
 
   printf("Screen arduino is online!\n\r");
 
+  // Display the splash screen.
   command_send(command_show_splash());
   delay_ms(1000);
   command_send(command_show_ui());
@@ -331,17 +285,45 @@ int main(void) {
   key_matrix_init();
   key_states_t key_states = {0};
 
+  command_buffer_t command_buffer;
+
+  state_t state = state_new();
+
+  sei();
+
   while (1) {
+    int8_t rotary_encoder_delta = rotary_encoder_read_delta();
+    if (rotary_encoder_delta != 0) {
+      command_buffer_add_to_sequence_index(&command_buffer, &state, rotary_encoder_delta);
+    }
     key_matrix_scan(&key_states);
     uint32_t delta = key_states.curr ^ key_states.prev;
     uint32_t pressed = delta & key_states.curr;
+    bool shift = (key_states.curr & KEY_SHIFT_BIT) != 0;
     while (pressed) {
       uint8_t pressed_bit = __builtin_stdc_trailing_zeros(pressed);
       pressed &= ~BIT(pressed_bit);
       key_t key = keys_by_key_matrix_bit[pressed_bit];
       if (key < KEY_NOTE_COUNT) {
-        note_stack[note_stack_size] = (key_note_t)key;
+        key_note_t key_note = (key_note_t)key;
+        note_stack[note_stack_size] = key_note;
         note_stack_size++;
+
+        // Handle the fact that this key was just pressed
+        command_buffer_press_note_key(&command_buffer, &state, key_note);
+        command_buffer_add_to_sequence_index(&command_buffer, &state, 1);
+      } else if (key == KEY_CLEAR) {
+        if (shift) {
+          command_buffer_clear_all(&command_buffer, &state);
+        } else {
+          // Clear the current step
+          command_buffer_clear_note(&command_buffer, &state);
+          command_buffer_add_to_sequence_index(&command_buffer, &state, 1);
+        }
+      } else if (key == KEY_ACCENT) {
+        command_buffer_toggle_flag(&command_buffer, &state, FLAG_ACCENT);
+      } else if (key == KEY_GLIDE) {
+        command_buffer_toggle_flag(&command_buffer, &state, FLAG_GLIDE);
       }
     }
     uint32_t released = delta & key_states.prev;
@@ -360,9 +342,14 @@ int main(void) {
       }
     }
     if (note_stack_size > 0) {
-      current_note = note_stack[note_stack_size - 1];
+      key_note_t new_current_note = note_stack[note_stack_size - 1];
+      if (new_current_note != current_note) {
+        command_buffer_push(&command_buffer, command_set_note(new_current_note));
+        current_note = new_current_note;
+      }
     }
-    command_send(command_set_note(current_note));
+
+    command_buffer_send(&command_buffer);
   }
 
   return 0;

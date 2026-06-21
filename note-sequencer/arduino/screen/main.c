@@ -17,14 +17,15 @@
 #define DISPLAY_BACKLIGHT_BRIGHTNESS 0x10
 #define TWI_ADDRESS 0x42
 
-#define COMMAND_RING_SIZE 16
+#define COMMAND_RING_SIZE 64
 
 volatile command_t command_ring[COMMAND_RING_SIZE];
 volatile unsigned long int command_ring_next_write_index = 0;
 volatile unsigned long int command_ring_prev_read_index = 0;
 
-uint8_t command_bytes[4];
+uint8_t command_bytes[64];
 int command_bytes_index = 0;
+command_t command_buf[32];
 
 ISR(TWI_vect) {
   switch (TWSR) {
@@ -35,8 +36,13 @@ ISR(TWI_vect) {
       command_bytes_index++;
       break;
     case TWI_SR_STATUS_STOP:
-      command_ring[command_ring_next_write_index % COMMAND_RING_SIZE] = command_from_bytes(command_bytes);
-      command_ring_next_write_index++;
+      if (command_ring_next_write_index < (command_ring_prev_read_index + COMMAND_RING_SIZE)) {
+        int num_commands = commands_from_bytes(command_bytes, command_buf);
+        for (int i = 0; i < num_commands; i++) {
+          command_ring[command_ring_next_write_index % COMMAND_RING_SIZE] = command_buf[i];
+          command_ring_next_write_index++;
+        }
+      }
       command_bytes_index = 0;
       break;
     default:
@@ -56,7 +62,7 @@ void state_render_cursor(state_t *state, char cursor_char, int fg, int bg) {
 }
 
 void state_render_step(state_t *state, int step_index, int fg, int bg) {
-  static char buf[8];
+  static char buf[128];
   int x = ((step_index * 2) / MAX_NUM_STEPS) * 64;
   int y = SEQUENCE_TOP_Y + ((step_index % (MAX_NUM_STEPS / 2)) * 8);
   int index_fg = GREY;
@@ -66,13 +72,16 @@ void state_render_step(state_t *state, int step_index, int fg, int bg) {
   if (step->enabled) {
     const char* name = note_name(step->note_index);
     uint8_t octave = note_octave(step->note_index);
-    char accent = step->accent ? 'a' : ' ';
-    char glide = step->glide ? 'g' : ' ';
-    sprintf(buf, "%s%d%c%c", name, octave, accent, glide);
+    sprintf(buf, "%s%d", name, octave);
     display_text(buf, x + 24, y, fg, bg, 0);
   } else {
-    display_text("  -    ", x + 24, y, fg, bg, 0);
+    display_text(" -  ", x + 24, y, fg, bg, 0);
   }
+  char accent = step_has_accent(step) ? 'a' : ' ';
+  char glide = step_has_glide(step) ? 'g' : ' ';
+  int flag_fg = step->enabled ? fg : GREY;
+  sprintf(buf, "%c%c", accent, glide);
+  display_text(buf, x + 48, y, flag_fg, bg, 0);
 }
 
 void state_render(state_t *state) {
@@ -94,41 +103,68 @@ void render_splash(void) {
 
 void handle_command(command_t command, state_t *state) {
   switch (command.typ) {
-    case COMMAND_HELLO:
+    case COMMAND_HELLO: {
       printf("Hello, World!\n\r");
       break;
-    case COMMAND_SHOW_SPLASH:
+    }
+    case COMMAND_SHOW_SPLASH: {
       render_splash();
       break;
-    case COMMAND_SHOW_UI:
+    }
+    case COMMAND_SHOW_UI: {
       display_clear(BLACK);
       state_render(state);
       break;
-    case COMMAND_SET_NOTE:
+    }
+    case COMMAND_SET_NOTE: {
       uint8_t note_index = command.args.set_note.note_index;
       char buf[4];
       sprintf(buf, "%s%d", note_name(note_index), note_octave(note_index));
       display_text(buf, 0, 0, WHITE, BLACK, 1);
       break;
+    }
+    case COMMAND_SET_SEQUENCE_INDEX: {
+      uint8_t sequence_index = command.args.set_sequence_index.sequence_index;
+      state_render_cursor(state, ' ', WHITE, BLACK);
+      state->current_index = sequence_index;
+      state_render_cursor(state, '>', WHITE, BLACK);
+      break;
+    }
+    case COMMAND_SET_SEQUENCE_NOTE: {
+      uint8_t sequence_index = command.args.set_sequence_note.sequence_index;
+      uint8_t note_index = command.args.set_sequence_note.note_index;
+      step_t *step = &state->sequence.steps[sequence_index];
+      step->note_index = note_index;
+      step->enabled = true;
+      state_render_step(state, sequence_index, WHITE, BLACK);
+      break;
+    }
+    case COMMAND_CLEAR_SEQUENCE_NOTE: {
+      uint8_t sequence_index = command.args.set_sequence_note.sequence_index;
+      step_t *step = &state->sequence.steps[sequence_index];
+      step->enabled = false;
+      state_render_step(state, sequence_index, WHITE, BLACK);
+      break;
+    }
+    case COMMAND_SET_STEP_FLAGS: {
+      uint8_t sequence_index = command.args.set_step_flags.sequence_index;
+      uint8_t flags = command.args.set_step_flags.flags;
+      step_t *step = &state->sequence.steps[sequence_index];
+      step->flags = flags;
+      state_render_step(state, sequence_index, WHITE, BLACK);
+      break;
+    }
   }
 }
 
 int main(void) {
   timer2_init_pwm_port_d_bit_3(DISPLAY_BACKLIGHT_BRIGHTNESS);
 
-  // Allow printing over UART (bitbanged for compatibility with fake arduinos
-  // with faulty USB serial chips).
   USART0_init();
 
   display_init();
 
   state_t state = state_new();
-  state.sequence.steps[1] = (step_t) {
-    .note_index = 42,
-    .enabled = true,
-    .accent = true,
-    .glide = true,
-  };
 
   sei();
 
