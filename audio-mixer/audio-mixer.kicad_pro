@@ -658,16 +658,16 @@
       {
         "filename": "audio-mixer.kicad_sch",
         "name": "audio-mixer",
-        "uuid": "00000000-0000-0000-0000-000000000000"
+        "uuid": "820de2a9-cffb-4c91-ab1e-db3943b5a57a"
       }
     ],
-    "used_designators": "",
+    "used_designators": "SW10-13,RV9-12,R15-18,#PWR26,#PWR32-34,C9-12,J12,J22,J24-31",
     "variants": []
   },
   "sheets": [
     [
       "820de2a9-cffb-4c91-ab1e-db3943b5a57a",
-      "Root"
+      "audio-mixer"
     ]
   ],
   "text_variables": {},
