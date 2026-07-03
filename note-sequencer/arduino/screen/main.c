@@ -102,6 +102,7 @@ void render_splash(void) {
 }
 
 void handle_command(command_t command, state_t *state) {
+  printf("command %d\n\r", command.typ);
   switch (command.typ) {
     case COMMAND_HELLO: {
       printf("Hello, World!\n\r");
@@ -157,6 +158,8 @@ void handle_command(command_t command, state_t *state) {
   }
 }
 
+state_t state;
+
 int main(void) {
   timer2_init_pwm_port_d_bit_3(DISPLAY_BACKLIGHT_BRIGHTNESS);
 
@@ -164,7 +167,9 @@ int main(void) {
 
   display_init();
 
-  state_t state = state_new();
+  state_init(&state);
+
+  printf("Starting TWI event handler...\n\r");
 
   sei();
 

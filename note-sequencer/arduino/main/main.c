@@ -256,6 +256,9 @@ void command_buffer_toggle_flag(command_buffer_t *cb, state_t *state, uint8_t fl
   command_buffer_push(cb, command_set_step_flags(state->current_index, step->flags));
 }
 
+state_t state;
+command_buffer_t command_buffer;
+
 int main(void) {
 
   // Allow printing over UART. The UART pins double up as digital IO pins so this
@@ -264,12 +267,19 @@ int main(void) {
 
   rotary_encoder_init();
 
+  printf("Turning off screen arduino...\n\r");
   // Turn off the other arduino by driving its reset pin low
   DDRB |= BIT(5);
   PORTB &= ~BIT(5);
 
+  COMPILER_BARRIER();
+
   // Wait some time to ensure the second arduino is fully off, then turn it  back on.
   delay_ms(50);
+
+  COMPILER_BARRIER();
+
+  printf("Turning on screen arduino...\n\r");
   PORTB |= BIT(5);
 
   printf("Waiting for screen arduino...\n\r");
@@ -280,6 +290,8 @@ int main(void) {
   // Display the splash screen.
   command_send(command_show_splash());
   delay_ms(1000);
+
+  printf("Starting UI...\n\r");
   command_send(command_show_ui());
 
   key_matrix_init();
@@ -287,11 +299,12 @@ int main(void) {
 
   command_buffer_t command_buffer;
 
-  state_t state = state_new();
+  state_init(&state);
 
   sei();
 
   while (1) {
+    command_buffer.num_commands = 0;
     int8_t rotary_encoder_delta = rotary_encoder_read_delta();
     if (rotary_encoder_delta != 0) {
       command_buffer_add_to_sequence_index(&command_buffer, &state, rotary_encoder_delta);

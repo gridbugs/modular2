@@ -14,7 +14,9 @@ int twi_transmit_start(void) {
 
   // Check that START was transmitted.
   if ((TWSR & 0xF8) != 0x08) {
+#ifdef PRINT_ERRORS
     printf("start error %x\n\r", TWSR);
+#endif
     return -1;
   }
 
@@ -33,7 +35,9 @@ int twi_transmit_address(uint8_t address, bool write) {
 
   // Check that SLA+W was ack'd.
   if ((TWSR & 0xF8) != 0x18) {
+#ifdef PRINT_ERRORS
     printf("tx addr err %x\n\r", TWSR);
+#endif
     return -1;
   }
 

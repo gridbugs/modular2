@@ -1,10 +1,8 @@
 #include "state.h"
 
-state_t state_new(void) {
-  state_t state = { 0 };
-  state.mode = MODE_PROGRAM;
-  state.sequence.num_steps = MAX_NUM_STEPS;
-  return state;
+void state_init(state_t *state) {
+  state->mode = MODE_PROGRAM;
+  state->sequence.num_steps = MAX_NUM_STEPS;
 }
 
 void state_add_to_current_index(state_t *state, int8_t delta) {

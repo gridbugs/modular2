@@ -39,7 +39,7 @@ typedef struct {
   mode_t mode;
 } state_t;
 
-state_t state_new(void);
+void state_init(state_t *state);
 void state_add_to_current_index(state_t *state, int8_t delta);
 
 static inline step_t *state_current_step(state_t *state) {
