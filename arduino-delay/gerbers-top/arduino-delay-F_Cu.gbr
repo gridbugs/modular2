@@ -1,0 +1,49 @@
+%TF.GenerationSoftware,KiCad,Pcbnew,10.0.3*%
+%TF.CreationDate,2026-07-04T10:19:25+10:00*%
+%TF.ProjectId,arduino-delay,61726475-696e-46f2-9d64-656c61792e6b,rev?*%
+%TF.SameCoordinates,Original*%
+%TF.FileFunction,Copper,L1,Top*%
+%TF.FilePolarity,Positive*%
+%FSLAX46Y46*%
+G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
+G04 Created by KiCad (PCBNEW 10.0.3) date 2026-07-04 10:19:25*
+%MOMM*%
+%LPD*%
+G01*
+G04 APERTURE LIST*
+%TA.AperFunction,ComponentPad*%
+%ADD10R,1.700000X1.700000*%
+%TD*%
+%TA.AperFunction,ComponentPad*%
+%ADD11C,1.700000*%
+%TD*%
+%TA.AperFunction,ComponentPad*%
+%ADD12C,8.000000*%
+%TD*%
+G04 APERTURE END LIST*
+D10*
+%TO.P,J9,1,Pin_1*%
+%TO.N,Net-(J8-Pin_1)*%
+X114411228Y-173482506D03*
+D11*
+%TO.P,J9,2,Pin_2*%
+%TO.N,Net-(J10-Pin_1)*%
+X116951228Y-173482506D03*
+%TO.P,J9,3,Pin_3*%
+%TO.N,Net-(J7-Pin_1)*%
+X119491228Y-173482506D03*
+%TD*%
+D12*
+%TO.P,J8,1,Pin_1*%
+%TO.N,Net-(J8-Pin_1)*%
+X98636228Y-163532444D03*
+%TD*%
+%TO.P,J7,1,Pin_1*%
+%TO.N,Net-(J7-Pin_1)*%
+X135236228Y-163507506D03*
+%TD*%
+%TO.P,J10,1,Pin_1*%
+%TO.N,Net-(J10-Pin_1)*%
+X117041895Y-163532444D03*
+%TD*%
+M02*
