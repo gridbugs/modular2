@@ -10,7 +10,6 @@
 #include "timer.h"
 #include "twi.h"
 #include "mcp4725.h"
-#include "display.h"
 #include "note.h"
 #include "note_indices.h"
 #include "key_matrix.h"
