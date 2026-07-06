@@ -17,9 +17,20 @@
 #include "rotary_encoder.h"
 #include "state.h"
 
-#define PORTC_ENCODER_BUTTON BIT(0)
-#define PORTC_ENCODER_A BIT(1)
-#define PORTC_ENCODER_B BIT(2)
+#define PORTC_ENCODER_BUTTON_BIT BIT(0)
+#define PORTC_ENCODER_A_BIT BIT(1)
+#define PORTC_ENCODER_B_BIT BIT(2)
+
+#define PORTD_MODE_BIT BIT(0)
+#define PORTB_SCREEN_ARDUINO_RESET_BIT BIT(5)
+
+static inline mode_t get_mode(void) {
+  if ((PIND & PORTD_MODE_BIT) == 0) {
+    return MODE_RUN;
+  } else {
+    return MODE_PROGRAM;
+  }
+}
 
 // A volatile counter that will be updated asynchronously from the main control
 // thread (by an ISR), and a copy that is expected tobe atomically synchronized
@@ -65,12 +76,12 @@ ISR(PCINT1_vect) {
   }
 }
 
-inline int8_t rotary_encoder_read_delta(void) {
+static inline int8_t rotary_encoder_read_delta(void) {
   return async_counter_read_delta(&rotary_encoder_position);
 }
 
-inline bool rotary_encoder_pressed(void) {
-  return (PINC & PORTC_ENCODER_BUTTON) == 0;
+static inline bool rotary_encoder_pressed(void) {
+  return (PINC & PORTC_ENCODER_BUTTON_BIT) == 0;
 }
 
 void rotary_encoder_init(void) {
@@ -78,13 +89,13 @@ void rotary_encoder_init(void) {
   PCICR |= BIT(PCIE1);
 
   // Allow pin-changed interrupts associated with rotary encoder.
-  PCMSK1 |= PORTC_ENCODER_BUTTON | PORTC_ENCODER_A | PORTC_ENCODER_B;
+  PCMSK1 |= PORTC_ENCODER_BUTTON_BIT | PORTC_ENCODER_A_BIT | PORTC_ENCODER_B_BIT;
 
   // Set pins connected to encoder as input pins.
-  DDRC &= ~(PORTC_ENCODER_BUTTON | PORTC_ENCODER_A | PORTC_ENCODER_B);
+  DDRC &= ~(PORTC_ENCODER_BUTTON_BIT | PORTC_ENCODER_A_BIT | PORTC_ENCODER_B_BIT);
 
   // Enable pull-up resistors for encoder pins.
-  PORTC |= PORTC_ENCODER_BUTTON | PORTC_ENCODER_A | PORTC_ENCODER_B;
+  PORTC |= PORTC_ENCODER_BUTTON_BIT | PORTC_ENCODER_A_BIT | PORTC_ENCODER_B_BIT;
 }
 
 typedef enum {
@@ -255,6 +266,11 @@ void command_buffer_toggle_flag(command_buffer_t *cb, state_t *state, uint8_t fl
   command_buffer_push(cb, command_set_step_flags(state->current_index, step->flags));
 }
 
+void command_buffer_set_mode(command_buffer_t *cb, state_t *state, mode_t mode) {
+  state->mode = mode;
+  command_buffer_push(cb, command_set_mode(mode));
+}
+
 state_t state;
 command_buffer_t command_buffer;
 
@@ -266,10 +282,14 @@ int main(void) {
 
   rotary_encoder_init();
 
+  // Input pin with pullup resistor for mode switch.
+  DDRD &= ~PORTD_MODE_BIT;
+  PORTD |= PORTD_MODE_BIT;
+
   printf("Turning off screen arduino...\n\r");
   // Turn off the other arduino by driving its reset pin low
-  DDRB |= BIT(5);
-  PORTB &= ~BIT(5);
+  DDRB |= PORTB_SCREEN_ARDUINO_RESET_BIT;
+  PORTB &= ~PORTB_SCREEN_ARDUINO_RESET_BIT;
 
   COMPILER_BARRIER();
 
@@ -279,7 +299,7 @@ int main(void) {
   COMPILER_BARRIER();
 
   printf("Turning on screen arduino...\n\r");
-  PORTB |= BIT(5);
+  PORTB |= PORTB_SCREEN_ARDUINO_RESET_BIT;
 
   printf("Waiting for screen arduino...\n\r");
   while (command_send(command_hello()) != 0);
@@ -304,13 +324,21 @@ int main(void) {
 
   while (1) {
     command_buffer.num_commands = 0;
+
+    mode_t mode = get_mode();
+    if (mode != state.mode) {
+      command_buffer_set_mode(&command_buffer, &state, mode);
+    }
+
     int8_t rotary_encoder_delta = rotary_encoder_read_delta();
     if (rotary_encoder_delta != 0) {
       command_buffer_add_to_sequence_index(&command_buffer, &state, rotary_encoder_delta);
     }
+
     key_matrix_scan(&key_states);
     uint32_t delta = key_states.curr ^ key_states.prev;
     uint32_t pressed = delta & key_states.curr;
+
     bool shift = (key_states.curr & KEY_SHIFT_BIT) != 0;
     while (pressed) {
       int pressed_bit = __builtin_ctzl(pressed);
@@ -338,6 +366,7 @@ int main(void) {
         command_buffer_toggle_flag(&command_buffer, &state, FLAG_GLIDE);
       }
     }
+
     uint32_t released = delta & key_states.prev;
     while (released) {
       int released_bit = __builtin_ctzl(released);
@@ -353,6 +382,7 @@ int main(void) {
         }
       }
     }
+
     if (note_stack_size > 0) {
       key_note_t new_current_note = note_stack[note_stack_size - 1];
       if (new_current_note != current_note) {

@@ -9,9 +9,10 @@ int command_type_num_bytes(command_type_t command_type) {
       return 1;
     case COMMAND_SET_NOTE:
     case COMMAND_SET_SEQUENCE_INDEX:
-    case COMMAND_CLEAR_SEQUENCE_NOTE:
+    case COMMAND_CLEAR_STEP_NOTE:
+    case COMMAND_SET_MODE:
       return 2;
-    case COMMAND_SET_SEQUENCE_NOTE:
+    case COMMAND_SET_STEP_NOTE:
     case COMMAND_SET_STEP_FLAGS:
       return 3;
   }
@@ -31,19 +32,22 @@ int command_to_bytes(command_t command, uint8_t *bytes) {
     case COMMAND_SET_SEQUENCE_INDEX:
       bytes[1] = command.args.set_sequence_index.sequence_index;
       return 2;
-    case COMMAND_SET_SEQUENCE_NOTE:
+    case COMMAND_SET_STEP_NOTE:
       bytes[1] = command.args.set_sequence_note.sequence_index;
       bytes[2] = command.args.set_sequence_note.note_index;
       return 3;
-    case COMMAND_CLEAR_SEQUENCE_NOTE:
+    case COMMAND_CLEAR_STEP_NOTE:
       bytes[1] = command.args.clear_sequence_note.sequence_index;
       return 2;
     case COMMAND_SET_STEP_FLAGS:
       bytes[1] = command.args.set_step_flags.sequence_index;
       bytes[2] = command.args.set_step_flags.flags;
       return 3;
+    case COMMAND_SET_MODE:
+      bytes[1] = command.args.set_mode.mode;
+      return 2;
   }
-  return 0;
+  __builtin_unreachable();
 }
 
 int commands_to_bytes(command_t *commands, uint8_t num_commands, uint8_t *bytes) {
@@ -67,15 +71,16 @@ command_t command_from_bytes(uint8_t *bytes) {
       return command_set_note(bytes[1]);
     case COMMAND_SET_SEQUENCE_INDEX:
       return command_set_sequence_index(bytes[1]);
-    case COMMAND_SET_SEQUENCE_NOTE:
+    case COMMAND_SET_STEP_NOTE:
       return command_set_sequence_note(bytes[1], bytes[2]);
-    case COMMAND_CLEAR_SEQUENCE_NOTE:
+    case COMMAND_CLEAR_STEP_NOTE:
       return command_clear_sequence_note(bytes[1]);
     case COMMAND_SET_STEP_FLAGS:
       return command_set_step_flags(bytes[1], bytes[2]);
+    case COMMAND_SET_MODE:
+      return command_set_mode(bytes[1]);
     default:
-      printf("Unexpected command type: %d\n\r", bytes[0]);
-      while(1);
+      PANIC("Unexpected command type: %d", bytes[0]);
   }
 }
 

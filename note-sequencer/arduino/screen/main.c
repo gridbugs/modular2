@@ -53,6 +53,22 @@ ISR(TWI_vect) {
 }
 
 #define SEQUENCE_TOP_Y 32
+#define MODE_LEFT_X 104
+
+void state_render_mode(state_t *state, int fg, int bg) {
+  char* text;
+  switch (state->mode) {
+    case MODE_RUN:
+      text = "RUN";
+      break;
+    case MODE_PROGRAM:
+      text = "PRG";
+      break;
+    default:
+      return;
+  }
+  display_text(text, MODE_LEFT_X, 0, fg, bg, 0);
+}
 
 void state_render_cursor(state_t *state, char cursor_char, int fg, int bg) {
   int cursor_x = ((state->current_index * 2) / MAX_NUM_STEPS) * 64;
@@ -87,6 +103,7 @@ void state_render_step(state_t *state, int step_index, int fg, int bg) {
 void state_render(state_t *state) {
   int fg = WHITE;
   int bg = BLACK;
+  state_render_mode(state, fg, bg);
   for (int i = 0; i < MAX_NUM_STEPS; i++) {
     state_render_step(state, i, fg, bg);
   }
@@ -102,7 +119,8 @@ void render_splash(void) {
 }
 
 void handle_command(command_t command, state_t *state) {
-  printf("command %d\n\r", command.typ);
+  int fg = WHITE;
+  int bg = BLACK;
   switch (command.typ) {
     case COMMAND_HELLO: {
       printf("Hello, World!\n\r");
@@ -113,7 +131,7 @@ void handle_command(command_t command, state_t *state) {
       break;
     }
     case COMMAND_SHOW_UI: {
-      display_clear(BLACK);
+      display_clear(bg);
       state_render(state);
       break;
     }
@@ -121,30 +139,30 @@ void handle_command(command_t command, state_t *state) {
       uint8_t note_index = command.args.set_note.note_index;
       char buf[4];
       sprintf(buf, "%s%d", note_name(note_index), note_octave(note_index));
-      display_text(buf, 0, 0, WHITE, BLACK, 1);
+      display_text(buf, 0, 0, fg, bg, 1);
       break;
     }
     case COMMAND_SET_SEQUENCE_INDEX: {
       uint8_t sequence_index = command.args.set_sequence_index.sequence_index;
-      state_render_cursor(state, ' ', WHITE, BLACK);
+      state_render_cursor(state, ' ', fg, bg);
       state->current_index = sequence_index;
-      state_render_cursor(state, '>', WHITE, BLACK);
+      state_render_cursor(state, '>', fg, bg);
       break;
     }
-    case COMMAND_SET_SEQUENCE_NOTE: {
+    case COMMAND_SET_STEP_NOTE: {
       uint8_t sequence_index = command.args.set_sequence_note.sequence_index;
       uint8_t note_index = command.args.set_sequence_note.note_index;
       step_t *step = &state->sequence.steps[sequence_index];
       step->note_index = note_index;
       step->enabled = true;
-      state_render_step(state, sequence_index, WHITE, BLACK);
+      state_render_step(state, sequence_index, fg, bg);
       break;
     }
-    case COMMAND_CLEAR_SEQUENCE_NOTE: {
+    case COMMAND_CLEAR_STEP_NOTE: {
       uint8_t sequence_index = command.args.set_sequence_note.sequence_index;
       step_t *step = &state->sequence.steps[sequence_index];
       step->enabled = false;
-      state_render_step(state, sequence_index, WHITE, BLACK);
+      state_render_step(state, sequence_index, fg, bg);
       break;
     }
     case COMMAND_SET_STEP_FLAGS: {
@@ -152,7 +170,12 @@ void handle_command(command_t command, state_t *state) {
       uint8_t flags = command.args.set_step_flags.flags;
       step_t *step = &state->sequence.steps[sequence_index];
       step->flags = flags;
-      state_render_step(state, sequence_index, WHITE, BLACK);
+      state_render_step(state, sequence_index, fg, bg);
+      break;
+    }
+    case COMMAND_SET_MODE: {
+      state->mode = command.args.set_mode.mode;
+      state_render_mode(state, fg, bg);
       break;
     }
   }
