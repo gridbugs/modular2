@@ -84,7 +84,7 @@
 			(mirror no)
 			(drillshape 0)
 			(scaleselection 1)
-			(outputdirectory "gerbers")
+			(outputdirectory "gerbers-bottom/")
 		)
 	)
 	(footprint "modular2:Potentiometer_Alps_RK09K_Single_Vertical - knob padding"
