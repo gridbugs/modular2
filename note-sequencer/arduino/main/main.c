@@ -273,6 +273,7 @@ void command_buffer_set_mode(command_buffer_t *cb, state_t *state, mode_t mode) 
 
 state_t state;
 command_buffer_t command_buffer;
+key_states_t key_states = { 0 };
 
 int main(void) {
 
@@ -314,7 +315,6 @@ int main(void) {
   command_send(command_show_ui());
 
   key_matrix_init();
-  key_states_t key_states = {0};
 
   command_buffer_t command_buffer;
 

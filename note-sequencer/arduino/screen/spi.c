@@ -24,7 +24,10 @@ void spi_send(uint8_t data) {
   // transmission of the byte completes, so it's necessary to explicitly wait
   // here so I can rely on the write having completed after this function
   // returns.
-  for (int i = 0; i < 6; i++) {
-    __asm__ __volatile__("nop");
-  }
+  NOP();
+  NOP();
+  NOP();
+  NOP();
+  NOP();
+  NOP();
 }
