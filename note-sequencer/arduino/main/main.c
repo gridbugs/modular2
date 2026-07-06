@@ -190,6 +190,7 @@ typedef enum {
   KEY_NOTE_A_SHARP_2,
   KEY_NOTE_B_2,
   KEY_NOTE_C_3,
+  KEY_NOTE_NONE,
 } key_note_t;
 
 #define KEY_NOTE_COUNT 25
@@ -202,7 +203,7 @@ typedef enum {
 
 key_note_t note_stack[KEY_NOTE_COUNT] = {0};
 uint8_t note_stack_size = 0 ;
-key_note_t current_note = KEY_NOTE_C_1;
+key_note_t current_note = KEY_NOTE_NONE;
 
 typedef struct {
   command_t commands[32];
@@ -277,8 +278,8 @@ key_states_t key_states = { 0 };
 
 int main(void) {
 
-  // Allow printing over UART. The UART pins double up as digital IO pins so this
-  // will mess with functionality, but handy in emergencies.
+  // Allow printing over UART. The UART TX pin is also the gate output, so
+  // printing will mess with functionality.
   USART0_init();
 
   rotary_encoder_init();
