@@ -658,7 +658,7 @@
       {
         "filename": "arduino-delay.kicad_sch",
         "name": "arduino-delay",
-        "uuid": "00000000-0000-0000-0000-000000000000"
+        "uuid": "d2b21a2d-d1b6-456d-a58b-c4c46db16435"
       }
     ],
     "used_designators": "",
@@ -667,7 +667,7 @@
   "sheets": [
     [
       "d2b21a2d-d1b6-456d-a58b-c4c46db16435",
-      "Root"
+      "arduino-delay"
     ]
   ],
   "text_variables": {},
