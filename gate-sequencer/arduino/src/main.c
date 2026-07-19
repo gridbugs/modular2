@@ -86,8 +86,22 @@ void set_clock_source(bool external) {
   }
 }
 
+#define CLOCK_BOUNCE_THRESHOLD 100
+
 bool get_clock_in(void) {
-  return (PIND & PORTD_CLOCK_BIT) != 0;
+  static uint32_t since_change = 0;
+  static bool state = false;
+  bool raw = (PIND & PORTD_CLOCK_BIT) != 0;
+  if (raw && !state && since_change >= CLOCK_BOUNCE_THRESHOLD) {
+    state = true;
+    since_change = 0;
+  } else if (!raw && state && since_change >= CLOCK_BOUNCE_THRESHOLD) {
+    state = false;
+    since_change = 0;
+  } else {
+    since_change++;
+  }
+  return state;
 }
 
 void set_clock_out(bool value) {
