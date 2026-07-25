@@ -41,6 +41,7 @@ typedef struct {
 
 void state_init(state_t *state);
 void state_add_to_current_index(state_t *state, int8_t delta);
+void state_clear_sequence(state_t *state);
 
 static inline step_t *state_current_step(state_t *state) {
   return &state->sequence.steps[state->current_index];

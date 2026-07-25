@@ -18,7 +18,7 @@ CC=avr-gcc
 STRIP=avr-strip
 MCU=atmega328p
 
-CFLAGS=-mmcu=$(MCU) -std=c99 -Wall -O1 -I $(COMMON_DIR)
+CFLAGS=-mmcu=$(MCU) -std=c99 -Wall -Werror=switch -O1 -I $(COMMON_DIR)
 
 all: main.elf screen.elf
 

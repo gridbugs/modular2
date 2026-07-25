@@ -70,11 +70,15 @@ void state_render_mode(state_t *state, int fg, int bg) {
   display_text(text, MODE_LEFT_X, 0, fg, bg, 0);
 }
 
-void state_render_cursor(state_t *state, char cursor_char, int fg, int bg) {
-  int cursor_x = ((state->current_index * 2) / MAX_NUM_STEPS) * 64;
-  int cursor_y = SEQUENCE_TOP_Y + ((state->current_index % (MAX_NUM_STEPS / 2)) * 8);
+void render_cursor_at(int index, char cursor_char, int fg, int bg) {
+  int cursor_x = ((index * 2) / MAX_NUM_STEPS) * 64;
+  int cursor_y = SEQUENCE_TOP_Y + ((index % (MAX_NUM_STEPS / 2)) * 8);
   char buf[] = { cursor_char, '\0' };
   display_text(buf, cursor_x, cursor_y, fg, bg, 0);
+}
+
+void state_render_cursor(state_t *state, char cursor_char, int fg, int bg) {
+  render_cursor_at(state->current_index, cursor_char, fg, bg);
 }
 
 void state_render_step(state_t *state, int step_index, int fg, int bg) {
@@ -106,6 +110,7 @@ void state_render(state_t *state) {
   state_render_mode(state, fg, bg);
   for (int i = 0; i < MAX_NUM_STEPS; i++) {
     state_render_step(state, i, fg, bg);
+    render_cursor_at(i, ' ', fg, bg);
   }
   state_render_cursor(state, '>', fg, bg);
 }
@@ -173,6 +178,10 @@ void handle_command(command_t command, state_t *state) {
       state_render_step(state, sequence_index, fg, bg);
       break;
     }
+    case COMMAND_CLEAR_SEQUENCE:
+      state_clear_sequence(state);
+      state_render(state);
+      break;
     case COMMAND_SET_MODE: {
       state->mode = command.args.set_mode.mode;
       state_render_mode(state, fg, bg);

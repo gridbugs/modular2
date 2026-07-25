@@ -6,6 +6,7 @@ int command_type_num_bytes(command_type_t command_type) {
     case COMMAND_HELLO:
     case COMMAND_SHOW_SPLASH:
     case COMMAND_SHOW_UI:
+    case COMMAND_CLEAR_SEQUENCE:
       return 1;
     case COMMAND_SET_NOTE:
     case COMMAND_SET_SEQUENCE_INDEX:
@@ -19,12 +20,15 @@ int command_type_num_bytes(command_type_t command_type) {
   return 0;
 }
 
+// Write an encoding of the command to a buffer returning the number of bytes
+// written.
 int command_to_bytes(command_t command, uint8_t *bytes) {
   bytes[0] = command.typ;
   switch (command.typ) {
     case COMMAND_HELLO:
     case COMMAND_SHOW_SPLASH:
     case COMMAND_SHOW_UI:
+    case COMMAND_CLEAR_SEQUENCE:
       return 1;
     case COMMAND_SET_NOTE:
       bytes[1] = command.args.set_note.note_index;
@@ -50,6 +54,8 @@ int command_to_bytes(command_t command, uint8_t *bytes) {
   __builtin_unreachable();
 }
 
+// Concatenate encodings of a sequence of commands into a buffer returning the
+// number of bytes written.
 int commands_to_bytes(command_t *commands, uint8_t num_commands, uint8_t *bytes) {
   bytes[0] = num_commands;
   int n = 1;
@@ -77,6 +83,8 @@ command_t command_from_bytes(uint8_t *bytes) {
       return command_clear_step_note(bytes[1]);
     case COMMAND_SET_STEP_FLAGS:
       return command_set_step_flags(bytes[1], bytes[2]);
+    case COMMAND_CLEAR_SEQUENCE:
+      return command_clear_sequence();
     case COMMAND_SET_MODE:
       return command_set_mode(bytes[1]);
     default:

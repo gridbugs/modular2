@@ -240,25 +240,9 @@ void command_buffer_clear_note(command_buffer_t *cb, state_t *state) {
   command_buffer_push(cb, command_clear_step_note(state->current_index));
 }
 
-// This function has the side effect of sending buffers of commands to save on buffer size.
 void command_buffer_clear_all(command_buffer_t *cb, state_t *state) {
-  state->current_index = 0;
-  command_buffer_push(cb, command_set_sequence_index(0));
-  for (int i = 0; i < MAX_NUM_STEPS / 2; i++) {
-    step_t *step = &state->sequence.steps[i];
-    step->enabled = false;
-    step->flags = 0;
-    command_buffer_push(cb, command_clear_step_note(i));
-    command_buffer_push(cb, command_set_step_flags(i, 0));
-  }
-  command_buffer_send(cb);
-  delay_ms(10);
-  for (int i = MAX_NUM_STEPS / 2; i < MAX_NUM_STEPS; i++) {
-    step_t *step = &state->sequence.steps[i];
-    step->flags = 0;
-    command_buffer_push(cb, command_clear_step_note(i));
-    command_buffer_push(cb, command_set_step_flags(i, 0));
-  }
+  state_clear_sequence(state);
+  command_buffer_push(cb, command_clear_sequence());
 }
 
 void command_buffer_toggle_flag(command_buffer_t *cb, state_t *state, uint8_t flag) {

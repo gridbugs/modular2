@@ -28,10 +28,13 @@ typedef enum {
   // Clear the note at a given index.
   COMMAND_CLEAR_STEP_NOTE,
 
-  // Set the flags at a given index
+  // Set the flags at a given index.
   COMMAND_SET_STEP_FLAGS,
 
-  // Set the mode
+  // Clear all steps and flags.
+  COMMAND_CLEAR_SEQUENCE,
+
+  // Set the mode.
   COMMAND_SET_MODE,
 } command_type_t;
 
@@ -128,6 +131,10 @@ static inline command_t command_set_step_flags(uint8_t sequence_index, uint8_t f
       },
     }
   };
+}
+
+static inline command_t command_clear_sequence(void) {
+  return (command_t) { .typ = COMMAND_CLEAR_SEQUENCE };
 }
 
 static inline command_t command_set_mode(mode_t mode) {

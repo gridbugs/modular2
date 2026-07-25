@@ -12,3 +12,12 @@ void state_add_to_current_index(state_t *state, int8_t delta) {
   }
   state->current_index = (uint8_t)(new_current_index % state->sequence.num_steps);
 }
+
+void state_clear_sequence(state_t *state) {
+  state->current_index = 0;
+  for (int i = 0; i < MAX_NUM_STEPS; i++) {
+    step_t *step = &state->sequence.steps[i];
+    step->enabled = false;
+    step->flags = 0;
+  }
+}
