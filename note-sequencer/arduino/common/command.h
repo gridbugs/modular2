@@ -47,10 +47,10 @@ typedef struct {
     struct {
       uint8_t sequence_index;
       uint8_t note_index;
-    } set_sequence_note;
+    } set_step_note;
     struct {
       uint8_t sequence_index;
-    } clear_sequence_note;
+    } clear_step_note;
     struct {
       uint8_t sequence_index;
       uint8_t flags;
@@ -95,11 +95,11 @@ static inline command_t command_set_sequence_index(uint8_t sequence_index) {
   };
 }
 
-static inline command_t command_set_sequence_note(uint8_t sequence_index, uint8_t note_index) {
+static inline command_t command_set_step_note(uint8_t sequence_index, uint8_t note_index) {
   return (command_t) {
     .typ = COMMAND_SET_STEP_NOTE,
     .args = {
-      .set_sequence_note = {
+      .set_step_note = {
         .sequence_index = sequence_index,
         .note_index = note_index,
       },
@@ -107,11 +107,11 @@ static inline command_t command_set_sequence_note(uint8_t sequence_index, uint8_
   };
 }
 
-static inline command_t command_clear_sequence_note(uint8_t sequence_index) {
+static inline command_t command_clear_step_note(uint8_t sequence_index) {
   return (command_t) {
     .typ = COMMAND_CLEAR_STEP_NOTE,
     .args = {
-      .clear_sequence_note = {
+      .clear_step_note = {
         .sequence_index = sequence_index,
       },
     }

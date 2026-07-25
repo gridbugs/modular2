@@ -150,8 +150,8 @@ void handle_command(command_t command, state_t *state) {
       break;
     }
     case COMMAND_SET_STEP_NOTE: {
-      uint8_t sequence_index = command.args.set_sequence_note.sequence_index;
-      uint8_t note_index = command.args.set_sequence_note.note_index;
+      uint8_t sequence_index = command.args.set_step_note.sequence_index;
+      uint8_t note_index = command.args.set_step_note.note_index;
       step_t *step = &state->sequence.steps[sequence_index];
       step->note_index = note_index;
       step->enabled = true;
@@ -159,7 +159,7 @@ void handle_command(command_t command, state_t *state) {
       break;
     }
     case COMMAND_CLEAR_STEP_NOTE: {
-      uint8_t sequence_index = command.args.set_sequence_note.sequence_index;
+      uint8_t sequence_index = command.args.set_step_note.sequence_index;
       step_t *step = &state->sequence.steps[sequence_index];
       step->enabled = false;
       state_render_step(state, sequence_index, fg, bg);

@@ -33,11 +33,11 @@ int command_to_bytes(command_t command, uint8_t *bytes) {
       bytes[1] = command.args.set_sequence_index.sequence_index;
       return 2;
     case COMMAND_SET_STEP_NOTE:
-      bytes[1] = command.args.set_sequence_note.sequence_index;
-      bytes[2] = command.args.set_sequence_note.note_index;
+      bytes[1] = command.args.set_step_note.sequence_index;
+      bytes[2] = command.args.set_step_note.note_index;
       return 3;
     case COMMAND_CLEAR_STEP_NOTE:
-      bytes[1] = command.args.clear_sequence_note.sequence_index;
+      bytes[1] = command.args.clear_step_note.sequence_index;
       return 2;
     case COMMAND_SET_STEP_FLAGS:
       bytes[1] = command.args.set_step_flags.sequence_index;
@@ -72,9 +72,9 @@ command_t command_from_bytes(uint8_t *bytes) {
     case COMMAND_SET_SEQUENCE_INDEX:
       return command_set_sequence_index(bytes[1]);
     case COMMAND_SET_STEP_NOTE:
-      return command_set_sequence_note(bytes[1], bytes[2]);
+      return command_set_step_note(bytes[1], bytes[2]);
     case COMMAND_CLEAR_STEP_NOTE:
-      return command_clear_sequence_note(bytes[1]);
+      return command_clear_step_note(bytes[1]);
     case COMMAND_SET_STEP_FLAGS:
       return command_set_step_flags(bytes[1], bytes[2]);
     case COMMAND_SET_MODE:

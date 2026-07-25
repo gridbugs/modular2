@@ -231,13 +231,13 @@ void command_buffer_press_note_key(command_buffer_t *cb, state_t *state, key_not
   step_t *step = state_current_step(state);
   step->note_index = key_note;
   step->enabled = true;
-  command_buffer_push(cb, command_set_sequence_note(state->current_index, key_note));
+  command_buffer_push(cb, command_set_step_note(state->current_index, key_note));
 }
 
 void command_buffer_clear_note(command_buffer_t *cb, state_t *state) {
   step_t *step = state_current_step(state);
   step->enabled = false;
-  command_buffer_push(cb, command_clear_sequence_note(state->current_index));
+  command_buffer_push(cb, command_clear_step_note(state->current_index));
 }
 
 // This function has the side effect of sending buffers of commands to save on buffer size.
@@ -248,7 +248,7 @@ void command_buffer_clear_all(command_buffer_t *cb, state_t *state) {
     step_t *step = &state->sequence.steps[i];
     step->enabled = false;
     step->flags = 0;
-    command_buffer_push(cb, command_clear_sequence_note(i));
+    command_buffer_push(cb, command_clear_step_note(i));
     command_buffer_push(cb, command_set_step_flags(i, 0));
   }
   command_buffer_send(cb);
@@ -256,7 +256,7 @@ void command_buffer_clear_all(command_buffer_t *cb, state_t *state) {
   for (int i = MAX_NUM_STEPS / 2; i < MAX_NUM_STEPS; i++) {
     step_t *step = &state->sequence.steps[i];
     step->flags = 0;
-    command_buffer_push(cb, command_clear_sequence_note(i));
+    command_buffer_push(cb, command_clear_step_note(i));
     command_buffer_push(cb, command_set_step_flags(i, 0));
   }
 }
