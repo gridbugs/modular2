@@ -260,6 +260,12 @@ state_t state;
 command_buffer_t command_buffer;
 key_states_t key_states = { 0 };
 
+volatile uint16_t count = 0;
+
+ISR(TIMER1_COMPA_vect) {
+  printf("hello %u\n\r", count++);
+}
+
 int main(void) {
 
   // Allow printing over UART. The UART TX pin is also the gate output, so
@@ -304,6 +310,13 @@ int main(void) {
   command_buffer_t command_buffer;
 
   state_init(&state);
+
+  timer1_init();
+  timer1_enable_interrupt_output_compare_a();
+  timer1_set_reset_on_output_compare_a_match();
+  timer1_set_output_compare_a(60);
+  timer1_reset();
+  timer1_start();
 
   sei();
 
