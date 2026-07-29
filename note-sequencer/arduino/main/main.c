@@ -16,6 +16,7 @@
 #include "command.h"
 #include "rotary_encoder.h"
 #include "state.h"
+#include "clock.h"
 
 #define PORTC_ENCODER_BUTTON_BIT BIT(0)
 #define PORTC_ENCODER_A_BIT BIT(1)
@@ -190,7 +191,6 @@ typedef enum {
   KEY_NOTE_A_SHARP_2,
   KEY_NOTE_B_2,
   KEY_NOTE_C_3,
-  KEY_NOTE_NONE,
 } key_note_t;
 
 #define KEY_NOTE_COUNT 25
@@ -203,7 +203,7 @@ typedef enum {
 
 key_note_t note_stack[KEY_NOTE_COUNT] = {0};
 uint8_t note_stack_size = 0 ;
-key_note_t current_note = KEY_NOTE_NONE;
+key_note_t current_note = KEY_NOTE_C_1;
 
 typedef struct {
   command_t commands[32];
@@ -256,6 +256,26 @@ void command_buffer_set_mode(command_buffer_t *cb, state_t *state, mode_t mode) 
   command_buffer_push(cb, command_set_mode(mode));
 }
 
+void command_buffer_setting_tempo(command_buffer_t *cb, state_t *state, bool setting_tempo) {
+  state->setting_tempo = setting_tempo;
+  command_buffer_push(cb, command_setting_tempo(setting_tempo));
+}
+
+#define MIN_BPM 30
+#define MAX_BPM 255
+
+void command_buffer_add_to_tempo(command_buffer_t *cb, state_t *state, int8_t tempo_delta) {
+  int16_t tempo_bpm = (int16_t)state->tempo_bpm + (int16_t)tempo_delta;
+  state->tempo_bpm = tempo_bpm < MIN_BPM ? MIN_BPM : (tempo_bpm > MAX_BPM ? MAX_BPM : (uint8_t)tempo_bpm);
+  command_buffer_push(cb, command_set_tempo(state->tempo_bpm));
+}
+
+#define SECONDS_PER_MINUTE 60
+
+uint16_t ticks_per_minute_to_timer_compare(uint16_t ticks_per_minute) {
+  return (uint16_t)(((OSC_HZ >> 9) * SECONDS_PER_MINUTE) / (uint32_t)ticks_per_minute);
+}
+
 state_t state;
 command_buffer_t command_buffer;
 key_states_t key_states = { 0 };
@@ -283,7 +303,6 @@ ISR(TIMER1_COMPA_vect) {
 }
 
 int main(void) {
-
   // Allow printing over UART. The UART TX pin is also the gate output, so
   // printing will mess with functionality.
   USART0_init();
@@ -316,10 +335,11 @@ int main(void) {
 
   // Display the splash screen.
   command_send(command_show_splash());
-  delay_ms(1000);
+  delay_ms(500);
 
   printf("Starting UI...\n\r");
   command_send(command_show_ui());
+  delay_ms(500);
 
   key_matrix_init();
 
@@ -330,22 +350,26 @@ int main(void) {
   timer1_init();
   timer1_enable_interrupt_output_compare_a();
   timer1_set_reset_on_output_compare_a_match();
-  timer1_set_output_compare_a(5000);
+  timer1_set_output_compare_a(ticks_per_minute_to_timer_compare(state_ticks_per_minute(&state)));
   timer1_reset();
   timer1_start();
 
   sei();
 
+  command_buffer_push(&command_buffer, command_set_note(current_note));
+  command_buffer_send(&command_buffer);
+  delay_ms(500);
+
   while (1) {
     key_note_t new_current_note = current_note;
-
-    command_buffer.num_commands = 0;
 
     if (async_flag_check_and_clear(&timer_tick)) {
       if (state.mode == MODE_RUN) {
         command_buffer_add_to_sequence_index(&command_buffer, &state, 1);
         step_t *current_step = state_current_step(&state);
-        new_current_note = current_step->note_index;
+        if (current_step->enabled) {
+          new_current_note = current_step->note_index;
+        }
       }
     }
 
@@ -356,7 +380,12 @@ int main(void) {
 
     int8_t rotary_encoder_delta = rotary_encoder_read_delta();
     if (rotary_encoder_delta != 0) {
-      command_buffer_add_to_sequence_index(&command_buffer, &state, rotary_encoder_delta);
+      if (state.setting_tempo) {
+        command_buffer_add_to_tempo(&command_buffer, &state, rotary_encoder_delta);
+        timer1_set_output_compare_a(ticks_per_minute_to_timer_compare(state_ticks_per_minute(&state)));
+      } else {
+        command_buffer_add_to_sequence_index(&command_buffer, &state, rotary_encoder_delta);
+      }
     }
 
     key_matrix_scan(&key_states);
@@ -364,18 +393,32 @@ int main(void) {
     uint32_t pressed = delta & key_states.curr;
 
     bool shift = (key_states.curr & KEY_SHIFT_BIT) != 0;
+    if (!shift) {
+      if (state.setting_tempo) {
+        command_buffer_setting_tempo(&command_buffer, &state, false);
+      }
+    }
     while (pressed) {
       int pressed_bit = __builtin_ctzl(pressed);
       pressed &= ~BIT(pressed_bit);
       key_t key = keys_by_key_matrix_bit[pressed_bit];
       if (key < KEY_NOTE_COUNT) {
         key_note_t key_note = (key_note_t)key;
-        note_stack[note_stack_size] = key_note;
-        note_stack_size++;
+        if (shift) {
+          switch (key_note) {
+            case KEY_NOTE_C_1:
+              command_buffer_setting_tempo(&command_buffer, &state, true);
+              break;
+            default:
+          }
+        } else {
+          note_stack[note_stack_size] = key_note;
+          note_stack_size++;
 
-        // Handle the fact that this key was just pressed
-        command_buffer_press_note_key(&command_buffer, &state, key_note);
-        command_buffer_add_to_sequence_index(&command_buffer, &state, 1);
+          // Handle the fact that this key was just pressed
+          command_buffer_press_note_key(&command_buffer, &state, key_note);
+          command_buffer_add_to_sequence_index(&command_buffer, &state, 1);
+        }
       } else if (key == KEY_CLEAR) {
         if (shift) {
           command_buffer_clear_all(&command_buffer, &state);
@@ -395,9 +438,19 @@ int main(void) {
     while (released) {
       int released_bit = __builtin_ctzl(released);
       released &= ~BIT(released_bit);
-      key_t key = keys_by_key_matrix_bit[released_bit];
+      key_note_t key_note = (key_note_t)keys_by_key_matrix_bit[released_bit];
+      if (shift) {
+        switch (key_note) {
+          case KEY_NOTE_C_1:
+            if (state.setting_tempo) {
+              command_buffer_setting_tempo(&command_buffer, &state, false);
+            }
+            break;
+          default:
+        }
+      }
       for (int i = 0; i < note_stack_size; i++) {
-        if (note_stack[i] == (key_note_t)key) {
+        if (note_stack[i] == key_note) {
           for (; i < note_stack_size - 1; i++) {
             note_stack[i] = note_stack[i + 1];
           }
@@ -412,8 +465,8 @@ int main(void) {
     }
 
     if (new_current_note != current_note) {
-      command_buffer_push(&command_buffer, command_set_note(new_current_note));
       current_note = new_current_note;
+      command_buffer_push(&command_buffer, command_set_note(current_note));
     }
 
     command_buffer_send(&command_buffer);

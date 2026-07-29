@@ -54,6 +54,7 @@ ISR(TWI_vect) {
 
 #define SEQUENCE_TOP_Y 32
 #define MODE_LEFT_X 104
+char buf[128];
 
 void state_render_mode(state_t *state, int fg, int bg) {
   char* text;
@@ -82,7 +83,6 @@ void state_render_cursor(state_t *state, char cursor_char, int fg, int bg) {
 }
 
 void state_render_step(state_t *state, int step_index, int fg, int bg) {
-  static char buf[128];
   int x = ((step_index * 2) / MAX_NUM_STEPS) * 64;
   int y = SEQUENCE_TOP_Y + ((step_index % (MAX_NUM_STEPS / 2)) * 8);
   int index_fg = GREY;
@@ -104,15 +104,25 @@ void state_render_step(state_t *state, int step_index, int fg, int bg) {
   display_text(buf, x + 48, y, flag_fg, bg, 0);
 }
 
+void state_render_setting(state_t *state, int fg, int bg) {
+  int y = 112;
+  if (state->setting_tempo) {
+    sprintf(buf, "TEMPO: %3u BPM", state->tempo_bpm);
+  } else {
+    sprintf(buf, "              ");
+  }
+  display_text(buf, 8, y, fg, bg, 0);
+}
+
 void state_render(state_t *state) {
   int fg = WHITE;
   int bg = BLACK;
   state_render_mode(state, fg, bg);
   for (int i = 0; i < MAX_NUM_STEPS; i++) {
     state_render_step(state, i, fg, bg);
-    render_cursor_at(i, ' ', fg, bg);
+    char cursor = (i == state->current_index) ? '>' : ' ';
+    render_cursor_at(i, cursor, fg, bg);
   }
-  state_render_cursor(state, '>', fg, bg);
 }
 
 void render_splash(void) {
@@ -178,13 +188,24 @@ void handle_command(command_t command, state_t *state) {
       state_render_step(state, sequence_index, fg, bg);
       break;
     }
-    case COMMAND_CLEAR_SEQUENCE:
+    case COMMAND_CLEAR_SEQUENCE: {
       state_clear_sequence(state);
       state_render(state);
       break;
+    }
     case COMMAND_SET_MODE: {
       state->mode = command.args.set_mode.mode;
       state_render_mode(state, fg, bg);
+      break;
+    }
+    case COMMAND_SETTING_TEMPO: {
+      state->setting_tempo = command.args.setting_tempo.setting_tempo;
+      state_render_setting(state, fg, bg);
+      break;
+    }
+    case COMMAND_SET_TEMPO: {
+      state->tempo_bpm = command.args.set_tempo.tempo;
+      state_render_setting(state, fg, bg);
       break;
     }
   }
@@ -196,6 +217,8 @@ int main(void) {
   timer2_init_pwm_port_d_bit_3(DISPLAY_BACKLIGHT_BRIGHTNESS);
 
   USART0_init();
+
+  printf("UART initialized\n\r");
 
   display_init();
 

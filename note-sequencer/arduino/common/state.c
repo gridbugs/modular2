@@ -3,6 +3,10 @@
 void state_init(state_t *state) {
   state->mode = MODE_PROGRAM;
   state->sequence.num_steps = MAX_NUM_STEPS;
+  state->current_index = 0;
+  state->tempo_bpm = 128;
+  state->ticks_per_beat = 4;
+  state->setting_tempo = false;
 }
 
 void state_add_to_current_index(state_t *state, int8_t delta) {

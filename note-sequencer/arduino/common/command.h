@@ -36,6 +36,12 @@ typedef enum {
 
   // Set the mode.
   COMMAND_SET_MODE,
+
+  // Switch into or out of the mode for setting the tempo.
+  COMMAND_SETTING_TEMPO,
+
+  // Set the tempo.
+  COMMAND_SET_TEMPO,
 } command_type_t;
 
 typedef struct {
@@ -61,6 +67,12 @@ typedef struct {
     struct {
       mode_t mode;
     } set_mode;
+    struct {
+      bool setting_tempo;
+    } setting_tempo;
+    struct {
+      uint8_t tempo;
+    } set_tempo;
   } args;
 } command_t;
 
@@ -143,6 +155,28 @@ static inline command_t command_set_mode(mode_t mode) {
     .args = {
       .set_mode = {
         .mode = mode,
+      },
+    }
+  };
+}
+
+static inline command_t command_setting_tempo(bool setting_tempo) {
+  return (command_t) {
+    .typ = COMMAND_SETTING_TEMPO,
+    .args = {
+      .setting_tempo = {
+        .setting_tempo = setting_tempo,
+      },
+    }
+  };
+}
+
+static inline command_t command_set_tempo(uint8_t tempo) {
+  return (command_t) {
+    .typ = COMMAND_SET_TEMPO,
+    .args = {
+      .set_tempo = {
+        .tempo = tempo,
       },
     }
   };

@@ -37,6 +37,9 @@ typedef struct {
   sequence_t sequence;
   uint8_t current_index;
   mode_t mode;
+  uint8_t tempo_bpm;
+  uint8_t ticks_per_beat;
+  bool setting_tempo;
 } state_t;
 
 void state_init(state_t *state);
@@ -45,4 +48,8 @@ void state_clear_sequence(state_t *state);
 
 static inline step_t *state_current_step(state_t *state) {
   return &state->sequence.steps[state->current_index];
+}
+
+static inline uint16_t state_ticks_per_minute(state_t *state) {
+  return state->tempo_bpm * state->ticks_per_beat;
 }
