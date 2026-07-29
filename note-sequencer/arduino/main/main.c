@@ -260,10 +260,26 @@ state_t state;
 command_buffer_t command_buffer;
 key_states_t key_states = { 0 };
 
-volatile uint16_t count = 0;
+typedef struct {
+  volatile uint8_t count_setter_incremented;
+  uint8_t count_to_check;
+} async_flag_t;
+
+void async_flag_set(async_flag_t *async_flag) {
+  async_flag->count_setter_incremented++;
+}
+
+bool async_flag_check_and_clear(async_flag_t *async_flag) {
+  uint8_t count_copy = async_flag->count_setter_incremented;
+  bool ret = count_copy != async_flag->count_to_check;
+  async_flag->count_to_check = count_copy;
+  return ret;
+}
+
+async_flag_t timer_tick = { 0 };
 
 ISR(TIMER1_COMPA_vect) {
-  printf("hello %u\n\r", count++);
+  async_flag_set(&timer_tick);
 }
 
 int main(void) {
@@ -314,14 +330,24 @@ int main(void) {
   timer1_init();
   timer1_enable_interrupt_output_compare_a();
   timer1_set_reset_on_output_compare_a_match();
-  timer1_set_output_compare_a(60);
+  timer1_set_output_compare_a(5000);
   timer1_reset();
   timer1_start();
 
   sei();
 
   while (1) {
+    key_note_t new_current_note = current_note;
+
     command_buffer.num_commands = 0;
+
+    if (async_flag_check_and_clear(&timer_tick)) {
+      if (state.mode == MODE_RUN) {
+        command_buffer_add_to_sequence_index(&command_buffer, &state, 1);
+        step_t *current_step = state_current_step(&state);
+        new_current_note = current_step->note_index;
+      }
+    }
 
     mode_t mode = get_mode();
     if (mode != state.mode) {
@@ -382,11 +408,12 @@ int main(void) {
     }
 
     if (note_stack_size > 0) {
-      key_note_t new_current_note = note_stack[note_stack_size - 1];
-      if (new_current_note != current_note) {
-        command_buffer_push(&command_buffer, command_set_note(new_current_note));
-        current_note = new_current_note;
-      }
+      new_current_note = note_stack[note_stack_size - 1];
+    }
+
+    if (new_current_note != current_note) {
+      command_buffer_push(&command_buffer, command_set_note(new_current_note));
+      current_note = new_current_note;
     }
 
     command_buffer_send(&command_buffer);
