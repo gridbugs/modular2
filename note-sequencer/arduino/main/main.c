@@ -200,6 +200,7 @@ typedef enum {
 
 // This is a bit in the raw key matrix input, not the key_note_t type.
 #define KEY_SHIFT_BIT BIT(0)
+#define KEY_CLEAR_BIT BIT(6)
 
 key_note_t note_stack[KEY_NOTE_COUNT] = {0};
 uint8_t note_stack_size = 0 ;
@@ -376,20 +377,11 @@ int main(void) {
       command_buffer_set_mode(&command_buffer, &state, mode);
     }
 
-    int8_t rotary_encoder_delta = rotary_encoder_read_delta();
-    if (rotary_encoder_delta != 0) {
-      if (state.setting_tempo) {
-        command_buffer_add_to_tempo(&command_buffer, &state, rotary_encoder_delta);
-        timer1_set_output_compare_a(ticks_per_minute_to_timer_compare(state_ticks_per_minute(&state)));
-      } else {
-        command_buffer_add_to_sequence_index(&command_buffer, &state, rotary_encoder_delta);
-      }
-    }
-
     key_matrix_scan(&key_states);
     uint32_t delta = key_states.curr ^ key_states.prev;
     uint32_t pressed = delta & key_states.curr;
 
+    bool clear = (key_states.curr & KEY_CLEAR_BIT) != 0;
     bool shift = (key_states.curr & KEY_SHIFT_BIT) != 0;
     if (!shift) {
       if (state.setting_tempo) {
@@ -454,6 +446,26 @@ int main(void) {
           }
           note_stack_size--;
           break;
+        }
+      }
+    }
+
+    int8_t rotary_encoder_delta = rotary_encoder_read_delta();
+    if (rotary_encoder_delta != 0) {
+      if (state.setting_tempo) {
+        command_buffer_add_to_tempo(&command_buffer, &state, rotary_encoder_delta);
+        timer1_set_output_compare_a(ticks_per_minute_to_timer_compare(state_ticks_per_minute(&state)));
+      } else {
+        // If the knob turns clockwise then clear the note before advancing the
+        // cursor. If it turns anticlockwise then clear the note after
+        // advancing the cursor. This is inconsistent but feels the least
+        // incorrect in when actually using the feature in practice.
+        if (clear && rotary_encoder_delta > 0) {
+          command_buffer_clear_note(&command_buffer, &state);
+        }
+        command_buffer_add_to_sequence_index(&command_buffer, &state, rotary_encoder_delta);
+        if (clear && rotary_encoder_delta < 0) {
+          command_buffer_clear_note(&command_buffer, &state);
         }
       }
     }
