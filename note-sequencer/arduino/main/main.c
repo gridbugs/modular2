@@ -339,11 +339,10 @@ int main(void) {
 
   printf("Starting UI...\n\r");
   command_send(command_show_ui());
-  delay_ms(500);
 
   key_matrix_init();
 
-  command_buffer_t command_buffer;
+  command_buffer_t command_buffer = { 0 };
 
   state_init(&state);
 
@@ -358,7 +357,6 @@ int main(void) {
 
   command_buffer_push(&command_buffer, command_set_note(current_note));
   command_buffer_send(&command_buffer);
-  delay_ms(500);
 
   while (1) {
     key_note_t new_current_note = current_note;

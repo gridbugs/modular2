@@ -8,10 +8,16 @@
 #define BIT(n) (((uint32_t)1) << n)
 #define MASK(n) (BIT(n) - 1)
 
+__attribute__((noreturn))
+static inline void loop_forever(void) {
+  for (;;);
+  __builtin_unreachable();
+}
+
 #define PANIC(...) do { \
   printf(__VA_ARGS__); \
   printf("\n\r"); \
-  while(1); \
+  loop_forever(); \
 } while(0);
 
 void delay_ms(uint16_t ms);

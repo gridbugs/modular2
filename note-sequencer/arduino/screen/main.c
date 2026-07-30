@@ -54,7 +54,6 @@ ISR(TWI_vect) {
 
 #define SEQUENCE_TOP_Y 32
 #define MODE_LEFT_X 104
-char buf[128];
 
 void state_render_mode(state_t *state, int fg, int bg) {
   char* text;
@@ -83,6 +82,7 @@ void state_render_cursor(state_t *state, char cursor_char, int fg, int bg) {
 }
 
 void state_render_step(state_t *state, int step_index, int fg, int bg) {
+  static char buf[32];
   int x = ((step_index * 2) / MAX_NUM_STEPS) * 64;
   int y = SEQUENCE_TOP_Y + ((step_index % (MAX_NUM_STEPS / 2)) * 8);
   int index_fg = GREY;
@@ -105,6 +105,7 @@ void state_render_step(state_t *state, int step_index, int fg, int bg) {
 }
 
 void state_render_setting(state_t *state, int fg, int bg) {
+  static char buf[32];
   int y = 112;
   if (state->setting_tempo) {
     sprintf(buf, "TEMPO: %3u BPM", state->tempo_bpm);
