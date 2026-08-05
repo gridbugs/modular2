@@ -42,6 +42,12 @@ typedef enum {
 
   // Set the tempo.
   COMMAND_SET_TEMPO,
+
+  // Indicate a change in the clock signal.
+  COMMAND_SET_CLOCK,
+
+  // Set the clock source.
+  COMMAND_SET_CLOCK_SOURCE,
 } command_type_t;
 
 typedef struct {
@@ -73,6 +79,12 @@ typedef struct {
     struct {
       uint8_t tempo;
     } set_tempo;
+    struct {
+      bool clock_state;
+    } set_clock;
+    struct {
+      clock_source_t clock_source;
+    } set_clock_source;
   } args;
 } command_t;
 
@@ -177,6 +189,28 @@ static inline command_t command_set_tempo(uint8_t tempo) {
     .args = {
       .set_tempo = {
         .tempo = tempo,
+      },
+    }
+  };
+}
+
+static inline command_t command_set_clock(bool clock_state) {
+  return (command_t) {
+    .typ = COMMAND_SET_CLOCK,
+    .args = {
+      .set_clock = {
+        .clock_state = clock_state,
+      },
+    }
+  };
+}
+
+static inline command_t command_set_clock_source(clock_source_t clock_source) {
+  return (command_t) {
+    .typ = COMMAND_SET_CLOCK_SOURCE,
+    .args = {
+      .set_clock_source = {
+        .clock_source = clock_source,
       },
     }
   };

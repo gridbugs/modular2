@@ -14,6 +14,10 @@ static inline void timer1_set_output_compare_a(uint16_t value) {
   OCR1A = value;
 }
 
+static inline void timer1_set_output_compare_b(uint16_t value) {
+  OCR1B = value;
+}
+
 static inline void timer1_set_reset_on_output_compare_a_match(void) {
   TCCR1A |= BIT(WGM10);
   TCCR1B |= BIT(WGM13);

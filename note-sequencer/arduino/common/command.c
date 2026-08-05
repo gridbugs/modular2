@@ -14,6 +14,8 @@ int command_type_num_bytes(command_type_t command_type) {
     case COMMAND_SET_MODE:
     case COMMAND_SETTING_TEMPO:
     case COMMAND_SET_TEMPO:
+    case COMMAND_SET_CLOCK:
+    case COMMAND_SET_CLOCK_SOURCE:
       return 2;
     case COMMAND_SET_STEP_NOTE:
     case COMMAND_SET_STEP_FLAGS:
@@ -58,6 +60,12 @@ int command_to_bytes(command_t command, uint8_t *bytes) {
     case COMMAND_SET_TEMPO:
       bytes[1] = command.args.set_tempo.tempo;
       return 2;
+    case COMMAND_SET_CLOCK:
+      bytes[1] = command.args.set_clock.clock_state;
+      return 2;
+    case COMMAND_SET_CLOCK_SOURCE:
+      bytes[1] = command.args.set_clock_source.clock_source;
+      return 2;
   }
   __builtin_unreachable();
 }
@@ -99,6 +107,10 @@ command_t command_from_bytes(uint8_t *bytes) {
       return command_setting_tempo(bytes[1]);
     case COMMAND_SET_TEMPO:
       return command_set_tempo(bytes[1]);
+    case COMMAND_SET_CLOCK:
+      return command_set_clock(bytes[1]);
+    case COMMAND_SET_CLOCK_SOURCE:
+      return command_set_clock_source(bytes[1]);
     default:
       PANIC("Unexpected command type: %d", bytes[0]);
   }

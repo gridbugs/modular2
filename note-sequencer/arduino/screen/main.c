@@ -67,7 +67,21 @@ void state_render_mode(state_t *state, int fg, int bg) {
     default:
       return;
   }
-  display_text(text, MODE_LEFT_X, 0, fg, bg, 0);
+  display_text(text, MODE_LEFT_X, 120, fg, bg, 0);
+}
+
+#define CLOCK_STATE_X 72
+
+void state_render_clock_state(state_t *state, int fg, int bg) {
+  char* text = state->clock_state ? "*" : " ";
+  display_text(text, CLOCK_STATE_X, 120, fg, bg, 0);
+}
+
+void state_render_clock_source(state_t *state, int fg, int bg) {
+  static char buf[16];
+  char* source_name = state->clock_source == CLOCK_SOURCE_EXTERNAL ? "EXT" : "INT";
+  sprintf(buf, "CLK: %s", source_name);
+  display_text(buf, 0, 120, fg, bg, 0);
 }
 
 void render_cursor_at(int index, char cursor_char, int fg, int bg) {
@@ -106,7 +120,7 @@ void state_render_step(state_t *state, int step_index, int fg, int bg) {
 
 void state_render_setting(state_t *state, int fg, int bg) {
   static char buf[32];
-  int y = 112;
+  int y = 104;
   if (state->setting_tempo) {
     sprintf(buf, "TEMPO: %3u BPM", state->tempo_bpm);
   } else {
@@ -124,6 +138,7 @@ void state_render(state_t *state) {
     char cursor = (i == state->current_index) ? '>' : ' ';
     render_cursor_at(i, cursor, fg, bg);
   }
+  state_render_clock_source(state, fg, bg);
 }
 
 void render_splash(void) {
@@ -207,6 +222,16 @@ void handle_command(command_t command, state_t *state) {
     case COMMAND_SET_TEMPO: {
       state->tempo_bpm = command.args.set_tempo.tempo;
       state_render_setting(state, fg, bg);
+      break;
+    }
+    case COMMAND_SET_CLOCK: {
+      state->clock_state = command.args.set_clock.clock_state;
+      state_render_clock_state(state, fg, bg);
+      break;
+    }
+    case COMMAND_SET_CLOCK_SOURCE: {
+      state->clock_source = command.args.set_clock_source.clock_source;
+      state_render_clock_source(state, fg, bg);
       break;
     }
   }

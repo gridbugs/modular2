@@ -33,10 +33,17 @@ typedef enum {
   MODE_PROGRAM,
 } mode_t;
 
+typedef enum {
+  CLOCK_SOURCE_INTERNAL,
+  CLOCK_SOURCE_EXTERNAL,
+} clock_source_t;
+
 typedef struct {
   sequence_t sequence;
   uint8_t current_index;
   mode_t mode;
+  clock_source_t clock_source;
+  bool clock_state;
   uint8_t tempo_bpm;
   uint8_t ticks_per_beat;
   bool setting_tempo;

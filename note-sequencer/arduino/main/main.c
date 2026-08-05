@@ -21,6 +21,7 @@
 #define PORTC_ENCODER_BUTTON_BIT BIT(0)
 #define PORTC_ENCODER_A_BIT BIT(1)
 #define PORTC_ENCODER_B_BIT BIT(2)
+#define PORTC_CLOCK_BIT BIT(3)
 
 #define PORTD_MODE_BIT BIT(0)
 #define PORTB_SCREEN_ARDUINO_RESET_BIT BIT(5)
@@ -262,6 +263,11 @@ void command_buffer_setting_tempo(command_buffer_t *cb, state_t *state, bool set
   command_buffer_push(cb, command_setting_tempo(setting_tempo));
 }
 
+void command_buffer_set_clock_source(command_buffer_t *cb, state_t *state, clock_source_t clock_source) {
+  state->clock_source = clock_source;
+  command_buffer_push(cb, command_set_clock_source(clock_source));
+}
+
 #define MIN_BPM 30
 #define MAX_BPM 255
 
@@ -301,6 +307,91 @@ async_flag_t timer_tick = { 0 };
 
 ISR(TIMER1_COMPA_vect) {
   async_flag_set(&timer_tick);
+}
+
+void program_timer_ticks_per_minute(uint16_t ticks_per_minute) {
+  // Divide the comparator by 2 so we get interrupts twice as often as the tick
+  // rate. Each interrupt will toggle the state of the clock.
+  uint16_t compare_value = ticks_per_minute_to_timer_compare(ticks_per_minute) / 2;
+  timer1_set_output_compare_a(compare_value);
+}
+
+void set_clock_source(clock_source_t clock_source) {
+  // Update the data-direction bit for the clock pin
+  switch (clock_source) {
+    case CLOCK_SOURCE_INTERNAL:
+      // Clock output pin
+      DDRC |= PORTC_CLOCK_BIT;
+      break;
+    case CLOCK_SOURCE_EXTERNAL:
+      // Clock input pin
+      DDRC &= ~PORTC_CLOCK_BIT;
+      // Pull-up resistor for clock input pin
+      PORTC |= PORTC_CLOCK_BIT;
+      break;
+  }
+}
+
+#define CLOCK_BOUNCE_THRESHOLD 100
+
+bool get_clock_in(void) {
+  static uint32_t since_change = 0;
+  static bool state = false;
+  bool raw = (PINC & PORTC_CLOCK_BIT) != 0;
+  if (raw && !state && since_change >= CLOCK_BOUNCE_THRESHOLD) {
+    state = true;
+    since_change = 0;
+  } else if (!raw && state && since_change >= CLOCK_BOUNCE_THRESHOLD) {
+    state = false;
+    since_change = 0;
+  } else {
+    since_change++;
+  }
+  return state;
+}
+
+void set_clock_out(bool value) {
+  if (value) {
+    PORTC |= PORTC_CLOCK_BIT;
+  } else {
+    PORTC &= ~PORTC_CLOCK_BIT;
+  }
+}
+
+typedef enum {
+  CLOCK_EVENT_NONE,
+  CLOCK_EVENT_RISING_EDGE,
+  CLOCK_EVENT_FALLING_EDGE,
+} clock_event_t;
+
+clock_event_t handle_clock(state_t *state) {
+  switch (state->clock_source) {
+    case CLOCK_SOURCE_EXTERNAL: {
+      bool clock_state = get_clock_in();
+      if (state->clock_state != clock_state) {
+        state->clock_state = clock_state;
+        if (clock_state) {
+          return CLOCK_EVENT_RISING_EDGE;
+        } else {
+          return CLOCK_EVENT_FALLING_EDGE;
+        }
+      }
+      break;
+    }
+    case CLOCK_SOURCE_INTERNAL: {
+      if (async_flag_check_and_clear(&timer_tick)) {
+        state->clock_state = !state->clock_state;
+        set_clock_out(state->clock_state);
+        if (state->clock_state) {
+          return CLOCK_EVENT_RISING_EDGE;
+        } else {
+          return CLOCK_EVENT_FALLING_EDGE;
+        }
+      }
+      break;
+    }
+  }
+  return CLOCK_EVENT_NONE;
 }
 
 int main(void) {
@@ -347,27 +438,38 @@ int main(void) {
 
   state_init(&state);
 
+  set_clock_source(state.clock_source);
+
   timer1_init();
   timer1_enable_interrupt_output_compare_a();
   timer1_set_reset_on_output_compare_a_match();
-  timer1_set_output_compare_a(ticks_per_minute_to_timer_compare(state_ticks_per_minute(&state)));
+  program_timer_ticks_per_minute(state_ticks_per_minute(&state));
   timer1_reset();
   timer1_start();
 
   sei();
 
   command_buffer_push(&command_buffer, command_set_note(current_note));
+  dac0_set_value(note_dac_value((uint8_t)current_note));
   command_buffer_send(&command_buffer);
 
   while (1) {
     key_note_t new_current_note = current_note;
 
-    if (async_flag_check_and_clear(&timer_tick)) {
-      if (state.mode == MODE_RUN) {
-        command_buffer_add_to_sequence_index(&command_buffer, &state, 1);
-        step_t *current_step = state_current_step(&state);
-        if (current_step->enabled) {
-          new_current_note = current_step->note_index;
+    switch (handle_clock(&state)) {
+      case CLOCK_EVENT_NONE:
+        break;
+      case CLOCK_EVENT_FALLING_EDGE:
+        command_buffer_push(&command_buffer, command_set_clock(false));
+        break;
+      case CLOCK_EVENT_RISING_EDGE: {
+        command_buffer_push(&command_buffer, command_set_clock(true));
+        if (state.mode == MODE_RUN) {
+          command_buffer_add_to_sequence_index(&command_buffer, &state, 1);
+          step_t *current_step = state_current_step(&state);
+          if (current_step->enabled) {
+            new_current_note = current_step->note_index;
+          }
         }
       }
     }
@@ -421,6 +523,9 @@ int main(void) {
         command_buffer_toggle_flag(&command_buffer, &state, FLAG_ACCENT);
       } else if (key == KEY_GLIDE) {
         command_buffer_toggle_flag(&command_buffer, &state, FLAG_GLIDE);
+      } else if (key == KEY_CLOCK_SOURCE) {
+        command_buffer_set_clock_source(&command_buffer, &state, CLOCK_SOURCE_INTERNAL);
+        set_clock_source(CLOCK_SOURCE_INTERNAL);
       }
     }
 
@@ -428,7 +533,8 @@ int main(void) {
     while (released) {
       int released_bit = __builtin_ctzl(released);
       released &= ~BIT(released_bit);
-      key_note_t key_note = (key_note_t)keys_by_key_matrix_bit[released_bit];
+      key_t key = keys_by_key_matrix_bit[released_bit];
+      key_note_t key_note = (key_note_t)key;
       if (shift) {
         switch (key_note) {
           case KEY_NOTE_C_1:
@@ -438,6 +544,10 @@ int main(void) {
             break;
           default:
         }
+      }
+      if (key == KEY_CLOCK_SOURCE) {
+        command_buffer_set_clock_source(&command_buffer, &state, CLOCK_SOURCE_EXTERNAL);
+        set_clock_source(CLOCK_SOURCE_EXTERNAL);
       }
       for (int i = 0; i < note_stack_size; i++) {
         if (note_stack[i] == key_note) {
@@ -454,7 +564,7 @@ int main(void) {
     if (rotary_encoder_delta != 0) {
       if (state.setting_tempo) {
         command_buffer_add_to_tempo(&command_buffer, &state, rotary_encoder_delta);
-        timer1_set_output_compare_a(ticks_per_minute_to_timer_compare(state_ticks_per_minute(&state)));
+        program_timer_ticks_per_minute(state_ticks_per_minute(&state));
       } else {
         // If the knob turns clockwise then clear the note before advancing the
         // cursor. If it turns anticlockwise then clear the note after
@@ -476,6 +586,7 @@ int main(void) {
 
     if (new_current_note != current_note) {
       current_note = new_current_note;
+      dac0_set_value(note_dac_value((uint8_t)current_note));
       command_buffer_push(&command_buffer, command_set_note(current_note));
     }
 

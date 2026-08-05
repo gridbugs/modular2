@@ -2,6 +2,8 @@
 
 void state_init(state_t *state) {
   state->mode = MODE_PROGRAM;
+  state->clock_source = CLOCK_SOURCE_EXTERNAL;
+  state->clock_state = false;
   state->sequence.num_steps = MAX_NUM_STEPS;
   state->current_index = 0;
   state->tempo_bpm = 128;
