@@ -17,6 +17,7 @@
 #include "rotary_encoder.h"
 #include "state.h"
 #include "clock.h"
+#include "debug.h"
 
 #define PORTC_ENCODER_BUTTON_BIT BIT(0)
 #define PORTC_ENCODER_A_BIT BIT(1)
@@ -24,6 +25,7 @@
 #define PORTC_CLOCK_BIT BIT(3)
 
 #define PORTD_MODE_BIT BIT(0)
+#define PORTD_GATE_BIT BIT(1)
 #define PORTB_SCREEN_ARDUINO_RESET_BIT BIT(5)
 
 static inline mode_t get_mode(void) {
@@ -394,10 +396,28 @@ clock_event_t handle_clock(state_t *state) {
   return CLOCK_EVENT_NONE;
 }
 
+static inline void gate_on(void) {
+  PORTD |= PORTD_GATE_BIT;
+}
+
+static inline void gate_off(void) {
+  PORTD &= ~PORTD_GATE_BIT;
+}
+
+static inline void gate_init(void) {
+  USART0_reset();
+  DDRD |= PORTD_GATE_BIT;
+  gate_off();
+}
+
 int main(void) {
-  // Allow printing over UART. The UART TX pin is also the gate output, so
-  // printing will mess with functionality.
+#ifdef DEBUG_PRINTING
+  // Allow printing over UART and defer initializing the gate (which shares the
+  // TX pin) until after startup messages are printid.
   USART0_init();
+#else
+  gate_init();
+#endif
 
   rotary_encoder_init();
 
@@ -405,7 +425,7 @@ int main(void) {
   DDRD &= ~PORTD_MODE_BIT;
   PORTD |= PORTD_MODE_BIT;
 
-  printf("Turning off screen arduino...\n\r");
+  dprintf("Turning off screen arduino...\n\r");
   // Turn off the other arduino by driving its reset pin low
   DDRB |= PORTB_SCREEN_ARDUINO_RESET_BIT;
   PORTB &= ~PORTB_SCREEN_ARDUINO_RESET_BIT;
@@ -417,19 +437,20 @@ int main(void) {
 
   COMPILER_BARRIER();
 
-  printf("Turning on screen arduino...\n\r");
+  dprintf("Turning on screen arduino...\n\r");
   PORTB |= PORTB_SCREEN_ARDUINO_RESET_BIT;
 
-  printf("Waiting for screen arduino...\n\r");
+  dprintf("Waiting for screen arduino...\n\r");
   while (command_send(command_hello()) != 0);
 
-  printf("Screen arduino is online!\n\r");
+  dprintf("Screen arduino is online!\n\r");
+  delay_ms(50);
 
   // Display the splash screen.
   command_send(command_show_splash());
   delay_ms(500);
 
-  printf("Starting UI...\n\r");
+  dprintf("Starting UI...\n\r");
   command_send(command_show_ui());
 
   key_matrix_init();
@@ -452,6 +473,12 @@ int main(void) {
   command_buffer_push(&command_buffer, command_set_note(current_note));
   dac0_set_value(note_dac_value((uint8_t)current_note));
   command_buffer_send(&command_buffer);
+
+#ifdef DEBUG_PRINTING
+  // The gate is the TX pin. If printing is enabled then we can't initilaize
+  // the gate until all init messages are printed.
+  gate_init();
+#endif
 
   while (1) {
     key_note_t new_current_note = current_note;

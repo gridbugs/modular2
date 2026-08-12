@@ -7,3 +7,4 @@
 // parity: none
 // stopbits: 1
 void USART0_init(void);
+void USART0_reset(void);

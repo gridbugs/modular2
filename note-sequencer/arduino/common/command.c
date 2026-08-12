@@ -1,5 +1,6 @@
 #include "command.h"
 #include "twi.h"
+#include "debug.h"
 
 int command_type_num_bytes(command_type_t command_type) {
   switch (command_type) {

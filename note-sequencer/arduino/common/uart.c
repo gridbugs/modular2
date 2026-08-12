@@ -26,3 +26,7 @@ void USART0_init(void) {
     UCSR0C = 3 << UCSZ00; // use 8-bit characters
     stdout = &uartout;
 }
+
+void USART0_reset(void) {
+    UCSR0B &= ~(1 << TXEN0); // disable the USART0 transmitter
+}
