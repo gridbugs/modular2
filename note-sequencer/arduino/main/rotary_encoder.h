@@ -29,8 +29,8 @@ typedef struct {
     .last_turn = TURN_INIT, \
 })
 
-// Given the current state of the A, B rotary encoder pins and the previous
-// rest and turn positions,
+// Given the current state of the A, B rotary encoder pins in bits 0 and 1
+// respectively of `current_state_ab` and the previous rest and turn positions,
 // return a -1 if the encoder was just turned to the left, a 1 if the encoder
 // was just turned to the right, and a 0 otherwise.
 int8_t rotary_encoder_update(rotary_encoder_history_t *history, uint8_t current_state_ab);

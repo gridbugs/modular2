@@ -72,10 +72,17 @@ int8_t async_counter_read_delta(async_counter_t *async_counter) {
 async_counter_t rotary_encoder_position = { 0 };
 rotary_encoder_history_t rotary_encoder_history = ROTARY_ENCODER_HISTORY_INITIAL;
 
+static inline bool rotary_encoder_is_pressed(void) {
+  return (PINC & PORTC_ENCODER_BUTTON_BIT) == 0;
+}
+
 ISR(PCINT1_vect) {
   uint8_t rotary_encoder_state = (PINC >> 1) & 3;
   int8_t direction = rotary_encoder_update(&rotary_encoder_history, rotary_encoder_state);
   if (direction != 0) {
+    if (rotary_encoder_is_pressed()) {
+      direction *= 8;
+    }
     rotary_encoder_position.volatile_value += direction;
   }
 }
@@ -84,9 +91,6 @@ static inline int8_t rotary_encoder_read_delta(void) {
   return async_counter_read_delta(&rotary_encoder_position);
 }
 
-static inline bool rotary_encoder_pressed(void) {
-  return (PINC & PORTC_ENCODER_BUTTON_BIT) == 0;
-}
 
 void rotary_encoder_init(void) {
   // Enable pin-changed interrupts for PORTC
