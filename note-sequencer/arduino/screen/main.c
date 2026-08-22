@@ -123,6 +123,8 @@ void state_render_setting(state_t *state, int fg, int bg) {
   int y = 104;
   if (state->setting_tempo) {
     sprintf(buf, "TEMPO: %3u BPM", state->tempo_bpm);
+  } else if (state->setting_gate) {
+    sprintf(buf, "GATE: %3u/255", state->gate_duration_ratio);
   } else {
     sprintf(buf, "              ");
   }
@@ -221,6 +223,16 @@ void handle_command(command_t command, state_t *state) {
     }
     case COMMAND_SET_TEMPO: {
       state->tempo_bpm = command.args.set_tempo.tempo;
+      state_render_setting(state, fg, bg);
+      break;
+    }
+    case COMMAND_SETTING_GATE: {
+      state->setting_gate = command.args.setting_gate.setting_gate;
+      state_render_setting(state, fg, bg);
+      break;
+    }
+    case COMMAND_SET_GATE: {
+      state->gate_duration_ratio = command.args.set_gate.gate;
       state_render_setting(state, fg, bg);
       break;
     }

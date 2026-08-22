@@ -9,7 +9,7 @@
   loop_forever(); \
 } while(0);
 
-//#define DEBUG_PRINTING
+#define DEBUG_PRINTING
 #ifdef DEBUG_PRINTING
 #define dprintf(...) printf(__VA_ARGS__)
 #else

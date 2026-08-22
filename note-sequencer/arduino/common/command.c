@@ -15,6 +15,8 @@ int command_type_num_bytes(command_type_t command_type) {
     case COMMAND_SET_MODE:
     case COMMAND_SETTING_TEMPO:
     case COMMAND_SET_TEMPO:
+    case COMMAND_SETTING_GATE:
+    case COMMAND_SET_GATE:
     case COMMAND_SET_CLOCK:
     case COMMAND_SET_CLOCK_SOURCE:
       return 2;
@@ -60,6 +62,12 @@ int command_to_bytes(command_t command, uint8_t *bytes) {
       return 2;
     case COMMAND_SET_TEMPO:
       bytes[1] = command.args.set_tempo.tempo;
+      return 2;
+    case COMMAND_SETTING_GATE:
+      bytes[1] = command.args.setting_gate.setting_gate;
+      return 2;
+    case COMMAND_SET_GATE:
+      bytes[1] = command.args.set_gate.gate;
       return 2;
     case COMMAND_SET_CLOCK:
       bytes[1] = command.args.set_clock.clock_state;
@@ -109,6 +117,10 @@ command_t command_from_bytes(uint8_t *bytes) {
       return command_setting_tempo(bytes[1]);
     case COMMAND_SET_TEMPO:
       return command_set_tempo(bytes[1]);
+    case COMMAND_SETTING_GATE:
+      return command_setting_gate(bytes[1]);
+    case COMMAND_SET_GATE:
+      return command_set_gate(bytes[1]);
     case COMMAND_SET_CLOCK:
       return command_set_clock(bytes[1]);
     case COMMAND_SET_CLOCK_SOURCE:

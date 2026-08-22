@@ -43,6 +43,12 @@ typedef enum {
   // Set the tempo.
   COMMAND_SET_TEMPO,
 
+  // Switch into or out of the mode for setting the gate.
+  COMMAND_SETTING_GATE,
+
+  // Set the gate.
+  COMMAND_SET_GATE,
+
   // Indicate a change in the clock signal.
   COMMAND_SET_CLOCK,
 
@@ -79,6 +85,12 @@ typedef struct {
     struct {
       uint8_t tempo;
     } set_tempo;
+    struct {
+      bool setting_gate;
+    } setting_gate;
+    struct {
+      uint8_t gate;
+    } set_gate;
     struct {
       bool clock_state;
     } set_clock;
@@ -189,6 +201,28 @@ static inline command_t command_set_tempo(uint8_t tempo) {
     .args = {
       .set_tempo = {
         .tempo = tempo,
+      },
+    }
+  };
+}
+
+static inline command_t command_setting_gate(bool setting_gate) {
+  return (command_t) {
+    .typ = COMMAND_SETTING_GATE,
+    .args = {
+      .setting_gate = {
+        .setting_gate = setting_gate,
+      },
+    }
+  };
+}
+
+static inline command_t command_set_gate(uint8_t gate) {
+  return (command_t) {
+    .typ = COMMAND_SET_GATE,
+    .args = {
+      .set_gate = {
+        .gate = gate,
       },
     }
   };

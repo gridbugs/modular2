@@ -201,6 +201,9 @@ typedef enum {
 #define KEY_ACCENT KEY_X_3
 #define KEY_GLIDE KEY_X_4
 
+#define KEY_WITH_SHIFT_SET_TEMPO KEY_NOTE_C_1
+#define KEY_WITH_SHIFT_SET_GATE KEY_NOTE_D_1
+
 // This is a bit in the raw key matrix input, not the key_note_t type.
 #define KEY_SHIFT_BIT BIT(0)
 #define KEY_CLEAR_BIT BIT(6)
@@ -265,6 +268,11 @@ void command_buffer_setting_tempo(command_buffer_t *cb, state_t *state, bool set
   command_buffer_push(cb, command_setting_tempo(setting_tempo));
 }
 
+void command_buffer_setting_gate(command_buffer_t *cb, state_t *state, bool setting_gate) {
+  state->setting_gate = setting_gate;
+  command_buffer_push(cb, command_setting_gate(setting_gate));
+}
+
 void command_buffer_set_clock_source(command_buffer_t *cb, state_t *state, clock_source_t clock_source) {
   state->clock_source = clock_source;
   command_buffer_push(cb, command_set_clock_source(clock_source));
@@ -277,6 +285,12 @@ void command_buffer_add_to_tempo(command_buffer_t *cb, state_t *state, int8_t te
   int16_t tempo_bpm = (int16_t)state->tempo_bpm + (int16_t)tempo_delta;
   state->tempo_bpm = tempo_bpm < MIN_BPM ? MIN_BPM : (tempo_bpm > MAX_BPM ? MAX_BPM : (uint8_t)tempo_bpm);
   command_buffer_push(cb, command_set_tempo(state->tempo_bpm));
+}
+
+void command_buffer_add_to_gate(command_buffer_t *cb, state_t *state, int8_t gate_delta) {
+  int16_t gate_duration_ratio = (int16_t)state->gate_duration_ratio + (int16_t)gate_delta;
+  state->gate_duration_ratio = gate_duration_ratio < 0 ? 0 : (gate_duration_ratio > 255 ? 255 : (uint8_t)gate_duration_ratio);
+  command_buffer_push(cb, command_set_gate(state->gate_duration_ratio));
 }
 
 #define SECONDS_PER_MINUTE 60
@@ -516,6 +530,9 @@ int main(void) {
       if (state.setting_tempo) {
         command_buffer_setting_tempo(&command_buffer, &state, false);
       }
+      if (state.setting_gate) {
+        command_buffer_setting_gate(&command_buffer, &state, false);
+      }
     }
     while (pressed) {
       int pressed_bit = __builtin_ctzl(pressed);
@@ -525,8 +542,11 @@ int main(void) {
         key_note_t key_note = (key_note_t)key;
         if (shift) {
           switch (key_note) {
-            case KEY_NOTE_C_1:
+            case KEY_WITH_SHIFT_SET_TEMPO:
               command_buffer_setting_tempo(&command_buffer, &state, true);
+              break;
+            case KEY_WITH_SHIFT_SET_GATE:
+              command_buffer_setting_gate(&command_buffer, &state, true);
               break;
             default:
           }
@@ -564,9 +584,14 @@ int main(void) {
       key_note_t key_note = (key_note_t)key;
       if (shift) {
         switch (key_note) {
-          case KEY_NOTE_C_1:
+          case KEY_WITH_SHIFT_SET_TEMPO:
             if (state.setting_tempo) {
               command_buffer_setting_tempo(&command_buffer, &state, false);
+            }
+            break;
+          case KEY_WITH_SHIFT_SET_GATE:
+            if (state.setting_gate) {
+              command_buffer_setting_gate(&command_buffer, &state, false);
             }
             break;
           default:
@@ -592,6 +617,8 @@ int main(void) {
       if (state.setting_tempo) {
         command_buffer_add_to_tempo(&command_buffer, &state, rotary_encoder_delta);
         program_timer_ticks_per_minute(state_ticks_per_minute(&state));
+      } else if (state.setting_gate) {
+        command_buffer_add_to_gate(&command_buffer, &state, rotary_encoder_delta);
       } else {
         // If the knob turns clockwise then clear the note before advancing the
         // cursor. If it turns anticlockwise then clear the note after
