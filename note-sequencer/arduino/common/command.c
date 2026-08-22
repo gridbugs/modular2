@@ -83,7 +83,8 @@ int commands_to_bytes(command_t *commands, uint8_t num_commands, uint8_t *bytes)
 }
 
 command_t command_from_bytes(uint8_t *bytes) {
-  switch (bytes[0]) {
+  command_type_t command_type = bytes[0];
+  switch (command_type) {
     case COMMAND_HELLO:
       return command_hello();
     case COMMAND_SHOW_SPLASH:
@@ -112,9 +113,8 @@ command_t command_from_bytes(uint8_t *bytes) {
       return command_set_clock(bytes[1]);
     case COMMAND_SET_CLOCK_SOURCE:
       return command_set_clock_source(bytes[1]);
-    default:
-      PANIC("Unexpected command type: %d", bytes[0]);
   }
+  PANIC("Unexpected command type: %d", bytes[0]);
 }
 
 uint8_t commands_from_bytes(uint8_t *bytes, command_t *commands) {
