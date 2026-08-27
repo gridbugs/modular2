@@ -37,7 +37,7 @@ static inline mode_t get_mode(void) {
 }
 
 // A volatile counter that will be updated asynchronously from the main control
-// thread (by an ISR), and a copy that is expected tobe atomically synchronized
+// thread (by an ISR), and a copy that is expected to be atomically synchronized
 // with the volatile counter by the main control thread. It's assumed that the
 // counters will never overflow.
 typedef struct {
@@ -329,6 +329,20 @@ ISR(TIMER1_COMPA_vect) {
   async_flag_set(&timer_tick);
 }
 
+volatile uint16_t timer2_match_count = 0;
+
+ISR(TIMER2_COMPA_vect) {
+  timer2_match_count++;
+}
+
+static inline uint16_t gate_timer_value(void) {
+  return timer2_match_count;
+}
+
+static inline void gate_timer_reset(void) {
+  timer2_match_count = 0;
+}
+
 void program_timer_ticks_per_minute(uint16_t ticks_per_minute) {
   // Divide the comparator by 2 so we get interrupts twice as often as the tick
   // rate. Each interrupt will toggle the state of the clock.
@@ -492,6 +506,12 @@ int main(void) {
   dac0_set_value(note_dac_value((uint8_t)current_note));
   command_buffer_send(&command_buffer);
 
+  timer2_init();
+  timer2_set_output_compare_a(255);
+  timer2_enable_interrupt_output_compare_a();
+  timer2_start();
+  uint16_t gate_timer_compare = 0;
+
 #ifdef DEBUG_PRINTING
   // The gate is the TX pin. If printing is enabled then we can't initilaize
   // the gate until all init messages are printed.
@@ -500,6 +520,7 @@ int main(void) {
 
   while (1) {
     key_note_t new_current_note = current_note;
+    step_t *current_step = state_current_step(&state);
 
     switch (handle_clock(&state)) {
       case CLOCK_EVENT_NONE:
@@ -511,12 +532,21 @@ int main(void) {
         command_buffer_push(&command_buffer, command_set_clock(true));
         if (state.mode == MODE_RUN) {
           command_buffer_add_to_sequence_index(&command_buffer, &state, 1);
-          step_t *current_step = state_current_step(&state);
           if (current_step->enabled) {
             new_current_note = current_step->note_index;
           }
         }
+        // Use the current tick duration to determine the next gate duration.
+        gate_timer_compare = gate_timer_value();
+        gate_timer_reset();
       }
+    }
+
+    uint16_t gate_timer_compare_scaled = (gate_timer_compare * (uint16_t)state.gate_duration_ratio) / 255;
+    if (current_step->enabled && (gate_timer_value() < gate_timer_compare_scaled)) {
+      gate_on();
+    } else {
+      gate_off();
     }
 
     mode_t mode = get_mode();

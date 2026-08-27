@@ -39,4 +39,28 @@ static inline uint16_t timer1_read(void) {
     return TCNT1;
 }
 
+static inline void timer2_init(void) {
+    TCCR2A = 0; // Normal mode
+}
+
+static inline void timer2_reset(void) {
+    TCNT2 = 0;
+}
+
+static inline void timer2_start(void) {
+    TCCR2B |= BIT(CS22); // clk_io / 128
+}
+
+static inline uint8_t timer2_read(void) {
+    return TCNT2;
+}
+
+static inline void timer2_set_output_compare_a(uint8_t value) {
+  OCR2A = value;
+}
+
+static inline void timer2_enable_interrupt_output_compare_a(void) {
+    TIMSK2 |= BIT(OCIE2A);
+}
+
 void timer2_init_pwm_port_d_bit_3(uint8_t duty);
