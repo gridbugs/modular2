@@ -48,7 +48,9 @@ typedef struct {
   uint8_t ticks_per_beat;
   bool setting_tempo;
   bool setting_gate;
+  bool setting_glide;
   uint8_t gate_duration_ratio;
+  uint8_t glide_duration_ratio;
 } state_t;
 
 void state_init(state_t *state);

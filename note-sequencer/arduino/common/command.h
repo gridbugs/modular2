@@ -49,6 +49,12 @@ typedef enum {
   // Set the gate.
   COMMAND_SET_GATE,
 
+  // Switch into or out of the mode for setting the glide.
+  COMMAND_SETTING_GLIDE,
+
+  // Set the glide.
+  COMMAND_SET_GLIDE,
+
   // Indicate a change in the clock signal.
   COMMAND_SET_CLOCK,
 
@@ -91,6 +97,12 @@ typedef struct {
     struct {
       uint8_t gate;
     } set_gate;
+    struct {
+      bool setting_glide;
+    } setting_glide;
+    struct {
+      uint8_t glide;
+    } set_glide;
     struct {
       bool clock_state;
     } set_clock;
@@ -223,6 +235,28 @@ static inline command_t command_set_gate(uint8_t gate) {
     .args = {
       .set_gate = {
         .gate = gate,
+      },
+    }
+  };
+}
+
+static inline command_t command_setting_glide(bool setting_glide) {
+  return (command_t) {
+    .typ = COMMAND_SETTING_GLIDE,
+    .args = {
+      .setting_glide = {
+        .setting_glide = setting_glide,
+      },
+    }
+  };
+}
+
+static inline command_t command_set_glide(uint8_t glide) {
+  return (command_t) {
+    .typ = COMMAND_SET_GLIDE,
+    .args = {
+      .set_glide = {
+        .glide = glide,
       },
     }
   };

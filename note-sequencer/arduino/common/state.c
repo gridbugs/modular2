@@ -10,7 +10,9 @@ void state_init(state_t *state) {
   state->ticks_per_beat = 4;
   state->setting_tempo = false;
   state->setting_gate = false;
+  state->setting_glide = false;
   state->gate_duration_ratio = 127;
+  state->glide_duration_ratio = 127;
 }
 
 void state_add_to_current_index(state_t *state, int8_t delta) {

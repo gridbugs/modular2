@@ -207,6 +207,7 @@ typedef enum {
 
 #define KEY_WITH_SHIFT_SET_TEMPO KEY_NOTE_C_1
 #define KEY_WITH_SHIFT_SET_GATE KEY_NOTE_D_1
+#define KEY_WITH_SHIFT_SET_GLIDE KEY_NOTE_E_1
 
 // This is a bit in the raw key matrix input, not the key_note_t type.
 #define KEY_SHIFT_BIT BIT(0)
@@ -275,6 +276,11 @@ void command_buffer_setting_tempo(command_buffer_t *cb, state_t *state, bool set
 void command_buffer_setting_gate(command_buffer_t *cb, state_t *state, bool setting_gate) {
   state->setting_gate = setting_gate;
   command_buffer_push(cb, command_setting_gate(setting_gate));
+}
+
+void command_buffer_setting_glide(command_buffer_t *cb, state_t *state, bool setting_glide) {
+  state->setting_glide = setting_glide;
+  command_buffer_push(cb, command_setting_glide(setting_glide));
 }
 
 void command_buffer_set_clock_source(command_buffer_t *cb, state_t *state, clock_source_t clock_source) {
@@ -582,6 +588,9 @@ int main(void) {
             case KEY_WITH_SHIFT_SET_GATE:
               command_buffer_setting_gate(&command_buffer, &state, true);
               break;
+            case KEY_WITH_SHIFT_SET_GLIDE:
+              command_buffer_setting_glide(&command_buffer, &state, true);
+              break;
             default:
           }
         } else {
@@ -626,6 +635,11 @@ int main(void) {
           case KEY_WITH_SHIFT_SET_GATE:
             if (state.setting_gate) {
               command_buffer_setting_gate(&command_buffer, &state, false);
+            }
+            break;
+          case KEY_WITH_SHIFT_SET_GLIDE:
+            if (state.setting_glide) {
+              command_buffer_setting_glide(&command_buffer, &state, false);
             }
             break;
           default:
