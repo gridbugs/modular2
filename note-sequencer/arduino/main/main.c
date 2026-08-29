@@ -528,6 +528,11 @@ int main(void) {
     key_note_t new_current_note = current_note;
     step_t *current_step = state_current_step(&state);
 
+    mode_t mode = get_mode();
+    if (mode != state.mode) {
+      command_buffer_set_mode(&command_buffer, &state, mode);
+    }
+
     switch (handle_clock(&state)) {
       case CLOCK_EVENT_NONE:
         break;
@@ -546,18 +551,6 @@ int main(void) {
         gate_timer_compare = gate_timer_value();
         gate_timer_reset();
       }
-    }
-
-    uint16_t gate_timer_compare_scaled = (gate_timer_compare * (uint16_t)state.gate_duration_ratio) / 255;
-    if (current_step->enabled && (gate_timer_value() < gate_timer_compare_scaled)) {
-      gate_on();
-    } else {
-      gate_off();
-    }
-
-    mode_t mode = get_mode();
-    if (mode != state.mode) {
-      command_buffer_set_mode(&command_buffer, &state, mode);
     }
 
     key_matrix_scan(&key_states);
@@ -658,6 +651,24 @@ int main(void) {
           break;
         }
       }
+    }
+
+    switch (state.mode) {
+      case MODE_RUN:
+        uint16_t gate_timer_compare_scaled = (gate_timer_compare * (uint16_t)state.gate_duration_ratio) / 255;
+        if (current_step->enabled && (gate_timer_value() < gate_timer_compare_scaled)) {
+          gate_on();
+        } else {
+          gate_off();
+        }
+        break;
+      case MODE_PROGRAM:
+        if (note_stack_size == 0) {
+          gate_off();
+        } else {
+          gate_on();
+        }
+        break;
     }
 
     int8_t rotary_encoder_delta = rotary_encoder_read_delta();
