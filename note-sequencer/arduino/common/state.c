@@ -1,7 +1,7 @@
 #include "state.h"
 
 void state_init(state_t *state) {
-  state->mode = MODE_PROGRAM;
+  state->mode = MODE_PROGRAM_OR_LIVE;
   state->clock_source = CLOCK_SOURCE_EXTERNAL;
   state->clock_state = false;
   state->sequence.num_steps = MAX_NUM_STEPS;

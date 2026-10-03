@@ -13,6 +13,7 @@ int command_type_num_bytes(command_type_t command_type) {
     case COMMAND_SET_SEQUENCE_INDEX:
     case COMMAND_CLEAR_STEP_NOTE:
     case COMMAND_SET_MODE:
+    case COMMAND_SET_LIVE:
     case COMMAND_SETTING_TEMPO:
     case COMMAND_SET_TEMPO:
     case COMMAND_SETTING_GATE:
@@ -58,6 +59,9 @@ int command_to_bytes(command_t command, uint8_t *bytes) {
       return 3;
     case COMMAND_SET_MODE:
       bytes[1] = command.args.set_mode.mode;
+      return 2;
+    case COMMAND_SET_LIVE:
+      bytes[1] = command.args.set_live.live;
       return 2;
     case COMMAND_SETTING_TEMPO:
       bytes[1] = command.args.setting_tempo.setting_tempo;
@@ -121,6 +125,8 @@ command_t command_from_bytes(uint8_t *bytes) {
       return command_clear_sequence();
     case COMMAND_SET_MODE:
       return command_set_mode(bytes[1]);
+    case COMMAND_SET_LIVE:
+      return command_set_live(bytes[1]);
     case COMMAND_SETTING_TEMPO:
       return command_setting_tempo(bytes[1]);
     case COMMAND_SET_TEMPO:

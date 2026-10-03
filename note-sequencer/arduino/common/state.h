@@ -30,7 +30,7 @@ typedef struct {
 
 typedef enum {
   MODE_RUN,
-  MODE_PROGRAM,
+  MODE_PROGRAM_OR_LIVE,
 } mode_t;
 
 typedef enum {
@@ -51,6 +51,7 @@ typedef struct {
   bool setting_glide;
   uint8_t gate_duration_ratio;
   uint8_t glide_duration_ratio;
+  bool live;
 } state_t;
 
 void state_init(state_t *state);

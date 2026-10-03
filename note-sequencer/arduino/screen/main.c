@@ -53,16 +53,20 @@ ISR(TWI_vect) {
 }
 
 #define SEQUENCE_TOP_Y 32
-#define MODE_LEFT_X 104
+#define MODE_LEFT_X 96
 
 void state_render_mode(state_t *state, int fg, int bg) {
   char* text;
   switch (state->mode) {
     case MODE_RUN:
-      text = "RUN";
+      text = " RUN";
       break;
-    case MODE_PROGRAM:
-      text = "PRG";
+    case MODE_PROGRAM_OR_LIVE:
+      if (state->live) {
+        text = "LIVE";
+      } else {
+        text = "PROG";
+      }
       break;
     default:
       return;
@@ -215,6 +219,11 @@ void handle_command(command_t command, state_t *state) {
     }
     case COMMAND_SET_MODE: {
       state->mode = command.args.set_mode.mode;
+      state_render_mode(state, fg, bg);
+      break;
+    }
+    case COMMAND_SET_LIVE: {
+      state->live = command.args.set_live.live;
       state_render_mode(state, fg, bg);
       break;
     }

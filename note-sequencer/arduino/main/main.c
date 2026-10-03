@@ -32,7 +32,7 @@ static inline mode_t get_mode(void) {
   if ((PIND & PORTD_MODE_BIT) == 0) {
     return MODE_RUN;
   } else {
-    return MODE_PROGRAM;
+    return MODE_PROGRAM_OR_LIVE;
   }
 }
 
@@ -208,6 +208,7 @@ typedef enum {
 #define KEY_WITH_SHIFT_SET_TEMPO KEY_NOTE_C_1
 #define KEY_WITH_SHIFT_SET_GATE KEY_NOTE_D_1
 #define KEY_WITH_SHIFT_SET_GLIDE KEY_NOTE_E_1
+#define KEY_WITH_SHIFT_TOGGLE_LIVE KEY_NOTE_C_2
 
 // This is a bit in the raw key matrix input, not the key_note_t type.
 #define KEY_SHIFT_BIT BIT(0)
@@ -266,6 +267,11 @@ void command_buffer_toggle_flag(command_buffer_t *cb, state_t *state, uint8_t fl
 void command_buffer_set_mode(command_buffer_t *cb, state_t *state, mode_t mode) {
   state->mode = mode;
   command_buffer_push(cb, command_set_mode(mode));
+}
+
+void command_buffer_set_live(command_buffer_t *cb, state_t *state, bool live) {
+  state->live = live;
+  command_buffer_push(cb, command_set_live(live));
 }
 
 void command_buffer_setting_tempo(command_buffer_t *cb, state_t *state, bool setting_tempo) {
@@ -584,6 +590,9 @@ int main(void) {
             case KEY_WITH_SHIFT_SET_GLIDE:
               command_buffer_setting_glide(&command_buffer, &state, true);
               break;
+            case KEY_WITH_SHIFT_TOGGLE_LIVE:
+              command_buffer_set_live(&command_buffer, &state, !state.live);
+              break;
             default:
           }
         } else {
@@ -662,7 +671,7 @@ int main(void) {
           gate_off();
         }
         break;
-      case MODE_PROGRAM:
+      case MODE_PROGRAM_OR_LIVE:
         if (note_stack_size == 0) {
           gate_off();
         } else {

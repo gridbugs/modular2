@@ -37,6 +37,9 @@ typedef enum {
   // Set the mode.
   COMMAND_SET_MODE,
 
+  // Set or clear the live flag.
+  COMMAND_SET_LIVE,
+
   // Switch into or out of the mode for setting the tempo.
   COMMAND_SETTING_TEMPO,
 
@@ -85,6 +88,9 @@ typedef struct {
     struct {
       mode_t mode;
     } set_mode;
+    struct {
+      bool live;
+    } set_live;
     struct {
       bool setting_tempo;
     } setting_tempo;
@@ -191,6 +197,17 @@ static inline command_t command_set_mode(mode_t mode) {
     .args = {
       .set_mode = {
         .mode = mode,
+      },
+    }
+  };
+}
+
+static inline command_t command_set_live(bool live) {
+  return (command_t) {
+    .typ = COMMAND_SET_LIVE,
+    .args = {
+      .set_live = {
+        .live = live,
       },
     }
   };
