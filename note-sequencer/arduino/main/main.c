@@ -599,9 +599,11 @@ int main(void) {
           note_stack[note_stack_size] = key_note;
           note_stack_size++;
 
-          // Handle the fact that this key was just pressed
-          command_buffer_press_note_key(&command_buffer, &state, key_note);
-          command_buffer_add_to_sequence_index(&command_buffer, &state, 1);
+          if (!state.live) {
+            // Handle the fact that this key was just pressed
+            command_buffer_press_note_key(&command_buffer, &state, key_note);
+            command_buffer_add_to_sequence_index(&command_buffer, &state, 1);
+          }
         }
       } else if (key == KEY_CLEAR) {
         if (shift) {
