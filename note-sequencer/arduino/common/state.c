@@ -14,6 +14,7 @@ void state_init(state_t *state) {
   state->setting_glide = false;
   state->gate_duration_ratio = 127;
   state->glide_duration_ratio = 127;
+  state->octave = 1;
 }
 
 void state_add_to_playback_index(state_t *state, int8_t delta) {

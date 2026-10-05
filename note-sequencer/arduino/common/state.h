@@ -53,6 +53,7 @@ typedef struct {
   uint8_t gate_duration_ratio;
   uint8_t glide_duration_ratio;
   bool live;
+  uint8_t octave;
 } state_t;
 
 void state_init(state_t *state);

@@ -66,6 +66,9 @@ typedef enum {
 
   // Set the clock source.
   COMMAND_SET_CLOCK_SOURCE,
+
+  // Set the octave.
+  COMMAND_SET_OCTAVE,
 } command_type_t;
 
 typedef struct {
@@ -121,6 +124,9 @@ typedef struct {
     struct {
       clock_source_t clock_source;
     } set_clock_source;
+    struct {
+      uint8_t octave;
+    } set_octave;
   } args;
 } command_t;
 
@@ -313,6 +319,17 @@ static inline command_t command_set_clock_source(clock_source_t clock_source) {
     .args = {
       .set_clock_source = {
         .clock_source = clock_source,
+      },
+    }
+  };
+}
+
+static inline command_t command_set_octave(uint8_t octave) {
+  return (command_t) {
+    .typ = COMMAND_SET_OCTAVE,
+    .args = {
+      .set_octave = {
+        .octave = octave,
       },
     }
   };

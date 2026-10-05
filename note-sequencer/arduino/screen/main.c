@@ -88,6 +88,16 @@ void state_render_clock_source(state_t *state, int fg, int bg) {
   display_text(buf, 0, 120, fg, bg, 0);
 }
 
+void state_render_octave(state_t *state, int fg, int bg) {
+  static char buf[2] = { 0 };
+  display_text("OCT:", 88, 0, fg, bg, 0);
+  display_text("OCT:", 88, 8, fg, bg, 0);
+  buf[0] = '0' + state->octave;
+  display_text(buf, 120, 0, fg, bg, 0);
+  buf[0]++;
+  display_text(buf, 120, 8, fg, bg, 0);
+}
+
 void render_cursor_at(int index, char cursor_char, int fg, int bg) {
   int cursor_x = ((index * 2) / MAX_NUM_STEPS) * 64;
   int cursor_y = SEQUENCE_TOP_Y + ((index % (MAX_NUM_STEPS / 2)) * 8);
@@ -154,6 +164,7 @@ void state_render(state_t *state) {
     render_cursor_at(i, cursor, fg, bg);
   }
   state_render_clock_source(state, fg, bg);
+  state_render_octave(state, fg, bg);
 }
 
 void render_splash(void) {
@@ -284,6 +295,11 @@ void handle_command(command_t command, state_t *state) {
     case COMMAND_SET_CLOCK_SOURCE: {
       state->clock_source = command.args.set_clock_source.clock_source;
       state_render_clock_source(state, fg, bg);
+      break;
+    }
+    case COMMAND_SET_OCTAVE: {
+      state->octave = command.args.set_octave.octave;
+      state_render_octave(state, fg, bg);
       break;
     }
   }

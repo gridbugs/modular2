@@ -208,6 +208,8 @@ typedef enum {
 #define KEY_WITH_SHIFT_SET_TEMPO KEY_NOTE_C_1
 #define KEY_WITH_SHIFT_SET_GATE KEY_NOTE_D_1
 #define KEY_WITH_SHIFT_SET_GLIDE KEY_NOTE_E_1
+#define KEY_WITH_SHIFT_OCTAVE_DOWN KEY_NOTE_A_1
+#define KEY_WITH_SHIFT_OCTAVE_UP KEY_NOTE_B_1
 #define KEY_WITH_SHIFT_TOGGLE_LIVE KEY_NOTE_C_2
 
 // This is a bit in the raw key matrix input, not the key_note_t type.
@@ -233,6 +235,20 @@ void command_buffer_send(command_buffer_t *cb) {
 void command_buffer_push(command_buffer_t *cb, command_t command) {
   cb->commands[cb->num_commands] = command;
   cb->num_commands++;
+}
+
+void command_buffer_octave_up(command_buffer_t *cb, state_t *state) {
+  if (state->octave < 8) {
+    state->octave++;
+    command_buffer_push(cb, command_set_octave(state->octave));
+  }
+}
+
+void command_buffer_octave_down(command_buffer_t *cb, state_t *state) {
+  if (state->octave > 0) {
+    state->octave--;
+    command_buffer_push(cb, command_set_octave(state->octave));
+  }
 }
 
 void command_buffer_add_to_edit_index(command_buffer_t *cb, state_t *state, int8_t delta) {
@@ -600,9 +616,16 @@ int main(void) {
             case KEY_WITH_SHIFT_TOGGLE_LIVE:
               command_buffer_set_live(&command_buffer, &state, !state.live);
               break;
+            case KEY_WITH_SHIFT_OCTAVE_DOWN:
+              command_buffer_octave_down(&command_buffer, &state);
+              break;
+            case KEY_WITH_SHIFT_OCTAVE_UP:
+              command_buffer_octave_up(&command_buffer, &state);
+              break;
             default:
           }
         } else {
+          key_note += (state.octave * 12);
           note_stack[note_stack_size] = key_note;
           note_stack_size++;
 
@@ -653,18 +676,19 @@ int main(void) {
             break;
           default:
         }
-      }
-      if (key == KEY_CLOCK_SOURCE) {
+      } else if (key == KEY_CLOCK_SOURCE) {
         command_buffer_set_clock_source(&command_buffer, &state, CLOCK_SOURCE_EXTERNAL);
         set_clock_source(CLOCK_SOURCE_EXTERNAL);
-      }
-      for (int i = 0; i < note_stack_size; i++) {
-        if (note_stack[i] == key_note) {
-          for (; i < note_stack_size - 1; i++) {
-            note_stack[i] = note_stack[i + 1];
+      } else {
+        key_note += (state.octave * 12);
+        for (int i = 0; i < note_stack_size; i++) {
+          if (note_stack[i] == key_note) {
+            for (; i < note_stack_size - 1; i++) {
+              note_stack[i] = note_stack[i + 1];
+            }
+            note_stack_size--;
+            break;
           }
-          note_stack_size--;
-          break;
         }
       }
     }
@@ -679,10 +703,14 @@ int main(void) {
         }
         break;
       case MODE_PROGRAM_OR_LIVE:
-        if (note_stack_size == 0) {
-          gate_off();
+        if (state.live) {
+          if (note_stack_size == 0) {
+            gate_off();
+          } else {
+            gate_on();
+          }
         } else {
-          gate_on();
+          gate_off();
         }
         break;
     }
