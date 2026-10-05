@@ -19,8 +19,11 @@ typedef enum {
   // Set the currently active note.
   COMMAND_SET_NOTE,
 
-  // Move the cursor to a given position.
-  COMMAND_SET_SEQUENCE_INDEX,
+  // Move the playback cursor to a given position.
+  COMMAND_SET_PLAYBACK_INDEX,
+
+  // Move the edit cursor to a given position.
+  COMMAND_SET_EDIT_INDEX,
 
   // Change the note at a given index.
   COMMAND_SET_STEP_NOTE,
@@ -73,7 +76,10 @@ typedef struct {
     } set_note;
     struct {
       uint8_t sequence_index;
-    } set_sequence_index;
+    } set_playback_index;
+    struct {
+      uint8_t sequence_index;
+    } set_edit_index;
     struct {
       uint8_t sequence_index;
       uint8_t note_index;
@@ -141,11 +147,22 @@ static inline command_t command_set_note(uint8_t note_index) {
   };
 }
 
-static inline command_t command_set_sequence_index(uint8_t sequence_index) {
+static inline command_t command_set_playback_index(uint8_t sequence_index) {
   return (command_t) {
-    .typ = COMMAND_SET_SEQUENCE_INDEX,
+    .typ = COMMAND_SET_PLAYBACK_INDEX,
     .args = {
-      .set_sequence_index = {
+      .set_playback_index = {
+        .sequence_index = sequence_index,
+      },
+    }
+  };
+}
+
+static inline command_t command_set_edit_index(uint8_t sequence_index) {
+  return (command_t) {
+    .typ = COMMAND_SET_EDIT_INDEX,
+    .args = {
+      .set_edit_index = {
         .sequence_index = sequence_index,
       },
     }

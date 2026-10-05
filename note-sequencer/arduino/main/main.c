@@ -235,22 +235,27 @@ void command_buffer_push(command_buffer_t *cb, command_t command) {
   cb->num_commands++;
 }
 
-void command_buffer_add_to_sequence_index(command_buffer_t *cb, state_t *state, int8_t delta) {
-  state_add_to_current_index(state, delta);
-  command_buffer_push(cb, command_set_sequence_index(state->current_index));
+void command_buffer_add_to_edit_index(command_buffer_t *cb, state_t *state, int8_t delta) {
+  state_add_to_edit_index(state, delta);
+  command_buffer_push(cb, command_set_edit_index(state->edit_index));
+}
+
+void command_buffer_add_to_playback_index(command_buffer_t *cb, state_t *state, int8_t delta) {
+  state_add_to_playback_index(state, delta);
+  command_buffer_push(cb, command_set_playback_index(state->playback_index));
 }
 
 void command_buffer_press_note_key(command_buffer_t *cb, state_t *state, key_note_t key_note) {
-  step_t *step = state_current_step(state);
+  step_t *step = state_current_edit_step_ptr(state);
   step->note_index = key_note;
   step->enabled = true;
-  command_buffer_push(cb, command_set_step_note(state->current_index, key_note));
+  command_buffer_push(cb, command_set_step_note(state->edit_index, key_note));
 }
 
 void command_buffer_clear_note(command_buffer_t *cb, state_t *state) {
-  step_t *step = state_current_step(state);
+  step_t *step = state_current_edit_step_ptr(state);
   step->enabled = false;
-  command_buffer_push(cb, command_clear_step_note(state->current_index));
+  command_buffer_push(cb, command_clear_step_note(state->edit_index));
 }
 
 void command_buffer_clear_all(command_buffer_t *cb, state_t *state) {
@@ -259,9 +264,9 @@ void command_buffer_clear_all(command_buffer_t *cb, state_t *state) {
 }
 
 void command_buffer_toggle_flag(command_buffer_t *cb, state_t *state, uint8_t flag) {
-  step_t *step = state_current_step(state);
+  step_t *step = state_current_edit_step_ptr(state);
   step->flags ^= flag;
-  command_buffer_push(cb, command_set_step_flags(state->current_index, step->flags));
+  command_buffer_push(cb, command_set_step_flags(state->edit_index, step->flags));
 }
 
 void command_buffer_set_mode(command_buffer_t *cb, state_t *state, mode_t mode) {
@@ -530,9 +535,10 @@ int main(void) {
   gate_init();
 #endif
 
+  step_t current_step = state_current_playback_step(&state);
+
   while (1) {
     key_note_t new_current_note = current_note;
-    step_t *current_step = state_current_step(&state);
 
     mode_t mode = get_mode();
     if (mode != state.mode) {
@@ -548,9 +554,10 @@ int main(void) {
       case CLOCK_EVENT_RISING_EDGE: {
         command_buffer_push(&command_buffer, command_set_clock(true));
         if (state.mode == MODE_RUN) {
-          command_buffer_add_to_sequence_index(&command_buffer, &state, 1);
-          if (current_step->enabled) {
-            new_current_note = current_step->note_index;
+          command_buffer_add_to_playback_index(&command_buffer, &state, 1);
+          current_step = state_current_playback_step(&state);
+          if (current_step.enabled) {
+            new_current_note = current_step.note_index;
           }
         }
         // Use the current tick duration to determine the next gate duration.
@@ -602,7 +609,6 @@ int main(void) {
           if (!state.live) {
             // Handle the fact that this key was just pressed
             command_buffer_press_note_key(&command_buffer, &state, key_note);
-            command_buffer_add_to_sequence_index(&command_buffer, &state, 1);
           }
         }
       } else if (key == KEY_CLEAR) {
@@ -611,7 +617,6 @@ int main(void) {
         } else {
           // Clear the current step
           command_buffer_clear_note(&command_buffer, &state);
-          command_buffer_add_to_sequence_index(&command_buffer, &state, 1);
         }
       } else if (key == KEY_ACCENT) {
         command_buffer_toggle_flag(&command_buffer, &state, FLAG_ACCENT);
@@ -667,7 +672,7 @@ int main(void) {
     switch (state.mode) {
       case MODE_RUN:
         uint16_t gate_timer_compare_scaled = (gate_timer_compare * (uint16_t)state.gate_duration_ratio) / 255;
-        if (current_step->enabled && (gate_timer_value() < gate_timer_compare_scaled)) {
+        if (current_step.enabled && (gate_timer_value() < gate_timer_compare_scaled)) {
           gate_on();
         } else {
           gate_off();
@@ -690,21 +695,14 @@ int main(void) {
       } else if (state.setting_gate) {
         command_buffer_add_to_gate(&command_buffer, &state, rotary_encoder_delta);
       } else {
-        // If the knob turns clockwise then clear the note before advancing the
-        // cursor. If it turns anticlockwise then clear the note after
-        // advancing the cursor. This is inconsistent but feels the least
-        // incorrect in when actually using the feature in practice.
-        if (clear && rotary_encoder_delta > 0) {
-          command_buffer_clear_note(&command_buffer, &state);
-        }
-        command_buffer_add_to_sequence_index(&command_buffer, &state, rotary_encoder_delta);
-        if (clear && rotary_encoder_delta < 0) {
+        command_buffer_add_to_edit_index(&command_buffer, &state, rotary_encoder_delta);
+        if (clear) {
           command_buffer_clear_note(&command_buffer, &state);
         }
       }
     }
 
-    if (note_stack_size > 0) {
+    if (note_stack_size > 0 && state.live) {
       new_current_note = note_stack[note_stack_size - 1];
     }
 

@@ -40,7 +40,8 @@ typedef enum {
 
 typedef struct {
   sequence_t sequence;
-  uint8_t current_index;
+  uint8_t playback_index;
+  uint8_t edit_index;
   mode_t mode;
   clock_source_t clock_source;
   bool clock_state;
@@ -55,11 +56,16 @@ typedef struct {
 } state_t;
 
 void state_init(state_t *state);
-void state_add_to_current_index(state_t *state, int8_t delta);
+void state_add_to_playback_index(state_t *state, int8_t delta);
+void state_add_to_edit_index(state_t *state, int8_t delta);
 void state_clear_sequence(state_t *state);
 
-static inline step_t *state_current_step(state_t *state) {
-  return &state->sequence.steps[state->current_index];
+static inline step_t *state_current_edit_step_ptr(state_t *state) {
+  return &state->sequence.steps[state->edit_index];
+}
+
+static inline step_t state_current_playback_step(state_t *state) {
+  return state->sequence.steps[state->playback_index];
 }
 
 static inline uint16_t state_ticks_per_minute(state_t *state) {

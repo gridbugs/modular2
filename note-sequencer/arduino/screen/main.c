@@ -95,12 +95,15 @@ void render_cursor_at(int index, char cursor_char, int fg, int bg) {
   display_text(buf, cursor_x, cursor_y, fg, bg, 0);
 }
 
-void state_render_cursor(state_t *state, char cursor_char, int fg, int bg) {
-  render_cursor_at(state->current_index, cursor_char, fg, bg);
+void state_render_playback_cursor(state_t *state, char cursor_char, int fg, int bg) {
+  render_cursor_at(state->playback_index, cursor_char, fg, bg);
 }
 
 void state_render_step(state_t *state, int step_index, int fg, int bg) {
   static char buf[32];
+  if (state->edit_index == step_index) {
+    bg = BLUE;
+  }
   int x = ((step_index * 2) / MAX_NUM_STEPS) * 64;
   int y = SEQUENCE_TOP_Y + ((step_index % (MAX_NUM_STEPS / 2)) * 8);
   int index_fg = GREY;
@@ -137,13 +140,17 @@ void state_render_setting(state_t *state, int fg, int bg) {
   display_text(buf, 8, y, fg, bg, 0);
 }
 
+void state_render_edit_cursor(state_t *state) {
+  state_render_step(state, state->edit_index, WHITE, BLUE);
+}
+
 void state_render(state_t *state) {
   int fg = WHITE;
   int bg = BLACK;
   state_render_mode(state, fg, bg);
   for (int i = 0; i < MAX_NUM_STEPS; i++) {
     state_render_step(state, i, fg, bg);
-    char cursor = (i == state->current_index) ? '>' : ' ';
+    char cursor = (i == state->playback_index) ? '>' : ' ';
     render_cursor_at(i, cursor, fg, bg);
   }
   state_render_clock_source(state, fg, bg);
@@ -181,11 +188,23 @@ void handle_command(command_t command, state_t *state) {
       display_text(buf, 0, 0, fg, bg, 1);
       break;
     }
-    case COMMAND_SET_SEQUENCE_INDEX: {
-      uint8_t sequence_index = command.args.set_sequence_index.sequence_index;
-      state_render_cursor(state, ' ', fg, bg);
-      state->current_index = sequence_index;
-      state_render_cursor(state, '>', fg, bg);
+    case COMMAND_SET_PLAYBACK_INDEX: {
+      uint8_t sequence_index = command.args.set_playback_index.sequence_index;
+      // Clear the playback cursor at its previous position.
+      state_render_playback_cursor(state, ' ', fg, bg);
+      state->playback_index = sequence_index;
+      // Render the playback cursor at its current position.
+      state_render_playback_cursor(state, '>', fg, bg);
+      break;
+    }
+    case COMMAND_SET_EDIT_INDEX: {
+      uint8_t sequence_index = command.args.set_edit_index.sequence_index;
+      uint8_t edit_index_prev = state->edit_index;
+      state->edit_index = sequence_index;
+      // Clear the edit cursor at its previous position.
+      state_render_step(state, edit_index_prev, WHITE, BLACK);
+      // Render the edit cursor at its current position.
+      state_render_step(state, state->edit_index, WHITE, BLACK);
       break;
     }
     case COMMAND_SET_STEP_NOTE: {

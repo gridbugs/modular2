@@ -10,7 +10,8 @@ int command_type_num_bytes(command_type_t command_type) {
     case COMMAND_CLEAR_SEQUENCE:
       return 1;
     case COMMAND_SET_NOTE:
-    case COMMAND_SET_SEQUENCE_INDEX:
+    case COMMAND_SET_PLAYBACK_INDEX:
+    case COMMAND_SET_EDIT_INDEX:
     case COMMAND_CLEAR_STEP_NOTE:
     case COMMAND_SET_MODE:
     case COMMAND_SET_LIVE:
@@ -43,8 +44,11 @@ int command_to_bytes(command_t command, uint8_t *bytes) {
     case COMMAND_SET_NOTE:
       bytes[1] = command.args.set_note.note_index;
       return 2;
-    case COMMAND_SET_SEQUENCE_INDEX:
-      bytes[1] = command.args.set_sequence_index.sequence_index;
+    case COMMAND_SET_PLAYBACK_INDEX:
+      bytes[1] = command.args.set_playback_index.sequence_index;
+      return 2;
+    case COMMAND_SET_EDIT_INDEX:
+      bytes[1] = command.args.set_edit_index.sequence_index;
       return 2;
     case COMMAND_SET_STEP_NOTE:
       bytes[1] = command.args.set_step_note.sequence_index;
@@ -113,8 +117,10 @@ command_t command_from_bytes(uint8_t *bytes) {
       return command_show_ui();
     case COMMAND_SET_NOTE:
       return command_set_note(bytes[1]);
-    case COMMAND_SET_SEQUENCE_INDEX:
-      return command_set_sequence_index(bytes[1]);
+    case COMMAND_SET_PLAYBACK_INDEX:
+      return command_set_playback_index(bytes[1]);
+    case COMMAND_SET_EDIT_INDEX:
+      return command_set_edit_index(bytes[1]);
     case COMMAND_SET_STEP_NOTE:
       return command_set_step_note(bytes[1], bytes[2]);
     case COMMAND_CLEAR_STEP_NOTE:
