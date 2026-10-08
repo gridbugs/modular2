@@ -24,9 +24,11 @@ int command_type_num_bytes(command_type_t command_type) {
     case COMMAND_SET_CLOCK:
     case COMMAND_SET_CLOCK_SOURCE:
     case COMMAND_SET_OCTAVE:
+    case COMMAND_SET_LIVE_FLAGS:
       return 2;
     case COMMAND_SET_STEP_NOTE:
     case COMMAND_SET_STEP_FLAGS:
+    case COMMAND_GLIDE_NOTE:
       return 3;
   }
   return 0;
@@ -45,6 +47,10 @@ int command_to_bytes(command_t command, uint8_t *bytes) {
     case COMMAND_SET_NOTE:
       bytes[1] = command.args.set_note.note_index;
       return 2;
+    case COMMAND_GLIDE_NOTE:
+      bytes[1] = command.args.glide_note.to_note_index;
+      bytes[2] = command.args.glide_note.progress;
+      return 3;
     case COMMAND_SET_PLAYBACK_INDEX:
       bytes[1] = command.args.set_playback_index.sequence_index;
       return 2;
@@ -62,6 +68,9 @@ int command_to_bytes(command_t command, uint8_t *bytes) {
       bytes[1] = command.args.set_step_flags.sequence_index;
       bytes[2] = command.args.set_step_flags.flags;
       return 3;
+    case COMMAND_SET_LIVE_FLAGS:
+      bytes[1] = command.args.set_live_flags.flags;
+      return 2;
     case COMMAND_SET_MODE:
       bytes[1] = command.args.set_mode.mode;
       return 2;
@@ -121,6 +130,8 @@ command_t command_from_bytes(uint8_t *bytes) {
       return command_show_ui();
     case COMMAND_SET_NOTE:
       return command_set_note(bytes[1]);
+    case COMMAND_GLIDE_NOTE:
+      return command_glide_note(bytes[1], bytes[2]);
     case COMMAND_SET_PLAYBACK_INDEX:
       return command_set_playback_index(bytes[1]);
     case COMMAND_SET_EDIT_INDEX:
@@ -131,6 +142,8 @@ command_t command_from_bytes(uint8_t *bytes) {
       return command_clear_step_note(bytes[1]);
     case COMMAND_SET_STEP_FLAGS:
       return command_set_step_flags(bytes[1], bytes[2]);
+    case COMMAND_SET_LIVE_FLAGS:
+      return command_set_live_flags(bytes[1]);
     case COMMAND_CLEAR_SEQUENCE:
       return command_clear_sequence();
     case COMMAND_SET_MODE:

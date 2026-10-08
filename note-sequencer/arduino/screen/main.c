@@ -53,19 +53,19 @@ ISR(TWI_vect) {
 }
 
 #define SEQUENCE_TOP_Y 32
-#define MODE_LEFT_X 96
+#define MODE_LEFT_X 80
 
 void state_render_mode(state_t *state, int fg, int bg) {
   char* text;
   switch (state->mode) {
     case MODE_RUN:
-      text = " RUN";
+      text = " RUN  ";
       break;
     case MODE_PROGRAM_OR_LIVE:
       if (state->live) {
-        text = "LIVE";
+        text = "LIVE  ";
       } else {
-        text = "PROG";
+        text = "PROG  ";
       }
       break;
     default:
@@ -74,7 +74,14 @@ void state_render_mode(state_t *state, int fg, int bg) {
   display_text(text, MODE_LEFT_X, 120, fg, bg, 0);
 }
 
-#define CLOCK_STATE_X 72
+void state_render_live_flags(state_t *state) {
+  char accent_char = state_live_has_accent(state) ? 'A' : ' ';
+  char glide_char = state_live_has_glide(state) ? 'G' : ' ';
+  char buf[3] = { accent_char, glide_char, '\0' };
+  display_text(buf, 112, 120, GREEN, BLACK, 0);
+}
+
+#define CLOCK_STATE_X 64
 
 void state_render_clock_state(state_t *state, int fg, int bg) {
   char* text = state->clock_state ? "*" : " ";
@@ -84,7 +91,7 @@ void state_render_clock_state(state_t *state, int fg, int bg) {
 void state_render_clock_source(state_t *state, int fg, int bg) {
   static char buf[16];
   char* source_name = state->clock_source == CLOCK_SOURCE_EXTERNAL ? "EXT" : "INT";
-  sprintf(buf, "CLK: %s", source_name);
+  sprintf(buf, "CLK:%s", source_name);
   display_text(buf, 0, 120, fg, bg, 0);
 }
 
@@ -129,9 +136,9 @@ void state_render_step(state_t *state, int step_index, int fg, int bg) {
   } else {
     display_text(" -  ", x + 24, y, fg, bg, 0);
   }
-  char accent = step_has_accent(step) ? 'a' : ' ';
-  char glide = step_has_glide(step) ? 'g' : ' ';
-  int flag_fg = step->enabled ? fg : index_fg;
+  char accent = step_has_accent(step) ? 'A' : ' ';
+  char glide = step_has_glide(step) ? 'G' : ' ';
+  int flag_fg = GREEN;
   sprintf(buf, "%c%c", accent, glide);
   display_text(buf, x + 48, y, flag_fg, bg, 0);
 }
@@ -170,10 +177,10 @@ void state_render(state_t *state) {
 
 void render_splash(void) {
   display_clear(MAGENTA);
-  display_text("purple", 20, 20, WHITE, BLACK, 1);
-  display_text("earth", 30, 40, WHITE, BLACK, 1);
-  display_text("hypoth-", 10, 60, WHITE, BLACK, 1);
-  display_text("esis", 50, 80, WHITE, BLACK, 1);
+  display_text("PURPLE", 20, 20, WHITE, BLACK, 1);
+  display_text("EARTH", 30, 40, WHITE, BLACK, 1);
+  display_text("HYPOTH-", 10, 60, WHITE, BLACK, 1);
+  display_text("ESIS", 50, 80, WHITE, BLACK, 1);
 }
 
 void handle_command(command_t command, state_t *state) {
@@ -198,6 +205,10 @@ void handle_command(command_t command, state_t *state) {
       char buf[4];
       sprintf(buf, "%s%d", note_name(note_index), note_octave(note_index));
       display_text(buf, 0, 0, fg, bg, 1);
+      break;
+    }
+    case COMMAND_GLIDE_NOTE: {
+      // TODO
       break;
     }
     case COMMAND_SET_PLAYBACK_INDEX: {
@@ -243,6 +254,14 @@ void handle_command(command_t command, state_t *state) {
       state_render_step(state, sequence_index, fg, bg);
       break;
     }
+    case COMMAND_SET_LIVE_FLAGS: {
+      uint8_t flags = command.args.set_live_flags.flags;
+      state->live_flags = flags;
+      if (state->mode == MODE_PROGRAM_OR_LIVE && state->live) {
+        state_render_live_flags(state);
+      }
+      break;
+    }
     case COMMAND_CLEAR_SEQUENCE: {
       state_clear_sequence(state);
       state_render(state);
@@ -251,11 +270,17 @@ void handle_command(command_t command, state_t *state) {
     case COMMAND_SET_MODE: {
       state->mode = command.args.set_mode.mode;
       state_render_mode(state, fg, bg);
+      if (state->mode == MODE_PROGRAM_OR_LIVE && state->live) {
+        state_render_live_flags(state);
+      }
       break;
     }
     case COMMAND_SET_LIVE: {
       state->live = command.args.set_live.live;
       state_render_mode(state, fg, bg);
+      if (state->mode == MODE_PROGRAM_OR_LIVE && state->live) {
+        state_render_live_flags(state);
+      }
       break;
     }
     case COMMAND_SETTING_TEMPO: {

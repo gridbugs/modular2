@@ -54,21 +54,30 @@ typedef struct {
   uint8_t glide_duration_ratio;
   bool live;
   uint8_t octave;
+  uint8_t live_flags;
 } state_t;
 
 void state_init(state_t *state);
 void state_add_to_playback_index(state_t *state, int8_t delta);
 void state_add_to_edit_index(state_t *state, int8_t delta);
 void state_clear_sequence(state_t *state);
-
-static inline step_t *state_current_edit_step_ptr(state_t *state) {
-  return &state->sequence.steps[state->edit_index];
-}
-
-static inline step_t state_current_playback_step(state_t *state) {
-  return state->sequence.steps[state->playback_index];
-}
+step_t *state_current_edit_step_ptr(state_t *state);
+step_t state_current_playback_step(state_t *state);
+bool state_current_has_glide(state_t *state);
+bool state_current_has_accent(state_t *state);
 
 static inline uint16_t state_ticks_per_minute(state_t *state) {
   return state->tempo_bpm * state->ticks_per_beat;
+}
+
+static inline bool state_live_has_accent(state_t *state) {
+  return (state->live_flags & FLAG_ACCENT) != 0;
+}
+
+static inline bool state_live_has_glide(state_t *state) {
+  return (state->live_flags & FLAG_GLIDE) != 0;
+}
+
+static inline bool state_is_live(state_t *state) {
+  return state->live && state->mode == MODE_PROGRAM_OR_LIVE;
 }

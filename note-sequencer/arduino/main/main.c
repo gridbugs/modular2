@@ -280,9 +280,14 @@ void command_buffer_clear_all(command_buffer_t *cb, state_t *state) {
 }
 
 void command_buffer_toggle_flag(command_buffer_t *cb, state_t *state, uint8_t flag) {
-  step_t *step = state_current_edit_step_ptr(state);
-  step->flags ^= flag;
-  command_buffer_push(cb, command_set_step_flags(state->edit_index, step->flags));
+  if (state->mode == MODE_PROGRAM_OR_LIVE && state->live) {
+    state->live_flags ^= flag;
+    command_buffer_push(cb, command_set_live_flags(state->live_flags));
+  } else {
+    step_t *step = state_current_edit_step_ptr(state);
+    step->flags ^= flag;
+    command_buffer_push(cb, command_set_step_flags(state->edit_index, step->flags));
+  }
 }
 
 void command_buffer_set_mode(command_buffer_t *cb, state_t *state, mode_t mode) {
@@ -544,6 +549,7 @@ int main(void) {
   timer2_enable_interrupt_output_compare_a();
   timer2_start();
   uint16_t gate_timer_compare = 0;
+  uint8_t warmup_countdown =  4;
 
 #ifdef DEBUG_PRINTING
   // The gate is the TX pin. If printing is enabled then we can't initilaize
@@ -579,6 +585,9 @@ int main(void) {
         // Use the current tick duration to determine the next gate duration.
         gate_timer_compare = gate_timer_value();
         gate_timer_reset();
+        if (warmup_countdown > 0) {
+          warmup_countdown--;
+        }
       }
     }
 
@@ -715,7 +724,7 @@ int main(void) {
         break;
     }
 
-    int8_t rotary_encoder_delta = rotary_encoder_read_delta();
+    int8_t rotary_encoder_delta = warmup_countdown == 0 ? rotary_encoder_read_delta() : 0;
     if (rotary_encoder_delta != 0) {
       if (state.setting_tempo) {
         command_buffer_add_to_tempo(&command_buffer, &state, rotary_encoder_delta);
@@ -736,8 +745,13 @@ int main(void) {
 
     if (new_current_note != current_note) {
       current_note = new_current_note;
-      dac0_set_value(note_dac_value((uint8_t)current_note));
-      command_buffer_push(&command_buffer, command_set_note(current_note));
+      if (state_current_has_glide(&state)) {
+        // TODO interpolate the dac0 value
+        command_buffer_push(&command_buffer, command_set_note(current_note));
+      } else {
+        dac0_set_value(note_dac_value((uint8_t)current_note));
+        command_buffer_push(&command_buffer, command_set_note(current_note));
+      }
     }
 
     command_buffer_send(&command_buffer);

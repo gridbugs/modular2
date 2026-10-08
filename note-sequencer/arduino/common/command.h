@@ -19,6 +19,9 @@ typedef enum {
   // Set the currently active note.
   COMMAND_SET_NOTE,
 
+  // Set the current position gliding between notes.
+  COMMAND_GLIDE_NOTE,
+
   // Move the playback cursor to a given position.
   COMMAND_SET_PLAYBACK_INDEX,
 
@@ -33,6 +36,9 @@ typedef enum {
 
   // Set the flags at a given index.
   COMMAND_SET_STEP_FLAGS,
+
+  // Set the live flags.
+  COMMAND_SET_LIVE_FLAGS,
 
   // Clear all steps and flags.
   COMMAND_CLEAR_SEQUENCE,
@@ -78,6 +84,10 @@ typedef struct {
       uint8_t note_index;
     } set_note;
     struct {
+      uint8_t to_note_index;
+      uint8_t progress;
+    } glide_note;
+    struct {
       uint8_t sequence_index;
     } set_playback_index;
     struct {
@@ -94,6 +104,9 @@ typedef struct {
       uint8_t sequence_index;
       uint8_t flags;
     } set_step_flags;
+    struct {
+      uint8_t flags;
+    } set_live_flags;
     struct {
       mode_t mode;
     } set_mode;
@@ -153,6 +166,18 @@ static inline command_t command_set_note(uint8_t note_index) {
   };
 }
 
+static inline command_t command_glide_note(uint8_t to_note_index, uint8_t progress) {
+  return (command_t) {
+    .typ = COMMAND_GLIDE_NOTE,
+    .args = {
+      .glide_note = {
+        .to_note_index = to_note_index,
+        .progress = progress,
+      },
+    }
+  };
+}
+
 static inline command_t command_set_playback_index(uint8_t sequence_index) {
   return (command_t) {
     .typ = COMMAND_SET_PLAYBACK_INDEX,
@@ -204,6 +229,17 @@ static inline command_t command_set_step_flags(uint8_t sequence_index, uint8_t f
     .args = {
       .set_step_flags = {
         .sequence_index = sequence_index,
+        .flags = flags,
+      },
+    }
+  };
+}
+
+static inline command_t command_set_live_flags(uint8_t flags) {
+  return (command_t) {
+    .typ = COMMAND_SET_LIVE_FLAGS,
+    .args = {
+      .set_live_flags = {
         .flags = flags,
       },
     }

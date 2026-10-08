@@ -7,7 +7,7 @@ void state_init(state_t *state) {
   state->sequence.num_steps = MAX_NUM_STEPS;
   state->playback_index = 0;
   state->edit_index = 0;
-  state->tempo_bpm = 128;
+  state->tempo_bpm = 60;
   state->ticks_per_beat = 4;
   state->setting_tempo = false;
   state->setting_gate = false;
@@ -15,6 +15,7 @@ void state_init(state_t *state) {
   state->gate_duration_ratio = 127;
   state->glide_duration_ratio = 127;
   state->octave = 1;
+  state->live_flags = 0;
 }
 
 void state_add_to_playback_index(state_t *state, int8_t delta) {
@@ -41,5 +42,29 @@ void state_clear_sequence(state_t *state) {
     step_t *step = &state->sequence.steps[i];
     step->enabled = false;
     step->flags = 0;
+  }
+}
+
+step_t *state_current_edit_step_ptr(state_t *state) {
+  return &state->sequence.steps[state->edit_index];
+}
+
+step_t state_current_playback_step(state_t *state) {
+  return state->sequence.steps[state->playback_index];
+}
+
+bool state_current_has_glide(state_t *state) {
+  if (state_is_live(state)) {
+    return state_live_has_glide(state);
+  } else {
+    return state_current_playback_step(state).flags & FLAG_GLIDE;
+  }
+}
+
+bool state_current_has_accent(state_t *state) {
+  if (state_is_live(state)) {
+    return state_live_has_accent(state);
+  } else {
+    return state_current_playback_step(state).flags & FLAG_ACCENT;
   }
 }
