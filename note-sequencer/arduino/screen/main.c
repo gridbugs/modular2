@@ -111,12 +111,13 @@ void state_render_playback_cursor(state_t *state, char cursor_char, int fg, int 
 
 void state_render_step(state_t *state, int step_index, int fg, int bg) {
   static char buf[32];
+  int index_fg = GREY;
   if (state->edit_index == step_index) {
     bg = BLUE;
+    index_fg = fg;
   }
   int x = ((step_index * 2) / MAX_NUM_STEPS) * 64;
   int y = SEQUENCE_TOP_Y + ((step_index % (MAX_NUM_STEPS / 2)) * 8);
-  int index_fg = GREY;
   sprintf(buf, "%02d", step_index + 1);
   display_text(buf, x + 8, y, index_fg, bg, 0);
   step_t *step = &state->sequence.steps[step_index];
@@ -130,7 +131,7 @@ void state_render_step(state_t *state, int step_index, int fg, int bg) {
   }
   char accent = step_has_accent(step) ? 'a' : ' ';
   char glide = step_has_glide(step) ? 'g' : ' ';
-  int flag_fg = step->enabled ? fg : GREY;
+  int flag_fg = step->enabled ? fg : index_fg;
   sprintf(buf, "%c%c", accent, glide);
   display_text(buf, x + 48, y, flag_fg, bg, 0);
 }
