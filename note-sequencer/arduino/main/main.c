@@ -237,18 +237,16 @@ void command_buffer_push(command_buffer_t *cb, command_t command) {
   cb->num_commands++;
 }
 
+#define MAX_OCTAVE 8
+
 void command_buffer_octave_up(command_buffer_t *cb, state_t *state) {
-  if (state->octave < 8) {
-    state->octave++;
-    command_buffer_push(cb, command_set_octave(state->octave));
-  }
+  state->octave++;
+  command_buffer_push(cb, command_set_octave(state->octave));
 }
 
 void command_buffer_octave_down(command_buffer_t *cb, state_t *state) {
-  if (state->octave > 0) {
-    state->octave--;
-    command_buffer_push(cb, command_set_octave(state->octave));
-  }
+  state->octave--;
+  command_buffer_push(cb, command_set_octave(state->octave));
 }
 
 void command_buffer_add_to_edit_index(command_buffer_t *cb, state_t *state, int8_t delta) {
@@ -626,10 +624,24 @@ int main(void) {
               command_buffer_set_live(&command_buffer, &state, !state.live);
               break;
             case KEY_WITH_SHIFT_OCTAVE_DOWN:
-              command_buffer_octave_down(&command_buffer, &state);
+              if (state.octave > 0) {
+                command_buffer_octave_down(&command_buffer, &state);
+                // Decrease all pressed notes by an octave so if a note is held
+                // while the octave changes it doesn't get stuck.
+                for (int i = 0; i < note_stack_size; i++) {
+                  note_stack[i] -= 12;
+                }
+              }
               break;
             case KEY_WITH_SHIFT_OCTAVE_UP:
-              command_buffer_octave_up(&command_buffer, &state);
+              if (state.octave < MAX_OCTAVE) {
+                command_buffer_octave_up(&command_buffer, &state);
+                // Increase all pressed notes by an octave so if a note is held
+                // while the octave changes it doesn't get stuck.
+                for (int i = 0; i < note_stack_size; i++) {
+                  note_stack[i] += 12;
+                }
+              }
               break;
             default:
           }
