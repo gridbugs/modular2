@@ -700,16 +700,15 @@ int main(void) {
       } else if (key == KEY_CLOCK_SOURCE) {
         command_buffer_set_clock_source(&command_buffer, &state, CLOCK_SOURCE_EXTERNAL);
         set_clock_source(CLOCK_SOURCE_EXTERNAL);
-      } else {
-        key_note += (state.octave * 12);
-        for (int i = 0; i < note_stack_size; i++) {
-          if (note_stack[i] == key_note) {
-            for (; i < note_stack_size - 1; i++) {
-              note_stack[i] = note_stack[i + 1];
-            }
-            note_stack_size--;
-            break;
+      }
+      key_note += (state.octave * 12);
+      for (int i = 0; i < note_stack_size; i++) {
+        if (note_stack[i] == key_note) {
+          for (; i < note_stack_size - 1; i++) {
+            note_stack[i] = note_stack[i + 1];
           }
+          note_stack_size--;
+          break;
         }
       }
     }
