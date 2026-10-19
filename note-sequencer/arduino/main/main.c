@@ -216,9 +216,9 @@ typedef enum {
 #define KEY_SHIFT_BIT BIT(0)
 #define KEY_CLEAR_BIT BIT(6)
 
-key_note_t note_stack[KEY_NOTE_COUNT] = {0};
+uint8_t note_stack[KEY_NOTE_COUNT] = {0};
 uint8_t note_stack_size = 0 ;
-key_note_t current_note = KEY_NOTE_C_1;
+uint8_t current_note = NOTE_C_1;
 
 typedef struct {
   command_t commands[32];
@@ -478,6 +478,10 @@ static inline void gate_init(void) {
   gate_off();
 }
 
+void set_pitch_dac_voltage_for_note(uint8_t note) {
+  dac1_set_value(note_dac_value(note));
+}
+
 int main(void) {
 #ifdef DEBUG_PRINTING
   // Allow printing over UART and defer initializing the gate (which shares the
@@ -539,7 +543,7 @@ int main(void) {
   sei();
 
   command_buffer_push(&command_buffer, command_set_note(current_note));
-  dac0_set_value(note_dac_value((uint8_t)current_note));
+  set_pitch_dac_voltage_for_note(current_note);
   command_buffer_send(&command_buffer);
 
   timer2_init();
@@ -549,16 +553,18 @@ int main(void) {
   uint16_t gate_timer_compare = 0;
   uint8_t warmup_countdown =  4;
 
+  timer0_init();
+
 #ifdef DEBUG_PRINTING
   // The gate is the TX pin. If printing is enabled then we can't initilaize
   // the gate until all init messages are printed.
-  gate_init();
+  //gate_init();
 #endif
 
   step_t current_step = state_current_playback_step(&state);
 
   while (1) {
-    key_note_t new_current_note = current_note;
+    uint8_t new_current_note = current_note;
 
     mode_t mode = get_mode();
     if (mode != state.mode) {
@@ -756,11 +762,13 @@ int main(void) {
 
     if (new_current_note != current_note) {
       current_note = new_current_note;
-      if (state_current_has_glide(&state)) {
+      if (state_current_has_glide(&state) || true) {
+        timer0_reset();
+        timer0_start();
         // TODO interpolate the dac0 value
         command_buffer_push(&command_buffer, command_set_note(current_note));
       } else {
-        dac0_set_value(note_dac_value((uint8_t)current_note));
+        set_pitch_dac_voltage_for_note(current_note);
         command_buffer_push(&command_buffer, command_set_note(current_note));
       }
     }

@@ -2,6 +2,22 @@
 
 #include <stdint.h>
 
+static inline void timer0_init(void) {
+    TCCR0A = 0; // Normal mode
+}
+
+static inline void timer0_reset(void) {
+    TCNT0 = 0;
+}
+
+static inline uint8_t timer0_read(void) {
+    return TCNT0;
+}
+
+static inline void timer0_start(void) {
+    TCCR0B |= BIT(CS12); // clk_io / 256
+}
+
 static inline void timer1_init(void) {
     TCCR1A = 0; // Normal mode
 }
