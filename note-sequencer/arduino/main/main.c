@@ -220,6 +220,14 @@ uint8_t note_stack[KEY_NOTE_COUNT] = {0};
 uint8_t note_stack_size = 0 ;
 uint8_t current_note = NOTE_C_1;
 
+// When gliding between notes these track the starting point for the current
+// glide, the interpolation target for the current glide, and the current point
+// between. The numberic value of these variables is the value to send to the
+// dac to set the pitch output voltage.
+uint16_t pitch_dac_value_base;
+uint16_t pitch_dac_value_target;
+uint16_t pitch_dac_value_current;
+
 typedef struct {
   command_t commands[32];
   uint8_t num_commands;
@@ -331,6 +339,12 @@ void command_buffer_add_to_gate(command_buffer_t *cb, state_t *state, int8_t gat
   int16_t gate_duration_ratio = (int16_t)state->gate_duration_ratio + (int16_t)gate_delta;
   state->gate_duration_ratio = gate_duration_ratio < 0 ? 0 : (gate_duration_ratio > 255 ? 255 : (uint8_t)gate_duration_ratio);
   command_buffer_push(cb, command_set_gate(state->gate_duration_ratio));
+}
+
+void command_buffer_add_to_glide(command_buffer_t *cb, state_t *state, int8_t glide_delta) {
+  int16_t glide_duration_ratio = (int16_t)state->glide_duration_ratio + (int16_t)glide_delta;
+  state->glide_duration_ratio = glide_duration_ratio < 0 ? 0 : (glide_duration_ratio > 255 ? 255 : (uint8_t)glide_duration_ratio);
+  command_buffer_push(cb, command_set_glide(state->glide_duration_ratio));
 }
 
 #define SECONDS_PER_MINUTE 60
@@ -464,6 +478,22 @@ clock_event_t handle_clock(state_t *state) {
   return CLOCK_EVENT_NONE;
 }
 
+volatile uint8_t timer0_match_count = 255;
+
+ISR(TIMER0_COMPA_vect) {
+  if (timer0_match_count < 255) {
+    timer0_match_count++;
+  }
+}
+
+static inline uint8_t glide_get_progress(void) {
+  return timer0_match_count;
+}
+
+static inline void glide_reset(void) {
+  timer0_match_count = 0;
+}
+
 static inline void gate_on(void) {
   PORTD |= PORTD_GATE_BIT;
 }
@@ -478,8 +508,8 @@ static inline void gate_init(void) {
   gate_off();
 }
 
-void set_pitch_dac_voltage_for_note(uint8_t note) {
-  dac1_set_value(note_dac_value(note));
+void set_pitch_dac_value(uint16_t value) {
+  dac1_set_value(value);
 }
 
 int main(void) {
@@ -533,6 +563,13 @@ int main(void) {
 
   set_clock_source(state.clock_source);
 
+  timer0_init();
+  timer0_enable_interrupt_output_compare_a();
+  timer0_set_output_compare_a(state.glide_duration_ratio);
+  timer0_set_reset_on_output_compare_a_match();
+  timer0_reset();
+  timer0_start();
+
   timer1_init();
   timer1_enable_interrupt_output_compare_a();
   timer1_set_reset_on_output_compare_a_match();
@@ -543,7 +580,7 @@ int main(void) {
   sei();
 
   command_buffer_push(&command_buffer, command_set_note(current_note));
-  set_pitch_dac_voltage_for_note(current_note);
+  set_pitch_dac_value(note_dac_value(current_note));
   command_buffer_send(&command_buffer);
 
   timer2_init();
@@ -553,12 +590,10 @@ int main(void) {
   uint16_t gate_timer_compare = 0;
   uint8_t warmup_countdown =  4;
 
-  timer0_init();
-
 #ifdef DEBUG_PRINTING
   // The gate is the TX pin. If printing is enabled then we can't initilaize
   // the gate until all init messages are printed.
-  //gate_init();
+  gate_init();
 #endif
 
   step_t current_step = state_current_playback_step(&state);
@@ -741,13 +776,21 @@ int main(void) {
         break;
     }
 
-    int8_t rotary_encoder_delta = warmup_countdown == 0 ? rotary_encoder_read_delta() : 0;
+    int8_t rotary_encoder_delta = rotary_encoder_read_delta();
+    if (warmup_countdown != 0) {
+      rotary_encoder_delta = 0;
+    }
     if (rotary_encoder_delta != 0) {
       if (state.setting_tempo) {
         command_buffer_add_to_tempo(&command_buffer, &state, rotary_encoder_delta);
         program_timer_ticks_per_minute(state_ticks_per_minute(&state));
       } else if (state.setting_gate) {
         command_buffer_add_to_gate(&command_buffer, &state, rotary_encoder_delta);
+      } else if (state.setting_glide) {
+        command_buffer_add_to_glide(&command_buffer, &state, rotary_encoder_delta);
+        // Set the timer's output compare register so the comparison match
+        // interrupt fires at a rate as determined by the glide duration.
+        timer0_set_output_compare_a(state.glide_duration_ratio);
       } else {
         command_buffer_add_to_edit_index(&command_buffer, &state, rotary_encoder_delta);
         if (clear) {
@@ -762,15 +805,27 @@ int main(void) {
 
     if (new_current_note != current_note) {
       current_note = new_current_note;
-      if (state_current_has_glide(&state) || true) {
-        timer0_reset();
-        timer0_start();
-        // TODO interpolate the dac0 value
+      if (state_current_has_glide(&state)) {
+        // Start interpolating from the current dac value rather than the
+        // previous note's dac value so if there are two glides in a row and
+        // the second glide starts before the first glide finishes we start
+        // from wherever the first glide was up to rather than jumping to its
+        // target.
+        pitch_dac_value_base = pitch_dac_value_current;
+        pitch_dac_value_target = note_dac_value(current_note);
+        glide_reset();
         command_buffer_push(&command_buffer, command_set_note(current_note));
       } else {
-        set_pitch_dac_voltage_for_note(current_note);
+        pitch_dac_value_current = note_dac_value(current_note);
         command_buffer_push(&command_buffer, command_set_note(current_note));
       }
+      set_pitch_dac_value(pitch_dac_value_current);
+    } else if (state_current_has_glide(&state)) {
+      // Interpolate between the base and target dac values.
+      uint8_t glide_progress = glide_get_progress();
+      int16_t delta = (((int32_t)pitch_dac_value_target - (int32_t)pitch_dac_value_base) * (int32_t)glide_progress) / 255;
+      pitch_dac_value_current = (uint16_t)((int16_t)pitch_dac_value_base + delta);
+      set_pitch_dac_value(pitch_dac_value_current);
     }
 
     command_buffer_send(&command_buffer);

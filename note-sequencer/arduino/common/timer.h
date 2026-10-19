@@ -15,7 +15,19 @@ static inline uint8_t timer0_read(void) {
 }
 
 static inline void timer0_start(void) {
-    TCCR0B |= BIT(CS12); // clk_io / 256
+    TCCR0B |= BIT(CS02) | BIT(CS00); // clk_io / 1024
+}
+
+static inline void timer0_enable_interrupt_output_compare_a(void) {
+    TIMSK0 |= BIT(OCIE0A);
+}
+
+static inline void timer0_set_output_compare_a(uint8_t value) {
+  OCR0A = value;
+}
+
+static inline void timer0_set_reset_on_output_compare_a_match(void) {
+  TCCR0A |= BIT(WGM01);
 }
 
 static inline void timer1_init(void) {
