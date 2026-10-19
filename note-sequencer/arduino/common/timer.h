@@ -15,7 +15,7 @@ static inline uint8_t timer0_read(void) {
 }
 
 static inline void timer0_start(void) {
-    TCCR0B |= BIT(CS02) | BIT(CS00); // clk_io / 1024
+    TCCR0B |= BIT(CS02);  // clk_io / 256
 }
 
 static inline void timer0_enable_interrupt_output_compare_a(void) {

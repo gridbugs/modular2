@@ -13,7 +13,7 @@ void state_init(state_t *state) {
   state->setting_gate = false;
   state->setting_glide = false;
   state->gate_duration_ratio = 127;
-  state->glide_duration_ratio = 127;
+  state->glide_duration_ratio = 16;
   state->octave = 1;
   state->live_flags = 0;
 }

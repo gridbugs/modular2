@@ -643,6 +643,9 @@ int main(void) {
       if (state.setting_gate) {
         command_buffer_setting_gate(&command_buffer, &state, false);
       }
+      if (state.setting_glide) {
+        command_buffer_setting_glide(&command_buffer, &state, false);
+      }
     }
     while (pressed) {
       int pressed_bit = __builtin_ctzl(pressed);
@@ -817,16 +820,18 @@ int main(void) {
         command_buffer_push(&command_buffer, command_set_note(current_note));
       } else {
         pitch_dac_value_current = note_dac_value(current_note);
+        pitch_dac_value_base = pitch_dac_value_current;
+        pitch_dac_value_target = pitch_dac_value_current;
         command_buffer_push(&command_buffer, command_set_note(current_note));
       }
-      set_pitch_dac_value(pitch_dac_value_current);
-    } else if (state_current_has_glide(&state)) {
+    }
+    if (state_current_has_glide(&state)) {
       // Interpolate between the base and target dac values.
       uint8_t glide_progress = glide_get_progress();
       int16_t delta = (((int32_t)pitch_dac_value_target - (int32_t)pitch_dac_value_base) * (int32_t)glide_progress) / 255;
       pitch_dac_value_current = (uint16_t)((int16_t)pitch_dac_value_base + delta);
-      set_pitch_dac_value(pitch_dac_value_current);
     }
+    set_pitch_dac_value(pitch_dac_value_current);
 
     command_buffer_send(&command_buffer);
   }
