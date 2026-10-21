@@ -95,6 +95,13 @@ void state_render_clock_source(state_t *state, int fg, int bg) {
   display_text(buf, 0, 120, fg, bg, 0);
 }
 
+void state_render_edit_mode(state_t *state, int fg, int bg) {
+  static char buf[16];
+  char* mode_string = state->edit_mode == EDIT_MODE_STEP ? "STEP" : "INPLACE";
+  sprintf(buf, "EDIT:%s", mode_string);
+  display_text(buf, 0, 112, fg, bg, 0);
+}
+
 void state_render_octave(state_t *state, int fg, int bg) {
   static char buf[2] = { 0 };
   display_text("OCT:", 88, 0, fg, bg, 0);
@@ -326,6 +333,11 @@ void handle_command(command_t command, state_t *state) {
     case COMMAND_SET_OCTAVE: {
       state->octave = command.args.set_octave.octave;
       state_render_octave(state, fg, bg);
+      break;
+    }
+    case COMMAND_SET_EDIT_MODE: {
+      state->edit_mode = command.args.set_edit_mode.edit_mode;
+      state_render_edit_mode(state, fg, bg);
       break;
     }
   }

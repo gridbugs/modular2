@@ -16,6 +16,7 @@ void state_init(state_t *state) {
   state->glide_duration_ratio = 16;
   state->octave = 1;
   state->live_flags = 0;
+  state->edit_mode = EDIT_MODE_STEP;
 }
 
 void state_add_to_playback_index(state_t *state, int8_t delta) {

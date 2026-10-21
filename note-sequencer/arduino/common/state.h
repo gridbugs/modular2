@@ -38,6 +38,11 @@ typedef enum {
   CLOCK_SOURCE_EXTERNAL,
 } clock_source_t;
 
+typedef enum {
+    EDIT_MODE_STEP,
+    EDIT_MODE_IN_PLACE,
+} edit_mode_t;
+
 typedef struct {
   sequence_t sequence;
   uint8_t playback_index;
@@ -55,6 +60,7 @@ typedef struct {
   bool live;
   uint8_t octave;
   uint8_t live_flags;
+  edit_mode_t edit_mode;
 } state_t;
 
 void state_init(state_t *state);

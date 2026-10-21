@@ -75,6 +75,9 @@ typedef enum {
 
   // Set the octave.
   COMMAND_SET_OCTAVE,
+
+  // Set the edit mode.
+  COMMAND_SET_EDIT_MODE,
 } command_type_t;
 
 typedef struct {
@@ -140,6 +143,9 @@ typedef struct {
     struct {
       uint8_t octave;
     } set_octave;
+    struct {
+        edit_mode_t edit_mode;
+    } set_edit_mode;
   } args;
 } command_t;
 
@@ -366,6 +372,17 @@ static inline command_t command_set_octave(uint8_t octave) {
     .args = {
       .set_octave = {
         .octave = octave,
+      },
+    }
+  };
+}
+
+static inline command_t command_set_edit_mode(edit_mode_t edit_mode) {
+  return (command_t) {
+    .typ = COMMAND_SET_EDIT_MODE,
+    .args = {
+      .set_edit_mode = {
+        .edit_mode = edit_mode,
       },
     }
   };

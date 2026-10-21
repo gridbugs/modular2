@@ -11,5 +11,6 @@ pkgs.mkShell {
     picocom
     ctags
     python3
+    clang-tools
   ];
 }
