@@ -43,6 +43,21 @@ typedef enum {
     EDIT_MODE_IN_PLACE,
 } edit_mode_t;
 
+typedef enum {
+  ACCENT_TYPE_RISE,
+  ACCENT_TYPE_FLAT,
+  ACCENT_TYPE_FALL,
+} accent_type_t;
+
+typedef enum {
+  SETTING_FIELD_NONE,
+  SETTING_FIELD_TEMPO_BPM,
+  SETTING_FIELD_GATE_DURATION_RATIO,
+  SETTING_FIELD_GLIDE_DURATION_RATIO,
+  SETTING_FIELD_ACCENT_DURATION_RATIO,
+  SETTING_FIELD_ACCENT_SIZE,
+} setting_field_t;
+
 typedef struct {
   sequence_t sequence;
   uint8_t playback_index;
@@ -52,15 +67,16 @@ typedef struct {
   bool clock_state;
   uint8_t tempo_bpm;
   uint8_t ticks_per_beat;
-  bool setting_tempo;
-  bool setting_gate;
-  bool setting_glide;
+  setting_field_t setting_field;
   uint8_t gate_duration_ratio;
   uint8_t glide_duration_ratio;
   bool live;
   uint8_t octave;
   uint8_t live_flags;
   edit_mode_t edit_mode;
+  accent_type_t accent_type;
+  uint8_t accent_duration_ratio;
+  uint8_t accent_size;
 } state_t;
 
 void state_init(state_t *state);

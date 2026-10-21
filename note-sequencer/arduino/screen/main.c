@@ -52,7 +52,7 @@ ISR(TWI_vect) {
   twi_interrupt_ack();
 }
 
-#define SEQUENCE_TOP_Y 32
+#define SEQUENCE_TOP_Y 24
 #define MODE_LEFT_X 80
 
 void state_render_mode(state_t *state, int fg, int bg) {
@@ -91,15 +91,33 @@ void state_render_clock_state(state_t *state, int fg, int bg) {
 void state_render_clock_source(state_t *state, int fg, int bg) {
   static char buf[16];
   char* source_name = state->clock_source == CLOCK_SOURCE_EXTERNAL ? "EXT" : "INT";
-  sprintf(buf, "CLK:%s", source_name);
+  sprintf(buf, "CLK: %s", source_name);
   display_text(buf, 0, 120, fg, bg, 0);
 }
 
 void state_render_edit_mode(state_t *state, int fg, int bg) {
   static char buf[16];
-  char* mode_string = state->edit_mode == EDIT_MODE_STEP ? "STEP" : "INPLACE";
-  sprintf(buf, "EDIT:%s", mode_string);
+  char* mode_string = state->edit_mode == EDIT_MODE_STEP ? "STEP   " : "INPLACE";
+  sprintf(buf, "EDT: %s", mode_string);
   display_text(buf, 0, 112, fg, bg, 0);
+}
+
+void state_render_accent_type(state_t *state, int fg, int bg) {
+  static char buf[16];
+  char* accent_string = "";
+  switch (state->accent_type) {
+    case ACCENT_TYPE_RISE:
+      accent_string = "RISE";
+      break;
+    case ACCENT_TYPE_FLAT:
+      accent_string = "FLAT";
+      break;
+    case ACCENT_TYPE_FALL:
+      accent_string = "FALL";
+      break;
+  }
+  sprintf(buf, "ACC: %s", accent_string);
+  display_text(buf, 0, 104, fg, bg, 0);
 }
 
 void state_render_octave(state_t *state, int fg, int bg) {
@@ -152,17 +170,29 @@ void state_render_step(state_t *state, int step_index, int fg, int bg) {
 
 void state_render_setting(state_t *state, int fg, int bg) {
   static char buf[32];
-  int y = 104;
-  if (state->setting_tempo) {
-    sprintf(buf, "TEMPO: %3u BPM", state->tempo_bpm);
-  } else if (state->setting_gate) {
-    sprintf(buf, "GATE: %3u/255 ", state->gate_duration_ratio);
-  } else if (state->setting_glide) {
-    sprintf(buf, "GLIDE: %3u/255", state->glide_duration_ratio);
-  } else {
-    sprintf(buf, "              ");
+  int y = 96;
+  switch (state->setting_field) {
+    case SETTING_FIELD_NONE:
+      // Clear the screen region where the setting is displayed.
+      sprintf(buf, "               ");
+      break;
+    case SETTING_FIELD_TEMPO_BPM:
+      sprintf(buf, "TEMPO: %3u BPM", state->tempo_bpm);
+      break;
+    case SETTING_FIELD_GATE_DURATION_RATIO:
+      sprintf(buf, "GATE: %3u/255 ", state->gate_duration_ratio);
+      break;
+    case SETTING_FIELD_GLIDE_DURATION_RATIO:
+      sprintf(buf, "GLIDE: %3u/255", state->glide_duration_ratio);
+      break;
+    case SETTING_FIELD_ACCENT_DURATION_RATIO:
+      sprintf(buf, "ACCDUR: %3u/255", state->accent_duration_ratio);
+      break;
+    case SETTING_FIELD_ACCENT_SIZE:
+      sprintf(buf, "ACCSIZ: %3u/255", state->accent_size);
+      break;
   }
-  display_text(buf, 8, y, fg, bg, 0);
+  display_text(buf, 0, y, fg, bg, 0);
 }
 
 void state_render_edit_cursor(state_t *state) {
@@ -180,6 +210,8 @@ void state_render(state_t *state) {
   }
   state_render_clock_source(state, fg, bg);
   state_render_octave(state, fg, bg);
+  state_render_accent_type(state, fg, bg);
+  state_render_edit_mode(state, fg, bg);
 }
 
 void render_splash(void) {
@@ -212,10 +244,6 @@ void handle_command(command_t command, state_t *state) {
       char buf[4];
       sprintf(buf, "%s%d", note_name(note_index), note_octave(note_index));
       display_text(buf, 0, 0, fg, bg, 1);
-      break;
-    }
-    case COMMAND_GLIDE_NOTE: {
-      // TODO
       break;
     }
     case COMMAND_SET_PLAYBACK_INDEX: {
@@ -290,8 +318,8 @@ void handle_command(command_t command, state_t *state) {
       }
       break;
     }
-    case COMMAND_SETTING_TEMPO: {
-      state->setting_tempo = command.args.setting_tempo.setting_tempo;
+    case COMMAND_SETTING_FIELD: {
+      state->setting_field = command.args.setting_field.setting_field;
       state_render_setting(state, fg, bg);
       break;
     }
@@ -300,18 +328,8 @@ void handle_command(command_t command, state_t *state) {
       state_render_setting(state, fg, bg);
       break;
     }
-    case COMMAND_SETTING_GATE: {
-      state->setting_gate = command.args.setting_gate.setting_gate;
-      state_render_setting(state, fg, bg);
-      break;
-    }
     case COMMAND_SET_GATE: {
       state->gate_duration_ratio = command.args.set_gate.gate;
-      state_render_setting(state, fg, bg);
-      break;
-    }
-    case COMMAND_SETTING_GLIDE: {
-      state->setting_glide = command.args.setting_glide.setting_glide;
       state_render_setting(state, fg, bg);
       break;
     }
@@ -338,6 +356,21 @@ void handle_command(command_t command, state_t *state) {
     case COMMAND_SET_EDIT_MODE: {
       state->edit_mode = command.args.set_edit_mode.edit_mode;
       state_render_edit_mode(state, fg, bg);
+      break;
+    }
+    case COMMAND_SET_ACCENT_TYPE: {
+      state->accent_type = command.args.set_accent_type.accent_type;
+      state_render_accent_type(state, fg, bg);
+      break;
+    }
+    case COMMAND_SET_ACCENT_DURATION_RATIO: {
+      state->accent_duration_ratio = command.args.set_accent_duration_ratio.accent_duration_ratio;
+      state_render_setting(state, fg, bg);
+      break;
+    }
+    case COMMAND_SET_ACCENT_SIZE: {
+      state->accent_size = command.args.set_accent_size.accent_size;
+      state_render_setting(state, fg, bg);
       break;
     }
   }

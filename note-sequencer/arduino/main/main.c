@@ -205,9 +205,18 @@ typedef enum {
 #define KEY_ACCENT KEY_X_3
 #define KEY_GLIDE KEY_X_4
 
+#define KEY_WITH_SHIFT_EDIT_MODE_STEP KEY_NOTE_C_SHARP_1
+#define KEY_WITH_SHIFT_EDIT_MODE_IN_PLACE KEY_NOTE_D_SHARP_1
+
+#define KEY_WITH_SHIFT_SET_ACCENT_TYPE_RISE KEY_NOTE_F_SHARP_1
+#define KEY_WITH_SHIFT_SET_ACCENT_TYPE_FLAT KEY_NOTE_G_SHARP_1
+#define KEY_WITH_SHIFT_SET_ACCENT_TYPE_FALL KEY_NOTE_A_SHARP_1
+
 #define KEY_WITH_SHIFT_SET_TEMPO KEY_NOTE_C_1
 #define KEY_WITH_SHIFT_SET_GATE KEY_NOTE_D_1
 #define KEY_WITH_SHIFT_SET_GLIDE KEY_NOTE_E_1
+#define KEY_WITH_SHIFT_SET_ACCENT_SIZE KEY_NOTE_F_1
+#define KEY_WITH_SHIFT_SET_ACCENT_DURATION_RATIO KEY_NOTE_G_1
 #define KEY_WITH_SHIFT_OCTAVE_DOWN KEY_NOTE_A_1
 #define KEY_WITH_SHIFT_OCTAVE_UP KEY_NOTE_B_1
 #define KEY_WITH_SHIFT_TOGGLE_LIVE KEY_NOTE_C_2
@@ -306,19 +315,19 @@ void command_buffer_set_live(command_buffer_t *cb, state_t *state, bool live) {
   command_buffer_push(cb, command_set_live(live));
 }
 
-void command_buffer_setting_tempo(command_buffer_t *cb, state_t *state, bool setting_tempo) {
-  state->setting_tempo = setting_tempo;
-  command_buffer_push(cb, command_setting_tempo(setting_tempo));
+void command_buffer_setting_field(command_buffer_t *cb, state_t *state, setting_field_t setting_field) {
+  state->setting_field = setting_field;
+  command_buffer_push(cb, command_setting_field(setting_field));
 }
 
-void command_buffer_setting_gate(command_buffer_t *cb, state_t *state, bool setting_gate) {
-  state->setting_gate = setting_gate;
-  command_buffer_push(cb, command_setting_gate(setting_gate));
+void command_buffer_set_accent_type(command_buffer_t *cb, state_t *state, accent_type_t accent_type) {
+  state->accent_type = accent_type;
+  command_buffer_push(cb, command_set_accent_type(accent_type));
 }
 
-void command_buffer_setting_glide(command_buffer_t *cb, state_t *state, bool setting_glide) {
-  state->setting_glide = setting_glide;
-  command_buffer_push(cb, command_setting_glide(setting_glide));
+void command_buffer_set_edit_mode(command_buffer_t *cb, state_t *state, edit_mode_t edit_mode) {
+  state->edit_mode = edit_mode;
+  command_buffer_push(cb, command_set_edit_mode(edit_mode));
 }
 
 void command_buffer_set_clock_source(command_buffer_t *cb, state_t *state, clock_source_t clock_source) {
@@ -345,6 +354,18 @@ void command_buffer_add_to_glide(command_buffer_t *cb, state_t *state, int8_t gl
   int16_t glide_duration_ratio = (int16_t)state->glide_duration_ratio + (int16_t)glide_delta;
   state->glide_duration_ratio = glide_duration_ratio < 0 ? 0 : (glide_duration_ratio > 255 ? 255 : (uint8_t)glide_duration_ratio);
   command_buffer_push(cb, command_set_glide(state->glide_duration_ratio));
+}
+
+void command_buffer_add_to_accent_duration_ratio(command_buffer_t *cb, state_t *state, int8_t delta) {
+  int16_t accent_duration_ratio = (int16_t)state->accent_duration_ratio + (int16_t)delta;
+  state->accent_duration_ratio = accent_duration_ratio < 0 ? 0 : (accent_duration_ratio > 255 ? 255 : (uint8_t)accent_duration_ratio);
+  command_buffer_push(cb, command_set_accent_duration_ratio(state->accent_duration_ratio));
+}
+
+void command_buffer_add_to_accent_size(command_buffer_t *cb, state_t *state, int8_t delta) {
+  int16_t accent_size = (int16_t)state->accent_size + (int16_t)delta;
+  state->accent_size = accent_size < 0 ? 0 : (accent_size > 255 ? 255 : (uint8_t)accent_size);
+  command_buffer_push(cb, command_set_accent_size(state->accent_size));
 }
 
 #define SECONDS_PER_MINUTE 60
@@ -637,14 +658,8 @@ int main(void) {
     bool clear = (key_states.curr & KEY_CLEAR_BIT) != 0;
     bool shift = (key_states.curr & KEY_SHIFT_BIT) != 0;
     if (!shift) {
-      if (state.setting_tempo) {
-        command_buffer_setting_tempo(&command_buffer, &state, false);
-      }
-      if (state.setting_gate) {
-        command_buffer_setting_gate(&command_buffer, &state, false);
-      }
-      if (state.setting_glide) {
-        command_buffer_setting_glide(&command_buffer, &state, false);
+      if (state.setting_field != SETTING_FIELD_NONE) {
+        command_buffer_setting_field(&command_buffer, &state, SETTING_FIELD_NONE);
       }
     }
     while (pressed) {
@@ -655,14 +670,35 @@ int main(void) {
         key_note_t key_note = (key_note_t)key;
         if (shift) {
           switch (key_note) {
+            case KEY_WITH_SHIFT_EDIT_MODE_STEP:
+              command_buffer_set_edit_mode(&command_buffer, &state, EDIT_MODE_STEP);
+              break;
+            case KEY_WITH_SHIFT_EDIT_MODE_IN_PLACE:
+              command_buffer_set_edit_mode(&command_buffer, &state, EDIT_MODE_IN_PLACE);
+              break;
+            case KEY_WITH_SHIFT_SET_ACCENT_TYPE_RISE:
+              command_buffer_set_accent_type(&command_buffer, &state, ACCENT_TYPE_RISE);
+              break;
+            case KEY_WITH_SHIFT_SET_ACCENT_TYPE_FLAT:
+              command_buffer_set_accent_type(&command_buffer, &state, ACCENT_TYPE_FLAT);
+              break;
+            case KEY_WITH_SHIFT_SET_ACCENT_TYPE_FALL:
+              command_buffer_set_accent_type(&command_buffer, &state, ACCENT_TYPE_FALL);
+              break;
             case KEY_WITH_SHIFT_SET_TEMPO:
-              command_buffer_setting_tempo(&command_buffer, &state, true);
+              command_buffer_setting_field(&command_buffer, &state, SETTING_FIELD_TEMPO_BPM);
               break;
             case KEY_WITH_SHIFT_SET_GATE:
-              command_buffer_setting_gate(&command_buffer, &state, true);
+              command_buffer_setting_field(&command_buffer, &state, SETTING_FIELD_GATE_DURATION_RATIO);
               break;
             case KEY_WITH_SHIFT_SET_GLIDE:
-              command_buffer_setting_glide(&command_buffer, &state, true);
+              command_buffer_setting_field(&command_buffer, &state, SETTING_FIELD_GLIDE_DURATION_RATIO);
+              break;
+            case KEY_WITH_SHIFT_SET_ACCENT_SIZE:
+              command_buffer_setting_field(&command_buffer, &state, SETTING_FIELD_ACCENT_SIZE);
+              break;
+            case KEY_WITH_SHIFT_SET_ACCENT_DURATION_RATIO:
+              command_buffer_setting_field(&command_buffer, &state, SETTING_FIELD_ACCENT_DURATION_RATIO);
               break;
             case KEY_WITH_SHIFT_TOGGLE_LIVE:
               command_buffer_set_live(&command_buffer, &state, !state.live);
@@ -725,18 +761,12 @@ int main(void) {
       if (shift) {
         switch (key_note) {
           case KEY_WITH_SHIFT_SET_TEMPO:
-            if (state.setting_tempo) {
-              command_buffer_setting_tempo(&command_buffer, &state, false);
-            }
-            break;
           case KEY_WITH_SHIFT_SET_GATE:
-            if (state.setting_gate) {
-              command_buffer_setting_gate(&command_buffer, &state, false);
-            }
-            break;
           case KEY_WITH_SHIFT_SET_GLIDE:
-            if (state.setting_glide) {
-              command_buffer_setting_glide(&command_buffer, &state, false);
+          case KEY_WITH_SHIFT_SET_ACCENT_DURATION_RATIO:
+          case KEY_WITH_SHIFT_SET_ACCENT_SIZE:
+            if (state.setting_field != SETTING_FIELD_NONE) {
+              command_buffer_setting_field(&command_buffer, &state, SETTING_FIELD_NONE);
             }
             break;
           default:
@@ -784,21 +814,32 @@ int main(void) {
       rotary_encoder_delta = 0;
     }
     if (rotary_encoder_delta != 0) {
-      if (state.setting_tempo) {
-        command_buffer_add_to_tempo(&command_buffer, &state, rotary_encoder_delta);
-        program_timer_ticks_per_minute(state_ticks_per_minute(&state));
-      } else if (state.setting_gate) {
-        command_buffer_add_to_gate(&command_buffer, &state, rotary_encoder_delta);
-      } else if (state.setting_glide) {
-        command_buffer_add_to_glide(&command_buffer, &state, rotary_encoder_delta);
-        // Set the timer's output compare register so the comparison match
-        // interrupt fires at a rate as determined by the glide duration.
-        timer0_set_output_compare_a(state.glide_duration_ratio);
-      } else {
-        command_buffer_add_to_edit_index(&command_buffer, &state, rotary_encoder_delta);
-        if (clear) {
-          command_buffer_clear_note(&command_buffer, &state);
-        }
+      switch (state.setting_field) {
+        case SETTING_FIELD_NONE:
+          command_buffer_add_to_edit_index(&command_buffer, &state, rotary_encoder_delta);
+          if (clear) {
+            command_buffer_clear_note(&command_buffer, &state);
+          }
+          break;
+        case SETTING_FIELD_TEMPO_BPM:
+          command_buffer_add_to_tempo(&command_buffer, &state, rotary_encoder_delta);
+          program_timer_ticks_per_minute(state_ticks_per_minute(&state));
+          break;
+        case SETTING_FIELD_GATE_DURATION_RATIO:
+          command_buffer_add_to_gate(&command_buffer, &state, rotary_encoder_delta);
+          break;
+        case SETTING_FIELD_GLIDE_DURATION_RATIO:
+          command_buffer_add_to_glide(&command_buffer, &state, rotary_encoder_delta);
+          // Set the timer's output compare register so the comparison match
+          // interrupt fires at a rate as determined by the glide duration.
+          timer0_set_output_compare_a(state.glide_duration_ratio);
+          break;
+        case SETTING_FIELD_ACCENT_DURATION_RATIO:
+          command_buffer_add_to_accent_duration_ratio(&command_buffer, &state, rotary_encoder_delta);
+          break;
+        case SETTING_FIELD_ACCENT_SIZE:
+          command_buffer_add_to_accent_size(&command_buffer, &state, rotary_encoder_delta);
+          break;
       }
     }
 

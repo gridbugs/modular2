@@ -19,9 +19,6 @@ typedef enum {
   // Set the currently active note.
   COMMAND_SET_NOTE,
 
-  // Set the current position gliding between notes.
-  COMMAND_GLIDE_NOTE,
-
   // Move the playback cursor to a given position.
   COMMAND_SET_PLAYBACK_INDEX,
 
@@ -49,20 +46,14 @@ typedef enum {
   // Set or clear the live flag.
   COMMAND_SET_LIVE,
 
-  // Switch into or out of the mode for setting the tempo.
-  COMMAND_SETTING_TEMPO,
+  // Switch into or out of the mode for setting a field.
+  COMMAND_SETTING_FIELD,
 
   // Set the tempo.
   COMMAND_SET_TEMPO,
 
-  // Switch into or out of the mode for setting the gate.
-  COMMAND_SETTING_GATE,
-
   // Set the gate.
   COMMAND_SET_GATE,
-
-  // Switch into or out of the mode for setting the glide.
-  COMMAND_SETTING_GLIDE,
 
   // Set the glide.
   COMMAND_SET_GLIDE,
@@ -78,6 +69,15 @@ typedef enum {
 
   // Set the edit mode.
   COMMAND_SET_EDIT_MODE,
+
+  // Set the accent type.
+  COMMAND_SET_ACCENT_TYPE,
+
+  // Set the duration of the accent.
+  COMMAND_SET_ACCENT_DURATION_RATIO,
+
+  // Set the size of the accent.
+  COMMAND_SET_ACCENT_SIZE,
 } command_type_t;
 
 typedef struct {
@@ -117,20 +117,14 @@ typedef struct {
       bool live;
     } set_live;
     struct {
-      bool setting_tempo;
-    } setting_tempo;
+      setting_field_t setting_field;
+    } setting_field;
     struct {
       uint8_t tempo;
     } set_tempo;
     struct {
-      bool setting_gate;
-    } setting_gate;
-    struct {
       uint8_t gate;
     } set_gate;
-    struct {
-      bool setting_glide;
-    } setting_glide;
     struct {
       uint8_t glide;
     } set_glide;
@@ -146,6 +140,15 @@ typedef struct {
     struct {
         edit_mode_t edit_mode;
     } set_edit_mode;
+    struct {
+        accent_type_t accent_type;
+    } set_accent_type;
+    struct {
+      uint8_t accent_duration_ratio;
+    } set_accent_duration_ratio;
+    struct {
+      uint8_t accent_size;
+    } set_accent_size;
   } args;
 } command_t;
 
@@ -167,18 +170,6 @@ static inline command_t command_set_note(uint8_t note_index) {
     .args = {
       .set_note = {
         .note_index = note_index,
-      },
-    }
-  };
-}
-
-static inline command_t command_glide_note(uint8_t to_note_index, uint8_t progress) {
-  return (command_t) {
-    .typ = COMMAND_GLIDE_NOTE,
-    .args = {
-      .glide_note = {
-        .to_note_index = to_note_index,
-        .progress = progress,
       },
     }
   };
@@ -278,12 +269,12 @@ static inline command_t command_set_live(bool live) {
   };
 }
 
-static inline command_t command_setting_tempo(bool setting_tempo) {
+static inline command_t command_setting_field(setting_field_t setting_field) {
   return (command_t) {
-    .typ = COMMAND_SETTING_TEMPO,
+    .typ = COMMAND_SETTING_FIELD,
     .args = {
-      .setting_tempo = {
-        .setting_tempo = setting_tempo,
+      .setting_field = {
+        .setting_field = setting_field,
       },
     }
   };
@@ -300,34 +291,12 @@ static inline command_t command_set_tempo(uint8_t tempo) {
   };
 }
 
-static inline command_t command_setting_gate(bool setting_gate) {
-  return (command_t) {
-    .typ = COMMAND_SETTING_GATE,
-    .args = {
-      .setting_gate = {
-        .setting_gate = setting_gate,
-      },
-    }
-  };
-}
-
 static inline command_t command_set_gate(uint8_t gate) {
   return (command_t) {
     .typ = COMMAND_SET_GATE,
     .args = {
       .set_gate = {
         .gate = gate,
-      },
-    }
-  };
-}
-
-static inline command_t command_setting_glide(bool setting_glide) {
-  return (command_t) {
-    .typ = COMMAND_SETTING_GLIDE,
-    .args = {
-      .setting_glide = {
-        .setting_glide = setting_glide,
       },
     }
   };
@@ -383,6 +352,39 @@ static inline command_t command_set_edit_mode(edit_mode_t edit_mode) {
     .args = {
       .set_edit_mode = {
         .edit_mode = edit_mode,
+      },
+    }
+  };
+}
+
+static inline command_t command_set_accent_type(accent_type_t accent_type) {
+  return (command_t) {
+    .typ = COMMAND_SET_ACCENT_TYPE,
+    .args = {
+      .set_accent_type = {
+        .accent_type = accent_type,
+      },
+    }
+  };
+}
+
+static inline command_t command_set_accent_duration_ratio(uint8_t accent_duration_ratio) {
+  return (command_t) {
+    .typ = COMMAND_SET_ACCENT_DURATION_RATIO,
+    .args = {
+      .set_accent_duration_ratio = {
+        .accent_duration_ratio = accent_duration_ratio,
+      },
+    }
+  };
+}
+
+static inline command_t command_set_accent_size(uint8_t accent_size) {
+  return (command_t) {
+    .typ = COMMAND_SET_ACCENT_SIZE,
+    .args = {
+      .set_accent_size = {
+        .accent_size = accent_size,
       },
     }
   };

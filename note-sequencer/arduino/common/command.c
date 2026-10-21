@@ -15,21 +15,21 @@ int command_type_num_bytes(command_type_t command_type) {
     case COMMAND_CLEAR_STEP_NOTE:
     case COMMAND_SET_MODE:
     case COMMAND_SET_LIVE:
-    case COMMAND_SETTING_TEMPO:
+    case COMMAND_SETTING_FIELD:
     case COMMAND_SET_TEMPO:
-    case COMMAND_SETTING_GATE:
     case COMMAND_SET_GATE:
-    case COMMAND_SETTING_GLIDE:
     case COMMAND_SET_GLIDE:
     case COMMAND_SET_CLOCK:
     case COMMAND_SET_CLOCK_SOURCE:
     case COMMAND_SET_OCTAVE:
     case COMMAND_SET_LIVE_FLAGS:
     case COMMAND_SET_EDIT_MODE:
+    case COMMAND_SET_ACCENT_TYPE:
+    case COMMAND_SET_ACCENT_DURATION_RATIO:
+    case COMMAND_SET_ACCENT_SIZE:
       return 2;
     case COMMAND_SET_STEP_NOTE:
     case COMMAND_SET_STEP_FLAGS:
-    case COMMAND_GLIDE_NOTE:
       return 3;
   }
   return 0;
@@ -48,10 +48,6 @@ int command_to_bytes(command_t command, uint8_t *bytes) {
     case COMMAND_SET_NOTE:
       bytes[1] = command.args.set_note.note_index;
       return 2;
-    case COMMAND_GLIDE_NOTE:
-      bytes[1] = command.args.glide_note.to_note_index;
-      bytes[2] = command.args.glide_note.progress;
-      return 3;
     case COMMAND_SET_PLAYBACK_INDEX:
       bytes[1] = command.args.set_playback_index.sequence_index;
       return 2;
@@ -78,20 +74,14 @@ int command_to_bytes(command_t command, uint8_t *bytes) {
     case COMMAND_SET_LIVE:
       bytes[1] = command.args.set_live.live;
       return 2;
-    case COMMAND_SETTING_TEMPO:
-      bytes[1] = command.args.setting_tempo.setting_tempo;
+    case COMMAND_SETTING_FIELD:
+      bytes[1] = command.args.setting_field.setting_field;
       return 2;
     case COMMAND_SET_TEMPO:
       bytes[1] = command.args.set_tempo.tempo;
       return 2;
-    case COMMAND_SETTING_GATE:
-      bytes[1] = command.args.setting_gate.setting_gate;
-      return 2;
     case COMMAND_SET_GATE:
       bytes[1] = command.args.set_gate.gate;
-      return 2;
-    case COMMAND_SETTING_GLIDE:
-      bytes[1] = command.args.setting_glide.setting_glide;
       return 2;
     case COMMAND_SET_GLIDE:
       bytes[1] = command.args.set_glide.glide;
@@ -107,6 +97,15 @@ int command_to_bytes(command_t command, uint8_t *bytes) {
       return 2;
     case COMMAND_SET_EDIT_MODE:
       bytes[1] = command.args.set_edit_mode.edit_mode;
+      return 2;
+    case COMMAND_SET_ACCENT_TYPE:
+      bytes[1] = command.args.set_accent_type.accent_type;
+      return 2;
+    case COMMAND_SET_ACCENT_DURATION_RATIO:
+      bytes[1] = command.args.set_accent_duration_ratio.accent_duration_ratio;
+      return 2;
+    case COMMAND_SET_ACCENT_SIZE:
+      bytes[1] = command.args.set_accent_size.accent_size;
       return 2;
   }
   __builtin_unreachable();
@@ -134,8 +133,6 @@ command_t command_from_bytes(uint8_t *bytes) {
       return command_show_ui();
     case COMMAND_SET_NOTE:
       return command_set_note(bytes[1]);
-    case COMMAND_GLIDE_NOTE:
-      return command_glide_note(bytes[1], bytes[2]);
     case COMMAND_SET_PLAYBACK_INDEX:
       return command_set_playback_index(bytes[1]);
     case COMMAND_SET_EDIT_INDEX:
@@ -154,16 +151,12 @@ command_t command_from_bytes(uint8_t *bytes) {
       return command_set_mode(bytes[1]);
     case COMMAND_SET_LIVE:
       return command_set_live(bytes[1]);
-    case COMMAND_SETTING_TEMPO:
-      return command_setting_tempo(bytes[1]);
+    case COMMAND_SETTING_FIELD:
+      return command_setting_field(bytes[1]);
     case COMMAND_SET_TEMPO:
       return command_set_tempo(bytes[1]);
-    case COMMAND_SETTING_GATE:
-      return command_setting_gate(bytes[1]);
     case COMMAND_SET_GATE:
       return command_set_gate(bytes[1]);
-    case COMMAND_SETTING_GLIDE:
-      return command_setting_glide(bytes[1]);
     case COMMAND_SET_GLIDE:
       return command_set_glide(bytes[1]);
     case COMMAND_SET_CLOCK:
@@ -174,6 +167,12 @@ command_t command_from_bytes(uint8_t *bytes) {
       return command_set_octave(bytes[1]);
     case COMMAND_SET_EDIT_MODE:
       return command_set_edit_mode(bytes[1]);
+    case COMMAND_SET_ACCENT_TYPE:
+      return command_set_accent_type(bytes[1]);
+    case COMMAND_SET_ACCENT_DURATION_RATIO:
+      return command_set_accent_duration_ratio(bytes[1]);
+    case COMMAND_SET_ACCENT_SIZE:
+      return command_set_accent_size(bytes[1]);
   }
   PANIC("Unexpected command type: %d", bytes[0]);
 }
