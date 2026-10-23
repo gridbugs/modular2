@@ -1,5 +1,6 @@
 #pragma once
 
+#include <avr/io.h>
 #include <stdint.h>
 
 static inline void timer0_init(void) {
