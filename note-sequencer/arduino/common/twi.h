@@ -1,8 +1,8 @@
 #pragma once
 
+#include <avr/io.h>
 #include <stdbool.h>
 #include <stdint.h>
-#include <avr/io.h>
 
 int twi_transmit_start(void);
 int twi_transmit_address(uint8_t address, bool write);

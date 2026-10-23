@@ -10,4 +10,4 @@ typedef struct {
 } key_states_t;
 
 void key_matrix_init(void);
-void key_matrix_scan(key_states_t* key_states);
+void key_matrix_scan(key_states_t *key_states);

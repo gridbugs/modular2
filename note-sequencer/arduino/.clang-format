@@ -1,0 +1,31 @@
+
+BasedOnStyle: LLVM
+
+# Basic layout
+IndentWidth: 2
+ContinuationIndentWidth: 2
+ColumnLimit: 100
+UseTab: Never
+BreakBeforeBraces: Attach
+
+# Avoid alignment based on preceding expressions
+AlignAfterOpenBracket: false
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+AlignOperands: false
+
+# Lists
+BinPackArguments: false
+BinPackParameters: false
+AllowAllArgumentsOnNextLine: false
+AllowAllParametersOfDeclarationOnNextLine: false
+
+# Braced initialisers
+Cpp11BracedListStyle: true
+BracedInitializerIndentWidth: 2
+
+# Keep control-flow and function bodies conventional
+AllowShortBlocksOnASingleLine: Never
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false

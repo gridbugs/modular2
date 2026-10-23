@@ -1,6 +1,6 @@
-#include <stdint.h>
-#include <stdbool.h>
 #include "twi.h"
+#include <stdbool.h>
+#include <stdint.h>
 
 #define ADDR0 0x60
 #define ADDR1 0x61

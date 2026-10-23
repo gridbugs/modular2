@@ -1,8 +1,8 @@
-#include <stdio.h>
-#include <stdint.h>
-#include <avr/io.h>
-#include "util.h"
 #include "key_matrix.h"
+#include "util.h"
+#include <avr/io.h>
+#include <stdint.h>
+#include <stdio.h>
 
 // Rows and columns here correspond to the layout of the board schematic - not
 // the layout of the PCB. The strategy will be to "select" a column by driving
@@ -46,7 +46,8 @@ static inline uint32_t key_matrix_scan_raw(void) {
   return raw;
 }
 
-static inline uint32_t key_matrix_debounce(uint32_t raw, const uint32_t prev, uint8_t *debounce_counter_per_key) {
+static inline uint32_t
+key_matrix_debounce(uint32_t raw, const uint32_t prev, uint8_t *debounce_counter_per_key) {
   uint32_t debounced = 0;
   for (int i = 0; i < MAX_NUM_KEYS; i++) {
     uint8_t *counter = &debounce_counter_per_key[i];
@@ -64,8 +65,9 @@ static inline uint32_t key_matrix_debounce(uint32_t raw, const uint32_t prev, ui
   return debounced;
 }
 
-void key_matrix_scan(key_states_t* key_states) {
+void key_matrix_scan(key_states_t *key_states) {
   uint32_t raw = key_matrix_scan_raw();
   key_states->prev = key_states->curr;
-  key_states->curr = key_matrix_debounce(raw, key_states->prev, key_states->debounce_counter_per_key);
+  key_states->curr =
+    key_matrix_debounce(raw, key_states->prev, key_states->debounce_counter_per_key);
 }

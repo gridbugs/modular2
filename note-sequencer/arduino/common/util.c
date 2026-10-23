@@ -1,6 +1,6 @@
-#include <stdint.h>
-#include "clock.h"
 #include "util.h"
+#include "clock.h"
+#include <stdint.h>
 
 #define DELAY_MS_INNER_ITERATIONS_PER_MS (OSC_HZ / 5000)
 

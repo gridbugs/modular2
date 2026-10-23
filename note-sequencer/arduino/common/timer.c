@@ -1,6 +1,6 @@
-#include <stdint.h>
-#include <avr/io.h>
 #include "util.h"
+#include <avr/io.h>
+#include <stdint.h>
 
 void timer2_init_pwm_port_d_bit_3(uint8_t duty) {
   DDRD |= BIT(3);

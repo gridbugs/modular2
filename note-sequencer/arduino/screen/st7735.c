@@ -1,10 +1,10 @@
-#include <stdint.h>
-#include <stdio.h>
-#include <stdbool.h>
-#include <avr/io.h>
-#include "util.h"
 #include "spi.h"
 #include "st7735.h"
+#include "util.h"
+#include <avr/io.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <stdio.h>
 
 // GPIO pins connected to ST7735
 #define PORTB_RESET_PIN 1
@@ -146,6 +146,9 @@ static void interpret_commands(uint8_t *commands) {
   }
 }
 
+// Disable formatting for screen command sequences copied from arduino SDK since they're more
+// readable in their original format.
+// clang-format off
 static uint8_t rcmd1[] = {          // 7735R init, part 1 (red or green tab)
     15,                             // 15 commands in list:
     ST77XX_SWRESET,   ST_CMD_DELAY, //  1: Software reset, 0 args, w/delay
@@ -183,6 +186,7 @@ static uint8_t rcmd1[] = {          // 7735R init, part 1 (red or green tab)
     ST77XX_COLMOD,  1,              // 15: set color mode, 1 arg, no delay:
       0x05 };                       //     16-bit color
 
+
 static uint8_t rcmd2_green144[] = { // 7735R init, part 2 (green 1.44 tab)
     2,                              //  2 commands in list:
     ST77XX_CASET,   4,              //  1: Column addr set, 4 args, no delay:
@@ -191,6 +195,7 @@ static uint8_t rcmd2_green144[] = { // 7735R init, part 2 (green 1.44 tab)
     ST77XX_RASET,   4,              //  2: Row addr set, 4 args, no delay:
       0x00, 0x00,                   //     XSTART = 0
       0x00, 0x7F };                 //     XEND = 127
+
 
 static uint8_t rcmd3[] = {                 // 7735R init, part 3 (red or green tab)
     4,                              //  4 commands in list:
@@ -208,6 +213,7 @@ static uint8_t rcmd3[] = {                 // 7735R init, part 3 (red or green t
       10,                           //     10 ms delay
     ST77XX_DISPON,    ST_CMD_DELAY, //  4: Main screen turn on, no args w/delay
       100 };                        //     100 ms delay
+// clang-format on
 
 static uint8_t cursor_x;
 static uint8_t cursor_y;
@@ -231,7 +237,7 @@ void st7735_init(void) {
   interpret_commands(rcmd2_green144);
   interpret_commands(rcmd3);
 
-  uint8_t madctl =  ST77XX_MADCTL_MV | ST77XX_MADCTL_MY | ST7735_MADCTL_BGR;
+  uint8_t madctl = ST77XX_MADCTL_MV | ST77XX_MADCTL_MY | ST7735_MADCTL_BGR;
   send_command(ST77XX_MADCTL, &madctl, 1);
 
   printf("Initialized ST7735!\n\r");
@@ -241,7 +247,7 @@ void st7735_init(void) {
 #define PAD_Y 2
 
 void st7735_prepare_for_window(window_t window) {
-  uint8_t args[4] = { 0 };
+  uint8_t args[4] = {0};
 
   // Actual display appears to begin at an offset.
   window.x += PAD_X;

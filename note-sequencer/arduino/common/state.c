@@ -36,7 +36,6 @@ void state_add_to_edit_index(state_t *state, int8_t delta) {
   state->edit_index = (uint8_t)(new_edit_index % state->sequence.num_steps);
 }
 
-
 void state_clear_sequence(state_t *state) {
   state->edit_index = 0;
   state->playback_index = 0;

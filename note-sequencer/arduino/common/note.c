@@ -1,7 +1,7 @@
-#include <stdint.h>
 #include "note.h"
+#include <stdint.h>
 
-static const char* note_names[NOTES_PER_OCTAVE] = {
+static const char *note_names[NOTES_PER_OCTAVE] = {
   "C ",
   "C#",
   "D ",
@@ -16,6 +16,6 @@ static const char* note_names[NOTES_PER_OCTAVE] = {
   "B ",
 };
 
-const char* note_name(uint8_t note_index) {
+const char *note_name(uint8_t note_index) {
   return note_names[note_index % NOTES_PER_OCTAVE];
 }

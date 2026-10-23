@@ -1,8 +1,8 @@
 #pragma once
 
-#include <stdint.h>
-#include <stdbool.h>
 #include "util.h"
+#include <stdbool.h>
+#include <stdint.h>
 
 #define FLAG_ACCENT BIT(0)
 #define FLAG_GLIDE BIT(1)
@@ -39,8 +39,8 @@ typedef enum {
 } clock_source_t;
 
 typedef enum {
-    EDIT_MODE_STEP,
-    EDIT_MODE_IN_PLACE,
+  EDIT_MODE_STEP,
+  EDIT_MODE_IN_PLACE,
 } edit_mode_t;
 
 typedef enum {

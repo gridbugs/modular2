@@ -9,7 +9,7 @@ static inline uint8_t note_octave(uint8_t note_index) {
   return note_index / NOTES_PER_OCTAVE;
 }
 
-const char* note_name(uint8_t note_index);
+const char *note_name(uint8_t note_index);
 
 // Note-per-octave on a 12-bit DAC
 static inline uint16_t note_dac_value(uint8_t note_index) {

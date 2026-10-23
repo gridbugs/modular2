@@ -1,7 +1,7 @@
 #pragma once
 
-#include <stdint.h>
 #include "st7735.h"
+#include <stdint.h>
 
 #define BLACK ST77XX_BLACK
 #define WHITE ST77XX_WHITE
@@ -20,4 +20,9 @@
 void display_init(void);
 void display_fill_window(window_t window, uint16_t colour);
 void display_clear(uint16_t colour);
-void display_text(const char* text, uint8_t x, uint8_t y, uint16_t fg, uint16_t bg, uint8_t scale_radix);
+void display_text(const char *text,
+  uint8_t x,
+  uint8_t y,
+  uint16_t fg,
+  uint16_t bg,
+  uint8_t scale_radix);

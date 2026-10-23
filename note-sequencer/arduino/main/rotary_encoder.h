@@ -18,16 +18,17 @@ typedef enum {
   TURN_INIT,
 } rotary_encoder_turn_t;
 
-// The previous rest and turn positions of the encoder. 
+// The previous rest and turn positions of the encoder.
 typedef struct {
   rotary_encoder_rest_t last_rest;
   rotary_encoder_turn_t last_turn;
 } rotary_encoder_history_t;
 
-#define ROTARY_ENCODER_HISTORY_INITIAL ((rotary_encoder_history_t) { \
-    .last_rest = REST_01, \
-    .last_turn = TURN_INIT, \
-})
+#define ROTARY_ENCODER_HISTORY_INITIAL                                                             \
+  ((rotary_encoder_history_t){                                                                     \
+    .last_rest = REST_01,                                                                          \
+    .last_turn = TURN_INIT,                                                                        \
+  })
 
 // Given the current state of the A, B rotary encoder pins in bits 0 and 1
 // respectively of `current_state_ab` and the previous rest and turn positions,

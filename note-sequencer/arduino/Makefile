@@ -39,7 +39,10 @@ $(NOTE_INDICES): note_indices_h.py
 clean:
 	rm -rf $(MAIN_DIR)/*.o $(SCREEN_DIR)/*.o $(COMMON_DIR)/*.o *.elf $(NOTE_INDICES)
 
-tags: generate_tags.sh $(wildcard $(MAIN_DIR)/*.[ch]) $(wildcard $(SCREEN_DIR)/*.[ch]) $(wildcard $(COMMON_DIR)/*.[ch])
-	./$<
+tags:
+	./generate_tags.sh $(wildcard $(MAIN_DIR)/*.[ch]) $(wildcard $(SCREEN_DIR)/*.[ch]) $(wildcard $(COMMON_DIR)/*.[ch])
 
-.PHONY: clean tags all
+format:
+	clang-format -i $(MAIN_DIR)/*.[ch] $(SCREEN_DIR)/*.[ch] $(COMMON_DIR)/*.[ch]
+
+.PHONY: clean tags all format
