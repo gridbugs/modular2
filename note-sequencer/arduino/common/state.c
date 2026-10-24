@@ -14,7 +14,7 @@ void state_init(state_t *state) {
   state->glide_duration_ratio = 16;
   state->octave = 1;
   state->live_flags = 0;
-  state->edit_mode = EDIT_MODE_STEP;
+  state->edit_mode = EDIT_MODE_IN_PLACE;
   state->accent_type = ACCENT_TYPE_FLAT;
   state->accent_duration_ratio = 127;
   state->accent_size = 255;

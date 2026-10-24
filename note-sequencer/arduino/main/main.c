@@ -543,6 +543,11 @@ static inline void set_pitch_dac_value(uint16_t value) {
   dac1_set_value(value);
 }
 
+// Duration (in same unit as `note_timer_value()`) to use to as the effective
+// note duration for the purposes of calculating accent duration when playing
+// live.
+#define ACCENT_LIVE_NOTE_EFFECTIVE_DURATION 256
+
 static inline void set_accent_dac_value(uint16_t value) {
   dac0_set_value(value);
 }
@@ -550,7 +555,8 @@ static inline void set_accent_dac_value(uint16_t value) {
 int main(void) {
 #ifdef DEBUG_PRINTING
   // Allow printing over UART and defer initializing the gate (which shares the
-  // TX pin) until after startup messages are printid.
+  // TX pin) until after startup messages are printed. If debug printing is
+  // enabled the gate jack will not work.
   USART0_init();
 #else
   gate_init();
@@ -627,12 +633,6 @@ int main(void) {
   uint16_t prev_note_duration = 0;
   uint8_t warmup_countdown = 4;
 
-#ifdef DEBUG_PRINTING
-  // The gate is the TX pin. If printing is enabled then we can't initilaize
-  // the gate until all init messages are printed.
-  gate_init();
-#endif
-
   step_t current_step = state_current_playback_step(&state);
 
   while (1) {
@@ -657,7 +657,7 @@ int main(void) {
           if (current_step.enabled) {
             new_current_note = current_step.note_index;
           }
-          if (!state.live) {
+          if (!state_is_live(&state)) {
             // Use the current tick duration to determine the next gate duration.
             prev_note_duration = note_timer_value();
             note_timer_reset();
@@ -913,8 +913,10 @@ int main(void) {
     // When this value is under 256 and the current step has accent enabled, a
     // non-zero voltage will be set on the accent dac. The position between 0
     // and 255 of this value determines the current progress of the accent.
-    uint32_t accent_index = (uint16_t)((note_timer_value() * 255 * 255) /
-      ((uint32_t)prev_note_duration * (uint32_t)state.accent_duration_ratio));
+    uint32_t accent_index = (uint16_t)((note_timer_value() * (uint32_t)255 * (uint32_t)255) /
+      ((state_is_live(&state) ? (uint32_t)ACCENT_LIVE_NOTE_EFFECTIVE_DURATION
+                              : (uint32_t)prev_note_duration) *
+        (uint32_t)state.accent_duration_ratio));
 
     uint16_t accent_dac_value = 0;
     if (state_current_has_accent(&state)) {
@@ -931,18 +933,24 @@ int main(void) {
               // so the accent stays high while the note is held.
               case ACCENT_TYPE_FLAT:
               case ACCENT_TYPE_RISE: {
-                if (accent_index > 255) {
-                  accent_index = 255;
+                if (note_stack_size == 0) {
+                  accent_dac_value = 0;
+                } else {
+                  if (accent_index > 255) {
+                    accent_index = 255;
+                  }
+                  accent_dac_value =
+                    accent_value_at_time_index(state.accent_type, accent_index, state.accent_size);
                 }
                 break;
               }
               default: {
+                accent_dac_value =
+                  accent_value_at_time_index(state.accent_type, accent_index, state.accent_size);
                 break;
               }
             }
           }
-          accent_dac_value =
-            accent_value_at_time_index(state.accent_type, accent_index, state.accent_size);
           break;
         }
       }
