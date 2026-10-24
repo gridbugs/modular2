@@ -630,7 +630,7 @@ int main(void) {
 #ifdef DEBUG_PRINTING
   // The gate is the TX pin. If printing is enabled then we can't initilaize
   // the gate until all init messages are printed.
-  gate_init();
+  //gate_init();
 #endif
 
   step_t current_step = state_current_playback_step(&state);
@@ -657,10 +657,11 @@ int main(void) {
           if (current_step.enabled) {
             new_current_note = current_step.note_index;
           }
-        } else if (!state.live) {
-          // Use the current tick duration to determine the next gate duration.
-          prev_note_duration = note_timer_value();
-          note_timer_reset();
+          if (!state.live) {
+            // Use the current tick duration to determine the next gate duration.
+            prev_note_duration = note_timer_value();
+            note_timer_reset();
+          }
         }
         if (warmup_countdown > 0) {
           warmup_countdown--;
@@ -921,6 +922,7 @@ int main(void) {
         case MODE_RUN: {
           accent_dac_value =
             accent_value_at_time_index(state.accent_type, accent_index, state.accent_size);
+          printf("%lu %u %u\n\r", accent_index, state.accent_size, accent_dac_value);
           break;
         }
         case MODE_PROGRAM_OR_LIVE: {
