@@ -29,3 +29,6 @@ AllowShortBlocksOnASingleLine: Never
 AllowShortFunctionsOnASingleLine: None
 AllowShortIfStatementsOnASingleLine: Never
 AllowShortLoopsOnASingleLine: false
+
+# Indent case statements
+IndentCaseLabels: true

@@ -1,5 +1,5 @@
-#include "spi.h"
 #include "st7735.h"
+#include "spi.h"
 #include "util.h"
 #include <avr/io.h>
 #include <stdbool.h>
