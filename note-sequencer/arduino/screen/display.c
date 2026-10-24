@@ -22,12 +22,8 @@ void display_clear(uint16_t colour) {
   display_fill_window((window_t){.x = 0, .y = 0, .w = DISPLAY_WIDTH, .h = DISPLAY_HEIGHT}, colour);
 }
 
-void display_text(const char *text,
-  uint8_t x,
-  uint8_t y,
-  uint16_t fg,
-  uint16_t bg,
-  uint8_t scale_radix) {
+void display_text(
+  const char *text, uint8_t x, uint8_t y, uint16_t fg, uint16_t bg, uint8_t scale_radix) {
   size_t len = strlen(text);
   window_t window = (window_t){
     .x = x,

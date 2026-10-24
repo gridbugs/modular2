@@ -17,11 +17,8 @@ AlignOperands: false
 # Lists
 BinPackArguments: false
 BinPackParameters: false
-AllowAllArgumentsOnNextLine: false
-AllowAllParametersOfDeclarationOnNextLine: false
 
 # Braced initialisers
-Cpp11BracedListStyle: true
 BracedInitializerIndentWidth: 2
 
 # Keep control-flow and function bodies conventional

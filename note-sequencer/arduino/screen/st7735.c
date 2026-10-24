@@ -146,8 +146,8 @@ static void interpret_commands(uint8_t *commands) {
   }
 }
 
-// Disable formatting for screen command sequences copied from arduino SDK since they're more
-// readable in their original format.
+// Disable formatting for screen command sequences copied from arduino SDK since
+// they're more readable in their original format.
 // clang-format off
 static uint8_t rcmd1[] = {          // 7735R init, part 1 (red or green tab)
     15,                             // 15 commands in list:

@@ -9,9 +9,10 @@ typedef enum {
   REST_10,
 } rotary_encoder_rest_t;
 
-// When the encoder is in between positions its A, B pins will have the same value
-// (ie. 0, 0 or 1, 1). Also represents the case when the encoder has never been turned
-// to prevent detecting a spurious turn when the device is first switched on.
+// When the encoder is in between positions its A, B pins will have the same
+// value (ie. 0, 0 or 1, 1). Also represents the case when the encoder has never
+// been turned to prevent detecting a spurious turn when the device is first
+// switched on.
 typedef enum {
   TURN_00,
   TURN_11,

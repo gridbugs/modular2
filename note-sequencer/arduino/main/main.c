@@ -275,9 +275,8 @@ void command_buffer_add_to_playback_index(command_buffer_t *cb, state_t *state, 
   command_buffer_push(cb, command_set_playback_index(state->playback_index));
 }
 
-void command_buffer_set_current_step_note(command_buffer_t *cb,
-  state_t *state,
-  key_note_t key_note) {
+void command_buffer_set_current_step_note(
+  command_buffer_t *cb, state_t *state, key_note_t key_note) {
   step_t *step = state_current_edit_step_ptr(state);
   step->note_index = key_note;
   step->enabled = true;
@@ -316,16 +315,14 @@ void command_buffer_set_live(command_buffer_t *cb, state_t *state, bool live) {
   command_buffer_push(cb, command_set_live(live));
 }
 
-void command_buffer_setting_field(command_buffer_t *cb,
-  state_t *state,
-  setting_field_t setting_field) {
+void command_buffer_setting_field(
+  command_buffer_t *cb, state_t *state, setting_field_t setting_field) {
   state->setting_field = setting_field;
   command_buffer_push(cb, command_setting_field(setting_field));
 }
 
-void command_buffer_set_accent_type(command_buffer_t *cb,
-  state_t *state,
-  accent_type_t accent_type) {
+void command_buffer_set_accent_type(
+  command_buffer_t *cb, state_t *state, accent_type_t accent_type) {
   state->accent_type = accent_type;
   command_buffer_push(cb, command_set_accent_type(accent_type));
 }
@@ -335,9 +332,8 @@ void command_buffer_set_edit_mode(command_buffer_t *cb, state_t *state, edit_mod
   command_buffer_push(cb, command_set_edit_mode(edit_mode));
 }
 
-void command_buffer_set_clock_source(command_buffer_t *cb,
-  state_t *state,
-  clock_source_t clock_source) {
+void command_buffer_set_clock_source(
+  command_buffer_t *cb, state_t *state, clock_source_t clock_source) {
   state->clock_source = clock_source;
   command_buffer_push(cb, command_set_clock_source(clock_source));
 }
@@ -367,9 +363,8 @@ void command_buffer_add_to_glide(command_buffer_t *cb, state_t *state, int8_t gl
   command_buffer_push(cb, command_set_glide(state->glide_duration_ratio));
 }
 
-void command_buffer_add_to_accent_duration_ratio(command_buffer_t *cb,
-  state_t *state,
-  int8_t delta) {
+void command_buffer_add_to_accent_duration_ratio(
+  command_buffer_t *cb, state_t *state, int8_t delta) {
   int16_t accent_duration_ratio = (int16_t)state->accent_duration_ratio + (int16_t)delta;
   state->accent_duration_ratio = accent_duration_ratio < 0
     ? 0
@@ -570,7 +565,8 @@ int main(void) {
 
   COMPILER_BARRIER();
 
-  // Wait some time to ensure the second arduino is fully off, then turn it  back on.
+  // Wait some time to ensure the second arduino is fully off, then turn it back
+  // on.
   delay_ms(50);
 
   COMPILER_BARRIER();
@@ -705,22 +701,19 @@ int main(void) {
               command_buffer_setting_field(&command_buffer, &state, SETTING_FIELD_TEMPO_BPM);
               break;
             case KEY_WITH_SHIFT_SET_GATE:
-              command_buffer_setting_field(&command_buffer,
-                &state,
-                SETTING_FIELD_GATE_DURATION_RATIO);
+              command_buffer_setting_field(
+                &command_buffer, &state, SETTING_FIELD_GATE_DURATION_RATIO);
               break;
             case KEY_WITH_SHIFT_SET_GLIDE:
-              command_buffer_setting_field(&command_buffer,
-                &state,
-                SETTING_FIELD_GLIDE_DURATION_RATIO);
+              command_buffer_setting_field(
+                &command_buffer, &state, SETTING_FIELD_GLIDE_DURATION_RATIO);
               break;
             case KEY_WITH_SHIFT_SET_ACCENT_SIZE:
               command_buffer_setting_field(&command_buffer, &state, SETTING_FIELD_ACCENT_SIZE);
               break;
             case KEY_WITH_SHIFT_SET_ACCENT_DURATION_RATIO:
-              command_buffer_setting_field(&command_buffer,
-                &state,
-                SETTING_FIELD_ACCENT_DURATION_RATIO);
+              command_buffer_setting_field(
+                &command_buffer, &state, SETTING_FIELD_ACCENT_DURATION_RATIO);
               break;
             case KEY_WITH_SHIFT_TOGGLE_LIVE:
               command_buffer_set_live(&command_buffer, &state, !state.live);
@@ -865,9 +858,8 @@ int main(void) {
           timer0_set_output_compare_a(state.glide_duration_ratio);
           break;
         case SETTING_FIELD_ACCENT_DURATION_RATIO:
-          command_buffer_add_to_accent_duration_ratio(&command_buffer,
-            &state,
-            rotary_encoder_delta);
+          command_buffer_add_to_accent_duration_ratio(
+            &command_buffer, &state, rotary_encoder_delta);
           break;
         case SETTING_FIELD_ACCENT_SIZE:
           command_buffer_add_to_accent_size(&command_buffer, &state, rotary_encoder_delta);
