@@ -410,17 +410,17 @@ ISR(TIMER1_COMPA_vect) {
   async_flag_set(&timer_tick);
 }
 
-volatile uint16_t timer2_match_count = 0;
+volatile uint32_t timer2_match_count = 0;
 
 ISR(TIMER2_COMPA_vect) {
   timer2_match_count++;
 }
 
-static inline uint16_t gate_timer_value(void) {
+static inline uint32_t note_timer_value(void) {
   return timer2_match_count;
 }
 
-static inline void gate_timer_reset(void) {
+static inline void note_timer_reset(void) {
   timer2_match_count = 0;
 }
 
@@ -539,8 +539,12 @@ static inline void gate_init(void) {
   gate_off();
 }
 
-void set_pitch_dac_value(uint16_t value) {
+static inline void set_pitch_dac_value(uint16_t value) {
   dac1_set_value(value);
+}
+
+static inline void set_accent_dac_value(uint16_t value) {
+  dac0_set_value(value);
 }
 
 int main(void) {
@@ -620,7 +624,7 @@ int main(void) {
   timer2_set_output_compare_a(255);
   timer2_enable_interrupt_output_compare_a();
   timer2_start();
-  uint16_t gate_timer_compare = 0;
+  uint16_t prev_note_duration = 0;
   uint8_t warmup_countdown = 4;
 
 #ifdef DEBUG_PRINTING
@@ -653,10 +657,11 @@ int main(void) {
           if (current_step.enabled) {
             new_current_note = current_step.note_index;
           }
+        } else if (!state.live) {
+          // Use the current tick duration to determine the next gate duration.
+          prev_note_duration = note_timer_value();
+          note_timer_reset();
         }
-        // Use the current tick duration to determine the next gate duration.
-        gate_timer_compare = gate_timer_value();
-        gate_timer_reset();
         if (warmup_countdown > 0) {
           warmup_countdown--;
         }
@@ -745,7 +750,11 @@ int main(void) {
           note_stack[note_stack_size] = key_note;
           note_stack_size++;
 
-          if (!state.live) {
+          if (state.live) {
+            // In live mode the note timer counter is used to track the
+            // duration the note has been held for.
+            note_timer_reset();
+          } else {
             // Set the current step to the newly pressed note.
             command_buffer_set_current_step_note(&command_buffer, &state, key_note);
             if (state.edit_mode == EDIT_MODE_STEP) {
@@ -810,9 +819,9 @@ int main(void) {
 
     switch (state.mode) {
       case MODE_RUN:
-        uint16_t gate_timer_compare_scaled =
-          (gate_timer_compare * (uint16_t)state.gate_duration_ratio) / 255;
-        if (current_step.enabled && (gate_timer_value() < gate_timer_compare_scaled)) {
+        uint16_t prev_note_duration_scaled =
+          (prev_note_duration * (uint16_t)state.gate_duration_ratio) / 255;
+        if (current_step.enabled && (note_timer_value() < prev_note_duration_scaled)) {
           gate_on();
         } else {
           gate_off();
@@ -899,6 +908,45 @@ int main(void) {
       pitch_dac_value_current = (uint16_t)((int16_t)pitch_dac_value_base + delta);
     }
     set_pitch_dac_value(pitch_dac_value_current);
+
+    // When this value is under 256 and the current step has accent enabled, a
+    // non-zero voltage will be set on the accent dac. The position between 0
+    // and 255 of this value determines the current progress of the accent.
+    uint32_t accent_index = (uint16_t)((note_timer_value() * 255 * 255) /
+      ((uint32_t)prev_note_duration * (uint32_t)state.accent_duration_ratio));
+
+    uint16_t accent_dac_value = 0;
+    if (state_current_has_accent(&state)) {
+      switch (state.mode) {
+        case MODE_RUN: {
+          accent_dac_value =
+            accent_value_at_time_index(state.accent_type, accent_index, state.accent_size);
+          break;
+        }
+        case MODE_PROGRAM_OR_LIVE: {
+          if (state.live) {
+            switch (state.accent_type) {
+              // For accent types that end high, clamp the accent index at 255
+              // so the accent stays high while the note is held.
+              case ACCENT_TYPE_FLAT:
+              case ACCENT_TYPE_RISE: {
+                if (accent_index > 255) {
+                  accent_index = 255;
+                }
+                break;
+              }
+              default: {
+                break;
+              }
+            }
+          }
+          accent_dac_value =
+            accent_value_at_time_index(state.accent_type, accent_index, state.accent_size);
+          break;
+        }
+      }
+    }
+    set_accent_dac_value(accent_dac_value);
 
     command_buffer_send(&command_buffer);
   }

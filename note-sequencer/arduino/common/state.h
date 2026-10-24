@@ -1,5 +1,6 @@
 #pragma once
 
+#include "accent.h"
 #include "util.h"
 #include <stdbool.h>
 #include <stdint.h>
@@ -42,12 +43,6 @@ typedef enum {
   EDIT_MODE_STEP,
   EDIT_MODE_IN_PLACE,
 } edit_mode_t;
-
-typedef enum {
-  ACCENT_TYPE_RISE,
-  ACCENT_TYPE_FLAT,
-  ACCENT_TYPE_FALL,
-} accent_type_t;
 
 typedef enum {
   SETTING_FIELD_NONE,

@@ -1,4 +1,9 @@
+#pragma once
+
+#include "util.h"
 #include <stdint.h>
+
+#define DAC_MAX MASK(12)
 
 // Set the value of the DAC with I2C address 0x60. Only the low 12 bits of the
 // value are used.
