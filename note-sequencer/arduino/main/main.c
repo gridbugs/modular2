@@ -275,7 +275,9 @@ void command_buffer_add_to_playback_index(command_buffer_t *cb, state_t *state, 
   command_buffer_push(cb, command_set_playback_index(state->playback_index));
 }
 
-void command_buffer_press_note_key(command_buffer_t *cb, state_t *state, key_note_t key_note) {
+void command_buffer_set_current_step_note(command_buffer_t *cb,
+  state_t *state,
+  key_note_t key_note) {
   step_t *step = state_current_edit_step_ptr(state);
   step->note_index = key_note;
   step->enabled = true;
@@ -751,8 +753,11 @@ int main(void) {
           note_stack_size++;
 
           if (!state.live) {
-            // Handle the fact that this key was just pressed
-            command_buffer_press_note_key(&command_buffer, &state, key_note);
+            // Set the current step to the newly pressed note.
+            command_buffer_set_current_step_note(&command_buffer, &state, key_note);
+            if (state.edit_mode == EDIT_MODE_STEP) {
+              command_buffer_add_to_edit_index(&command_buffer, &state, 1);
+            }
           }
         }
       } else if (key == KEY_CLEAR) {
@@ -761,6 +766,9 @@ int main(void) {
         } else {
           // Clear the current step
           command_buffer_clear_note(&command_buffer, &state);
+          if (state.edit_mode == EDIT_MODE_STEP) {
+            command_buffer_add_to_edit_index(&command_buffer, &state, 1);
+          }
         }
       } else if (key == KEY_ACCENT) {
         command_buffer_toggle_flag(&command_buffer, &state, FLAG_ACCENT);
@@ -825,6 +833,7 @@ int main(void) {
             gate_on();
           }
         } else {
+          // In programming mode the gate is always off.
           gate_off();
         }
         break;
