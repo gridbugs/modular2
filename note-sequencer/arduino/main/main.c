@@ -630,7 +630,7 @@ int main(void) {
 #ifdef DEBUG_PRINTING
   // The gate is the TX pin. If printing is enabled then we can't initilaize
   // the gate until all init messages are printed.
-  //gate_init();
+  gate_init();
 #endif
 
   step_t current_step = state_current_playback_step(&state);
@@ -922,7 +922,6 @@ int main(void) {
         case MODE_RUN: {
           accent_dac_value =
             accent_value_at_time_index(state.accent_type, accent_index, state.accent_size);
-          printf("%lu %u %u\n\r", accent_index, state.accent_size, accent_dac_value);
           break;
         }
         case MODE_PROGRAM_OR_LIVE: {
