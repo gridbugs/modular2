@@ -9,7 +9,6 @@ UseTab: Never
 BreakBeforeBraces: Attach
 
 # Avoid alignment based on preceding expressions
-AlignAfterOpenBracket: false
 AlignConsecutiveAssignments: false
 AlignConsecutiveDeclarations: false
 AlignOperands: false
@@ -29,3 +28,11 @@ AllowShortLoopsOnASingleLine: false
 
 # Indent case statements
 IndentCaseLabels: true
+
+# Function arguments on multiple lines when the argument list would be too long
+# for a single line
+AlignAfterOpenBracket: AlwaysBreak
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowAllArgumentsOnNextLine: false
+BreakAfterReturnType: Automatic
+PenaltyReturnTypeOnItsOwnLine: 500

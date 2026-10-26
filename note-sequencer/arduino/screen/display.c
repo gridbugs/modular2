@@ -23,7 +23,12 @@ void display_clear(uint16_t colour) {
 }
 
 void display_text(
-  const char *text, uint8_t x, uint8_t y, uint16_t fg, uint16_t bg, uint8_t scale_radix) {
+  const char *text,
+  uint8_t x,
+  uint8_t y,
+  uint16_t fg,
+  uint16_t bg,
+  uint8_t scale_radix) {
   size_t len = strlen(text);
   window_t window = (window_t){
     .x = x,

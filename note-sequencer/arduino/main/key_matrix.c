@@ -47,7 +47,9 @@ static inline uint32_t key_matrix_scan_raw(void) {
 }
 
 static inline uint32_t key_matrix_debounce(
-  uint32_t raw, const uint32_t prev, uint8_t *debounce_counter_per_key) {
+  uint32_t raw,
+  const uint32_t prev,
+  uint8_t *debounce_counter_per_key) {
   uint32_t debounced = 0;
   for (int i = 0; i < MAX_NUM_KEYS; i++) {
     uint8_t *counter = &debounce_counter_per_key[i];

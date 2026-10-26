@@ -139,36 +139,11 @@ typedef enum {
 } key_t;
 
 const key_t keys_by_key_matrix_bit[] = {
-  KEY_X_1,
-  KEY_G_SHARP_2,
-  KEY_D_SHARP_2,
-  KEY_A_SHARP_1,
-  KEY_F_1,
-  KEY_C_1,
-  KEY_X_2,
-  KEY_A_2,
-  KEY_E_2,
-  KEY_B_1,
-  KEY_F_SHARP_1,
-  KEY_C_SHARP_1,
-  KEY_X_3,
-  KEY_A_SHARP_2,
-  KEY_F_2,
-  KEY_C_2,
-  KEY_G_1,
-  KEY_D_1,
-  KEY_X_4,
-  KEY_B_2,
-  KEY_F_SHARP_2,
-  KEY_C_SHARP_2,
-  KEY_G_SHARP_1,
-  KEY_D_SHARP_1,
-  KEY_CLOCK_SOURCE,
-  KEY_C_3,
-  KEY_G_2,
-  KEY_D_2,
-  KEY_A_1,
-  KEY_E_1,
+  KEY_X_1,          KEY_G_SHARP_2, KEY_D_SHARP_2, KEY_A_SHARP_1, KEY_F_1,       KEY_C_1,
+  KEY_X_2,          KEY_A_2,       KEY_E_2,       KEY_B_1,       KEY_F_SHARP_1, KEY_C_SHARP_1,
+  KEY_X_3,          KEY_A_SHARP_2, KEY_F_2,       KEY_C_2,       KEY_G_1,       KEY_D_1,
+  KEY_X_4,          KEY_B_2,       KEY_F_SHARP_2, KEY_C_SHARP_2, KEY_G_SHARP_1, KEY_D_SHARP_1,
+  KEY_CLOCK_SOURCE, KEY_C_3,       KEY_G_2,       KEY_D_2,       KEY_A_1,       KEY_E_1,
 };
 
 typedef enum {
@@ -276,7 +251,9 @@ void command_buffer_add_to_playback_index(command_buffer_t *cb, state_t *state, 
 }
 
 void command_buffer_set_current_step_note(
-  command_buffer_t *cb, state_t *state, key_note_t key_note) {
+  command_buffer_t *cb,
+  state_t *state,
+  key_note_t key_note) {
   step_t *step = state_current_edit_step_ptr(state);
   step->note_index = key_note;
   step->enabled = true;
@@ -316,13 +293,17 @@ void command_buffer_set_live(command_buffer_t *cb, state_t *state, bool live) {
 }
 
 void command_buffer_setting_field(
-  command_buffer_t *cb, state_t *state, setting_field_t setting_field) {
+  command_buffer_t *cb,
+  state_t *state,
+  setting_field_t setting_field) {
   state->setting_field = setting_field;
   command_buffer_push(cb, command_setting_field(setting_field));
 }
 
 void command_buffer_set_accent_type(
-  command_buffer_t *cb, state_t *state, accent_type_t accent_type) {
+  command_buffer_t *cb,
+  state_t *state,
+  accent_type_t accent_type) {
   state->accent_type = accent_type;
   command_buffer_push(cb, command_set_accent_type(accent_type));
 }
@@ -333,7 +314,9 @@ void command_buffer_set_edit_mode(command_buffer_t *cb, state_t *state, edit_mod
 }
 
 void command_buffer_set_clock_source(
-  command_buffer_t *cb, state_t *state, clock_source_t clock_source) {
+  command_buffer_t *cb,
+  state_t *state,
+  clock_source_t clock_source) {
   state->clock_source = clock_source;
   command_buffer_push(cb, command_set_clock_source(clock_source));
 }
@@ -364,7 +347,9 @@ void command_buffer_add_to_glide(command_buffer_t *cb, state_t *state, int8_t gl
 }
 
 void command_buffer_add_to_accent_duration_ratio(
-  command_buffer_t *cb, state_t *state, int8_t delta) {
+  command_buffer_t *cb,
+  state_t *state,
+  int8_t delta) {
   int16_t accent_duration_ratio = (int16_t)state->accent_duration_ratio + (int16_t)delta;
   state->accent_duration_ratio = accent_duration_ratio < 0
     ? 0
@@ -708,18 +693,24 @@ int main(void) {
               break;
             case KEY_WITH_SHIFT_SET_GATE:
               command_buffer_setting_field(
-                &command_buffer, &state, SETTING_FIELD_GATE_DURATION_RATIO);
+                &command_buffer,
+                &state,
+                SETTING_FIELD_GATE_DURATION_RATIO);
               break;
             case KEY_WITH_SHIFT_SET_GLIDE:
               command_buffer_setting_field(
-                &command_buffer, &state, SETTING_FIELD_GLIDE_DURATION_RATIO);
+                &command_buffer,
+                &state,
+                SETTING_FIELD_GLIDE_DURATION_RATIO);
               break;
             case KEY_WITH_SHIFT_SET_ACCENT_SIZE:
               command_buffer_setting_field(&command_buffer, &state, SETTING_FIELD_ACCENT_SIZE);
               break;
             case KEY_WITH_SHIFT_SET_ACCENT_DURATION_RATIO:
               command_buffer_setting_field(
-                &command_buffer, &state, SETTING_FIELD_ACCENT_DURATION_RATIO);
+                &command_buffer,
+                &state,
+                SETTING_FIELD_ACCENT_DURATION_RATIO);
               break;
             case KEY_WITH_SHIFT_TOGGLE_LIVE:
               command_buffer_set_live(&command_buffer, &state, !state.live);
@@ -869,7 +860,9 @@ int main(void) {
           break;
         case SETTING_FIELD_ACCENT_DURATION_RATIO:
           command_buffer_add_to_accent_duration_ratio(
-            &command_buffer, &state, rotary_encoder_delta);
+            &command_buffer,
+            &state,
+            rotary_encoder_delta);
           break;
         case SETTING_FIELD_ACCENT_SIZE:
           command_buffer_add_to_accent_size(&command_buffer, &state, rotary_encoder_delta);
@@ -904,7 +897,7 @@ int main(void) {
       // Interpolate between the base and target dac values.
       uint8_t glide_progress = glide_get_progress();
       int16_t delta = (((int32_t)pitch_dac_value_target - (int32_t)pitch_dac_value_base) *
-                        (int32_t)glide_progress) /
+                       (int32_t)glide_progress) /
         255;
       pitch_dac_value_current = (uint16_t)((int16_t)pitch_dac_value_base + delta);
     }
@@ -913,10 +906,11 @@ int main(void) {
     // When this value is under 256 and the current step has accent enabled, a
     // non-zero voltage will be set on the accent dac. The position between 0
     // and 255 of this value determines the current progress of the accent.
-    uint32_t accent_index = (uint16_t)((note_timer_value() * (uint32_t)255 * (uint32_t)255) /
-      ((state_is_live(&state) ? (uint32_t)ACCENT_LIVE_NOTE_EFFECTIVE_DURATION
-                              : (uint32_t)prev_note_duration) *
-        (uint32_t)state.accent_duration_ratio));
+    uint32_t accent_index =
+      (uint16_t)((note_timer_value() * (uint32_t)255 * (uint32_t)255) /
+                 ((state_is_live(&state) ? (uint32_t)ACCENT_LIVE_NOTE_EFFECTIVE_DURATION
+                                         : (uint32_t)prev_note_duration) *
+                  (uint32_t)state.accent_duration_ratio));
 
     uint16_t accent_dac_value = 0;
     if (state_current_has_accent(&state)) {

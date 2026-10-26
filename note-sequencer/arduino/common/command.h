@@ -166,74 +166,74 @@ static inline command_t command_show_ui(void) {
 
 static inline command_t command_set_note(uint8_t note_index) {
   return (command_t){.typ = COMMAND_SET_NOTE,
-    .args = {
-      .set_note =
-        {
-          .note_index = note_index,
-        },
-    }};
+                     .args = {
+                       .set_note =
+                         {
+                           .note_index = note_index,
+                         },
+                     }};
 }
 
 static inline command_t command_set_playback_index(uint8_t sequence_index) {
   return (command_t){.typ = COMMAND_SET_PLAYBACK_INDEX,
-    .args = {
-      .set_playback_index =
-        {
-          .sequence_index = sequence_index,
-        },
-    }};
+                     .args = {
+                       .set_playback_index =
+                         {
+                           .sequence_index = sequence_index,
+                         },
+                     }};
 }
 
 static inline command_t command_set_edit_index(uint8_t sequence_index) {
   return (command_t){.typ = COMMAND_SET_EDIT_INDEX,
-    .args = {
-      .set_edit_index =
-        {
-          .sequence_index = sequence_index,
-        },
-    }};
+                     .args = {
+                       .set_edit_index =
+                         {
+                           .sequence_index = sequence_index,
+                         },
+                     }};
 }
 
 static inline command_t command_set_step_note(uint8_t sequence_index, uint8_t note_index) {
   return (command_t){.typ = COMMAND_SET_STEP_NOTE,
-    .args = {
-      .set_step_note =
-        {
-          .sequence_index = sequence_index,
-          .note_index = note_index,
-        },
-    }};
+                     .args = {
+                       .set_step_note =
+                         {
+                           .sequence_index = sequence_index,
+                           .note_index = note_index,
+                         },
+                     }};
 }
 
 static inline command_t command_clear_step_note(uint8_t sequence_index) {
   return (command_t){.typ = COMMAND_CLEAR_STEP_NOTE,
-    .args = {
-      .clear_step_note =
-        {
-          .sequence_index = sequence_index,
-        },
-    }};
+                     .args = {
+                       .clear_step_note =
+                         {
+                           .sequence_index = sequence_index,
+                         },
+                     }};
 }
 
 static inline command_t command_set_step_flags(uint8_t sequence_index, uint8_t flags) {
   return (command_t){.typ = COMMAND_SET_STEP_FLAGS,
-    .args = {
-      .set_step_flags =
-        {
-          .sequence_index = sequence_index,
-          .flags = flags,
-        },
-    }};
+                     .args = {
+                       .set_step_flags =
+                         {
+                           .sequence_index = sequence_index,
+                           .flags = flags,
+                         },
+                     }};
 }
 
 static inline command_t command_set_live_flags(uint8_t flags) {
   return (command_t){.typ = COMMAND_SET_LIVE_FLAGS,
-    .args = {
-      .set_live_flags =
-        {
-          .flags = flags,
-        },
-    }};
+                     .args = {
+                       .set_live_flags =
+                         {
+                           .flags = flags,
+                         },
+                     }};
 }
 
 static inline command_t command_clear_sequence(void) {
@@ -242,133 +242,133 @@ static inline command_t command_clear_sequence(void) {
 
 static inline command_t command_set_mode(mode_t mode) {
   return (command_t){.typ = COMMAND_SET_MODE,
-    .args = {
-      .set_mode =
-        {
-          .mode = mode,
-        },
-    }};
+                     .args = {
+                       .set_mode =
+                         {
+                           .mode = mode,
+                         },
+                     }};
 }
 
 static inline command_t command_set_live(bool live) {
   return (command_t){.typ = COMMAND_SET_LIVE,
-    .args = {
-      .set_live =
-        {
-          .live = live,
-        },
-    }};
+                     .args = {
+                       .set_live =
+                         {
+                           .live = live,
+                         },
+                     }};
 }
 
 static inline command_t command_setting_field(setting_field_t setting_field) {
   return (command_t){.typ = COMMAND_SETTING_FIELD,
-    .args = {
-      .setting_field =
-        {
-          .setting_field = setting_field,
-        },
-    }};
+                     .args = {
+                       .setting_field =
+                         {
+                           .setting_field = setting_field,
+                         },
+                     }};
 }
 
 static inline command_t command_set_tempo(uint8_t tempo) {
   return (command_t){.typ = COMMAND_SET_TEMPO,
-    .args = {
-      .set_tempo =
-        {
-          .tempo = tempo,
-        },
-    }};
+                     .args = {
+                       .set_tempo =
+                         {
+                           .tempo = tempo,
+                         },
+                     }};
 }
 
 static inline command_t command_set_gate(uint8_t gate) {
   return (command_t){.typ = COMMAND_SET_GATE,
-    .args = {
-      .set_gate =
-        {
-          .gate = gate,
-        },
-    }};
+                     .args = {
+                       .set_gate =
+                         {
+                           .gate = gate,
+                         },
+                     }};
 }
 
 static inline command_t command_set_glide(uint8_t glide) {
   return (command_t){.typ = COMMAND_SET_GLIDE,
-    .args = {
-      .set_glide =
-        {
-          .glide = glide,
-        },
-    }};
+                     .args = {
+                       .set_glide =
+                         {
+                           .glide = glide,
+                         },
+                     }};
 }
 
 static inline command_t command_set_clock(bool clock_state) {
   return (command_t){.typ = COMMAND_SET_CLOCK,
-    .args = {
-      .set_clock =
-        {
-          .clock_state = clock_state,
-        },
-    }};
+                     .args = {
+                       .set_clock =
+                         {
+                           .clock_state = clock_state,
+                         },
+                     }};
 }
 
 static inline command_t command_set_clock_source(clock_source_t clock_source) {
   return (command_t){.typ = COMMAND_SET_CLOCK_SOURCE,
-    .args = {
-      .set_clock_source =
-        {
-          .clock_source = clock_source,
-        },
-    }};
+                     .args = {
+                       .set_clock_source =
+                         {
+                           .clock_source = clock_source,
+                         },
+                     }};
 }
 
 static inline command_t command_set_octave(uint8_t octave) {
   return (command_t){.typ = COMMAND_SET_OCTAVE,
-    .args = {
-      .set_octave =
-        {
-          .octave = octave,
-        },
-    }};
+                     .args = {
+                       .set_octave =
+                         {
+                           .octave = octave,
+                         },
+                     }};
 }
 
 static inline command_t command_set_edit_mode(edit_mode_t edit_mode) {
   return (command_t){.typ = COMMAND_SET_EDIT_MODE,
-    .args = {
-      .set_edit_mode =
-        {
-          .edit_mode = edit_mode,
-        },
-    }};
+                     .args = {
+                       .set_edit_mode =
+                         {
+                           .edit_mode = edit_mode,
+                         },
+                     }};
 }
 
 static inline command_t command_set_accent_type(accent_type_t accent_type) {
   return (command_t){.typ = COMMAND_SET_ACCENT_TYPE,
-    .args = {
-      .set_accent_type =
-        {
-          .accent_type = accent_type,
-        },
-    }};
+                     .args = {
+                       .set_accent_type =
+                         {
+                           .accent_type = accent_type,
+                         },
+                     }};
 }
 
 static inline command_t command_set_accent_duration_ratio(uint8_t accent_duration_ratio) {
 
   return (command_t){.typ = COMMAND_SET_ACCENT_DURATION_RATIO,
-    .args = {
-      .set_accent_duration_ratio =
-        {
-          .accent_duration_ratio = accent_duration_ratio,
-        },
-    }};
+                     .args = {
+                       .set_accent_duration_ratio =
+                         {
+                           .accent_duration_ratio = accent_duration_ratio,
+                         },
+                     }};
 }
 
 static inline command_t command_set_accent_size(uint8_t accent_size) {
   return (command_t){.typ = COMMAND_SET_ACCENT_SIZE,
-    .args = {
-      .set_accent_size =
-        {
-          .accent_size = accent_size,
-        },
-    }};
+                     .args = {
+                       .set_accent_size =
+                         {
+                           .accent_size = accent_size,
+                         },
+                     }};
 }
 
 uint8_t commands_from_bytes(uint8_t *bytes, command_t *commands);
