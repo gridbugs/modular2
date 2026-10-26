@@ -10792,7 +10792,7 @@
 			)
 		)
 		(property "Value" "1K"
-			(at 123.444 108.204 90)
+			(at 121.412 103.378 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
