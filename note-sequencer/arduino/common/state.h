@@ -83,6 +83,7 @@ step_t *state_current_edit_step_ptr(state_t *state);
 step_t state_current_playback_step(state_t *state);
 bool state_current_has_glide(state_t *state);
 bool state_current_has_accent(state_t *state);
+void state_apply_command(state_t *state, command_t command);
 
 static inline uint16_t state_ticks_per_minute(state_t *state) {
   return state->tempo_bpm * state->ticks_per_beat;
