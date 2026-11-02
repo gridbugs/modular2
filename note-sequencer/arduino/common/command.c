@@ -27,6 +27,7 @@ int command_type_num_bytes(command_type_t command_type) {
     case COMMAND_SET_ACCENT_TYPE:
     case COMMAND_SET_ACCENT_DURATION_RATIO:
     case COMMAND_SET_ACCENT_SIZE:
+    case COMMAND_SET_SEQUENCE_LENGTH:
       return 2;
     case COMMAND_SET_STEP_NOTE:
     case COMMAND_SET_STEP_FLAGS:
@@ -107,6 +108,9 @@ int command_to_bytes(command_t command, uint8_t *bytes) {
     case COMMAND_SET_ACCENT_SIZE:
       bytes[1] = command.args.set_accent_size.accent_size;
       return 2;
+    case COMMAND_SET_SEQUENCE_LENGTH:
+      bytes[1] = command.args.set_accent_size.accent_size;
+      return 2;
   }
   __builtin_unreachable();
 }
@@ -173,6 +177,8 @@ command_t command_from_bytes(uint8_t *bytes) {
       return command_set_accent_duration_ratio(bytes[1]);
     case COMMAND_SET_ACCENT_SIZE:
       return command_set_accent_size(bytes[1]);
+    case COMMAND_SET_SEQUENCE_LENGTH:
+      return command_set_sequence_length(bytes[1]);
   }
   PANIC("Unexpected command type: %d", bytes[0]);
 }

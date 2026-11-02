@@ -78,6 +78,9 @@ typedef enum {
 
   // Set the size of the accent.
   COMMAND_SET_ACCENT_SIZE,
+
+  // Set the sequence length.
+  COMMAND_SET_SEQUENCE_LENGTH,
 } command_type_t;
 
 typedef struct {
@@ -149,6 +152,9 @@ typedef struct {
     struct {
       uint8_t accent_size;
     } set_accent_size;
+    struct {
+      uint8_t sequence_length;
+    } set_sequence_length;
   } args;
 } command_t;
 
@@ -367,6 +373,16 @@ static inline command_t command_set_accent_size(uint8_t accent_size) {
                        .set_accent_size =
                          {
                            .accent_size = accent_size,
+                         },
+                     }};
+}
+
+static inline command_t command_set_sequence_length(uint8_t sequence_length) {
+  return (command_t){.typ = COMMAND_SET_SEQUENCE_LENGTH,
+                     .args = {
+                       .set_sequence_length =
+                         {
+                           .sequence_length = sequence_length,
                          },
                      }};
 }

@@ -131,8 +131,8 @@ void state_render_octave(state_t *state, int fg, int bg) {
 }
 
 void render_cursor_at(int index, char cursor_char, int fg, int bg) {
-  int cursor_x = ((index * 2) / MAX_NUM_STEPS) * 64;
-  int cursor_y = SEQUENCE_TOP_Y + ((index % (MAX_NUM_STEPS / 2)) * 8);
+  int cursor_x = ((index * 2) / MAX_SEQUENCE_LENGTH) * 64;
+  int cursor_y = SEQUENCE_TOP_Y + ((index % (MAX_SEQUENCE_LENGTH / 2)) * 8);
   char buf[] = {cursor_char, '\0'};
   display_text(buf, cursor_x, cursor_y, fg, bg, 0);
 }
@@ -142,14 +142,18 @@ void state_render_playback_cursor(state_t *state, char cursor_char, int fg, int 
 }
 
 void state_render_step(state_t *state, int step_index, int fg, int bg) {
+  int x = ((step_index * 2) / MAX_SEQUENCE_LENGTH) * 64;
+  int y = SEQUENCE_TOP_Y + ((step_index % (MAX_SEQUENCE_LENGTH / 2)) * 8);
+  if (step_index >= state->sequence_length) {
+    display_text("        ", x, y, WHITE, BLACK, 0);
+    return;
+  }
   static char buf[32];
   int index_fg = GREY;
   if (state->edit_index == step_index) {
     bg = BLUE;
     index_fg = fg;
   }
-  int x = ((step_index * 2) / MAX_NUM_STEPS) * 64;
-  int y = SEQUENCE_TOP_Y + ((step_index % (MAX_NUM_STEPS / 2)) * 8);
   sprintf(buf, "%02d", step_index + 1);
   display_text(buf, x + 8, y, index_fg, bg, 0);
   step_t *step = &state->sequence.steps[step_index];
@@ -191,6 +195,9 @@ void state_render_setting(state_t *state, int fg, int bg) {
     case SETTING_FIELD_ACCENT_SIZE:
       sprintf(buf, "ACCSIZ: %3u/255", state->accent_size);
       break;
+    case SETTING_FIELD_SEQUENCE_LENGTH:
+      sprintf(buf, "LENGTH: %3u/16", state->sequence_length);
+      break;
   }
   display_text(buf, 0, y, fg, bg, 0);
 }
@@ -203,7 +210,7 @@ void state_render(state_t *state) {
   int fg = WHITE;
   int bg = BLACK;
   state_render_mode(state, fg, bg);
-  for (int i = 0; i < MAX_NUM_STEPS; i++) {
+  for (int i = 0; i < MAX_SEQUENCE_LENGTH; i++) {
     state_render_step(state, i, fg, bg);
     char cursor = (i == state->playback_index) ? '>' : ' ';
     render_cursor_at(i, cursor, fg, bg);
@@ -370,6 +377,17 @@ void handle_command(command_t command, state_t *state) {
     }
     case COMMAND_SET_ACCENT_SIZE: {
       state->accent_size = command.args.set_accent_size.accent_size;
+      state_render_setting(state, fg, bg);
+      break;
+    }
+    case COMMAND_SET_SEQUENCE_LENGTH: {
+      uint8_t original_length = state->sequence_length;
+      state->sequence_length = command.args.set_sequence_length.sequence_length;
+      uint8_t min_length = MIN_NAIVE(original_length, state->sequence_length);
+      uint8_t max_length = MAX_NAIVE(original_length, state->sequence_length);
+      for (uint8_t i = min_length; i < max_length; i++) {
+        state_render_step(state, i, fg, bg);
+      }
       state_render_setting(state, fg, bg);
       break;
     }

@@ -194,6 +194,7 @@ typedef enum {
 #define KEY_WITH_SHIFT_OCTAVE_DOWN KEY_NOTE_A_1
 #define KEY_WITH_SHIFT_OCTAVE_UP KEY_NOTE_B_1
 #define KEY_WITH_SHIFT_TOGGLE_LIVE KEY_NOTE_C_2
+#define KEY_WITH_SHIFT_SET_SEQUENCE_LENGTH KEY_NOTE_C_SHARP_2
 
 // This is a bit in the raw key matrix input, not the key_note_t type.
 #define KEY_SHIFT_BIT BIT(0)
@@ -361,6 +362,14 @@ void command_buffer_add_to_accent_size(command_buffer_t *cb, state_t *state, int
   int16_t accent_size = (int16_t)state->accent_size + (int16_t)delta;
   state->accent_size = accent_size < 0 ? 0 : (accent_size > 255 ? 255 : (uint8_t)accent_size);
   command_buffer_push(cb, command_set_accent_size(state->accent_size));
+}
+
+void command_buffer_add_to_sequence_length(command_buffer_t *cb, state_t *state, int8_t delta) {
+  int16_t sequence_length = (int16_t)state->sequence_length + (int16_t)delta;
+  state->sequence_length = sequence_length < 1
+    ? 1
+    : (sequence_length > MAX_SEQUENCE_LENGTH ? MAX_SEQUENCE_LENGTH : (uint8_t)sequence_length);
+  command_buffer_push(cb, command_set_sequence_length(state->sequence_length));
 }
 
 #define SECONDS_PER_MINUTE 60
@@ -735,6 +744,9 @@ int main(void) {
                 }
               }
               break;
+            case KEY_WITH_SHIFT_SET_SEQUENCE_LENGTH:
+              command_buffer_setting_field(&command_buffer, &state, SETTING_FIELD_SEQUENCE_LENGTH);
+              break;
             default:
           }
         } else {
@@ -866,6 +878,9 @@ int main(void) {
           break;
         case SETTING_FIELD_ACCENT_SIZE:
           command_buffer_add_to_accent_size(&command_buffer, &state, rotary_encoder_delta);
+          break;
+        case SETTING_FIELD_SEQUENCE_LENGTH:
+          command_buffer_add_to_sequence_length(&command_buffer, &state, rotary_encoder_delta);
           break;
       }
     }

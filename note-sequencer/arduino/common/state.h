@@ -22,11 +22,10 @@ static inline bool step_has_glide(step_t *step) {
   return (step->flags & FLAG_GLIDE) != 0;
 }
 
-#define MAX_NUM_STEPS 16
+#define MAX_SEQUENCE_LENGTH 16
 
 typedef struct {
-  step_t steps[MAX_NUM_STEPS];
-  uint8_t num_steps;
+  step_t steps[MAX_SEQUENCE_LENGTH];
 } sequence_t;
 
 typedef enum {
@@ -51,10 +50,12 @@ typedef enum {
   SETTING_FIELD_GLIDE_DURATION_RATIO,
   SETTING_FIELD_ACCENT_DURATION_RATIO,
   SETTING_FIELD_ACCENT_SIZE,
+  SETTING_FIELD_SEQUENCE_LENGTH,
 } setting_field_t;
 
 typedef struct {
   sequence_t sequence;
+  uint8_t sequence_length;
   uint8_t playback_index;
   uint8_t edit_index;
   mode_t mode;
