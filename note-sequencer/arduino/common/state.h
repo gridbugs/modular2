@@ -1,6 +1,7 @@
 #pragma once
 
 #include "accent.h"
+#include "types.h"
 #include "util.h"
 #include <stdbool.h>
 #include <stdint.h>
@@ -27,31 +28,6 @@ static inline bool step_has_glide(step_t *step) {
 typedef struct {
   step_t steps[MAX_SEQUENCE_LENGTH];
 } sequence_t;
-
-typedef enum {
-  MODE_RUN,
-  MODE_PROGRAM_OR_LIVE,
-} mode_t;
-
-typedef enum {
-  CLOCK_SOURCE_INTERNAL,
-  CLOCK_SOURCE_EXTERNAL,
-} clock_source_t;
-
-typedef enum {
-  EDIT_MODE_STEP,
-  EDIT_MODE_IN_PLACE,
-} edit_mode_t;
-
-typedef enum {
-  SETTING_FIELD_NONE,
-  SETTING_FIELD_TEMPO_BPM,
-  SETTING_FIELD_GATE_DURATION_RATIO,
-  SETTING_FIELD_GLIDE_DURATION_RATIO,
-  SETTING_FIELD_ACCENT_DURATION_RATIO,
-  SETTING_FIELD_ACCENT_SIZE,
-  SETTING_FIELD_SEQUENCE_LENGTH,
-} setting_field_t;
 
 typedef struct {
   sequence_t sequence;

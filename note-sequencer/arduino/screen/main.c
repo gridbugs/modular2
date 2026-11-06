@@ -229,9 +229,13 @@ void render_splash(void) {
   display_text("ESIS", 50, 80, WHITE, BLACK, 1);
 }
 
-void handle_command(command_t command, state_t *state) {
+state_t state_prev;
+state_t state_curr;
+
+void handle_command(command_t command) {
   int fg = WHITE;
   int bg = BLACK;
+  state_apply_command(&state_curr, command);
   switch (command.typ) {
     case COMMAND_HELLO: {
       printf("Hello, World!\n\r");
@@ -243,7 +247,7 @@ void handle_command(command_t command, state_t *state) {
     }
     case COMMAND_SHOW_UI: {
       display_clear(bg);
-      state_render(state);
+      state_render(&state_curr);
       break;
     }
     case COMMAND_SET_NOTE: {
@@ -254,147 +258,115 @@ void handle_command(command_t command, state_t *state) {
       break;
     }
     case COMMAND_SET_PLAYBACK_INDEX: {
-      uint8_t sequence_index = command.args.set_playback_index.sequence_index;
       // Clear the playback cursor at its previous position.
-      state_render_playback_cursor(state, ' ', fg, bg);
-      state->playback_index = sequence_index;
+      state_render_playback_cursor(&state_prev, ' ', fg, bg);
       // Render the playback cursor at its current position.
-      state_render_playback_cursor(state, '>', fg, bg);
+      state_render_playback_cursor(&state_curr, '>', fg, bg);
       break;
     }
     case COMMAND_SET_EDIT_INDEX: {
-      uint8_t sequence_index = command.args.set_edit_index.sequence_index;
-      uint8_t edit_index_prev = state->edit_index;
-      state->edit_index = sequence_index;
       // Clear the edit cursor at its previous position.
-      state_render_step(state, edit_index_prev, WHITE, BLACK);
+      state_render_step(&state_curr, state_prev.edit_index, WHITE, BLACK);
       // Render the edit cursor at its current position.
-      state_render_step(state, state->edit_index, WHITE, BLACK);
+      state_render_step(&state_curr, state_curr.edit_index, WHITE, BLACK);
       break;
     }
     case COMMAND_SET_STEP_NOTE: {
       uint8_t sequence_index = command.args.set_step_note.sequence_index;
-      uint8_t note_index = command.args.set_step_note.note_index;
-      step_t *step = &state->sequence.steps[sequence_index];
-      step->note_index = note_index;
-      step->enabled = true;
-      state_render_step(state, sequence_index, fg, bg);
+      state_render_step(&state_curr, sequence_index, fg, bg);
       break;
     }
     case COMMAND_CLEAR_STEP_NOTE: {
       uint8_t sequence_index = command.args.set_step_note.sequence_index;
-      step_t *step = &state->sequence.steps[sequence_index];
-      step->enabled = false;
-      state_render_step(state, sequence_index, fg, bg);
+      state_render_step(&state_curr, sequence_index, fg, bg);
       break;
     }
     case COMMAND_SET_STEP_FLAGS: {
       uint8_t sequence_index = command.args.set_step_flags.sequence_index;
-      uint8_t flags = command.args.set_step_flags.flags;
-      step_t *step = &state->sequence.steps[sequence_index];
-      step->flags = flags;
-      state_render_step(state, sequence_index, fg, bg);
+      state_render_step(&state_curr, sequence_index, fg, bg);
       break;
     }
     case COMMAND_SET_LIVE_FLAGS: {
-      uint8_t flags = command.args.set_live_flags.flags;
-      state->live_flags = flags;
-      if (state->mode == MODE_PROGRAM_OR_LIVE && state->live) {
-        state_render_live_flags(state);
+      if (state_curr.mode == MODE_PROGRAM_OR_LIVE && state_curr.live) {
+        state_render_live_flags(&state_curr);
       }
       break;
     }
     case COMMAND_CLEAR_SEQUENCE: {
-      state_clear_sequence(state);
-      state_render(state);
+      state_render(&state_curr);
       break;
     }
     case COMMAND_SET_MODE: {
-      state->mode = command.args.set_mode.mode;
-      state_render_mode(state, fg, bg);
-      if (state->mode == MODE_PROGRAM_OR_LIVE && state->live) {
-        state_render_live_flags(state);
+      state_render_mode(&state_curr, fg, bg);
+      if (state_curr.mode == MODE_PROGRAM_OR_LIVE && state_curr.live) {
+        state_render_live_flags(&state_curr);
       }
       break;
     }
     case COMMAND_SET_LIVE: {
-      state->live = command.args.set_live.live;
-      state_render_mode(state, fg, bg);
-      if (state->mode == MODE_PROGRAM_OR_LIVE && state->live) {
-        state_render_live_flags(state);
+      state_render_mode(&state_curr, fg, bg);
+      if (state_curr.mode == MODE_PROGRAM_OR_LIVE && state_curr.live) {
+        state_render_live_flags(&state_curr);
       }
       break;
     }
     case COMMAND_SETTING_FIELD: {
-      state->setting_field = command.args.setting_field.setting_field;
-      state_render_setting(state, fg, bg);
+      state_render_setting(&state_curr, fg, bg);
       break;
     }
     case COMMAND_SET_TEMPO: {
-      state->tempo_bpm = command.args.set_tempo.tempo;
-      state_render_setting(state, fg, bg);
+      state_render_setting(&state_curr, fg, bg);
       break;
     }
     case COMMAND_SET_GATE: {
-      state->gate_duration_ratio = command.args.set_gate.gate;
-      state_render_setting(state, fg, bg);
+      state_render_setting(&state_curr, fg, bg);
       break;
     }
     case COMMAND_SET_GLIDE: {
-      state->glide_duration_ratio = command.args.set_glide.glide;
-      state_render_setting(state, fg, bg);
+      state_render_setting(&state_curr, fg, bg);
       break;
     }
     case COMMAND_SET_CLOCK: {
-      state->clock_state = command.args.set_clock.clock_state;
-      state_render_clock_state(state, fg, bg);
+      state_render_clock_state(&state_curr, fg, bg);
       break;
     }
     case COMMAND_SET_CLOCK_SOURCE: {
-      state->clock_source = command.args.set_clock_source.clock_source;
-      state_render_clock_source(state, fg, bg);
+      state_render_clock_source(&state_curr, fg, bg);
       break;
     }
     case COMMAND_SET_OCTAVE: {
-      state->octave = command.args.set_octave.octave;
-      state_render_octave(state, fg, bg);
+      state_render_octave(&state_curr, fg, bg);
       break;
     }
     case COMMAND_SET_EDIT_MODE: {
-      state->edit_mode = command.args.set_edit_mode.edit_mode;
-      state_render_edit_mode(state, fg, bg);
+      state_render_edit_mode(&state_curr, fg, bg);
       break;
     }
     case COMMAND_SET_ACCENT_TYPE: {
-      state->accent_type = command.args.set_accent_type.accent_type;
-      state_render_accent_type(state, fg, bg);
+      state_render_accent_type(&state_curr, fg, bg);
       break;
     }
     case COMMAND_SET_ACCENT_DURATION_RATIO: {
-      state->accent_duration_ratio = command.args.set_accent_duration_ratio.accent_duration_ratio;
-      state_render_setting(state, fg, bg);
+      state_render_setting(&state_curr, fg, bg);
       break;
     }
     case COMMAND_SET_ACCENT_SIZE: {
-      state->accent_size = command.args.set_accent_size.accent_size;
-      state_render_setting(state, fg, bg);
+      state_render_setting(&state_curr, fg, bg);
       break;
     }
     case COMMAND_SET_SEQUENCE_LENGTH: {
-      uint8_t original_length = state->sequence_length;
-      state->sequence_length = command.args.set_sequence_length.sequence_length;
-      uint8_t min_length = MIN_NAIVE(original_length, state->sequence_length);
-      uint8_t max_length = MAX_NAIVE(original_length, state->sequence_length);
+      uint8_t original_length = state_prev.sequence_length;
+      uint8_t min_length = MIN_NAIVE(original_length, state_curr.sequence_length);
+      uint8_t max_length = MAX_NAIVE(original_length, state_curr.sequence_length);
       for (uint8_t i = min_length; i < max_length; i++) {
-        state_render_step(state, i, fg, bg);
+        state_render_step(&state_curr, i, fg, bg);
       }
-      state_render_setting(state, fg, bg);
+      state_render_setting(&state_curr, fg, bg);
       break;
     }
   }
+  state_apply_command(&state_prev, command);
 }
-
-state_t state;
 
 int main(void) {
   timer2_init_pwm_port_d_bit_3(DISPLAY_BACKLIGHT_BRIGHTNESS);
@@ -405,7 +377,8 @@ int main(void) {
 
   display_init();
 
-  state_init(&state);
+  state_init(&state_curr);
+  state_init(&state_prev);
 
   printf("Starting TWI event handler...\n\r");
 
@@ -415,7 +388,7 @@ int main(void) {
 
   while (1) {
     while (command_ring_prev_read_index < command_ring_next_write_index) {
-      handle_command(command_ring[command_ring_prev_read_index % COMMAND_RING_SIZE], &state);
+      handle_command(command_ring[command_ring_prev_read_index % COMMAND_RING_SIZE]);
       command_ring_prev_read_index++;
     }
   }

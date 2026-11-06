@@ -1,12 +1,7 @@
 #pragma once
 
+#include "types.h"
 #include <stdint.h>
-
-typedef enum {
-  ACCENT_TYPE_RISE,
-  ACCENT_TYPE_FLAT,
-  ACCENT_TYPE_FALL,
-} accent_type_t;
 
 uint16_t accent_value_at_time_index(
   accent_type_t accent_type,
