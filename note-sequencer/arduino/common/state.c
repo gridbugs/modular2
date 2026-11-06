@@ -29,12 +29,31 @@ void state_add_to_playback_index(state_t *state, int8_t delta) {
   state->playback_index = (uint8_t)(new_playback_index % state->sequence_length);
 }
 
-void state_add_to_edit_index(state_t *state, int8_t delta) {
+command_t state_command_add_to_playback_index(state_t *state, int8_t delta) {
+  int8_t new_playback_index = (((int8_t)state->playback_index) + delta);
+  while (new_playback_index < 0) {
+    new_playback_index += state->sequence_length;
+  }
+  return command_set_playback_index(new_playback_index);
+}
+
+command_t state_command_add_to_edit_index(state_t *state, int8_t delta) {
   int8_t new_edit_index = (((int8_t)state->edit_index) + delta);
   while (new_edit_index < 0) {
     new_edit_index += state->sequence_length;
   }
-  state->edit_index = (uint8_t)(new_edit_index % state->sequence_length);
+  return command_set_edit_index(new_edit_index);
+}
+
+command_t state_command_toggle_flags(state_t *state, uint8_t flags) {
+  if (state->mode == MODE_PROGRAM_OR_LIVE && state->live) {
+    state->live_flags ^= flags;
+    return command_set_live_flags(state->live_flags);
+  } else {
+    step_t *step = state_current_edit_step_ptr(state);
+    step->flags ^= flags;
+    return command_set_step_flags(state->edit_index, step->flags);
+  }
 }
 
 void state_clear_sequence(state_t *state) {

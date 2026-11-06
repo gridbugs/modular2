@@ -53,7 +53,12 @@ typedef struct {
 
 void state_init(state_t *state);
 void state_add_to_playback_index(state_t *state, int8_t delta);
-void state_add_to_edit_index(state_t *state, int8_t delta);
+command_t state_command_add_to_playback_index(state_t *state, int8_t delta);
+command_t state_command_add_to_edit_index(state_t *state, int8_t delta);
+
+// Toggles flags set in the bitfield `flags` of the live flags in live mode or
+// the current step in non-live mode.
+command_t state_command_toggle_flags(state_t *state, uint8_t flags);
 void state_clear_sequence(state_t *state);
 step_t *state_current_edit_step_ptr(state_t *state);
 step_t state_current_playback_step(state_t *state);
