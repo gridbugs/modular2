@@ -50,14 +50,8 @@ typedef enum {
   // Switch into or out of the mode for setting a field.
   COMMAND_SETTING_FIELD,
 
-  // Set the tempo.
-  COMMAND_SET_TEMPO,
-
-  // Set the gate.
-  COMMAND_SET_GATE,
-
-  // Set the glide.
-  COMMAND_SET_GLIDE,
+  // Set a field,
+  COMMAND_SET_FIELD,
 
   // Indicate a change in the clock signal.
   COMMAND_SET_CLOCK,
@@ -73,15 +67,6 @@ typedef enum {
 
   // Set the accent type.
   COMMAND_SET_ACCENT_TYPE,
-
-  // Set the duration of the accent.
-  COMMAND_SET_ACCENT_DURATION_RATIO,
-
-  // Set the size of the accent.
-  COMMAND_SET_ACCENT_SIZE,
-
-  // Set the sequence length.
-  COMMAND_SET_SEQUENCE_LENGTH,
 } command_type_t;
 
 typedef struct {
@@ -124,6 +109,10 @@ typedef struct {
       setting_field_t setting_field;
     } setting_field;
     struct {
+      setting_field_t setting_field;
+      uint8_t value;
+    } set_field;
+    struct {
       uint8_t tempo;
     } set_tempo;
     struct {
@@ -147,15 +136,6 @@ typedef struct {
     struct {
       accent_type_t accent_type;
     } set_accent_type;
-    struct {
-      uint8_t accent_duration_ratio;
-    } set_accent_duration_ratio;
-    struct {
-      uint8_t accent_size;
-    } set_accent_size;
-    struct {
-      uint8_t sequence_length;
-    } set_sequence_length;
   } args;
 } command_t;
 
@@ -277,32 +257,13 @@ static inline command_t command_setting_field(setting_field_t setting_field) {
                      }};
 }
 
-static inline command_t command_set_tempo(uint8_t tempo) {
-  return (command_t){.typ = COMMAND_SET_TEMPO,
+static inline command_t command_set_field(setting_field_t setting_field, uint8_t value) {
+  return (command_t){.typ = COMMAND_SET_FIELD,
                      .args = {
-                       .set_tempo =
+                       .set_field =
                          {
-                           .tempo = tempo,
-                         },
-                     }};
-}
-
-static inline command_t command_set_gate(uint8_t gate) {
-  return (command_t){.typ = COMMAND_SET_GATE,
-                     .args = {
-                       .set_gate =
-                         {
-                           .gate = gate,
-                         },
-                     }};
-}
-
-static inline command_t command_set_glide(uint8_t glide) {
-  return (command_t){.typ = COMMAND_SET_GLIDE,
-                     .args = {
-                       .set_glide =
-                         {
-                           .glide = glide,
+                           .setting_field = setting_field,
+                           .value = value,
                          },
                      }};
 }
@@ -353,37 +314,6 @@ static inline command_t command_set_accent_type(accent_type_t accent_type) {
                        .set_accent_type =
                          {
                            .accent_type = accent_type,
-                         },
-                     }};
-}
-
-static inline command_t command_set_accent_duration_ratio(uint8_t accent_duration_ratio) {
-
-  return (command_t){.typ = COMMAND_SET_ACCENT_DURATION_RATIO,
-                     .args = {
-                       .set_accent_duration_ratio =
-                         {
-                           .accent_duration_ratio = accent_duration_ratio,
-                         },
-                     }};
-}
-
-static inline command_t command_set_accent_size(uint8_t accent_size) {
-  return (command_t){.typ = COMMAND_SET_ACCENT_SIZE,
-                     .args = {
-                       .set_accent_size =
-                         {
-                           .accent_size = accent_size,
-                         },
-                     }};
-}
-
-static inline command_t command_set_sequence_length(uint8_t sequence_length) {
-  return (command_t){.typ = COMMAND_SET_SEQUENCE_LENGTH,
-                     .args = {
-                       .set_sequence_length =
-                         {
-                           .sequence_length = sequence_length,
                          },
                      }};
 }

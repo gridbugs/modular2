@@ -230,65 +230,49 @@ static void push_and_apply_command(command_buffer_t *cb, state_t *state, command
   state_apply_command(state, command);
 }
 
-void command_buffer_push(command_buffer_t *cb, command_t command) {
-  cb->commands[cb->num_commands] = command;
-  cb->num_commands++;
-}
-
 #define MAX_OCTAVE 8
 #define MIN_BPM 30
 #define MAX_BPM 255
 
-void command_buffer_add_to_tempo(command_buffer_t *cb, state_t *state, int8_t tempo_delta) {
-  int16_t tempo_bpm = (int16_t)state->tempo_bpm + (int16_t)tempo_delta;
-  state->tempo_bpm =
-    tempo_bpm < MIN_BPM ? MIN_BPM : (tempo_bpm > MAX_BPM ? MAX_BPM : (uint8_t)tempo_bpm);
-  command_buffer_push(cb, command_set_tempo(state->tempo_bpm));
+static command_t state_command_add_to_tempo_bpm(state_t *state, int8_t delta) {
+  int16_t tempo_bpm = (int16_t)state->tempo_bpm + (int16_t)delta;
+  uint8_t tempo_bpm_clamped = (uint8_t)CLAMP_NAIVE(MIN_BPM, tempo_bpm, MAX_BPM);
+  return command_set_field(SETTING_FIELD_TEMPO_BPM, tempo_bpm_clamped);
 }
 
-void command_buffer_add_to_gate(command_buffer_t *cb, state_t *state, int8_t gate_delta) {
-  int16_t gate_duration_ratio = (int16_t)state->gate_duration_ratio + (int16_t)gate_delta;
-  state->gate_duration_ratio =
-    gate_duration_ratio < 0 ? 0 : (gate_duration_ratio > 255 ? 255 : (uint8_t)gate_duration_ratio);
-  command_buffer_push(cb, command_set_gate(state->gate_duration_ratio));
+static command_t state_command_add_to_gate_duration_ratio(state_t *state, int8_t delta) {
+  int16_t gate_duration_ratio = (int16_t)state->gate_duration_ratio + (int16_t)delta;
+  uint8_t gate_duration_ratio_clamped = (uint8_t)CLAMP_NAIVE(0, gate_duration_ratio, 255);
+  return command_set_field(SETTING_FIELD_GATE_DURATION_RATIO, gate_duration_ratio_clamped);
 }
 
-void command_buffer_add_to_glide(command_buffer_t *cb, state_t *state, int8_t glide_delta) {
-  int16_t glide_duration_ratio = (int16_t)state->glide_duration_ratio + (int16_t)glide_delta;
-  state->glide_duration_ratio = glide_duration_ratio < 0
-    ? 0
-    : (glide_duration_ratio > 255 ? 255 : (uint8_t)glide_duration_ratio);
-  command_buffer_push(cb, command_set_glide(state->glide_duration_ratio));
+static command_t state_command_add_to_glide_duration_ratio(state_t *state, int8_t delta) {
+  int16_t glide_duration_ratio = (int16_t)state->glide_duration_ratio + (int16_t)delta;
+  uint8_t glide_duration_ratio_clamped = (uint8_t)CLAMP_NAIVE(0, glide_duration_ratio, 255);
+  return command_set_field(SETTING_FIELD_GLIDE_DURATION_RATIO, glide_duration_ratio_clamped);
 }
 
-void command_buffer_add_to_accent_duration_ratio(
-  command_buffer_t *cb,
-  state_t *state,
-  int8_t delta) {
+static command_t state_command_add_to_accent_duration_ratio(state_t *state, int8_t delta) {
   int16_t accent_duration_ratio = (int16_t)state->accent_duration_ratio + (int16_t)delta;
-  state->accent_duration_ratio = accent_duration_ratio < 0
-    ? 0
-    : (accent_duration_ratio > 255 ? 255 : (uint8_t)accent_duration_ratio);
-  command_buffer_push(cb, command_set_accent_duration_ratio(state->accent_duration_ratio));
+  uint8_t accent_duration_ratio_clamped = (uint8_t)CLAMP_NAIVE(0, accent_duration_ratio, 255);
+  return command_set_field(SETTING_FIELD_ACCENT_DURATION_RATIO, accent_duration_ratio_clamped);
 }
 
-void command_buffer_add_to_accent_size(command_buffer_t *cb, state_t *state, int8_t delta) {
+static command_t state_command_add_to_accent_size(state_t *state, int8_t delta) {
   int16_t accent_size = (int16_t)state->accent_size + (int16_t)delta;
-  state->accent_size = accent_size < 0 ? 0 : (accent_size > 255 ? 255 : (uint8_t)accent_size);
-  command_buffer_push(cb, command_set_accent_size(state->accent_size));
+  uint8_t accent_size_clamped = (uint8_t)CLAMP_NAIVE(0, accent_size, 255);
+  return command_set_field(SETTING_FIELD_ACCENT_SIZE, accent_size_clamped);
 }
 
-void command_buffer_add_to_sequence_length(command_buffer_t *cb, state_t *state, int8_t delta) {
+static command_t state_command_add_to_sequence_length(state_t *state, int8_t delta) {
   int16_t sequence_length = (int16_t)state->sequence_length + (int16_t)delta;
-  state->sequence_length = sequence_length < 1
-    ? 1
-    : (sequence_length > MAX_SEQUENCE_LENGTH ? MAX_SEQUENCE_LENGTH : (uint8_t)sequence_length);
-  command_buffer_push(cb, command_set_sequence_length(state->sequence_length));
+  uint8_t sequence_length_clamped = (uint8_t)CLAMP_NAIVE(1, sequence_length, MAX_SEQUENCE_LENGTH);
+  return command_set_field(SETTING_FIELD_SEQUENCE_LENGTH, sequence_length_clamped);
 }
 
 #define SECONDS_PER_MINUTE 60
 
-uint16_t ticks_per_minute_to_timer_compare(uint16_t ticks_per_minute) {
+static uint16_t ticks_per_minute_to_timer_compare(uint16_t ticks_per_minute) {
   return (uint16_t)(((OSC_HZ >> 9) * SECONDS_PER_MINUTE) / (uint32_t)ticks_per_minute);
 }
 
@@ -299,11 +283,11 @@ typedef struct {
   uint8_t count_to_check;
 } async_flag_t;
 
-void async_flag_set(async_flag_t *async_flag) {
+static void async_flag_set(async_flag_t *async_flag) {
   async_flag->count_setter_incremented++;
 }
 
-bool async_flag_check_and_clear(async_flag_t *async_flag) {
+static bool async_flag_check_and_clear(async_flag_t *async_flag) {
   uint8_t count_copy = async_flag->count_setter_incremented;
   bool ret = count_copy != async_flag->count_to_check;
   async_flag->count_to_check = count_copy;
@@ -330,14 +314,14 @@ static inline void note_timer_reset(void) {
   timer2_match_count = 0;
 }
 
-void program_timer_ticks_per_minute(uint16_t ticks_per_minute) {
+static void program_timer_ticks_per_minute(uint16_t ticks_per_minute) {
   // Divide the comparator by 2 so we get interrupts twice as often as the tick
   // rate. Each interrupt will toggle the state of the clock.
   uint16_t compare_value = ticks_per_minute_to_timer_compare(ticks_per_minute) / 2;
   timer1_set_output_compare_a(compare_value);
 }
 
-void set_clock_source(clock_source_t clock_source) {
+static void set_clock_source(clock_source_t clock_source) {
   // Update the data-direction bit for the clock pin
   switch (clock_source) {
     case CLOCK_SOURCE_INTERNAL:
@@ -355,7 +339,7 @@ void set_clock_source(clock_source_t clock_source) {
 
 #define CLOCK_BOUNCE_THRESHOLD 100
 
-bool get_clock_in(void) {
+static bool get_clock_in(void) {
   static uint32_t since_change = 0;
   static bool state = false;
   bool raw = (PINC & PORTC_CLOCK_BIT) != 0;
@@ -371,7 +355,7 @@ bool get_clock_in(void) {
   return state;
 }
 
-void set_clock_out(bool value) {
+static void set_clock_out(bool value) {
   if (value) {
     PORTC |= PORTC_CLOCK_BIT;
   } else {
@@ -385,7 +369,7 @@ typedef enum {
   CLOCK_EVENT_FALLING_EDGE,
 } clock_event_t;
 
-clock_event_t handle_clock(state_t *state) {
+static clock_event_t handle_clock(state_t *state) {
   switch (state->clock_source) {
     case CLOCK_SOURCE_EXTERNAL: {
       bool clock_state = get_clock_in();
@@ -529,7 +513,7 @@ int main(void) {
 
   sei();
 
-  command_buffer_push(&cb, command_set_note(current_note));
+  push_and_apply_command(&cb, &st, command_set_note(current_note));
   set_pitch_dac_value(note_dac_value(current_note));
   command_buffer_send(&cb);
 
@@ -554,10 +538,10 @@ int main(void) {
       case CLOCK_EVENT_NONE:
         break;
       case CLOCK_EVENT_FALLING_EDGE:
-        command_buffer_push(&cb, command_set_clock(false));
+        push_and_apply_command(&cb, &st, command_set_clock(false));
         break;
       case CLOCK_EVENT_RISING_EDGE: {
-        command_buffer_push(&cb, command_set_clock(true));
+        push_and_apply_command(&cb, &st, command_set_clock(true));
         if (st.mode == MODE_RUN) {
           push_and_apply_command(&cb, &st, state_command_add_to_playback_index(&st, 1));
           current_step = state_current_playback_step(&st);
@@ -777,26 +761,44 @@ int main(void) {
           }
           break;
         case SETTING_FIELD_TEMPO_BPM:
-          command_buffer_add_to_tempo(&cb, &st, rotary_encoder_delta);
+          push_and_apply_command(
+            &cb,
+            &st,
+            state_command_add_to_tempo_bpm(&st, rotary_encoder_delta));
           program_timer_ticks_per_minute(state_ticks_per_minute(&st));
           break;
         case SETTING_FIELD_GATE_DURATION_RATIO:
-          command_buffer_add_to_gate(&cb, &st, rotary_encoder_delta);
+          push_and_apply_command(
+            &cb,
+            &st,
+            state_command_add_to_gate_duration_ratio(&st, rotary_encoder_delta));
           break;
         case SETTING_FIELD_GLIDE_DURATION_RATIO:
-          command_buffer_add_to_glide(&cb, &st, rotary_encoder_delta);
+          push_and_apply_command(
+            &cb,
+            &st,
+            state_command_add_to_glide_duration_ratio(&st, rotary_encoder_delta));
           // Set the timer's output compare register so the comparison match
           // interrupt fires at a rate as determined by the glide duration.
           timer0_set_output_compare_a(st.glide_duration_ratio);
           break;
         case SETTING_FIELD_ACCENT_DURATION_RATIO:
-          command_buffer_add_to_accent_duration_ratio(&cb, &st, rotary_encoder_delta);
+          push_and_apply_command(
+            &cb,
+            &st,
+            state_command_add_to_accent_duration_ratio(&st, rotary_encoder_delta));
           break;
         case SETTING_FIELD_ACCENT_SIZE:
-          command_buffer_add_to_accent_size(&cb, &st, rotary_encoder_delta);
+          push_and_apply_command(
+            &cb,
+            &st,
+            state_command_add_to_accent_size(&st, rotary_encoder_delta));
           break;
         case SETTING_FIELD_SEQUENCE_LENGTH:
-          command_buffer_add_to_sequence_length(&cb, &st, rotary_encoder_delta);
+          push_and_apply_command(
+            &cb,
+            &st,
+            state_command_add_to_sequence_length(&st, rotary_encoder_delta));
           break;
       }
     }
@@ -816,12 +818,12 @@ int main(void) {
         pitch_dac_value_base = pitch_dac_value_current;
         pitch_dac_value_target = note_dac_value(current_note);
         glide_reset();
-        command_buffer_push(&cb, command_set_note(current_note));
+        push_and_apply_command(&cb, &st, command_set_note(current_note));
       } else {
         pitch_dac_value_current = note_dac_value(current_note);
         pitch_dac_value_base = pitch_dac_value_current;
         pitch_dac_value_target = pitch_dac_value_current;
-        command_buffer_push(&cb, command_set_note(current_note));
+        push_and_apply_command(&cb, &st, command_set_note(current_note));
       }
     }
     if (state_current_has_glide(&st)) {

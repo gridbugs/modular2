@@ -8,6 +8,7 @@
 #define MASK(n) (BIT(n) - 1)
 #define MIN_NAIVE(a, b) ((a) < (b) ? (a) : (b))
 #define MAX_NAIVE(a, b) ((a) > (b) ? (a) : (b))
+#define CLAMP_NAIVE(min, value, max) ((value) < (min) ? (min) : ((value) > (max) ? (max) : (value)))
 
 __attribute__((noreturn)) static inline void loop_forever(void) {
   for (;;)

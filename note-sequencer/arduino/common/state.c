@@ -21,20 +21,12 @@ void state_init(state_t *state) {
   state->accent_size = 255;
 }
 
-void state_add_to_playback_index(state_t *state, int8_t delta) {
-  int8_t new_playback_index = (((int8_t)state->playback_index) + delta);
-  while (new_playback_index < 0) {
-    new_playback_index += state->sequence_length;
-  }
-  state->playback_index = (uint8_t)(new_playback_index % state->sequence_length);
-}
-
 command_t state_command_add_to_playback_index(state_t *state, int8_t delta) {
   int8_t new_playback_index = (((int8_t)state->playback_index) + delta);
   while (new_playback_index < 0) {
     new_playback_index += state->sequence_length;
   }
-  return command_set_playback_index(new_playback_index);
+  return command_set_playback_index(new_playback_index % state->sequence_length);
 }
 
 command_t state_command_add_to_edit_index(state_t *state, int8_t delta) {
@@ -42,7 +34,7 @@ command_t state_command_add_to_edit_index(state_t *state, int8_t delta) {
   while (new_edit_index < 0) {
     new_edit_index += state->sequence_length;
   }
-  return command_set_edit_index(new_edit_index);
+  return command_set_edit_index(new_edit_index % state->sequence_length);
 }
 
 command_t state_command_toggle_flags(state_t *state, uint8_t flags) {
@@ -87,6 +79,32 @@ bool state_current_has_accent(state_t *state) {
     return state_live_has_accent(state);
   } else {
     return state_current_playback_step(state).flags & FLAG_ACCENT;
+  }
+}
+
+static void set_field(state_t *state, setting_field_t setting_field, uint8_t value) {
+  switch (setting_field) {
+    case SETTING_FIELD_TEMPO_BPM:
+      state->tempo_bpm = value;
+      break;
+    case SETTING_FIELD_GATE_DURATION_RATIO:
+      state->gate_duration_ratio = value;
+      break;
+    case SETTING_FIELD_GLIDE_DURATION_RATIO:
+      state->glide_duration_ratio = value;
+      break;
+    case SETTING_FIELD_ACCENT_DURATION_RATIO:
+      state->accent_duration_ratio = value;
+      break;
+    case SETTING_FIELD_ACCENT_SIZE:
+      state->accent_size = value;
+      break;
+    case SETTING_FIELD_SEQUENCE_LENGTH:
+      state->sequence_length = value;
+      break;
+    default:
+    case SETTING_FIELD_NONE:
+      break;
   }
 }
 
@@ -137,14 +155,8 @@ void state_apply_command(state_t *state, command_t command) {
     case COMMAND_SETTING_FIELD:
       state->setting_field = command.args.setting_field.setting_field;
       break;
-    case COMMAND_SET_TEMPO:
-      state->tempo_bpm = command.args.set_tempo.tempo;
-      break;
-    case COMMAND_SET_GATE:
-      state->gate_duration_ratio = command.args.set_gate.gate;
-      break;
-    case COMMAND_SET_GLIDE:
-      state->glide_duration_ratio = command.args.set_glide.glide;
+    case COMMAND_SET_FIELD:
+      set_field(state, command.args.set_field.setting_field, command.args.set_field.value);
       break;
     case COMMAND_SET_CLOCK:
       state->clock_state = command.args.set_clock.clock_state;
@@ -160,15 +172,6 @@ void state_apply_command(state_t *state, command_t command) {
       break;
     case COMMAND_SET_ACCENT_TYPE:
       state->accent_type = command.args.set_accent_type.accent_type;
-      break;
-    case COMMAND_SET_ACCENT_DURATION_RATIO:
-      state->accent_duration_ratio = command.args.set_accent_duration_ratio.accent_duration_ratio;
-      break;
-    case COMMAND_SET_ACCENT_SIZE:
-      state->accent_size = command.args.set_accent_size.accent_size;
-      break;
-    case COMMAND_SET_SEQUENCE_LENGTH:
-      state->sequence_length = command.args.set_sequence_length.sequence_length;
       break;
   }
 }

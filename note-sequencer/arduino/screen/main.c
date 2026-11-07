@@ -55,7 +55,7 @@ ISR(TWI_vect) {
 #define SEQUENCE_TOP_Y 24
 #define MODE_LEFT_X 80
 
-void state_render_mode(state_t *state, int fg, int bg) {
+static void state_render_mode(state_t *state, int fg, int bg) {
   char *text;
   switch (state->mode) {
     case MODE_RUN:
@@ -74,7 +74,7 @@ void state_render_mode(state_t *state, int fg, int bg) {
   display_text(text, MODE_LEFT_X, 120, fg, bg, 0);
 }
 
-void state_render_live_flags(state_t *state) {
+static void state_render_live_flags(state_t *state) {
   char accent_char = state_live_has_accent(state) ? 'A' : ' ';
   char glide_char = state_live_has_glide(state) ? 'G' : ' ';
   char buf[3] = {accent_char, glide_char, '\0'};
@@ -83,26 +83,26 @@ void state_render_live_flags(state_t *state) {
 
 #define CLOCK_STATE_X 64
 
-void state_render_clock_state(state_t *state, int fg, int bg) {
+static void state_render_clock_state(state_t *state, int fg, int bg) {
   char *text = state->clock_state ? "*" : " ";
   display_text(text, CLOCK_STATE_X, 120, fg, bg, 0);
 }
 
-void state_render_clock_source(state_t *state, int fg, int bg) {
+static void state_render_clock_source(state_t *state, int fg, int bg) {
   static char buf[16];
   char *source_name = state->clock_source == CLOCK_SOURCE_EXTERNAL ? "EXT" : "INT";
   sprintf(buf, "CLK: %s", source_name);
   display_text(buf, 0, 120, fg, bg, 0);
 }
 
-void state_render_edit_mode(state_t *state, int fg, int bg) {
+static void state_render_edit_mode(state_t *state, int fg, int bg) {
   static char buf[16];
   char *mode_string = state->edit_mode == EDIT_MODE_STEP ? "STEP   " : "INPLACE";
   sprintf(buf, "EDT: %s", mode_string);
   display_text(buf, 0, 112, fg, bg, 0);
 }
 
-void state_render_accent_type(state_t *state, int fg, int bg) {
+static void state_render_accent_type(state_t *state, int fg, int bg) {
   static char buf[16];
   char *accent_string = "";
   switch (state->accent_type) {
@@ -120,7 +120,7 @@ void state_render_accent_type(state_t *state, int fg, int bg) {
   display_text(buf, 0, 104, fg, bg, 0);
 }
 
-void state_render_octave(state_t *state, int fg, int bg) {
+static void state_render_octave(state_t *state, int fg, int bg) {
   static char buf[2] = {0};
   display_text("OCT:", 88, 0, fg, bg, 0);
   display_text("OCT:", 88, 8, fg, bg, 0);
@@ -130,18 +130,18 @@ void state_render_octave(state_t *state, int fg, int bg) {
   display_text(buf, 120, 8, fg, bg, 0);
 }
 
-void render_cursor_at(int index, char cursor_char, int fg, int bg) {
+static void render_cursor_at(int index, char cursor_char, int fg, int bg) {
   int cursor_x = ((index * 2) / MAX_SEQUENCE_LENGTH) * 64;
   int cursor_y = SEQUENCE_TOP_Y + ((index % (MAX_SEQUENCE_LENGTH / 2)) * 8);
   char buf[] = {cursor_char, '\0'};
   display_text(buf, cursor_x, cursor_y, fg, bg, 0);
 }
 
-void state_render_playback_cursor(state_t *state, char cursor_char, int fg, int bg) {
+static void state_render_playback_cursor(state_t *state, char cursor_char, int fg, int bg) {
   render_cursor_at(state->playback_index, cursor_char, fg, bg);
 }
 
-void state_render_step(state_t *state, int step_index, int fg, int bg) {
+static void state_render_step(state_t *state, int step_index, int fg, int bg) {
   int x = ((step_index * 2) / MAX_SEQUENCE_LENGTH) * 64;
   int y = SEQUENCE_TOP_Y + ((step_index % (MAX_SEQUENCE_LENGTH / 2)) * 8);
   if (step_index >= state->sequence_length) {
@@ -172,7 +172,7 @@ void state_render_step(state_t *state, int step_index, int fg, int bg) {
   display_text(buf, x + 48, y, flag_fg, bg, 0);
 }
 
-void state_render_setting(state_t *state, int fg, int bg) {
+static void state_render_setting(state_t *state, int fg, int bg) {
   static char buf[32];
   int y = 96;
   switch (state->setting_field) {
@@ -202,11 +202,7 @@ void state_render_setting(state_t *state, int fg, int bg) {
   display_text(buf, 0, y, fg, bg, 0);
 }
 
-void state_render_edit_cursor(state_t *state) {
-  state_render_step(state, state->edit_index, WHITE, BLUE);
-}
-
-void state_render(state_t *state) {
+static void state_render(state_t *state) {
   int fg = WHITE;
   int bg = BLACK;
   state_render_mode(state, fg, bg);
@@ -221,7 +217,7 @@ void state_render(state_t *state) {
   state_render_edit_mode(state, fg, bg);
 }
 
-void render_splash(void) {
+static void render_splash(void) {
   display_clear(MAGENTA);
   display_text("PURPLE", 20, 20, WHITE, BLACK, 1);
   display_text("EARTH", 30, 40, WHITE, BLACK, 1);
@@ -229,10 +225,10 @@ void render_splash(void) {
   display_text("ESIS", 50, 80, WHITE, BLACK, 1);
 }
 
-state_t state_prev;
-state_t state_curr;
+static state_t state_prev;
+static state_t state_curr;
 
-void handle_command(command_t command) {
+static void handle_command(command_t command) {
   int fg = WHITE;
   int bg = BLACK;
   state_apply_command(&state_curr, command);
@@ -314,15 +310,15 @@ void handle_command(command_t command) {
       state_render_setting(&state_curr, fg, bg);
       break;
     }
-    case COMMAND_SET_TEMPO: {
-      state_render_setting(&state_curr, fg, bg);
-      break;
-    }
-    case COMMAND_SET_GATE: {
-      state_render_setting(&state_curr, fg, bg);
-      break;
-    }
-    case COMMAND_SET_GLIDE: {
+    case COMMAND_SET_FIELD: {
+      if (command.args.set_field.setting_field == SETTING_FIELD_SEQUENCE_LENGTH) {
+        uint8_t original_length = state_prev.sequence_length;
+        uint8_t min_length = MIN_NAIVE(original_length, state_curr.sequence_length);
+        uint8_t max_length = MAX_NAIVE(original_length, state_curr.sequence_length);
+        for (uint8_t i = min_length; i < max_length; i++) {
+          state_render_step(&state_curr, i, fg, bg);
+        }
+      }
       state_render_setting(&state_curr, fg, bg);
       break;
     }
@@ -344,24 +340,6 @@ void handle_command(command_t command) {
     }
     case COMMAND_SET_ACCENT_TYPE: {
       state_render_accent_type(&state_curr, fg, bg);
-      break;
-    }
-    case COMMAND_SET_ACCENT_DURATION_RATIO: {
-      state_render_setting(&state_curr, fg, bg);
-      break;
-    }
-    case COMMAND_SET_ACCENT_SIZE: {
-      state_render_setting(&state_curr, fg, bg);
-      break;
-    }
-    case COMMAND_SET_SEQUENCE_LENGTH: {
-      uint8_t original_length = state_prev.sequence_length;
-      uint8_t min_length = MIN_NAIVE(original_length, state_curr.sequence_length);
-      uint8_t max_length = MAX_NAIVE(original_length, state_curr.sequence_length);
-      for (uint8_t i = min_length; i < max_length; i++) {
-        state_render_step(&state_curr, i, fg, bg);
-      }
-      state_render_setting(&state_curr, fg, bg);
       break;
     }
   }
